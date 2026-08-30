@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import { I18N_LANGUAGES } from '@/i18n/config';
 import {
   BetweenHorizontalStart,
   Coffee,
   CreditCard,
   FileText,
-  Globe,
   Moon,
   Settings,
   Shield,
@@ -15,31 +13,29 @@ import {
 } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
-import { useLanguage } from '@/providers/i18n-provider';
+// import { useLanguage } from '@/providers/i18n-provider';
 import { Badge } from '@/store/components/ui/badge';
 import { Button } from '@/store/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/store/components/ui/dropdown-menu';
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/store/components/ui/switch';
 
 export function UserDropdownMenu({ trigger }) {
   const { data: session } = useSession();
-  const { changeLanguage, language } = useLanguage();
+  // const { changeLanguage, language } = useLanguage();
   const { resolvedTheme, setTheme } = useTheme();
 
-  const handleLanguage = (lang) => {
-    changeLanguage(lang.code);
-  };
+  // const handleLanguage = (lang) => {
+  //   changeLanguage(lang.code);
+  // };
 
   const handleThemeToggle = (checked) => {
     setTheme(checked ? 'dark' : 'light');
@@ -48,13 +44,14 @@ export function UserDropdownMenu({ trigger }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
+
       <DropdownMenuContent className="w-64" side="bottom" align="end">
         {/* Header */}
         <div className="flex items-center justify-between p-3">
           <div className="flex items-center gap-2">
             <img
               className="w-9 h-9 rounded-full border border-border"
-              src={'/media/avatars/300-2.png'}
+              src="/media/avatars/300-2.png"
               alt="User avatar"
             />
 
@@ -63,16 +60,18 @@ export function UserDropdownMenu({ trigger }) {
                 href="/account/home/get-started"
                 className="text-sm text-mono hover:text-primary font-semibold"
               >
-                {session?.user.name || ''}
+                {session?.user?.name || ''}
               </Link>
+
               <Link
                 href="mailto:c.fisher@gmail.com"
                 className="text-xs text-muted-foreground hover:text-primary"
               >
-                {session?.user.email || ''}
+                {session?.user?.email || ''}
               </Link>
             </div>
           </div>
+
           <Badge variant="primary" appearance="light" size="sm">
             Pro
           </Badge>
@@ -90,6 +89,7 @@ export function UserDropdownMenu({ trigger }) {
             Public Profile
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <Link
             href="/account/home/user-profile"
@@ -106,6 +106,7 @@ export function UserDropdownMenu({ trigger }) {
             <Settings />
             My Account
           </DropdownMenuSubTrigger>
+
           <DropdownMenuSubContent className="w-48">
             <DropdownMenuItem asChild>
               <Link
@@ -116,6 +117,7 @@ export function UserDropdownMenu({ trigger }) {
                 Get Started
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem asChild>
               <Link
                 href="/account/home/user-profile"
@@ -125,6 +127,7 @@ export function UserDropdownMenu({ trigger }) {
                 My Profile
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem asChild>
               <Link
                 href="/account/billing/basic"
@@ -134,6 +137,7 @@ export function UserDropdownMenu({ trigger }) {
                 Billing
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem asChild>
               <Link
                 href="/account/security/overview"
@@ -143,6 +147,7 @@ export function UserDropdownMenu({ trigger }) {
                 Security
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem asChild>
               <Link
                 href="/account/members/teams"
@@ -152,6 +157,7 @@ export function UserDropdownMenu({ trigger }) {
                 Members & Roles
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem asChild>
               <Link
                 href="/account/integrations"
@@ -174,7 +180,8 @@ export function UserDropdownMenu({ trigger }) {
           </Link>
         </DropdownMenuItem>
 
-        {/* Language Submenu with Radio Group */}
+        {/* Language Submenu - Disabled */}
+        {/*
         <DropdownMenuSub>
           <DropdownMenuSubTrigger className="flex items-center gap-2 [&_[data-slot=dropdown-menu-sub-trigger-indicator]]:hidden hover:[&_[data-slot=badge]]:border-input data-[state=open]:[&_[data-slot=badge]]:border-input">
             <Globe />
@@ -193,6 +200,7 @@ export function UserDropdownMenu({ trigger }) {
               </Badge>
             </span>
           </DropdownMenuSubTrigger>
+
           <DropdownMenuSubContent className="w-48">
             <DropdownMenuRadioGroup
               value={language.code}
@@ -200,7 +208,10 @@ export function UserDropdownMenu({ trigger }) {
                 const selectedLang = I18N_LANGUAGES.find(
                   (lang) => lang.code === value,
                 );
-                if (selectedLang) handleLanguage(selectedLang);
+
+                if (selectedLang) {
+                  handleLanguage(selectedLang);
+                }
               }}
             >
               {I18N_LANGUAGES.map((item) => (
@@ -221,6 +232,7 @@ export function UserDropdownMenu({ trigger }) {
             </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
+        */}
 
         <DropdownMenuSeparator />
 
@@ -230,8 +242,10 @@ export function UserDropdownMenu({ trigger }) {
           onSelect={(event) => event.preventDefault()}
         >
           <Moon />
+
           <div className="flex items-center gap-2 justify-between grow">
             Dark Mode
+
             <Switch
               size="sm"
               checked={resolvedTheme === 'dark'}
@@ -240,6 +254,7 @@ export function UserDropdownMenu({ trigger }) {
             />
           </div>
         </DropdownMenuItem>
+
         <div className="p-2 mt-1">
           <Button
             variant="outline"
