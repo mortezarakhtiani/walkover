@@ -11,6 +11,7 @@ import FAQ from '@/components/faq';
 import CallToAction from '@/components/call-to-action';
 import Contact from '@/components/contact';
 import Footer from '@/components/footer';
+import StoreProducts from '@/store/components/store-products';
 
 export default function Page() {
     return (
@@ -21,7 +22,8 @@ export default function Page() {
             <HowItWorks/>
             <Features/>
             <Testimonials/>
-            <Pricing/>
+            <StoreProducts/>
+            {/*<Pricing/>*/}
             <FAQ/>
             <CallToAction/>
             <Contact/>

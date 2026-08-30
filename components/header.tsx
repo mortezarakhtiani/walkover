@@ -10,7 +10,7 @@ import { Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
-  const navItems = ['Home', 'Features', 'Pricing', 'FAQ', 'Contact'];
+  const navItems = ['Home', 'Features', 'FAQ', 'Contact'];
 
   const { resolvedTheme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
