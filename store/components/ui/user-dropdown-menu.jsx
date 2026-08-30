@@ -11,7 +11,7 @@ import {
   UserCircle,
   Users,
 } from 'lucide-react';
-import { signOut, useSession } from 'next-auth/react';
+// import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 // import { useLanguage } from '@/providers/i18n-provider';
 import { Badge } from '@/store/components/ui/badge';
@@ -29,7 +29,7 @@ import {
 import { Switch } from '@/store/components/ui/switch';
 
 export function UserDropdownMenu({ trigger }) {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   // const { changeLanguage, language } = useLanguage();
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -60,14 +60,16 @@ export function UserDropdownMenu({ trigger }) {
                 href="/account/home/get-started"
                 className="text-sm text-mono hover:text-primary font-semibold"
               >
-                {session?.user?.name || ''}
+                {/*{session?.user?.name || ''}*/}
+                reza hasanzadeh
               </Link>
 
               <Link
                 href="mailto:c.fisher@gmail.com"
                 className="text-xs text-muted-foreground hover:text-primary"
               >
-                {session?.user?.email || ''}
+                {/*{session?.user?.email || ''}*/}
+                reza@example.com
               </Link>
             </div>
           </div>
@@ -260,7 +262,7 @@ export function UserDropdownMenu({ trigger }) {
             variant="outline"
             size="sm"
             className="w-full"
-            onClick={() => signOut()}
+            // onClick={() => signOut()}
           >
             Logout
           </Button>

@@ -61,7 +61,7 @@ export function Deals() {
         </span>
 
         <Button mode="link" asChild>
-          <Link href="/account/home/get-started">
+          <Link href="/store-client/search-results-grid" className="text-xs">
             See All <ChevronRight />
           </Link>
         </Button>

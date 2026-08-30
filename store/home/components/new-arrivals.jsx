@@ -7,7 +7,7 @@ import {Card2} from '@/store/components/common/card2';
 
 export function NewArrivals({
                                 showSeeAll = true,
-                                moreButton = ''
+                                moreButton = 'نمایش همه'
                             }) {
     const items = [
         {

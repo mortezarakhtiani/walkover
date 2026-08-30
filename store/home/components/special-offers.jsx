@@ -9,7 +9,7 @@ import { Card2 } from '@/store/home/special-offers/card2';
 
 export function SpecialOffers({
   showSeeAll = true,
-  moreButton = '',
+  moreButton = 'نمایش همه',
 }) {
   return (
     <div className="space-y-5">
@@ -20,7 +20,7 @@ export function SpecialOffers({
 
         {showSeeAll && (
           <Button mode="link" asChild>
-            <Link href="/store" className="text-xs">
+            <Link href="/store/search-results-grid" className="text-xs">
               {moreButton} <ChevronRight />
             </Link>
           </Button>
