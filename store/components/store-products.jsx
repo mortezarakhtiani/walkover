@@ -2,16 +2,19 @@
 
 import {SpecialOffers} from '@/store/home/components/special-offers';
 import {NewArrivals} from '@/store/home/components/new-arrivals';
+import {StoreClientWrapper} from "@/store/components/wrapper";
 
 export default function StoreProducts() {
     return (
-        <section className="py-20">
-            <div className="container mx-auto px-4">
-                <div className="space-y-10">
-                    <SpecialOffers showSeeAll={false}/>
-                    <NewArrivals showSeeAll={false}/>
+        <StoreClientWrapper>
+            <section className="store-theme py-20">
+                <div className="container mx-auto px-4">
+                    <div className="space-y-10">
+                        <SpecialOffers showSeeAll={false}/>
+                        <NewArrivals showSeeAll={false}/>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </StoreClientWrapper>
     );
 }

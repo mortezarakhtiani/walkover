@@ -13,7 +13,7 @@ export function SpecialOffers() {
         <span className="text-lg font-medium text-mono">Special Offers</span>
 
         <Button mode="link" asChild>
-          <Link href="/account/home/get-started" className="text-xs">
+          <Link href="/store" className="text-xs">
             See All <ChevronRight />
           </Link>
         </Button>

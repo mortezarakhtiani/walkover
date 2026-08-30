@@ -49,7 +49,7 @@ export function NewArrivals() {
         <span className="text-lg font-medium text-mono">New Arrivals</span>
 
         <Button mode="link" asChild>
-          <Link href="/account/home/get-started" className="text-xs">
+          <Link href="/store" className="text-xs">
             See All <ChevronRight />
           </Link>
         </Button>
