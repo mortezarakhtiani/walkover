@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -6,17 +7,24 @@ import { Button } from '@/store/components/ui/button';
 import { Card1 } from '@/store/home/special-offers/card1';
 import { Card2 } from '@/store/home/special-offers/card2';
 
-export function SpecialOffers() {
+export function SpecialOffers({
+  showSeeAll = true,
+  moreButton = '',
+}) {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-lg font-medium text-mono">Special Offers</span>
+        <span className="text-lg font-medium text-mono">
+          Special Offers
+        </span>
 
-        <Button mode="link" asChild>
-          <Link href="/store" className="text-xs">
-            See All <ChevronRight />
-          </Link>
-        </Button>
+        {showSeeAll && (
+          <Button mode="link" asChild>
+            <Link href="/store" className="text-xs">
+              {moreButton} <ChevronRight />
+            </Link>
+          </Button>
+        )}
       </div>
 
       <div className="grid xl:grid-cols-2 gap-5 mb-2">

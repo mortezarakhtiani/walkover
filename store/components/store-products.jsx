@@ -10,8 +10,14 @@ export default function StoreProducts() {
             <section className="store-theme py-20">
                 <div className="container mx-auto px-4">
                     <div className="space-y-10">
-                        <SpecialOffers showSeeAll={false}/>
-                        <NewArrivals showSeeAll={false}/>
+                        <SpecialOffers
+                            showSeeAll={true}
+                            moreButton="نمایش بیشتر"
+                        />
+                        <NewArrivals
+                            showSeeAll={true}
+                            moreButton="نمایش بیشتر"
+                        />
                     </div>
                 </div>
             </section>
