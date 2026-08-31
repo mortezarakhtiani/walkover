@@ -53,7 +53,9 @@ const items = [
 export function StoreClientCartSheet({ open, onOpenChange }) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="sm:w-[560px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
+      <SheetContent
+  className="store-theme sm:w-[560px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5"
+>
         <SheetHeader className="border-b py-3.5 px-5 border-border">
           <SheetTitle>Cart</SheetTitle>
         </SheetHeader>

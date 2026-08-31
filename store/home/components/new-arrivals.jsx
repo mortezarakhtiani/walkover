@@ -7,7 +7,8 @@ import {Card2} from '@/store/components/common/card2';
 
 export function NewArrivals({
                                 showSeeAll = true,
-                                moreButton = 'نمایش همه'
+                                moreButton = 'نمایش همه',
+                                moreButtonHref = '/store/search-results-grid',
                             }) {
     const items = [
         {
@@ -55,7 +56,7 @@ export function NewArrivals({
 
                 {showSeeAll && (
                     <Button mode="link" asChild>
-                        <Link href="/store" className="text-xs">
+                        <Link href={moreButtonHref} className="text-xs">
                             {moreButton} <ChevronRight/>
                         </Link>
                     </Button>

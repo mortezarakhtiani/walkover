@@ -13,7 +13,7 @@ import {
 export function StoreClientContent() {
   return (
     <div className="grid grid-cols-1 gap-6">
-      <Search />
+      {/*<Search />*/}
       <FeaturedProducts />
       <SpecialOffers />
       <NewArrivals />

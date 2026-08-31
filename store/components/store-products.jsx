@@ -13,10 +13,12 @@ export default function StoreProducts() {
                         <SpecialOffers
                             showSeeAll={true}
                             moreButton="نمایش بیشتر"
+                            moreButtonHref="/store"
                         />
                         <NewArrivals
                             showSeeAll={true}
                             moreButton="نمایش بیشتر"
+                            moreButtonHref="/store"
                         />
                     </div>
                 </div>
