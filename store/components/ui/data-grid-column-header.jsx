@@ -174,7 +174,7 @@ function DataGridColumnHeader({
                   }}
                   disabled={!column.getCanSort()}
                 >
-                  <ArrowDown className="size-3.5!" />
+                  <ArrowDown className="size-10.5!" />
                   <span className="grow">Desc</span>
                   {column.getIsSorted() === 'desc' && (
                     <Check className="size-4 opacity-100! text-primary" />

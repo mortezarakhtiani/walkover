@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import {Inter} from 'next/font/google';
 import {cn} from '@/lib/utils';
 import {Metadata} from 'next';
-import {ThemeProvider} from 'next-themes';
+import {ThemeProvider} from '@/providers/theme-provider';
 import {TooltipProvider} from '@radix-ui/react-tooltip';
 import {SettingsProvider} from '@/providers/settings-provider';
 // import SessionProviderWrapper from '@/providers/session-provider';
@@ -34,11 +34,11 @@ export default async function RootLayout({
             )}
         >
         <SettingsProvider>
-            {/*<SessionProviderWrapper>*/}
+            <ThemeProvider>
                 <TooltipProvider>
                     {children}
                 </TooltipProvider>
-            {/*</SessionProviderWrapper>*/}
+            </ThemeProvider>
         </SettingsProvider>
         </body>
         </html>
