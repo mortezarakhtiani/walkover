@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import {Inter} from 'next/font/google';
+// import {Inter} from 'next/font/google';
 import {cn} from '@/lib/utils';
 import {Metadata} from 'next';
 import {ThemeProvider} from '@/providers/theme-provider';
@@ -9,9 +9,8 @@ import {SettingsProvider} from '@/providers/settings-provider';
 import '@/styles/globals.css';
 import './store/store-theme.css';
 
-const inter = Inter({subsets: ['latin']});
+// const inter = Inter({subsets: ['latin']});
 
-import '@/styles/globals.css';
 
 export const metadata: Metadata = {
     title: {
@@ -26,13 +25,8 @@ export default async function RootLayout({
     children: ReactNode;
 }) {
     return (
-        <html className="h-full" suppressHydrationWarning>
-        <body
-            className={cn(
-                'antialiased text-base text-foreground bg-background',
-                inter.className,
-            )}
-        >
+        <html lang="fa" dir="rtl" className="h-full" suppressHydrationWarning>
+        <body className="antialiased text-base text-foreground bg-background">
         <SettingsProvider>
             <ThemeProvider>
                 <TooltipProvider>

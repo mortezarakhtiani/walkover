@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { StoreClientCartSheet } from '@/store/components/sheets/cart-sheet';
 import { SearchResults } from '@/store/search-results-grid/components/search-results';
-
 export function CartContent() {
   const [open, setOpen] = useState(true);
 
@@ -11,6 +10,7 @@ export function CartContent() {
     <>
       <SearchResults mode="card" />
       <StoreClientCartSheet open={open} onOpenChange={() => setOpen(false)} />
+
     </>
   );
 }

@@ -99,7 +99,7 @@ export default function StoreShowcase() {
                     <div className="grid sm:grid-cols-2 gap-5 items-stretch">
 
                         <OfferCard
-                            title="Nike Dunk Low"
+                            title="یسیسیسیسیNike Dunk Low"
                             total="$110.00"
                             logo="4.png"
                             bg="bg-green-50 dark:bg-green-950/30"

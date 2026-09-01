@@ -12,12 +12,13 @@ import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Input} from '@/store/components/ui/input';
 import {useStoreClient} from '@/store/components/context';
+import {toPersianDigits} from "../../../lib/to-persian-digits";
 
 export function StoreClientTopbar() {
     const {showCartSheet, showWishlistSheet} = useStoreClient();
 
     return (
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full" dir="ltr">
 
             {/* LEFT - User / Wishlist / Cart */}
             <div className="flex items-center gap-1">
@@ -45,12 +46,16 @@ export function StoreClientTopbar() {
 
                     <div className="flex flex-col">
             <span className="text-xs font-medium text-secondary-foreground">
-              Total
+              مبلغ کل
             </span>
-
-                        <span className="text-xs font-medium text-dark">
-              $94.56
-            </span>
+                        <div className="flex flex-row-reverse items-center gap-1">
+                            <span className="text-xs font-medium text-dark">
+                                {toPersianDigits('94.56')}
+                            </span>
+                            <span className="text-[10px] font-medium text-dark">
+                                تومان
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -83,15 +88,14 @@ export function StoreClientTopbar() {
             </div>
 
             {/* RIGHT - Search */}
-            {/* RIGHT - Search */}
-            <div className="relative w-[240px]">
+            <div className="relative w-[480px]">
                 <Search className="size-4 text-muted-foreground absolute top-1/2 -translate-y-1/2 end-2"/>
 
                 <Input
                     id="search-input"
                     type="text"
-                    className="pe-9 text-right"
-                    placeholder="Search shop"
+                    className="pe-9 text-right bg-white/5"
+                    placeholder="جستجو در همه محصولات"
                 />
             </div>
 

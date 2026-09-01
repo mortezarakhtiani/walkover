@@ -130,9 +130,9 @@ export function StoreClientProductDetailsSheet({
                 ))}
               </div>
 
-              <div className="flex items-center justify-end gap-2">
+              <div lang="fa" className="flex items-center justify-end gap-2">
                 <span className="text-base font-normal text-secondary-foreground line-through">
-                  $140.00
+                  $140
                 </span>
 
                 <span className="text-lg font-medium text-mono">$99.00</span>

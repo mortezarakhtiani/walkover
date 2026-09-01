@@ -50,17 +50,20 @@ export function NewArrivals({
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between gap-4">
-        <span className="text-lg font-medium text-mono">
-          New Arrivals
-        </span>
+
 
                 {showSeeAll && (
                     <Button mode="link" asChild>
                         <Link href={moreButtonHref} className="text-xs">
-                            {moreButton} <ChevronRight/>
+                            <ChevronRight/>
+                            {moreButton}
                         </Link>
                     </Button>
                 )}
+
+                <span className="text-lg font-medium text-mono">
+                    محصولات جدید
+                </span>
             </div>
 
             <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-2">
