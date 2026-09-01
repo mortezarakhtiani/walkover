@@ -39,7 +39,7 @@ export function SpecialOffers({
                         <Card2
                             logo="4.png"
                             title="کفش ورزشی Nike Dunk Low"
-                            total="$110.00"
+                            total="110.00"
                             bgColor="bg-green-50 dark:bg-green-950/30"
                             borderColor="border-green-200 dark:border-green-950"
                         />
@@ -47,7 +47,7 @@ export function SpecialOffers({
                         <Card2
                             logo="1.png"
                             title="کفش ورزشی Nike Air Force 1"
-                            total="$96.99"
+                            total="96.99"
                             bgColor="bg-primary/10"
                             borderColor="border-primary/10"
                         />
