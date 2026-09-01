@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { MoveLeft, MoveRight } from 'lucide-react';
-import { Button } from '@/store/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Info } from './components/info';
 import { Order } from './components/order';
 
@@ -16,13 +16,13 @@ export function ShippingInfoContent() {
         <div className="flex justify-end items-center flex-wrap gap-3">
           <Button variant="outline">
             <MoveLeft className="text-base" />
-            <Link href="/store/checkout/order-summary">
+            <Link href="/store-client/checkout/order-summary">
               Order Summary
             </Link>
           </Button>
 
           <Button>
-            <Link href="/store/checkout/payment-method">
+            <Link href="/store-client/checkout/payment-method">
               Payment Method
             </Link>
             <MoveRight className="text-base" />

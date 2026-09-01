@@ -17,7 +17,7 @@ export function OrderSummaryContent() {
           <Button variant="outline">Cancel</Button>
 
           <Button>
-            <Link href="/store-client/checkout/shipping-info">
+            <Link href="/store/checkout/shipping-info">
               Shipping Info
             </Link>
             <MoveRight className="text-base" />

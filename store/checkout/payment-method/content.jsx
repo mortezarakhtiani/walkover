@@ -16,13 +16,14 @@ export function PaymentMethodContent() {
         <div className="flex justify-end items-center flex-wrap gap-3">
           <Button variant="outline">
             <MoveLeft className="text-base" />
-            <Link href="/store-client/checkout/shipping-info">
+            <Link href="/store/checkout/shipping-info">
               Shipping Info
             </Link>
           </Button>
 
           <Button>
-            <Link href="/store-client/checkout/order-placed">Place Order</Link>
+            <Link href="/store/checkout/order-placed">
+              Place Order</Link>
             <SquareMousePointer className="text-base" />
           </Button>
         </div>
