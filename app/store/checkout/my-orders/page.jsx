@@ -31,7 +31,7 @@ export default function MyOrdersPage() {
           </ToolbarActions>
         </Toolbar>
       </Container>
-      <Container>
+            <Container className="pb-10">
         <MyOrdersContent />
       </Container>
     </Fragment>

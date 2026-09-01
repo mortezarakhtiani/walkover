@@ -22,7 +22,7 @@ export default function PaymentMethodPage() {
       <Container>
         <Toolbar>
           <ToolbarHeading>
-            <ToolbarPageTitle />
+            <ToolbarPageTitle text="Payment Method" />
             <ToolbarDescription>Select how you want to pay</ToolbarDescription>
           </ToolbarHeading>
           <ToolbarActions>
@@ -33,7 +33,7 @@ export default function PaymentMethodPage() {
           </ToolbarActions>
         </Toolbar>
       </Container>
-      <Container>
+            <Container className="pb-10">
         <PaymentMethodContent />
       </Container>
     </Fragment>

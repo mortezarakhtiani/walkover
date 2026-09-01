@@ -40,7 +40,7 @@ export default function OrderPlacedPage() {
                     </ToolbarActions>
                 </Toolbar>
             </Container>
-            <Container>
+            <Container className="pb-10">
                 <OrderPlacedContent/>
             </Container>
         </Fragment>
