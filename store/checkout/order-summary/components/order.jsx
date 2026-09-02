@@ -10,9 +10,9 @@ import {
 
 export function Order() {
   const items = [
-    { label: 'Subtotal', amount: 492.0 },
-    { label: 'Shipping', amount: 0.0 },
-    { label: 'VAT', amount: 0.0 },
+    { label: 'جمغ کل', amount: 492.0 },
+    { label: 'هزینه ارسال', amount: 0.0 },
+    { label: 'مالیات بر ارزش افزوده', amount: 0.0 },
   ];
 
   const renderItem = (item, index) => (
@@ -27,11 +27,11 @@ export function Order() {
   return (
     <Card className="bg-accent/50">
       <CardHeader className="px-5">
-        <CardTitle>Order Summary</CardTitle>
+        <CardTitle>اطلاعات سفارش شما</CardTitle>
       </CardHeader>
 
       <CardContent className="px-5 py-4 space-y-2">
-        <h4 className="text-sm font-medium text-mono mb-3.5">Price Details</h4>
+        <h4 className="text-sm font-medium text-mono mb-3.5">جزئیات قیمت</h4>
 
         {items.map((item, index) => {
           return renderItem(item, index);

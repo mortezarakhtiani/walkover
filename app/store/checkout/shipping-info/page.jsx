@@ -24,13 +24,13 @@ export default function ShippingInfoPage() {
                     <ToolbarHeading>
                         <ToolbarPageTitle/>
                         <ToolbarDescription>
-                            Enter and confirm your delivery address
+                            نشانی تحویل خود را وارد و تأیید کنید
                         </ToolbarDescription>
                     </ToolbarHeading>
                     <ToolbarActions>
                         <Button variant="outline">
                             <MapPinned/>
-                            <Link href="#">Add Address</Link>
+                            <Link href="#">افزودن نشانی</Link>
                         </Button>
                     </ToolbarActions>
                 </Toolbar>

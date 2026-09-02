@@ -23,7 +23,7 @@ export default function PaymentMethodPage() {
         <Toolbar>
           <ToolbarHeading>
             <ToolbarPageTitle text="Payment Method" />
-            <ToolbarDescription>Select how you want to pay</ToolbarDescription>
+            <ToolbarDescription>لطفا روش پرداخت خود را انتخاب کنید</ToolbarDescription>
           </ToolbarHeading>
           <ToolbarActions>
             <Button variant="outline">

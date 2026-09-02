@@ -13,18 +13,18 @@ export default function MyOrdersPage() {
         <div className="flex items-center justify-between py-6">
           <div>
             <h1 className="text-xl font-semibold text-mono">
-              My Orders
+              سفارشات من
             </h1>
 
             <p className="text-sm text-secondary-foreground mt-1">
-              View and manage your orders
+              مشاهده و مدیریت سفارش‌ها
             </p>
           </div>
 
           <Button variant="outline" asChild>
             <Link href="/store">
+              ادامه خرید
               <BaggageClaim />
-              Continue Shopping
             </Link>
           </Button>
         </div>

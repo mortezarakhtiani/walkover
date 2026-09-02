@@ -37,7 +37,8 @@ export function Card1() {
                             افزودن به سبد خرید
                         </Button>
 
-                        <span className="text-base font-semibold text-mono">{toPersianDigits('140,000')}
+                        <span className="text-base font-semibold text-mono">
+                            {toPersianDigits('140,000')}
                             <span className="text-sm font-normal ms-1">تومان</span></span>
                     </div>
                 </div>

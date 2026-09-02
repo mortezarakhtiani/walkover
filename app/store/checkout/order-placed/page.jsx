@@ -9,7 +9,7 @@ import {
     ToolbarHeading,
     ToolbarPageTitle,
 } from '@/partials/common/toolbar';
-import {Captions} from 'lucide-react';
+import {Captions, SquareMousePointer} from 'lucide-react';
 import {Button} from '@/store/components/ui/button';
 import {Container} from '@/store/components/common/container';
 import {OrderPlacedContent} from '@/store/checkout/order-placed/content';
@@ -24,19 +24,23 @@ export default function OrderPlacedPage() {
                     <ToolbarHeading>
                         <ToolbarPageTitle/>
                         <ToolbarDescription>
-                            Your purchase has been successfully completed
+                            سفارش شما با موفقیت انجام شد
                         </ToolbarDescription>
                     </ToolbarHeading>
                     <ToolbarActions>
-                        <Button variant="outline">
+
+                        <Button asChild>
+                            <Link href="/store">
                             <Captions/>
-                            <Link href="/store/my-orders">My Orders</Link>
+                                ادامه خرید
+                            </Link>
                         </Button>
 
-                        <Button>
-                            <Captions/>
-                            <Link href="/store">Continue Shopping</Link>
-                        </Button>   
+                        <Button asChild variant="outline">
+                            <Link href="/store/my-orders">
+                                سفارشات من
+                            </Link>
+                        </Button>
                     </ToolbarActions>
                 </Toolbar>
             </Container>

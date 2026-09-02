@@ -14,17 +14,19 @@ export function ShippingInfoContent() {
                     <Info/>
                 </div>
                 <div className="flex justify-end items-center flex-wrap gap-3">
-                    <Button asChild variant="outline">
-                        <Link href="/store/checkout/order-summary">
-                            <MoveLeft className="text-base"/>
-                            Order Summary
-                        </Link>
-                    </Button>
+
 
                     <Button asChild>
                         <Link href="/store/checkout/payment-method">
-                            Payment Method
+                            روش پرداخت
                             <MoveRight className="text-base"/>
+                        </Link>
+                    </Button>
+
+                    <Button asChild variant="outline">
+                        <Link href="/store/checkout/order-summary">
+                            <MoveLeft className="text-base"/>
+                            خلاصه سفارش
                         </Link>
                     </Button>
                 </div>

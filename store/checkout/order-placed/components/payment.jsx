@@ -7,7 +7,7 @@ export function Payment() {
   return (
     <Card>
       <CardHeader className="px-5 min-h-[44px]">
-        <CardTitle className="text-sm">Payment</CardTitle>
+        <CardTitle className="text-sm">پرداخت</CardTitle>
       </CardHeader>
 
       <CardContent className="p-5">

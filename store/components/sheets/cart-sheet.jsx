@@ -20,6 +20,7 @@ import {
     SheetHeader,
     SheetTitle,
 } from '@/store/components/ui/sheet';
+import {toPersianDigits} from "@/lib/to-persian-digits";
 
 const items = [
     {
@@ -57,13 +58,14 @@ export function StoreClientCartSheet({open, onOpenChange}) {
                 className="store-theme sm:w-[560px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5"
             >
                 <SheetHeader className="border-b py-3.5 px-5 border-border">
-                    <SheetTitle>Cart</SheetTitle>
+                    <SheetTitle>سبد خرید</SheetTitle>
                 </SheetHeader>
                 <SheetBody className="px-5 py-0">
                     <ScrollArea className="h-[calc(100dvh-12rem)] pe-3 -me-3 space-y-5">
                         {items.map((item, index) => (
                             <Card className="mb-5" key={index}>
                                 <CardContent
+                                    dir="rtl"
                                     className="p-2 pe-5 flex items-center flex-wrap sm:flex-nowrap w-full justify-between gap-3.5">
                                     <div className="flex md:items-center gap-4">
                                         <Card
@@ -140,23 +142,37 @@ export function StoreClientCartSheet({open, onOpenChange}) {
                         ))}
 
                         <div
-                            className="flex items-center justify-end border-none rounded-md bg-accent/50 gap-5 py-2 px-3 !mt-[30px]">
-                            <span className="text-sm font-medium text-mono">Total</span>
-                            <span className="text-sm font-semibold text-dark">$492.00</span>
+                            className="flex items-center justify-between border-none rounded-md bg-accent/50 gap-5 py-2 px-5 !mt-[30px]"
+                        >
+                            <div className="flex flex-row-reverse items-center gap-1">
+                                <span className="text-sm font-semibold text-dark">
+                                    {toPersianDigits('492,000')}
+                                </span>
+
+                                <span className="text-sm font-normal text-dark">
+                                    تومان
+                                </span>
+                            </div>
+
+                            <span className="text-sm font-medium text-mono">
+                                جمع کل
+                            </span>
                         </div>
                     </ScrollArea>
                 </SheetBody>
                 <SheetFooter className="flex-row border-t py-3.5 px-5 border-border gap-2 lg:gap-0">
-                    <Button variant="outline">Clear Cart</Button>
+
                     <Button variant="primary" className="grow" asChild>
                         <Link
                             href="/store/checkout/order-summary"
                             onClick={() => onOpenChange(false)}
                         >
                             <ShoppingCart/>
-                            Checkout
+                            ادامه و پرداخت
                         </Link>
                     </Button>
+                    <Button variant="outline">خالی کردن سبد خرید</Button>
+
                 </SheetFooter>
             </SheetContent>
         </Sheet>

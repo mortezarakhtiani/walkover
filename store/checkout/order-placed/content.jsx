@@ -16,7 +16,7 @@ export function OrderPlacedContent() {
               <CardHeader className="justify-start bg-muted/70 gap-9 h-auto py-5">
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
-                    Order ID
+                    شناسه سفارش
                   </span>
                   <span className="text-sm font-medium text-mono">
                     X319330-S24
@@ -24,7 +24,7 @@ export function OrderPlacedContent() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
-                    Order placed
+                    ثبت سفارش در
                   </span>
                   <span className="text-sm font-medium text-mono">
                     26 June, 2025
@@ -32,13 +32,13 @@ export function OrderPlacedContent() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
-                    Total
+                    جمع کل
                   </span>
                   <span className="text-sm font-medium text-mono">$512.60</span>
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
-                    Ship to
+                    ارسال به
                   </span>
                   <span className="text-sm font-medium text-mono">
                     Jeroen van Dijk
@@ -46,7 +46,7 @@ export function OrderPlacedContent() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
-                    Estimated Delivery
+                    تخمین زمان ارسال
                   </span>
                   <span className="text-sm font-medium text-mono">
                     07 July, 2025

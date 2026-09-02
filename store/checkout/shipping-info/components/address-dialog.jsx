@@ -100,7 +100,7 @@ export function AddressDialog({
                 name="addressName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Address Name</FormLabel>
+                    <FormLabel>نام نشانی</FormLabel>
                     <FormControl>
                       <Input {...field} id="addressName" required />
                     </FormControl>
@@ -116,7 +116,7 @@ export function AddressDialog({
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First Name</FormLabel>
+                      <FormLabel>نام</FormLabel>
                       <FormControl>
                         <Input {...field} id="name" required />
                       </FormControl>
@@ -130,7 +130,7 @@ export function AddressDialog({
                   name="lastName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Last Name</FormLabel>
+                      <FormLabel>نام خانوادگی</FormLabel>
                       <FormControl>
                         <Input {...field} id="lastName" required />
                       </FormControl>
@@ -146,7 +146,7 @@ export function AddressDialog({
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>ایمیل</FormLabel>
                       <FormControl>
                         <Input {...field} id="email" required type="email" />
                       </FormControl>
@@ -160,7 +160,7 @@ export function AddressDialog({
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone</FormLabel>
+                      <FormLabel>شماره تماس</FormLabel>
                       <FormControl>
                         <Input {...field} id="phone" required />
                       </FormControl>
@@ -176,7 +176,7 @@ export function AddressDialog({
                   name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Address</FormLabel>
+                      <FormLabel>نشانی</FormLabel>
                       <FormControl>
                         <Input {...field} id="address" required />
                       </FormControl>
@@ -191,9 +191,9 @@ export function AddressDialog({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Address Line 2{' '}
+                        نشانی دوم{' '}
                         <span className="text-xs text-muted-foreground">
-                          (optional)
+                          (اختیاری)
                         </span>
                       </FormLabel>
                       <FormControl>
@@ -211,7 +211,7 @@ export function AddressDialog({
                   name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>City</FormLabel>
+                      <FormLabel>شهر</FormLabel>
                       <FormControl>
                         <Input {...field} id="city" required />
                       </FormControl>
@@ -225,7 +225,7 @@ export function AddressDialog({
                   name="country"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Country</FormLabel>
+                      <FormLabel>کشور</FormLabel>
                       <FormControl>
                         <CountryCombobox
                           value={field.value}
@@ -259,7 +259,7 @@ export function AddressDialog({
                 </Button>
                 <DialogClose asChild>
                   <Button type="button" variant="outline">
-                    Cancel
+                    منصرف شدم
                   </Button>
                 </DialogClose>
               </DialogFooter>

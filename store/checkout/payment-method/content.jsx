@@ -14,17 +14,19 @@ export function PaymentMethodContent() {
                     <Payment/>
                 </div>
                 <div className="flex justify-end items-center flex-wrap gap-3">
-                    <Button asChild variant="outline">
-                        <Link href="/store/checkout/shipping-info">
-                        <MoveLeft className="text-base"/>
-                            Shipping Info
-                        </Link>
-                    </Button>
+
 
                     <Button asChild>
                         <Link href="/store/checkout/order-placed">
-                            Place Order
+                            ثبت نهایی سفارش
                             <SquareMousePointer className="text-base"/>
+                        </Link>
+                    </Button>
+
+                    <Button asChild variant="outline">
+                        <Link href="/store/checkout/shipping-info">
+                        <MoveLeft className="text-base"/>
+                            اطلاعات ارسال
                         </Link>
                     </Button>
                 </div>

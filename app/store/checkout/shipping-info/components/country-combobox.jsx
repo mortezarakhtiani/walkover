@@ -273,7 +273,7 @@ export default function CountryCombobox({ value, onChange }) {
               <span className="truncate">{selectedCountry.name}</span>
             </span>
           ) : (
-            <span>Select a country...</span>
+            <span>انتخاب کنید...</span>
           )}
           <ButtonArrow />
         </Button>

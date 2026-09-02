@@ -1,7 +1,47 @@
+/*@font-face {*/
+/*  font-family: 'Vazirmatn';*/
+/*  src: url('/fonts/Vazirmatn[wght].woff2') format('woff2');*/
+/*  font-weight: 100 900;*/
+/*  font-style: normal;*/
+/*  font-display: swap;*/
+/*}*/
+
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/Vazirmatn[wght].woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX-DemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX-ExtraBold.otf') format('opentype');
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -9,7 +49,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Vazirmatn', sans-serif;
+  font-family: 'IRANSansX', sans-serif;
 }
 
 @import "tailwindcss";
@@ -235,12 +275,6 @@ body {
     }
   }
 }
-
-/*body {*/
-/*  background: var(--background);*/
-/*  color: var(--foreground);*/
-/*  font-family: 'Vazirmatn', sans-serif;*/
-/*}*/
 
 /** Smooth scroll **/
 html {

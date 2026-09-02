@@ -191,7 +191,7 @@ export function Payment() {
             >
               <DialogTrigger asChild>
                 <Button mode="link" underlined="dashed">
-                  Edit
+                  ویرایش
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -328,26 +328,25 @@ export function Payment() {
             >
               <DialogTrigger asChild>
                 <Button mode="link" underlined="dashed">
-                  Remove
+                  حذف
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Remove Payment Method</DialogTitle>
+                  <DialogTitle>حذف این روش پرداخت</DialogTitle>
                 </DialogHeader>
                 <DialogBody className="text-sm">
-                  Are you sure you want to remove this payment method? This
-                  action cannot be undone.
-                </DialogBody>
+                  آیا از حذف این روش پرداخت مطمئن هستید؟
+                 </DialogBody>
                 <DialogFooter>
                   <Button
                     variant="destructive"
                     onClick={() => handleRemove(index)}
                   >
-                    Yes, Remove
+                    بله، پاک کن
                   </Button>
                   <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
+                    <Button variant="outline">خیر</Button>
                   </DialogClose>
                 </DialogFooter>
               </DialogContent>
@@ -360,7 +359,7 @@ export function Payment() {
               variant="outline"
               onClick={() => handleSelect(index)}
             >
-              Select Card
+              انتخاب کارت
             </Button>
           )}
         </div>

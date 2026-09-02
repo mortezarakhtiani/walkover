@@ -156,7 +156,7 @@ export function Info() {
         <CardTitle>{item.title}</CardTitle>
         {item.default && (
           <Badge variant="success" appearance="light">
-            Ship here
+            ارسال به این نشانی
           </Badge>
         )}
       </CardHeader>
@@ -186,12 +186,12 @@ export function Info() {
               onOpenChange={(val) => setEditOpen(val ? index : null)}
               initialValues={item}
               onSubmit={handleEditSubmit}
-              title="Edit Address"
-              description="Update the address details below."
-              submitLabel="Update Address"
+              title="ویرایش نشانی"
+              description="جزئیات نشانی خود را بروزرسانی کنید."
+              submitLabel="بروزرسانی نشانی"
               trigger={
                 <Button mode="link" underlined="dashed">
-                  Edit
+                  ویرایش
                 </Button>
               }
             />
@@ -205,7 +205,7 @@ export function Info() {
             >
               <DialogTrigger asChild>
                 <Button mode="link" underlined="dashed">
-                  Remove
+                  حذف
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -237,7 +237,7 @@ export function Info() {
               variant="outline"
               onClick={() => handleSelect(index)}
             >
-              Select Address
+              انتخاب این نشانی
             </Button>
           )}
         </div>

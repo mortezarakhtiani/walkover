@@ -24,7 +24,7 @@ export default function OrderSummaryPage() {
                     <ToolbarHeading>
                         <ToolbarPageTitle/>
                         <ToolbarDescription>
-                            Review your items before checkout
+                            قبل از پرداخت، اقلام سفارش خود را بررسی کنید
                         </ToolbarDescription>
                     </ToolbarHeading>
                     <ToolbarActions>

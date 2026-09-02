@@ -273,14 +273,14 @@ export default function CountryCombobox({ value, onChange }) {
               <span className="truncate">{selectedCountry.name}</span>
             </span>
           ) : (
-            <span>Select a country...</span>
+            <span>کشور خود را انتخاب کنید...</span>
           )}
           <ButtonArrow />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-(--radix-popper-anchor-width) p-0">
         <Command>
-          <CommandInput placeholder="Search country..." />
+          <CommandInput placeholder="جستجو کشور..." />
           <CommandList>
             <ScrollArea viewportClassName="max-h-[300px] [&>div]:block!">
               <CommandEmpty>No country found.</CommandEmpty>

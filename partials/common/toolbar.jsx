@@ -22,10 +22,10 @@ const ToolbarPageTitle = () => {
   const pathname = usePathname();
 
   const titles = {
-    '/store/checkout/order-summary': 'Order Summary',
-    '/store/checkout/shipping-info': 'Shipping Info',
-    '/store/checkout/payment-method': 'Payment Method',
-    '/store/checkout/order-placed': 'Order Placed',
+    '/store/checkout/order-summary': 'خلاصه سفارش',
+    '/store/checkout/shipping-info': 'اطلاعات ارسال',
+    '/store/checkout/payment-method': 'روش پرداخت',
+    '/store/checkout/order-placed': 'سفارش ثبت شد',
   };
 
   return (

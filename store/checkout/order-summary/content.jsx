@@ -14,14 +14,15 @@ export function OrderSummaryContent() {
                     <Card4 limit={4}/>
                 </div>
                 <div className="flex justify-end items-center flex-wrap gap-3">
-                    <Button variant="outline">Cancel</Button>
 
                     <Button asChild>
                         <Link href="/store/checkout/shipping-info">
-                            Shipping Info
+                            اطلاعات ارسال
                             <MoveRight className="text-base"/>
                         </Link>
                     </Button>
+
+                    <Button variant="outline">منصرف شدم</Button>
                 </div>
             </div>
 

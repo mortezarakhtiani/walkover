@@ -7,10 +7,10 @@ import { Container } from '@/store/components/common/container';
 
 export function Steps({ currentStep }) {
   const steps = [
-    { title: 'Order Summary', icon: Captions },
-    { title: 'Shipping Info', icon: Truck },
-    { title: 'Payment Method', icon: WalletCards },
-    { title: 'Order Placed', icon: ScrollText },
+    { title: 'خلاصه سفارش', icon: Captions },
+    { title: 'اطلاعات ارسال', icon: Truck },
+    { title: 'روش پرداخت', icon: WalletCards },
+    { title: 'سفارش ثبت شد', icon: ScrollText },
   ];
 
   return (
