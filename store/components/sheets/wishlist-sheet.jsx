@@ -53,7 +53,7 @@ export function StoreClientWishlistSheet({ open, onOpenChange }) {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="sm:w-[560px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
         <SheetHeader className="border-b py-3.5 px-5 border-border">
-          <SheetTitle>Wishlist</SheetTitle>
+          <SheetTitle>علاقه‌مندی ‌ها</SheetTitle>
         </SheetHeader>
         <SheetBody className="px-5 py-0">
           <ScrollArea className="text-sm h-[calc(100dvh-12rem)] pe-3 -me-3">
@@ -139,7 +139,7 @@ export function StoreClientWishlistSheet({ open, onOpenChange }) {
         </SheetBody>
         <SheetFooter className="border-t py-3.5 px-5 border-border">
           <Button variant="outline" className="w-full justify-center">
-            Remove all
+            حذف همه
           </Button>
         </SheetFooter>
       </SheetContent>

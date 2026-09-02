@@ -6,6 +6,7 @@ import {Button} from '@/store/components/ui/button';
 import {Card2} from '@/store/components/common/card2';
 
 export function NewArrivals({
+                                showAddButton = true,
                                 showSeeAll = true,
                                 moreButton = 'نمایش همه',
                                 moreButtonHref = '/store/search-results-grid',
@@ -44,6 +45,8 @@ export function NewArrivals({
             title={item.title}
             total={item.total}
             key={index}
+            showAddButton={showAddButton}
+
         />
     );
 

@@ -7,6 +7,7 @@ import {Card1} from '@/store/home/special-offers/card1';
 import {Card2} from '@/store/home/special-offers/card2';
 
 export function SpecialOffers({
+                                  showAddButton = true,
                                   showSeeAll = true,
                                   moreButton = 'نمایش همه',
                                   moreButtonHref = '/store/search-results-grid',
@@ -31,7 +32,8 @@ export function SpecialOffers({
 
             <div className="grid xl:grid-cols-2 gap-5 mb-2">
                 <div className="lg:col-span-1">
-                    <Card1/>
+                    <Card1
+                        showAddButton={showAddButton}/>
                 </div>
 
                 <div className="lg:col-span-1">
@@ -42,6 +44,7 @@ export function SpecialOffers({
                             total="110.00"
                             bgColor="bg-green-50 dark:bg-green-950/30"
                             borderColor="border-green-200 dark:border-green-950"
+                            showAddButton={showAddButton}
                         />
 
                         <Card2
@@ -50,6 +53,7 @@ export function SpecialOffers({
                             total="96.99"
                             bgColor="bg-primary/10"
                             borderColor="border-primary/10"
+                            showAddButton={showAddButton}
                         />
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from "@/lib/to-persian-digits";
 
-export function Card1() {
+export function Card1({showAddButton = true}) {
     const {showCartSheet} = useStoreClient();
 
     return (
@@ -32,10 +32,11 @@ export function Card1() {
           </span>
 
                     <div className="flex items-center gap-4">
-                        <Button size="sm" variant="mono" onClick={showCartSheet}>
+                        {showAddButton && (<Button size="sm" variant="mono" onClick={showCartSheet}>
                             <ShoppingCart/>
                             افزودن به سبد خرید
-                        </Button>
+                        </Button>)}
+
 
                         <span className="text-base font-semibold text-mono">
                             {toPersianDigits('140,000')}

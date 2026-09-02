@@ -9,7 +9,7 @@ import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from "@/lib/to-persian-digits";
 
 
-export function Card2({badge, logo, title, total, star, label}) {
+export function Card2({badge, logo, title, total, star, label, showAddButton = true}) {
     const {showCartSheet, showProductDetailsSheet} = useStoreClient();
 
     return (
@@ -47,9 +47,9 @@ export function Card2({badge, logo, title, total, star, label}) {
                 <div className="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
                     <Badge
                         size="sm"
-                        variant="ghost"
+                        variant="secondary"
                         shape="circle"
-                        className="rounded-full gap-1 text-yellow-500 bg-transparent"
+                        className="rounded-full gap-1 text-yellow-500 "
 
                     >
                         <Star
@@ -68,14 +68,17 @@ export function Card2({badge, logo, title, total, star, label}) {
                         <span className="text-sm font-medium text-mono">
                             {toPersianDigits(total)} تومان
                         </span>
-                        <Button
-                            size="sm"
-                            variant="outline"
-                            className="ms-1"
-                            onClick={showCartSheet}
-                        >
-                            <ShoppingCart/> افزودن
-                        </Button>
+                        {showAddButton && (
+                            <Button
+                                size="sm"
+                                variant="outline"
+                                className="ms-1"
+                                onClick={showCartSheet}
+
+                            >
+                                <ShoppingCart/> افزودن
+                            </Button>)}
+
                     </div>
                 </div>
             </CardContent>

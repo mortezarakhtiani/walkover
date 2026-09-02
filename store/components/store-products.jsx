@@ -14,11 +14,15 @@ export default function StoreProducts() {
                             showSeeAll={true}
                             moreButton="نمایش بیشتر"
                             moreButtonHref="/store"
+                            showAddButton={false}
+
                         />
                         <NewArrivals
                             showSeeAll={true}
                             moreButton="نمایش بیشتر"
                             moreButtonHref="/store"
+                            showAddButton={false}
+
                         />
                     </div>
                 </div>

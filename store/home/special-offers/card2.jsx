@@ -8,7 +8,7 @@ import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from "@/lib/to-persian-digits";
 
-export function Card2({bgColor, borderColor, title, total, logo}) {
+export function Card2({bgColor, borderColor, title, total, logo, showAddButton = true,}) {
     const {showCartSheet} = useStoreClient();
 
     return (
@@ -22,14 +22,16 @@ export function Card2({bgColor, borderColor, title, total, logo}) {
                 </div>
 
                 <span className="text-base font-medium text-mono mb-3">{title}</span>
-                <Button
-                    size="sm"
-                    variant="outline"
-                    className="mb-2.5"
-                    onClick={showCartSheet}
-                >
-                    <ShoppingCart/> افزودن به سبد خرید
-                </Button>
+                {showAddButton && (
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className="mb-2.5"
+                        onClick={showCartSheet}
+                    >
+                        <ShoppingCart/> افزودن به سبد خرید
+                    </Button>
+                )}
                 <div className="flex items-center gap-1">
                     <span className="text-sm font-medium text-mono">
                         {toPersianDigits(total)}
