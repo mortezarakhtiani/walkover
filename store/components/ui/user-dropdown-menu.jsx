@@ -89,7 +89,7 @@ export function UserDropdownMenu({trigger}) {
                         className="flex items-center gap-2"
                     >
                         <UserCircle/>
-                        Public Profile
+                        پروفایل عمومی
                     </Link>
                 </DropdownMenuItem>
 
@@ -99,7 +99,7 @@ export function UserDropdownMenu({trigger}) {
                         className="flex items-center gap-2"
                     >
                         <User/>
-                        My Profile
+                        پروفایل من
                     </Link>
                 </DropdownMenuItem>
 
@@ -109,7 +109,7 @@ export function UserDropdownMenu({trigger}) {
                         className="flex items-center gap-2"
                     >
                         <ShoppingBag/>
-                        My Orders
+                        سفارشات من
                     </Link>
                 </DropdownMenuItem>
 
@@ -119,7 +119,7 @@ export function UserDropdownMenu({trigger}) {
                 <DropdownMenuSub>
                     <DropdownMenuSubTrigger className="flex items-center gap-2">
                         <Settings/>
-                        My Account
+                        اکانت من
                     </DropdownMenuSubTrigger>
 
                     <DropdownMenuSubContent className="w-48">

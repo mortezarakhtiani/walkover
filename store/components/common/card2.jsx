@@ -36,6 +36,21 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                         />
                     </Card>
 
+                    <div className="flex sm:justify-end mb-2">
+                        <Badge
+                            size="sm"
+                            variant="secondary"
+                            shape="circle"
+                            className="rounded-full gap-1 text-yellow-500"
+                        >
+                            <Star
+                                className="text-yellow-500 -mt-0.5"
+                                style={{fill: 'currentColor'}}
+                            />
+                            <span>{toPersianDigits(star)}</span>
+                        </Badge>
+                    </div>
+
                     <div
                         onClick={() => showProductDetailsSheet('productid')}
                         className="hover:text-primary text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer"
@@ -45,30 +60,8 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                 </div>
 
                 <div className="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
-                    <Badge
-                        size="sm"
-                        variant="secondary"
-                        shape="circle"
-                        className="rounded-full gap-1 text-yellow-500 "
 
-                    >
-                        <Star
-                            className="text-yellow-500 -mt-0.5"
-                            style={{fill: 'currentColor'}}
-                        />{' '}
-                        <span>{toPersianDigits(star)}</span>
-                    </Badge>
-
-                    <div className="flex items-center flex-wrap gap-1.5">
-                        {label && (
-                            <span className="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
-                                {toPersianDigits(label)}
-                            </span>
-                        )}
-                        <span className="text-sm font-medium text-mono">
-                            {toPersianDigits(total)} تومان
-                        </span>
-                        {showAddButton && (
+                    {showAddButton && (
                             <Button
                                 size="sm"
                                 variant="outline"
@@ -78,6 +71,22 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                             >
                                 <ShoppingCart/> افزودن
                             </Button>)}
+
+
+                    <div className="flex items-center flex-wrap gap-1.5">
+                        {label && (
+                            <span className="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
+                                {toPersianDigits(label)}
+                            </span>
+                        )}
+
+
+
+
+
+                        <span className="text-sm font-medium text-mono">
+                            {toPersianDigits(total)} تومان
+                        </span>
 
                     </div>
                 </div>
