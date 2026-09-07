@@ -121,7 +121,7 @@ function Input({ className, type, variant, ...props }) {
     <input
       data-slot="input"
       type={type}
-      className={cn(inputVariants({ variant }), className)}
+      className={cn(inputVariants({ variant }), 'h-11', className)}
       {...props}
     />
   );

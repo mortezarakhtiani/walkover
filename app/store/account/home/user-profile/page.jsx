@@ -1,28 +1,7 @@
 'use client';
 
 import {PersonalInfo} from '@/store/account/home/user-profile/components/personal-info';
-import {ProfileMenu} from '@/store/account/home/user-profile/components/profile-menu';
 
 export default function UserProfilePage() {
-    return (
-        <div className="container-fixed px-5 lg:px-7.5">
-
-            <div className="grid grid-cols-1 xl:grid-cols-10 gap-5 lg:gap-7.5">
-
-                {/* منوی حساب کاربری */}
-                <div className="xl:col-span-3">
-                    <ProfileMenu/>
-                </div>
-
-                {/* اطلاعات شخصی */}
-                <div className="xl:col-span-7">
-                    <div className="w-[85%]">
-                        <PersonalInfo/>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    );
+    return <PersonalInfo/>;
 }

@@ -1,12 +1,13 @@
-
 'use client';
 
 import Link from 'next/link';
+
 import {
     Heart,
     MapPin,
     ShoppingBag,
     MessageSquare,
+    UserRound,
 } from 'lucide-react';
 
 import {
@@ -18,14 +19,19 @@ import {
 
 const menuItems = [
     {
+        title: 'اطلاعات شخصی',
+        icon: UserRound,
+        href: '/store/account/home/user-profile',
+    },
+    {
         title: 'لیست علاقه‌مندی‌ها',
         icon: Heart,
         href: '/store/wishlist',
     },
     {
-        title: 'آدرس‌های من',
+        title: 'آدرس‌ها',
         icon: MapPin,
-        href: '#',
+        href: '/store/account/home/addresses',
     },
     {
         title: 'سفارشات من',

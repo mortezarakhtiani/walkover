@@ -126,7 +126,7 @@ const EditBirthdateDialog = ({
 
     useEffect(() => {
         if (open) {
-            const parts = value?.split(' ') || [];
+            const parts = value?.split('/') || [];
 
             setDay(parts[0] || '/');
             setMonth(parts[1] || '/');
@@ -146,25 +146,25 @@ const EditBirthdateDialog = ({
     };
 
     const handleSave = () => {
-        const validationError = validateBirthDate(
-            day,
-            month,
-            year
-        );
+    const validationError = validateBirthDate(
+        day,
+        month,
+        year
+    );
 
-        if (validationError) {
-            setError(validationError);
-            return;
-        }
+    if (validationError) {
+        setError(validationError);
+        return;
+    }
 
-        const formattedDay = day.padStart(2, '0');
-        const formattedMonth = month.padStart(2, '0');
+    const formattedDay = formatTwoDigits(day);
+    const formattedMonth = formatTwoDigits(month);
 
-        const newBirthDate = `${formattedDay} ${formattedMonth} ${year}`;
+    const newBirthDate = `${formattedDay}/${formattedMonth}/${year}`;
 
-        onSave(newBirthDate);
-        onOpenChange(false);
-    };
+    onSave(newBirthDate);
+    onOpenChange(false);
+};
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>

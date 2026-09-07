@@ -94,16 +94,16 @@ const EditGenderDialog = ({
                                 : 'border-border hover:bg-accent'
                         }`}
                     >
-    <span className="flex items-center gap-3">
-        {/* آیکون زن */}
-        <div className="flex size-8 items-center justify-center">
-            {/* آیکون را اینجا قرار بده */}
-        </div>
+                        <span className="flex items-center gap-3">
+                            {/* آیکون زن */}
+                            <div className="flex size-8 items-center justify-center">
+                                {/* آیکون را اینجا قرار بده */}
+                            </div>
 
-        <span className="text-sm text-foreground">
-            زن
-        </span>
-    </span>
+                            <span className="text-sm text-foreground">
+                                زن
+                            </span>
+                        </span>
 
                         <span
                             className={`flex size-4 items-center justify-center rounded-full border ${
@@ -112,10 +112,10 @@ const EditGenderDialog = ({
                                     : 'border-muted-foreground'
                             }`}
                         >
-        {gender === 'زن' && (
-            <span className="size-2 rounded-full bg-primary"/>
-        )}
-    </span>
+                            {gender === 'زن' && (
+                                <span className="size-2 rounded-full bg-primary"/>
+                            )}
+                        </span>
                     </button>
 
                 </div>
