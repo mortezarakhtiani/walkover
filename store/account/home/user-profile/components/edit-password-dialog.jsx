@@ -98,7 +98,7 @@ const EditPasswordDialog = ({
                         {hasPassword ? 'تغییر رمز عبور' : 'تعیین رمز عبور'}
                     </DialogTitle>
 
-                    <div className="text-right text-xs space-y-2">
+                    <div className="text-right text-[11px] space-y-1">
 
                         {/* حداقل ۸ کاراکتر */}
                         <div

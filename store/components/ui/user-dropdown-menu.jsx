@@ -95,7 +95,7 @@ export function UserDropdownMenu({trigger}) {
 
                 <DropdownMenuItem asChild>
                     <Link
-                        href="/store/account/home/user-profile"
+                        href="/account/home/user-profile"
                         className="flex items-center gap-2"
                     >
                         <User/>

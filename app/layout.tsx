@@ -1,16 +1,12 @@
 import {ReactNode} from 'react';
-// import {Inter} from 'next/font/google';
-import {cn} from '@/lib/utils';
 import {Metadata} from 'next';
 import {ThemeProvider} from '@/providers/theme-provider';
 import {TooltipProvider} from '@radix-ui/react-tooltip';
 import {SettingsProvider} from '@/providers/settings-provider';
-// import SessionProviderWrapper from '@/providers/session-provider';
+import {StoreHeader} from '@/store/components/common/store-header';
+import { GlobalHeader } from '@/components/common/global-header';
+
 import '@/styles/globals.css';
-import './store/store-theme.css';
-
-// const inter = Inter({subsets: ['latin']});
-
 
 export const metadata: Metadata = {
     title: {
@@ -20,20 +16,26 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-                                             children,
-                                         }: {
+    children,
+}: {
     children: ReactNode;
 }) {
     return (
         <html lang="fa" dir="rtl" className="h-full" suppressHydrationWarning>
         <body className="antialiased text-base text-foreground bg-background">
+
         <SettingsProvider>
             <ThemeProvider>
                 <TooltipProvider>
+
+                    <GlobalHeader />
+
                     {children}
+
                 </TooltipProvider>
             </ThemeProvider>
         </SettingsProvider>
+
         </body>
         </html>
     );
