@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import {
     Heart,
@@ -21,7 +22,7 @@ const menuItems = [
     {
         title: 'اطلاعات شخصی',
         icon: UserRound,
-        href: '/store/account/home/user-profile',
+        href: '/account/home/user-profile',
     },
     {
         title: 'لیست علاقه‌مندی‌ها',
@@ -31,7 +32,7 @@ const menuItems = [
     {
         title: 'آدرس‌ها',
         icon: MapPin,
-        href: '/store/account/home/addresses',
+        href: '/account/home/addresses',
     },
     {
         title: 'سفارشات من',
@@ -46,6 +47,8 @@ const menuItems = [
 ];
 
 const ProfileMenu = () => {
+    const pathname = usePathname();
+
     return (
         <Card className="min-w-full" dir="rtl">
 
@@ -62,11 +65,21 @@ const ProfileMenu = () => {
                     {menuItems.map((item) => {
                         const Icon = item.icon;
 
+                        const isActive = pathname === item.href;
+
                         return (
                             <Link
                                 key={item.title}
                                 href={item.href}
-                                className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-secondary-foreground hover:bg-accent hover:text-foreground transition-colors"
+                                className={`
+                                    flex items-center gap-3 px-4 py-3 rounded-lg text-sm
+                                    transition-colors
+                                    ${
+                                        isActive
+                                            ? 'bg-accent text-foreground'
+                                            : 'text-secondary-foreground hover:bg-accent hover:text-foreground'
+                                    }
+                                `}
                             >
                                 <Icon
                                     size={19}

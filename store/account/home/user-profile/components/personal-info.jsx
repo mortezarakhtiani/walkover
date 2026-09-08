@@ -107,11 +107,11 @@ const PersonalInfo = () => {
                         <div className="flex items-center justify-between gap-4 p-4 border-b md:border-e">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    نام
+                                    نام<span className="text-red-500">*</span>
                                 </div>
 
                                 <div className="text-base text-foreground">
-                                    {name}
+                                {name}
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@ const PersonalInfo = () => {
                         <div className="flex items-center justify-between gap-4 p-4 border-b">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    نام خانوادگی
+                                    نام خانوادگی<span className="text-red-500">*</span>
                                 </div>
 
                                 <div className="text-base text-foreground">
@@ -151,7 +151,7 @@ const PersonalInfo = () => {
                         <div className="flex items-center justify-between gap-4 p-4 border-b md:border-e">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    کد ملی
+                                    کدملی<span className="text-red-500">*</span>
                                 </div>
 
                                 <div className="text-base text-foreground">
@@ -192,7 +192,7 @@ const PersonalInfo = () => {
                         </div>
 
                         {/* جنسیت */}
-                        <div className="flex items-center justify-between gap-4 p-4 md:border-e">
+                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-b-0 md:border-e">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
                                     جنسیت
@@ -214,7 +214,7 @@ const PersonalInfo = () => {
                         </div>
 
                         {/* رمز عبور */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b">
+                        <div className="flex items-center justify-between gap-4 p-4">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
                                     رمز عبور
@@ -262,7 +262,7 @@ const PersonalInfo = () => {
                 </div>
 
                 {/* عنوان اطلاعات تماس */}
-                <CardHeader className="border-0 mt-5">
+                <CardHeader className="border-0 mt-10">
                     <CardTitle className="flex items-center gap-2 text-right text-lg">
                         <PhoneIcon className="size-6 text-foreground"/>
                         اطلاعات تماس
@@ -275,10 +275,10 @@ const PersonalInfo = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2">
 
                         {/* شماره موبایل */}
-                        <div className="flex items-center justify-between gap-4 p-4 md:border-e">
+                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-b-0 md:border-e">
                             <div>
                                 <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    شماره موبایل
+                                    شماره موبایل<span className="text-red-500">*</span>
                                 </div>
 
                                 <div className="flex items-center gap-3">
@@ -348,6 +348,7 @@ const PersonalInfo = () => {
                     </div>
 
                 </div>
+
 
             </CardContent>
 

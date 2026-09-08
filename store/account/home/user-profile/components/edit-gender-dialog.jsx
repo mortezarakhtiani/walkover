@@ -60,12 +60,6 @@ const EditGenderDialog = ({
                         }`}
                     >
                         <span className="flex items-center gap-3">
-                            {/* آیکون مرد */}
-                            <div className="flex size-8 items-center justify-center">
-                                {/* آیکون را اینجا قرار بده */}
-
-                            </div>
-
                             <span className="text-sm text-foreground">
                                 مرد
                             </span>
@@ -94,13 +88,8 @@ const EditGenderDialog = ({
                                 : 'border-border hover:bg-accent'
                         }`}
                     >
-                        <span className="flex items-center gap-3">
-                            {/* آیکون زن */}
-                            <div className="flex size-8 items-center justify-center">
-                                {/* آیکون را اینجا قرار بده */}
-                            </div>
-
-                            <span className="text-sm text-foreground">
+                        <span className="flex items-center gap-3 text-sm text-foreground">
+                            <span className="">
                                 زن
                             </span>
                         </span>
