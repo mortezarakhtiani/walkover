@@ -1,34 +1,35 @@
 'use client';
 
-import Header from '@/components/header';
-import Hero from '@/components/hero';
-import TrustedBrands from '@/components/trusted-brands';
-import HowItWorks from '@/components/how-it-works';
-import Features from '@/components/features';
-import Testimonials from '@/components/testimonails';
-import Pricing from '@/components/pricing';
-import FAQ from '@/components/faq';
-import CallToAction from '@/components/call-to-action';
-import Contact from '@/components/contact';
-import Footer from '@/components/footer';
+import Header from '@/components/landing/header';
+import Hero from '@/components/landing/hero';
+import PopularCategories from '@/components/landing/popular-categories';
+import HowItWorks from '@/components/landing/how-it-works';
+import Features from '@/components/landing/features';
+import Testimonials from '@/components/landing/testimonails';
+import FAQ from '@/components/landing/faq';
+import CallToAction from '@/components/landing/call-to-action';
+import Contact from '@/components/landing/contact';
+import Footer from '@/components/landing/footer';
 import StoreProducts from '@/store/components/store-products';
 
-
-export default function Page() {
+export default function LandingV2Page() {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen px-10">
             <Header/>
-            <Hero/>
-            <TrustedBrands/>
+            {/*<Hero />*/}
             <HowItWorks/>
-            <Features/>
-            <Testimonials/>
+            <PopularCategories/>
+            {/*<PopularCategories/>*/}
             <StoreProducts/>
-            {/*<Pricing/>*/}
-            <FAQ/>
-            <CallToAction/>
-            <Contact/>
-            <Footer/>
+
+
+            <Features/>
+            {/*<Testimonials/>*/}
+            {/*<StoreProducts />*/}
+            {/*<FAQ />*/}
+            {/*<CallToAction />*/}
+            {/*<Contact />*/}
+            {/*<Footer />*/}
         </div>
     );
 }
