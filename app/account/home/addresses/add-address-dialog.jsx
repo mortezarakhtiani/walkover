@@ -34,6 +34,8 @@ import {
     PopoverTrigger,
 } from '@/store/components/ui/popover';
 
+import {toast} from 'sonner';
+
 
 const toPersianDigits = (value) => {
     return String(value)
@@ -129,11 +131,6 @@ const AddAddressDialog = ({
 
         const newRequiredErrors = {};
 
-        if (!title.trim()) {
-            newRequiredErrors.title = 'وارد کردن عنوان آدرس الزامیست.';
-            hasError = true;
-        }
-
         if (!province) {
             newRequiredErrors.province = 'وارد کردن استان الزامیست.';
             hasError = true;
@@ -188,6 +185,12 @@ const AddAddressDialog = ({
             description: description.trim(),
             isDefault,
         });
+
+        toast.success(
+            editingAddress
+                ? 'آدرس با موفقیت ویرایش شد.'
+                : 'آدرس با موفقیت ثبت شد.'
+        );
     };
 
 
@@ -218,7 +221,7 @@ const AddAddressDialog = ({
                     <DialogTitle>
                         {editingAddress
                             ? 'ویرایش آدرس'
-                            : 'افزودن آدرس جدید'}
+                            : 'افزودن اطلاعات گیرنده'}
                     </DialogTitle>
                 </DialogHeader>
 
@@ -228,7 +231,7 @@ const AddAddressDialog = ({
 
 
                     {/* عنوان آدرس */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 mt-4">
                         <div className="relative">
                             <Input
                                 value={title}
@@ -244,19 +247,18 @@ const AddAddressDialog = ({
 
                             <label
                                 className="
-        pointer-events-none
-        absolute right-5 top-0
-        -translate-y-1/2
-        bg-background
-        px-1
-        text-xs
-        text-muted-foreground
-        transition-all duration-150
-        peer-focus:text-foreground
-    "
+                                pointer-events-none
+                                absolute right-5 top-0
+                                -translate-y-1/2
+                                bg-background
+                                px-1
+                                text-xs
+                                text-muted-foreground
+                                transition-all duration-150
+                                peer-focus:text-foreground
+                                "
                             >
                                 عنوان آدرس
-                                <span className="mr-1 text-red-500">*</span>
                             </label>
                         </div>
 
@@ -281,9 +283,8 @@ const AddAddressDialog = ({
                                         <Button
                                             type="button"
                                             variant="outline"
-                                            // disabled={!province}
-                                            className="h-11 w-full justify-between font-normal bg-background hover:bg-background active:bg-background focus:bg-background focus-visible:bg-background data-[state=open]:bg-background">
-                                        
+                                            className="h-11 w-full justify-between font-normal !bg-background hover:!bg-background active:!bg-background focus:!bg-background focus-visible:!bg-background data-[state=open]:!bg-background"
+                                        >
                                             {selectedProvince
                                                 ? selectedProvince.name
                                                 : ''}
@@ -351,7 +352,7 @@ const AddAddressDialog = ({
                             </div>
 
                             {requiredErrors.province && (
-                                <div className="text-xs text-red-500">
+                                <div className="text-[11px] text-red-500">
                                     {requiredErrors.province}
                                 </div>
                             )}
@@ -440,7 +441,7 @@ const AddAddressDialog = ({
                             </div>
 
                             {requiredErrors.city && (
-                                <div className="text-xs text-red-500">
+                                <div className="text-[11px] text-red-500">
                                     {requiredErrors.city}
                                 </div>
                             )}
@@ -450,25 +451,49 @@ const AddAddressDialog = ({
 
 
                     {/* آدرس کامل */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 mt-8">
+                        <div className="relative">
+        <textarea
+            value={address}
+            onChange={(e) =>
+                setAddress(
+                    toPersianDigits(e.target.value.slice(0, 200))
+                )
+            }
+            placeholder=" "
+            rows={3}
+            maxLength={200}
+            className={`peer flex w-full resize-none rounded-md border bg-background px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20 ${
+                requiredErrors.address
+                    ? 'border-red-500 focus-visible:border-red-500'
+                    : 'border-input'
+            }`}
+        >
+</textarea>
 
-                        <label className="text-sm text-foreground">
-                            آدرس کامل
-                            <span className="text-red-500">*</span>
-                        </label>
+                            <label
+                                className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                            >
+                                آدرس کامل
+                                <span className="mr-1 text-red-500">*</span>
+                            </label>
+                        </div>
 
-                        <textarea
-                            value={address}
-                            onChange={(e) =>
-                                setAddress(
-                                    toPersianDigits(e.target.value)
-                                )
-                            }
-                            placeholder="خیابان، کوچه، ..."
-                            rows={3}
-                            className="flex w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20"
-                        />
-
+                        {requiredErrors.address && (
+                            <div className="text-[11px] text-red-500">
+                                {requiredErrors.address}
+                            </div>
+                        )}
                     </div>
 
 
@@ -478,51 +503,77 @@ const AddAddressDialog = ({
 
                         {/* پلاک */}
                         <div className="flex flex-col gap-2">
-
-                            <label className="text-sm text-foreground">
-                                پلاک
-                            </label>
-
-                            <Input
-                                value={toPersianDigits(plaque)}
-                                onChange={(e) =>
-                                    setPlaque(
-                                        onlyDigits(
-                                            e.target.value,
-                                            4
+                            <div className="relative">
+                                <Input
+                                    value={toPersianDigits(plaque)}
+                                    onChange={(e) =>
+                                        setPlaque(
+                                            onlyDigits(
+                                                e.target.value,
+                                                4
+                                            )
                                         )
-                                    )
-                                }
-                                placeholder="مثلاً ۱۲"
-                                inputMode="numeric"
-                                maxLength={4}
-                            />
+                                    }
+                                    placeholder=" "
+                                    inputMode="numeric"
+                                    maxLength={4}
+                                    className="peer"
+                                />
 
+                                <label
+                                    className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                                >
+                                    پلاک
+                                </label>
+                            </div>
                         </div>
 
 
                         {/* واحد */}
                         <div className="flex flex-col gap-2">
-
-                            <label className="text-sm text-foreground">
-                                واحد
-                            </label>
-
-                            <Input
-                                value={toPersianDigits(unit)}
-                                onChange={(e) =>
-                                    setUnit(
-                                        onlyDigits(
-                                            e.target.value,
-                                            4
+                            <div className="relative">
+                                <Input
+                                    value={toPersianDigits(unit)}
+                                    onChange={(e) =>
+                                        setUnit(
+                                            onlyDigits(
+                                                e.target.value,
+                                                4
+                                            )
                                         )
-                                    )
-                                }
-                                placeholder="مثلاً ۳"
-                                inputMode="numeric"
-                                maxLength={4}
-                            />
+                                    }
+                                    placeholder=" "
+                                    inputMode="numeric"
+                                    maxLength={4}
+                                    className="peer"
+                                />
 
+                                <label
+                                    className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                                >
+                                    واحد
+                                </label>
+                            </div>
                         </div>
 
                     </div>
@@ -530,32 +581,51 @@ const AddAddressDialog = ({
 
                     {/* کد پستی */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm text-foreground">
-                            کد پستی
-                            <span className="text-red-500">*</span>
-                        </label>
+                        <div className="relative">
+                            <Input
+                                value={toPersianDigits(postalCode)}
+                                onChange={(e) => {
+                                    const value = onlyDigits(e.target.value, 10);
 
-                        <Input
-                            value={toPersianDigits(postalCode)}
-                            onChange={(e) => {
-                                const value = onlyDigits(e.target.value, 10);
+                                    setPostalCode(value);
 
-                                setPostalCode(value);
+                                    if (value.length === 10) {
+                                        setPostalCodeError('');
+                                    } else if (value.length > 0) {
+                                        setPostalCodeError('کد پستی نامعتبر است.');
+                                    } else {
+                                        setPostalCodeError('');
+                                    }
+                                }}
+                                placeholder=" "
+                                inputMode="numeric"
+                                maxLength={10}
+                                className={`peer ${
+                                    postalCodeError
+                                        ? 'border-red-500 focus-visible:border-red-500'
+                                        : ''
+                                }`}
+                            />
 
-                                if (value.length === 10) {
-                                    setPostalCodeError('');
-                                } else if (value.length > 0) {
-                                    setPostalCodeError('کد پستی نامعتبر است.');
-                                } else {
-                                    setPostalCodeError('');
-                                }
-                            }}
-                            placeholder="۱۰ رقم"
-                            inputMode="numeric"
-                            maxLength={10}
-                        />
+                            <label
+                                className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                            >
+                                کد پستی
+                                <span className="mr-1 text-red-500">*</span>
+                            </label>
+                        </div>
 
-                        <div className="h-4 text-xs leading-4 text-red-500">
+                        <div className="h-4 text-[11px] leading-4 text-red-500">
                             {postalCodeError || '\u00A0'}
                         </div>
                     </div>
@@ -567,56 +637,96 @@ const AddAddressDialog = ({
 
                         {/* نام گیرنده */}
                         <div className="flex flex-col gap-2">
+                            <div className="relative">
+                                <Input
+                                    value={receiverName}
+                                    onChange={(e) =>
+                                        setReceiverName(e.target.value)
+                                    }
+                                    placeholder=" "
+                                    className={`peer ${
+                                        requiredErrors.receiverName
+                                            ? 'border-red-500 focus-visible:border-red-500'
+                                            : ''
+                                    }`}
+                                />
 
-                            <label className="text-sm text-foreground">
-                                نام گیرنده
-                                <span className="text-red-500">*</span>
-                            </label>
+                                <label
+                                    className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                                >
+                                    نام گیرنده
+                                    <span className="mr-1 text-red-500">*</span>
+                                </label>
+                            </div>
 
-                            <Input
-                                value={receiverName}
-                                onChange={(e) =>
-                                    setReceiverName(
-                                        e.target.value
-                                    )
-                                }
-                                placeholder="نام و نام خانوادگی"
-                            />
-
+                            {requiredErrors.receiverName && (
+                                <div className="text-[11px] text-red-500">
+                                    {requiredErrors.receiverName}
+                                </div>
+                            )}
                         </div>
 
 
                         {/* موبایل */}
                         <div className="flex flex-col gap-2">
-                            <label className="text-sm text-foreground">
-                                شماره موبایل گیرنده
-                                <span className="text-red-500">*</span>
-                            </label>
+                            <div className="relative">
+                                <Input
+                                    value={toPersianDigits(phone)}
+                                    onChange={(e) => {
+                                        const value = onlyDigits(e.target.value, 11);
 
-                            <Input
-                                value={toPersianDigits(phone)}
-                                onChange={(e) => {
-                                    const value = onlyDigits(e.target.value, 11);
+                                        setPhone(value);
 
-                                    setPhone(value);
+                                        if (
+                                            value.length === 11 &&
+                                            value.startsWith('09')
+                                        ) {
+                                            setPhoneError('');
+                                        } else if (value.length > 0) {
+                                            setPhoneError('شماره تماس نامعتبر است.');
+                                        } else {
+                                            setPhoneError('');
+                                        }
+                                    }}
+                                    placeholder=" "
+                                    inputMode="tel"
+                                    maxLength={11}
+                                    className={`peer ${
+                                        phoneError
+                                            ? 'border-red-500 focus-visible:border-red-500'
+                                            : ''
+                                    }`}
+                                />
 
-                                    if (
-                                        value.length === 11 &&
-                                        value.startsWith('09')
-                                    ) {
-                                        setPhoneError('');
-                                    } else if (value.length > 0) {
-                                        setPhoneError('شماره تماس نامعتبر است.');
-                                    } else {
-                                        setPhoneError('');
-                                    }
-                                }}
-                                placeholder="۰۹۱۲۱۲۳۴۵۶۷"
-                                inputMode="tel"
-                                maxLength={11}
-                            />
+                                <label
+                                    className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                                >
+                                    شماره موبایل گیرنده
+                                    <span className="mr-1 text-red-500">*</span>
+                                </label>
+                            </div>
 
-                            <div className="h-4 text-xs leading-4 text-red-500">
+                            <div className="h-4 text-[11px] leading-4 text-red-500">
                                 {phoneError || '\u00A0'}
                             </div>
                         </div>
@@ -626,45 +736,36 @@ const AddAddressDialog = ({
 
                     {/* توضیحات */}
                     <div className="flex flex-col gap-2">
+                        <div className="relative">
+        <textarea
+            value={description}
+            onChange={(e) =>
+                setDescription(
+                    toPersianDigits(e.target.value)
+                )
+            }
+            placeholder=" "
+            rows={2}
+            className="peer flex w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20"
+        />
 
-                        <label className="text-sm text-foreground">
-                            توضیحات
-                        </label>
-
-                        <textarea
-                            value={description}
-                            onChange={(e) =>
-                                setDescription(
-                                    toPersianDigits(e.target.value)
-                                )
-                            }
-                            placeholder="مثلاً زنگ سوم را بزنید"
-                            rows={2}
-                            className="flex w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20"
-                        />
-
+                            <label
+                                className="
+                pointer-events-none
+                absolute right-5 top-0
+                -translate-y-1/2
+                bg-background
+                px-1
+                text-xs
+                text-muted-foreground
+                transition-all duration-150
+                peer-focus:text-foreground
+            "
+                            >
+                                توضیحات
+                            </label>
+                        </div>
                     </div>
-
-
-                    {/* آدرس پیش‌فرض */}
-                    <label className="flex cursor-pointer items-center gap-2 text-sm text-foreground">
-
-                        <input
-                            type="checkbox"
-                            checked={isDefault}
-                            onChange={(e) =>
-                                setIsDefault(
-                                    e.target.checked
-                                )
-                            }
-                            className="size-4"
-                        />
-
-                        <span>
-                            این آدرس به عنوان آدرس پیش‌فرض انتخاب شود
-                        </span>
-
-                    </label>
 
                 </div>
 

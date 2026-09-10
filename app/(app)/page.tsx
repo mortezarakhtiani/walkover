@@ -13,6 +13,7 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import StoreProducts from '@/store/components/store-products';
 
+
 export default function Page() {
     return (
         <div className="min-h-screen">

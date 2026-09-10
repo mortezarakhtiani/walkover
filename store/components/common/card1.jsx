@@ -4,35 +4,30 @@ import { Fragment } from 'react';
 import { toAbsoluteUrl } from '@/lib/helpers';
 import { Card, CardContent } from '@/store/components/ui/card';
 import { useStoreClient } from '@/store/components/context';
+import {getProducts} from '@/store/product/services/product-service';
 
 export function Card1() {
   const { showProductDetailsSheet } = useStoreClient();
+  const items = getProducts();
 
-  const items = [
-    { logo: '1.png', brand: 'Nike' },
-    { logo: '2.png', brand: 'Adidas' },
-    { logo: '3.png', brand: 'Puma' },
-    { logo: '4.png', brand: 'New Balance' },
-    { logo: '5.png', brand: 'Converse' },
-    { logo: '6.png', brand: 'Reebok' },
-    { logo: '7.png', brand: 'Sketchers' },
-  ];
 
-  const renderItem = (item, index) => (
-    <Card key={index}>
+  const renderItem = (item) => (
+    <Card key={item.id}>
       <CardContent className="flex flex-col items-center justify-center pb-0">
         <div
-          onClick={() => showProductDetailsSheet('productid')}
+          onClick={() => showProductDetailsSheet(item.id)}
           className="hover:text-primary text-sm font-medium text-mono cursor-pointer"
         >
           {item.brand}
         </div>
 
         <img
-          src={toAbsoluteUrl(`/media/store/client/600x600/${item.logo}`)}
-          onClick={() => showProductDetailsSheet('productid')}
+          src={toAbsoluteUrl(
+            `/media/store/client/600x600/${item.logo}`
+          )}
+          onClick={() => showProductDetailsSheet(item.id)}
           className="cursor-pointer h-[100px] shrink-0"
-          alt="image"
+          alt={item.brand}
         />
       </CardContent>
     </Card>
@@ -40,9 +35,7 @@ export function Card1() {
 
   return (
     <Fragment>
-      {items.map((item, index) => {
-        return renderItem(item, index);
-      })}
+      {items.map((item) => renderItem(item))}
     </Fragment>
   );
 }

@@ -15,20 +15,21 @@ export function SpecialOffers({
     return (
         <div className="space-y-5">
             <div className="flex items-center justify-between gap-4">
+    <span className="text-lg font-medium text-mono">
+        پیشنهادات ویژه
+    </span>
+
                 {showSeeAll && (
                     <Button mode="link" asChild>
                         <Link href={moreButtonHref} className="text-xs">
                             <ChevronRight/>
                             {moreButton}
-
                         </Link>
                     </Button>
                 )}
 
-                <span className="text-lg font-medium text-mono">
-                    پیشنهادات ویژه
-                </span>
             </div>
+
 
             <div className="grid xl:grid-cols-2 gap-5 mb-2">
                 <div className="lg:col-span-1">

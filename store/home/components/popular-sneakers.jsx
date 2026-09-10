@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {ChevronRight} from 'lucide-react';
 import {Button} from '@/store/components/ui/button';
 import {Card2} from '@/store/components/common/card2';
+import {getProducts} from '@/store/product/services/product-service';
 
 export function PopularSneakers({
                                     showSeeAll = true,
@@ -11,40 +12,18 @@ export function PopularSneakers({
                                     moreButtonHref = '/store/search-results-grid',
 
                                 }) {
-    const items = [
-        {
-            logo: '11.png',
-            title: 'Cloud Shift Lightweight Runner Pro Edition',
-            total: '99.00',
-            star: '5.0',
-        },
-        {
-            logo: '12.png',
-            title: 'Titan Edge High Impact Stability Lightweight Trainers',
-            total: '65.99',
-            star: '3.5',
-        },
-        {
-            logo: '13.png',
-            title: 'Wave Strike Dynamic Boost Sneaker',
-            total: '120.00',
-            star: '4.7',
-        },
-        {
-            logo: '14.png',
-            title: 'Velocity Boost Xtreme High  Shock Absorbers',
-            total: '110.00',
-            star: '4.9',
-        },
-    ];
+    const items = getProducts();
 
     const renderItem = (item, index) => (
         <Card2
+            id={item.id}
             logo={item.logo}
-            star={item.star}
+            star={item.rating}
             title={item.title}
-            total={item.total}
-            key={index}
+            total={item.price}
+            label={item.originalPrice}
+            badge={item.discount > 0}
+            key={item.id}
         />
     );
 

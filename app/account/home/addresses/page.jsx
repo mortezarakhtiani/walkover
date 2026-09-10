@@ -58,16 +58,6 @@ const AddressesPage = () => {
         );
     };
 
-    // انتخاب آدرس پیش‌فرض
-    const handleSetDefault = (index) => {
-        setAddresses((prev) =>
-            prev.map((address, i) => ({
-                ...address,
-                isDefault: i === index,
-            }))
-        );
-    };
-
     // باز کردن فرم افزودن آدرس
     const handleAddAddress = () => {
         setEditingAddress(null);
@@ -76,7 +66,7 @@ const AddressesPage = () => {
 
     return (
         <>
-            <div className="border rounded-lg">
+            <div className={`${addresses.length === 0 ? 'border' : ''} rounded-lg`}>
 
                 {addresses.length === 0 ? (
 
@@ -119,9 +109,6 @@ const AddressesPage = () => {
                                     آدرس‌های من
                                 </h2>
 
-                                <p className="text-sm text-secondary-foreground/70 mt-1">
-                                    آدرس‌های ثبت‌شده شما
-                                </p>
                             </div>
 
                             <Button
@@ -135,45 +122,22 @@ const AddressesPage = () => {
                         </div>
 
                         {/* لیست آدرس‌ها */}
-                        <div className="space-y-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                             {addresses.map((item, index) => (
 
                                 <div
                                     key={index}
-                                    className="rounded-lg border border-border p-4"
+                                    className="rounded-lg border border-border p-4 flex flex-col min-h-[190px]"
                                 >
-
                                     <div className="flex items-start gap-3">
-
-                                        {/* آیکون */}
-                                        <div
-                                            className="flex items-center justify-center size-10 shrink-0 rounded-full bg-primary/[0.06]">
-                                            <MapPin className="size-5 text-primary"/>
-                                        </div>
 
                                         {/* اطلاعات */}
                                         <div className="min-w-0 flex-1">
 
-                                            {/* عنوان */}
-                                            <div className="flex items-center gap-2">
-
-                                                <span className="font-medium text-foreground">
-                                                    {item.title}
-                                                </span>
-
-                                                {item.isDefault && (
-                                                    <span
-                                                        className="text-xs rounded-md bg-primary/[0.08] text-primary px-2 py-1">
-                                                        پیش‌فرض
-                                                    </span>
-                                                )}
-
-                                            </div>
-
                                             {/* آدرس */}
-                                            <div className="text-sm text-secondary-foreground mt-2 leading-6">
-                                                {item.province}، {item.city}، {item.address}
+                                            <div className="text-sm text-foreground leading-6 break-words">
+                                                {item.address}
 
                                                 {item.plaque && (
                                                     <>
@@ -188,75 +152,40 @@ const AddressesPage = () => {
                                                 )}
                                             </div>
 
-                                            {/* اطلاعات گیرنده */}
-                                            <div
-                                                className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-secondary-foreground/70 mt-3">
-
-                                                <span>
-                                                    کد پستی: {item.postalCode}
-                                                </span>
-
-                                                <span>
-                                                    گیرنده: {item.receiverName}
-                                                </span>
-
-                                                <span>
-                                                    موبایل: {item.phone}
-                                                </span>
-
-                                            </div>
-
-                                            {/* دکمه‌ها */}
-                                            <div
-                                                className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-border">
-
-                                                {/* پیش‌فرض */}
-                                                {!item.isDefault && (
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() =>
-                                                            handleSetDefault(index)
-                                                        }
-                                                    >
-                                                        <Star className="size-4"/>
-                                                        پیش‌فرض
-                                                    </Button>
-                                                )}
-
-                                                {/* ویرایش */}
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    onClick={() =>
-                                                        handleEditAddress(
-                                                            item,
-                                                            index
-                                                        )
-                                                    }
-                                                >
-                                                    <Pencil className="size-4"/>
-                                                    ویرایش
-                                                </Button>
-
-                                                {/* حذف */}
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    onClick={() =>
-                                                        handleDeleteAddress(index)
-                                                    }
-                                                >
-                                                    <Trash2 className="size-4"/>
-                                                    حذف
-                                                </Button>
-
+                                            {/* نام گیرنده */}
+                                            <div className="text-xs text-secondary-foreground/70 mt-2 mb-2">
+                                                گیرنده: {item.receiverName}
                                             </div>
 
                                         </div>
-
                                     </div>
 
+                                    {/* دکمه‌ها */}
+                                    <div className="flex items-center gap-2 mt-auto pt-3  border-border">
+
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() =>
+                                                handleEditAddress(item, index)
+                                            }
+                                        >
+                                            <Pencil className="size-4"/>
+                                            ویرایش
+                                        </Button>
+
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() =>
+                                                handleDeleteAddress(index)
+                                            }
+                                        >
+                                            <Trash2 className="size-4"/>
+                                            حذف
+                                        </Button>
+
+                                    </div>
                                 </div>
 
                             ))}

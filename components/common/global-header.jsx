@@ -6,8 +6,8 @@ import { StoreHeader } from '@/store/components/common/store-header';
 export function GlobalHeader() {
     const pathname = usePathname();
 
-    // لندینگ اصلی سایت
-    if (pathname === '/') {
+    // لندینگ اصلی و لندینگ جدید
+    if (pathname === '/' || pathname === '/landing-v2') {
         return null;
     }
 

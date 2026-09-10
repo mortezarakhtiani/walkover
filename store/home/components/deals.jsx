@@ -4,56 +4,25 @@ import Link from 'next/link';
 import {ChevronRight} from 'lucide-react';
 import {Button} from '@/store/components/ui/button';
 import {Card2} from '@/store/components/common/card2';
+import {getProducts} from '@/store/product/services/product-service';
 
 export function Deals({
                           showSeeAll = true,
                           moreButton = 'نمایش همه',
                           moreButtonHref = '/store/search-results-grid',
                       }) {
-    const items = [
-        {
-            logo: '3.png',
-            title: 'Cloud Shift Lightweight Runner Pro Edition',
-            total: '99.00',
-            label: '$140.00',
-            badge: true,
-            star: '5.0',
-        },
-        {
-            logo: '4.png',
-            title: 'Titan Edge High Impact Stability Lightweight Trainers',
-            total: '46.00',
-            label: '$110.00',
-            badge: true,
-            star: '3.5',
-        },
-        {
-            logo: '15.png',
-            title: 'Wave Strike Dynamic Boost Sneaker',
-            total: '140.00',
-            label: '$179.00',
-            badge: true,
-            star: '4.7',
-        },
-        {
-            logo: '2.png',
-            title: 'Velocity Boost Xtreme High  Shock Absorbers',
-            total: '315.00',
-            label: '$280.00',
-            badge: true,
-            star: '4.9',
-        },
-    ];
+    const items = getProducts();
 
     const renderItem = (item, index) => (
         <Card2
+            id={item.id}
             logo={item.logo}
-            star={item.star}
+            star={item.rating}
             title={item.title}
-            total={item.total}
-            label={item.label}
-            badge={item.badge}
-            key={index}
+            total={item.price}
+            label={item.originalPrice}
+            badge={item.discount > 0}
+            key={item.id}
         />
     );
 

@@ -5,6 +5,7 @@ import {TooltipProvider} from '@radix-ui/react-tooltip';
 import {SettingsProvider} from '@/providers/settings-provider';
 import {StoreHeader} from '@/store/components/common/store-header';
 import { GlobalHeader } from '@/components/common/global-header';
+import {Toaster} from '@/components/ui/sonner';
 
 import '@/styles/globals.css';
 
@@ -29,6 +30,8 @@ export default async function RootLayout({
                 <TooltipProvider>
 
                     <GlobalHeader />
+
+                    <Toaster />
 
                     {children}
 

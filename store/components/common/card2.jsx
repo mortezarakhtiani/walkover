@@ -1,3 +1,4 @@
+
 'use client';
 
 import {ShoppingCart, Star} from 'lucide-react';
@@ -6,10 +7,18 @@ import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
-import {toPersianDigits} from "@/lib/to-persian-digits";
+import {toPersianDigits} from '@/lib/to-persian-digits';
 
-
-export function Card2({badge, logo, title, total, star, label, showAddButton = true}) {
+export function Card2({
+    id,
+    badge,
+    logo,
+    title,
+    total,
+    star,
+    label,
+    showAddButton = true,
+}) {
     const {showCartSheet, showProductDetailsSheet} = useStoreClient();
 
     return (
@@ -17,7 +26,8 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
             <CardContent className="flex flex-col justify-between p-2.5 gap-4">
                 <div className="mb-2.5">
                     <Card
-                        className="flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4  shadow-none">
+                        className="flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none"
+                    >
                         {badge && (
                             <Badge
                                 size="sm"
@@ -29,10 +39,12 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                         )}
 
                         <img
-                            onClick={() => showProductDetailsSheet('productid')}
-                            src={toAbsoluteUrl(`/media/store/client/600x600/${logo}`)}
+                            onClick={() => showProductDetailsSheet(id)}
+                            src={toAbsoluteUrl(
+                                `/media/store/client/600x600/${logo}`
+                            )}
                             className="h-[180px] shrink-0 cursor-pointer"
-                            alt="image"
+                            alt={title}
                         />
                     </Card>
 
@@ -47,12 +59,13 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                                 className="text-yellow-500 -mt-0.5"
                                 style={{fill: 'currentColor'}}
                             />
+
                             <span>{toPersianDigits(star)}</span>
                         </Badge>
                     </div>
 
                     <div
-                        onClick={() => showProductDetailsSheet('productid')}
+                        onClick={() => showProductDetailsSheet(id)}
                         className="hover:text-primary text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer"
                     >
                         {title}
@@ -60,18 +73,17 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                 </div>
 
                 <div className="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
-
                     {showAddButton && (
-                            <Button
-                                size="sm"
-                                variant="outline"
-                                className="ms-1"
-                                onClick={showCartSheet}
-
-                            >
-                                <ShoppingCart/> افزودن
-                            </Button>)}
-
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            className="ms-1"
+                            onClick={showCartSheet}
+                        >
+                            <ShoppingCart />
+                            افزودن
+                        </Button>
+                    )}
 
                     <div className="flex items-center flex-wrap gap-1.5">
                         {label && (
@@ -80,17 +92,13 @@ export function Card2({badge, logo, title, total, star, label, showAddButton = t
                             </span>
                         )}
 
-
-
-
-
                         <span className="text-sm font-medium text-mono">
                             {toPersianDigits(total)} تومان
                         </span>
-
                     </div>
                 </div>
             </CardContent>
         </Card>
     );
 }
+
