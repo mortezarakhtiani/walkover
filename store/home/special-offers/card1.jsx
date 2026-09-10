@@ -12,7 +12,15 @@ export function Card1({showAddButton = true}) {
     const {showCartSheet} = useStoreClient();
 
     return (
-        <Card className="bg-violet-50 border-violet-200 dark:bg-violet-950/30 dark:border-violet-950 h-full">
+        <Card  className={`
+                h-full
+                rounded-2xl
+                border
+                border-border
+                bg-background
+                shadow-sm
+                
+            `}>
             <CardContent
                 className="flex items-center flex-wrap sm:flex-nowrap justify-between gap-5 lg:gap-9 px-7.5 pb-0">
                 <div className="flex flex-col">
@@ -45,8 +53,8 @@ export function Card1({showAddButton = true}) {
                 </div>
 
                 <img
-                    src={toAbsoluteUrl('/media/store/client/600x600/16.png')}
-                    className="h-[250px]"
+                    src="/images/rozh.png"
+                    className="h-[200px] rounded-xl border border-border object-contain"
                     alt="image"
                 />
             </CardContent>

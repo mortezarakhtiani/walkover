@@ -1,42 +1,26 @@
+
+'use client';
+
 import Link from 'next/link';
 import {
-    BetweenHorizontalStart,
-    Coffee,
-    CreditCard,
-    FileText,
     Moon,
-    Settings,
-    Shield,
     ShoppingBag,
     User,
-    UserCircle,
-    Users,
 } from 'lucide-react';
-// import { signOut, useSession } from 'next-auth/react';
 import {useTheme} from 'next-themes';
-// import { useLanguage } from '@/providers/i18n-provider';
-import {Badge} from '@/store/components/ui/badge';
+
 import {Button} from '@/store/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from '@/store/components/ui/dropdown-menu';
 import {Switch} from '@/store/components/ui/switch';
 
 export function UserDropdownMenu({trigger}) {
-    // const { data: session } = useSession();
-    // const { changeLanguage, language } = useLanguage();
     const {resolvedTheme, setTheme} = useTheme();
-
-    // const handleLanguage = (lang) => {
-    //   changeLanguage(lang.code);
-    // };
 
     const handleThemeToggle = (checked) => {
         setTheme(checked ? 'dark' : 'light');
@@ -44,244 +28,63 @@ export function UserDropdownMenu({trigger}) {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
+                {trigger}
+            </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-64" side="bottom" align="end">
-                {/* Header */}
-                <div className="flex items-center justify-between p-3">
-                    <div className="flex items-center gap-2">
-                        <img
-                            className="w-9 h-9 rounded-full border border-border"
-                            src="/media/avatars/300-2.png"
-                            alt="User avatar"
-                        />
+            <DropdownMenuContent
+                className="w-56 text-right"
+                side="bottom"
+                align="end"
+                dir="rtl"
+            >
 
-                        <div className="flex flex-col">
-                            <Link
-                                href="/account/home/get-started"
-                                className="text-sm text-mono hover:text-primary font-semibold"
-                            >
-                                {/*{session?.user?.name || ''}*/}
-                                reza hasanzadeh
-                            </Link>
-
-                            <Link
-                                href="mailto:c.fisher@gmail.com"
-                                className="text-xs text-muted-foreground hover:text-primary"
-                            >
-                                {/*{session?.user?.email || ''}*/}
-                                reza@example.com
-                            </Link>
-                        </div>
-                    </div>
-
-                    <Badge variant="primary" appearance="light" size="sm">
-                        Pro
-                    </Badge>
-                </div>
-
-                <DropdownMenuSeparator/>
-
-                {/* Menu Items */}
-                <DropdownMenuItem asChild>
-                    <Link
-                        href="/public-profile/profiles/default"
-                        className="flex items-center gap-2"
-                    >
-                        <UserCircle/>
-                        پروفایل عمومی
-                    </Link>
-                </DropdownMenuItem>
-
+                {/* Profile */}
                 <DropdownMenuItem asChild>
                     <Link
                         href="/account/home/user-profile"
-                        className="flex items-center gap-2"
+                        className="flex w-full items-center gap-2"
                     >
-                        <User/>
-                        پروفایل من
+                        <User className="size-4"/>
+                        <span>پروفایل من</span>
                     </Link>
                 </DropdownMenuItem>
 
+                {/* Orders */}
                 <DropdownMenuItem asChild>
                     <Link
                         href="/store/my-orders"
-                        className="flex items-center gap-2"
+                        className="flex w-full items-center gap-2"
                     >
-                        <ShoppingBag/>
-                        سفارشات من
+                        <ShoppingBag className="size-4"/>
+                        <span>سفارشات من</span>
                     </Link>
                 </DropdownMenuItem>
-
-                {/* My Account Submenu */}
-
-                {/* My Account Submenu */}
-                <DropdownMenuSub>
-                    <DropdownMenuSubTrigger className="flex items-center gap-2">
-                        <Settings/>
-                        اکانت من
-                    </DropdownMenuSubTrigger>
-
-                    <DropdownMenuSubContent className="w-48">
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/home/get-started"
-                                className="flex items-center gap-2"
-                            >
-                                <Coffee/>
-                                Get Started
-                            </Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/home/user-profile"
-                                className="flex items-center gap-2"
-                            >
-                                <FileText/>
-                                My Profile
-                            </Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/billing/basic"
-                                className="flex items-center gap-2"
-                            >
-                                <CreditCard/>
-                                Billing
-                            </Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/security/overview"
-                                className="flex items-center gap-2"
-                            >
-                                <Shield/>
-                                Security
-                            </Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/members/teams"
-                                className="flex items-center gap-2"
-                            >
-                                <Users/>
-                                Members & Roles
-                            </Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href="/account/integrations"
-                                className="flex items-center gap-2"
-                            >
-                                <BetweenHorizontalStart/>
-                                Integrations
-                            </Link>
-                        </DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                <DropdownMenuItem asChild>
-                    <Link
-                        href="https://devs.keenthemes.com"
-                        className="flex items-center gap-2"
-                    >
-                        <FileText/>
-                        Dev Forum
-                    </Link>
-                </DropdownMenuItem>
-
-                {/* Language Submenu - Disabled */}
-                {/*
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="flex items-center gap-2 [&_[data-slot=dropdown-menu-sub-trigger-indicator]]:hidden hover:[&_[data-slot=badge]]:border-input data-[state=open]:[&_[data-slot=badge]]:border-input">
-            <Globe />
-            <span className="flex items-center justify-between gap-2 grow relative">
-              Language
-              <Badge
-                variant="outline"
-                className="absolute end-0 top-1/2 -translate-y-1/2"
-              >
-                {language.name}
-                <img
-                  src={language.flag}
-                  className="w-3.5 h-3.5 rounded-full"
-                  alt={language.name}
-                />
-              </Badge>
-            </span>
-          </DropdownMenuSubTrigger>
-
-          <DropdownMenuSubContent className="w-48">
-            <DropdownMenuRadioGroup
-              value={language.code}
-              onValueChange={(value) => {
-                const selectedLang = I18N_LANGUAGES.find(
-                  (lang) => lang.code === value,
-                );
-
-                if (selectedLang) {
-                  handleLanguage(selectedLang);
-                }
-              }}
-            >
-              {I18N_LANGUAGES.map((item) => (
-                <DropdownMenuRadioItem
-                  key={item.code}
-                  value={item.code}
-                  className="flex items-center gap-2"
-                >
-                  <img
-                    src={item.flag}
-                    className="w-4 h-4 rounded-full"
-                    alt={item.name}
-                  />
-
-                  <span>{item.name}</span>
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        */}
 
                 <DropdownMenuSeparator/>
 
-                {/* Footer */}
+                {/* Dark Mode */}
                 <DropdownMenuItem
                     className="flex items-center gap-2"
                     onSelect={(event) => event.preventDefault()}
                 >
-                    <Moon/>
+                    <Moon className="size-4"/>
 
-                    <div className="flex items-center gap-2 justify-between grow">
-                        Dark Mode
+                    <div className="flex flex-1 items-center justify-between gap-3">
+                        <span>حالت تاریک</span>
 
                         <Switch
                             key={resolvedTheme}
                             size="sm"
                             checked={resolvedTheme === 'dark'}
                             onCheckedChange={handleThemeToggle}
-                            aria-label="Dark mode"
+                            aria-label="حالت تاریک"
                         />
                     </div>
                 </DropdownMenuItem>
 
-                <div className="p-2 mt-1">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
-                        // onClick={() => signOut()}
-                    >
-                        Logout
-                    </Button>
-                </div>
             </DropdownMenuContent>
         </DropdownMenu>
     );
 }
+

@@ -79,7 +79,7 @@ const PopularCategories = () => {
                                 whileTap={{
                                     scale: 0.98,
                                 }}
-                                className="group flex cursor-pointer flex-col items-center justify-center bg-transparent p-6"
+                               className="group flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-border bg-transparent p-6 transition-colors hover:dark:border-violet-950"
                             >
                                 <div className="relative mb-4 size-32 overflow-hidden rounded-xl bg-accent">
                                     <Image

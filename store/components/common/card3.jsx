@@ -36,7 +36,7 @@ export function Card3({
           </Card>
 
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2.5 -mt-1">
+            <div className="flex items-center gap-2.5 -mt-100">
               <Link
                 href="#"
                 className="hover:text-primary text-sm font-medium text-mono leading-5.5"

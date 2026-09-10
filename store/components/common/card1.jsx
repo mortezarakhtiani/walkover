@@ -11,6 +11,7 @@ export function Card1() {
   const items = getProducts();
 
 
+
   const renderItem = (item) => (
     <Card key={item.id}>
       <CardContent className="flex flex-col items-center justify-center pb-0">

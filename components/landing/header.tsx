@@ -24,18 +24,23 @@ import {
 
 import Logo from '@/components/logo';
 import {cn} from '@/lib/utils';
+import {UserDropdownMenu} from '@/store/components/ui/user-dropdown-menu';
 
 const navItems = [
     {
-        label: 'خانه',
+        label: 'تیشرت',
         href: '#home',
     },
     {
-        label: 'محصولات',
+        label: 'هودی',
         href: '#products',
     },
     {
-        label: 'جدیدترین‌ها',
+        label: 'ماگ',
+        href: '#latest',
+    },
+    {
+        label: 'ورزش و سلامت',
         href: '#latest',
     },
     {
@@ -219,14 +224,19 @@ const Header = () => {
                 <div className="flex items-center gap-1">
 
                     {/* User */}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="cursor-pointer text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                        aria-label="حساب کاربری"
-                    >
-                        <User className="size-4"/>
-                    </Button>
+                    {/* User */}
+<UserDropdownMenu
+    trigger={
+        <Button
+            variant="ghost"
+            size="icon"
+            className="cursor-pointer text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            aria-label="حساب کاربری"
+        >
+            <User className="size-4" />
+        </Button>
+    }
+/>
 
                     {/* Cart */}
                     <Button

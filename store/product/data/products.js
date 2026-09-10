@@ -192,11 +192,10 @@ export const products = [
         slug: 'creator-merch-cap',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch',
-        logo: '3.png',
+        logo: '/images/woman.png',
 
         images: [
-            '3.png',
-            '6.png',
+            '/images/woman.png',
         ],
 
         sku: 'CP-BLK-001',
@@ -251,8 +250,7 @@ export const products = [
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
         title: 'ماگ اختصاصی Merch',
-        logo: '4.png',
-
+        logo: '/images/woman.png',
         images: [
             '4.png',
             '7.png',
@@ -301,113 +299,4 @@ export const products = [
         sizeGuide: [],
     },
 
-    {
-        id: 105,
-        slug: 'creator-merch-mug',
-        brand: 'Creator Merch',
-        title: 'ماگ اختصاصی Merch',
-        logo: '4.png',
-
-        images: [
-            '4.png',
-            '7.png',
-        ],
-
-        sku: 'MG-WHT-001',
-
-        price: 490000,
-        originalPrice: 550000,
-        discount: 11,
-
-        stock: true,
-
-        category: 'ماگ',
-
-        description:
-            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
-
-        rating: 4.7,
-        reviewCount: 21,
-
-        colors: [
-            {
-                name: 'سفید',
-                value: '#ffffff',
-            },
-        ],
-
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
-
-        sizeGuide: [],
-    },
-
-    {
-        id: 106,
-        slug: 'creator-merch-mug',
-        brand: 'Creator Merch',
-        title: 'ماگ اختصاصی Merch',
-        logo: '4.png',
-
-        images: [
-            '4.png',
-            '7.png',
-        ],
-
-        sku: 'MG-WHT-001',
-
-        price: 490000,
-        originalPrice: 550000,
-        discount: 11,
-
-        stock: true,
-
-        category: 'ماگ',
-
-        description:
-            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
-
-        rating: 4.7,
-        reviewCount: 21,
-
-        colors: [
-            {
-                name: 'سفید',
-                value: '#ffffff',
-            },
-        ],
-
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
-
-        sizeGuide: [],
-    },
 ];

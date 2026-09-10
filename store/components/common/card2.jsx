@@ -24,9 +24,9 @@ export function Card2({
     return (
         <Card>
             <CardContent className="flex flex-col justify-between p-2.5 gap-4">
-                <div className="mb-2.5">
-                    <Card
-                        className="flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none"
+                <div className="mb-[10px]">
+                    <div
+                        className=" flex items-center justify-center relative w-full h-[180px] mb-4 shadow-none"
                     >
                         {badge && (
                             <Badge
@@ -40,13 +40,11 @@ export function Card2({
 
                         <img
                             onClick={() => showProductDetailsSheet(id)}
-                            src={toAbsoluteUrl(
-                                `/media/store/client/600x600/${logo}`
-                            )}
-                            className="h-[180px] shrink-0 cursor-pointer"
+                            src={logo}
+                            className="h-[180px] shrink-0 cursor-pointer rounded-2xl object-contain "
                             alt={title}
                         />
-                    </Card>
+                    </div>
 
                     <div className="flex sm:justify-end mb-2">
                         <Badge
