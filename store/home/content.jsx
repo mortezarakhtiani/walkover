@@ -4,7 +4,6 @@ import {
   Deals,
   FeaturedProducts,
   Info,
-  NewArrivals,
   PopularSneakers,
   Search,
   SpecialOffers,
@@ -16,7 +15,6 @@ export function StoreClientContent() {
       {/*<Search />*/}
       <FeaturedProducts />
       <SpecialOffers />
-      <NewArrivals />
       <PopularSneakers />
       <Deals />
       <Info />

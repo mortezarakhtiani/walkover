@@ -1,3 +1,4 @@
+
 import { StoreClientProvider } from '@/store/components/context';
 
 export default function AppLayout({
@@ -7,7 +8,10 @@ export default function AppLayout({
 }) {
     return (
         <StoreClientProvider>
-            {children}
+            <div className="container mx-auto px-10">
+                {children}
+            </div>
         </StoreClientProvider>
     );
 }
+

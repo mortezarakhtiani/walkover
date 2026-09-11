@@ -3,7 +3,10 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {
-    Clock3, Tag, ArrowRight, ArrowLeft,
+    Clock3,
+    Tag,
+    ArrowRight,
+    ArrowLeft,
 } from 'lucide-react';
 
 import {Button} from '@/store/components/ui/button';
@@ -11,13 +14,15 @@ import {Card1} from '@/store/home/special-offers/card1';
 import {Card2} from '@/store/home/special-offers/card2';
 
 export function SpecialOffers({
-                                  showAddButton = true,
-                                  showSeeAll = true,
-                                  moreButton = 'نمایش بیشتر',
-                                  moreButtonHref = '/store',
-                              }) {
+    showAddButton = true,
+    showSeeAll = true,
+    moreButton = 'نمایش بیشتر',
+    moreButtonHref = '/store',
+}) {
     const [timeLeft, setTimeLeft] = useState({
-        hours: 12, minutes: 45, seconds: 32,
+        hours: 12,
+        minutes: 45,
+        seconds: 32,
     });
 
     useEffect(() => {
@@ -41,7 +46,9 @@ export function SpecialOffers({
                 }
 
                 return {
-                    hours, minutes, seconds,
+                    hours,
+                    minutes,
+                    seconds,
                 };
             });
         }, 1000);
@@ -49,23 +56,35 @@ export function SpecialOffers({
         return () => clearInterval(timer);
     }, []);
 
-    const toPersianDigits = (value) => String(value).replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[digit]);
+    const toPersianDigits = (value) =>
+        String(value).replace(
+            /\d/g,
+            (digit) => '۰۱۲۳۴۵۶۷۸۹'[digit]
+        );
 
-    return (<div
+    return (
+        <div
             className="
-                relative overflow-hidden rounded-2xl
+                relative
+                overflow-hidden
+                rounded-2xl
                 p-5
                 shadow-sm
             "
         >
-
             {/* Left Arrow */}
             <button
                 type="button"
                 className="
-                    absolute left-3 top-1/2 z-20
-                    flex size-9 -translate-y-1/2
-                    items-center justify-center
+                    absolute
+                    left-3
+                    top-1/2
+                    z-20
+                    flex
+                    size-9
+                    -translate-y-1/2
+                    items-center
+                    justify-center
                     rounded-full
                     bg-background/80
                     text-primary
@@ -84,9 +103,15 @@ export function SpecialOffers({
             <button
                 type="button"
                 className="
-                    absolute right-3 top-1/2 z-20
-                    flex size-9 -translate-y-1/2
-                    items-center justify-center
+                    absolute
+                    right-3
+                    top-1/2
+                    z-20
+                    flex
+                    size-9
+                    -translate-y-1/2
+                    items-center
+                    justify-center
                     rounded-full
                     bg-background/80
                     text-primary
@@ -104,8 +129,11 @@ export function SpecialOffers({
             {/* Decorative glow */}
             <div
                 className="
-                    pointer-events-none absolute
-                    -right-16 -top-16 size-40
+                    pointer-events-none
+                    absolute
+                    -right-16
+                    -top-16
+                    size-40
                     rounded-full
                     bg-primary/10
                     blur-3xl
@@ -114,41 +142,46 @@ export function SpecialOffers({
 
             <div
                 className="
-                    pointer-events-none absolute
-                    -left-16 bottom-0 size-32
+                    pointer-events-none
+                    absolute
+                    -left-16
+                    bottom-0
+                    size-32
                     rounded-full
                     bg-primary/5
                     blur-3xl
                 "
             />
 
-            {/* Inner Header Box */}
+            {/* Header */}
             <div
                 className="
-                    relative mb-5
+                    relative
+                    mb-5
                     rounded-xl
-                    dark:bg-indigo-600/20
                     p-5
+                    dark:bg-indigo-600/20
                 "
             >
-
                 <div
                     className="
-                        flex flex-col gap-4
+                        flex
+                        flex-col
+                        gap-4
                         sm:flex-row
                         sm:items-center
                         sm:justify-between
                     "
                 >
-
-                    {/* Title + Discount */}
+                    {/* Title */}
                     <div className="flex items-center gap-3">
-
-                        {/* Discount Icon */}
                         <div
                             className="
-                                flex size-11 shrink-0
-                                items-center justify-center
+                                flex
+                                size-11
+                                shrink-0
+                                items-center
+                                justify-center
                                 rounded-xl
                                 text-primary
                             "
@@ -157,9 +190,7 @@ export function SpecialOffers({
                         </div>
 
                         <div>
-
                             <div className="flex items-center gap-2">
-
                                 <h2 className="text-lg font-semibold text-mono">
                                     خوش قیمت‌های امروز
                                 </h2>
@@ -168,7 +199,8 @@ export function SpecialOffers({
                                     className="
                                         rounded-full
                                         bg-red-500/10
-                                        px-2 py-0.5
+                                        px-2
+                                        py-0.5
                                         text-[10px]
                                         font-medium
                                         text-red-600
@@ -177,83 +209,96 @@ export function SpecialOffers({
                                 >
                                     تخفیف ویژه
                                 </span>
-
                             </div>
 
                             <p className="mt-1 text-xs text-muted-foreground">
                                 فرصت محدود برای خرید با قیمت ویژه
                             </p>
-
                         </div>
-
                     </div>
 
                     {/* Timer + See All */}
                     <div className="flex items-center gap-3">
-
-                        {/* Countdown */}
                         <div
-                            className="flex items-center gap-2 rounded-xl bg-indigo-600/10 px-3 py-2 text-indigo-600 dark:bg-indigo-400/10 dark:text-indigo-400">
+                            className="
+                                flex
+                                items-center
+                                gap-2
+                                rounded-xl
+                                bg-indigo-600/10
+                                px-3
+                                py-2
+                                text-indigo-600
+                                dark:bg-indigo-400/10
+                                dark:text-indigo-400
+                            "
+                        >
                             <Clock3 className="size-4"/>
 
-                            <div className="flex items-center gap-1" dir="ltr">
-        <span className="min-w-[24px] text-center text-sm font-semibold">
-            {toPersianDigits(String(timeLeft.hours).padStart(2, '0'))}
-        </span>
+                            <div
+                                className="flex items-center gap-1"
+                                dir="ltr"
+                            >
+                                <span className="min-w-[24px] text-center text-sm font-semibold">
+                                    {toPersianDigits(
+                                        String(timeLeft.hours).padStart(2, '0')
+                                    )}
+                                </span>
 
                                 <span>:</span>
 
                                 <span className="min-w-[24px] text-center text-sm font-semibold">
-            {toPersianDigits(String(timeLeft.minutes).padStart(2, '0'))}
-        </span>
+                                    {toPersianDigits(
+                                        String(timeLeft.minutes).padStart(2, '0')
+                                    )}
+                                </span>
 
                                 <span>:</span>
 
                                 <span className="min-w-[24px] text-center text-sm font-semibold">
-            {toPersianDigits(String(timeLeft.seconds).padStart(2, '0'))}
-        </span>
+                                    {toPersianDigits(
+                                        String(timeLeft.seconds).padStart(2, '0')
+                                    )}
+                                </span>
                             </div>
 
                             <span className="hidden text-[10px] font-medium sm:inline">
-        باقی مانده
-    </span>
+                                باقی مانده
+                            </span>
                         </div>
 
-                        {/* See All */}
-                        {showSeeAll && (<Button mode="link" asChild>
-                            <Link
-                                href={moreButtonHref}
-                                className="text-xs"
-                            >
-                                {moreButton}
-                            </Link>
-                        </Button>)}
-
+                        {showSeeAll && (
+                            <Button mode="link" asChild>
+                                <Link
+                                    href={moreButtonHref}
+                                    className="text-xs"
+                                >
+                                    {moreButton}
+                                </Link>
+                            </Button>
+                        )}
                     </div>
-
                 </div>
-
             </div>
 
-        {/* Products */}
-        <div
-            className="
+            {/* Products */}
+            <div
+                className="
                     relative
-                    grid gap-5
+                    grid
+                    gap-5
                     xl:grid-cols-2
                 "
-        >
-
-            {/* Main Product */}
-            <div>
-                <Card1
-                    showAddButton={showAddButton}
-                />
-            </div>
+            >
+                {/* Main Product */}
+                <div>
+                    <Card1
+                        showAddButton={showAddButton}
+                    />
+                </div>
 
                 {/* Small Products */}
                 <div>
-
                     <div
                         className="
                             grid
@@ -262,29 +307,26 @@ export function SpecialOffers({
                             sm:grid-cols-2
                         "
                     >
-
                         <Card2
                             logo="/images/woman.png"
                             title="کفش ورزشی Nike Dunk Low"
-                            total="110.00"
-                            // bgColor="bg-black"
+                            total="1,200,000"
+                            originalPrice="3,200,000"
+                            discount="35"
                             showAddButton={showAddButton}
                         />
 
                         <Card2
                             logo="/images/kif.png"
                             title="کفش ورزشی Nike Air Force 1"
-                            total="96.99"
-                            // bgColor="bg-black"
+                            total="1,200,000"
+                            originalPrice="3,200,000"
+                            discount="70"
                             showAddButton={showAddButton}
                         />
-
                     </div>
-
                 </div>
-
             </div>
-
-        </div>);
+        </div>
+    );
 }
-

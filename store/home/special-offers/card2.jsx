@@ -1,19 +1,20 @@
 'use client';
 
 import {ShoppingCart} from 'lucide-react';
-import {toAbsoluteUrl} from '@/lib/helpers';
 import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
-import {toPersianDigits} from "@/lib/to-persian-digits";
+import {toPersianDigits} from '@/lib/to-persian-digits';
 
 export function Card2({
     bgColor,
     borderColor,
     title,
+    discount,
     total,
     logo,
+    originalPrice,
     showAddButton = true,
 }) {
     const {showCartSheet} = useStoreClient();
@@ -30,46 +31,70 @@ export function Card2({
                 ${bgColor || ''}
             `}
         >
-            <CardContent className="flex flex-col items-center justify-center px-5 pb-0">
+            <CardContent className="flex flex-col items-center justify-center px-5 pb-5">
 
-                <div className="mb-4 flex w-full items-center justify-between">
+                {/* تصویر */}
+                <img
+                    src={logo}
+                    className="
+                        mb-12
+                        mt-5
+                        h-[200px]
+                        rounded-xl
+                        object-contain
+                    "
+                    alt={title}
+                />
+
+                {/* عنوان */}
+                <span className="mb-4 text-base font-medium text-mono">
+                    {title}
+                </span>
+
+                {/* قیمت و تخفیف */}
+                <div className="mb-4 flex w-full items-end justify-between gap-3">
+
+                    {/* تخفیف */}
                     <Badge
                         size="sm"
                         variant="destructive"
                         className="uppercase"
                     >
-                        {toPersianDigits('25%')}
-                        <span>تخفیف</span>
+                        {toPersianDigits(discount)}%
                     </Badge>
 
-                    <div className="flex items-center gap-1">
-                        <span className="text-sm font-medium text-mono">
-                            {toPersianDigits(total)}
-                        </span>
+                    {/* قیمت‌ها */}
+                    <div
+                        className="flex flex-col items-end gap-1"
+                        dir="rtl"
+                    >
 
-                        <span className="text-sm font-medium text-mono">
-                            تومان
-                        </span>
+                        {originalPrice && (
+                            <span className="text-xs font-normal text-muted-foreground line-through decoration-[1px]">
+                {toPersianDigits(originalPrice)} تومان
+            </span>
+                        )}
+        <span className="text-sm font-semibold text-mono">
+            {toPersianDigits(total)} تومان
+        </span>
+
+
                     </div>
+
                 </div>
 
-
-                <img
-                    src={logo}
-                    className="
-                        mb-5
-                        h-[200px]
-                        rounded-xl
-                        border
-                        border-border
-                        object-contain
-                    "
-                    alt="image"
-                />
-
-                <span className="m-3 text-base font-medium text-mono">
-                    {title}
-                </span>
+                {/* افزودن به سبد خرید */}
+                {showAddButton && (
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full p-4"
+                        onClick={showCartSheet}
+                    >
+                        <ShoppingCart className="size-4"/>
+                        افزودن به سبد خرید
+                    </Button>
+                )}
 
             </CardContent>
         </Card>

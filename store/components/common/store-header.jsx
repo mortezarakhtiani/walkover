@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Container } from '@/components/common/container';
-import { StoreClientTopbar } from './topbar';
+// import { StoreClientTopbar } from './topbar';
 
 export function StoreHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +29,7 @@ export function StoreHeader() {
     >
       <Container>
         <div className="flex items-center justify-end min-h-[64px]">
-          <StoreClientTopbar />
+          {/*<StoreClientTopbar />*/}
         </div>
       </Container>
     </header>

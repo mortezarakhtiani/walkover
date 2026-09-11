@@ -1,35 +1,74 @@
 'use client';
 
-import Header from '@/components/landing/header';
-import Hero from '@/components/landing/hero';
+import Header from '@/store/components/common/header';
 import PopularCategories from '@/components/landing/popular-categories';
 import HowItWorks from '@/components/landing/how-it-works';
 import Features from '@/components/landing/features';
-import Testimonials from '@/components/landing/testimonails';
-import FAQ from '@/components/landing/faq';
-import CallToAction from '@/components/landing/call-to-action';
-import Contact from '@/components/landing/contact';
-import Footer from '@/components/landing/footer';
-import StoreProducts from '@/store/components/store-products';
+import FourBanners from '@/components/landing/four-banners';
+
+import {SpecialOffers} from '@/store/home/components/special-offers';
+import {ProductSection} from '@/store/home/components/product-section';
+import {getProducts} from '@/store/product/services/product-service';
+import SmallImages from "@/components/landing/small-images";
+import TwoImages from "@/components/landing/two-images";
+import Footer from "@/components/landing/footer";
+import Contact from "@/components/landing/contact";
+
 
 export default function LandingV2Page() {
+    const products = getProducts();
+
     return (
-        <div className="min-h-screen px-10">
+        <div className="min-h-screen">
+
             <Header/>
-            {/*<Hero />*/}
-            <HowItWorks/>
-            <PopularCategories/>
-            {/*<PopularCategories/>*/}
-            <StoreProducts/>
+
+            <div className="space-y-10">
+
+                <HowItWorks/>
+
+                <PopularCategories/>
+
+                <SpecialOffers
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store"
+                    showAddButton={true}
+                />
+
+                <ProductSection
+                    title="پرفروش‌ترین‌ها"
+                    items={products}
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store"
+                    showAddButton={true}
+                />
+
+                <FourBanners/>
 
 
-            <Features/>
-            {/*<Testimonials/>*/}
-            {/*<StoreProducts />*/}
-            {/*<FAQ />*/}
-            {/*<CallToAction />*/}
-            {/*<Contact />*/}
-            {/*<Footer />*/}
+                <ProductSection
+                    title="محبوب‌ترین محصولات"
+                    items={products}
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store"
+                    showAddButton={true}
+                />
+
+
+                <SmallImages/>
+
+                <TwoImages/>
+
+
+
+                {/*<Contact/>*/}
+
+            </div>
+
         </div>
     );
 }
+

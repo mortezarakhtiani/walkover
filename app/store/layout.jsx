@@ -1,3 +1,4 @@
+import Header from '@/store/components/common/header';
 import {StoreClientProvider} from '@/store/components/context';
 import {StoreClientWrapper} from '@/store/components/wrapper';
 import {Toaster} from '@/store/components/ui/sonner';
@@ -5,12 +6,14 @@ import {Toaster} from '@/store/components/ui/sonner';
 export default function StoreClientLayout({children}) {
     return (
         <StoreClientProvider>
-            <div className="store-theme">
+            <div className="store-theme min-h-screen">
+
+                <Header/>
 
                 <StoreClientWrapper>
-                    <div className="pt-10">
+                    <main className="pt-32">
                         {children}
-                    </div>
+                    </main>
                 </StoreClientWrapper>
 
                 <Toaster/>

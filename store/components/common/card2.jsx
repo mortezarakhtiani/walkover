@@ -1,4 +1,3 @@
-
 'use client';
 
 import {ShoppingCart, Star} from 'lucide-react';
@@ -10,15 +9,15 @@ import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from '@/lib/to-persian-digits';
 
 export function Card2({
-    id,
-    badge,
-    logo,
-    title,
-    total,
-    star,
-    label,
-    showAddButton = true,
-}) {
+                          id,
+                          badge,
+                          logo,
+                          title,
+                          total,
+                          star,
+                          label,
+                          showAddButton = true,
+                      }) {
     const {showCartSheet, showProductDetailsSheet} = useStoreClient();
 
     return (
@@ -26,7 +25,7 @@ export function Card2({
             <CardContent className="flex flex-col justify-between p-2.5 gap-4">
                 <div className="mb-[10px]">
                     <div
-                        className=" flex items-center justify-center relative w-full h-[180px] mb-4 shadow-none"
+                        className=" flex items-center justify-center relative w-full h-[180px] mb-5 mt-5 shadow-none"
                     >
                         {badge && (
                             <Badge
@@ -46,7 +45,7 @@ export function Card2({
                         />
                     </div>
 
-                    <div className="flex sm:justify-end mb-2">
+                    <div className="flex sm:justify-end mb-2 px-2.5" dir="ltr">
                         <Badge
                             size="sm"
                             variant="secondary"
@@ -78,7 +77,7 @@ export function Card2({
                             className="ms-1"
                             onClick={showCartSheet}
                         >
-                            <ShoppingCart />
+                            <ShoppingCart/>
                             افزودن
                         </Button>
                     )}

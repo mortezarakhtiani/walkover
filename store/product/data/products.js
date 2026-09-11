@@ -3,13 +3,11 @@ export const products = [
         id: 101,
         slug: 'black-merch-tshirt',
         brand: 'Creator Merch',
-        title: 'تیشرت مشکی Merch',
-        logo: '1.png',
-
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/show3.webp',
         images: [
-            '1.png',
-            '2.png',
-            '3.png',
+            '4.png',
+            '7.png',
         ],
 
         sku: 'TS-BLK-001',
@@ -95,13 +93,11 @@ export const products = [
         id: 102,
         slug: 'black-merch-hoodie',
         brand: 'Creator Merch',
-        title: 'هودی مشکی لوگوی کانال',
-        logo: '2.png',
-
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/show1.webp',
         images: [
-            '2.png',
             '4.png',
-            '5.png',
+            '7.png',
         ],
 
         sku: 'HD-BLK-001',
@@ -191,7 +187,7 @@ export const products = [
         id: 103,
         slug: 'creator-merch-cap',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
         logo: '/images/woman.png',
 
         images: [
@@ -249,8 +245,8 @@ export const products = [
         id: 104,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'ماگ اختصاصی Merch',
-        logo: '/images/woman.png',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/man.png',
         images: [
             '4.png',
             '7.png',

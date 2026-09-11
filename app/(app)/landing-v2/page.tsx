@@ -1,6 +1,6 @@
 'use client';
 
-import Header from '@/components/landing/header';
+import Header from '@/store/components/common/header';
 import Hero from '@/components/landing/hero';
 import PopularCategories from '@/components/landing/popular-categories';
 import HowItWorks from '@/components/landing/how-it-works';
@@ -10,7 +10,6 @@ import FAQ from '@/components/landing/faq';
 import CallToAction from '@/components/landing/call-to-action';
 import Contact from '@/components/landing/contact';
 import Footer from '@/components/landing/footer';
-import StoreProducts from '@/store/components/store-products';
 
 export default function LandingV2Page() {
     return (
