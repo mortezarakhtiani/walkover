@@ -31,7 +31,7 @@ const SmallImages = () => {
 
     return (
         <section className="w-full">
-            <div className="grid grid-cols-3 gap-10 sm:grid-cols-6 px-4">
+            <div className="grid grid-cols-3 gap-10 sm:grid-cols-6 px-40">
                 {images.map((image, index) => (
                     <div
                         key={index}

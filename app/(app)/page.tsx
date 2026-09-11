@@ -32,7 +32,7 @@ export default function LandingV2Page() {
                 <SpecialOffers
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
-                    moreButtonHref="/store"
+                    moreButtonHref="/store/search-results-grid"
                     showAddButton={true}
                 />
 
@@ -41,7 +41,7 @@ export default function LandingV2Page() {
                     items={products}
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
-                    moreButtonHref="/store"
+                    moreButtonHref="/store/search-results-grid"
                     showAddButton={true}
                 />
 

@@ -11,5 +11,5 @@ export function GlobalHeader() {
         return null;
     }
 
-    return <StoreHeader />;
+    // return <StoreHeader />;
 }

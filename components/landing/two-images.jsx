@@ -8,7 +8,7 @@ export default function TwoImages() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 gap-4">
 
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-muted cursor-pointer">
+          <div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted cursor-pointer">
             <Image
               src="/images/set2.jpg"
               alt="Image 1"
@@ -17,7 +17,7 @@ export default function TwoImages() {
             />
           </div>
 
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-muted cursor-pointer">
+          <div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted cursor-pointer">
             <Image
               src="/images/set1.jpg"
               alt="Image 2"

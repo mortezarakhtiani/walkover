@@ -7,32 +7,32 @@ const categories = [
     {
         name: 'تیشرت',
         image: '/images/man.png',
-        href: '/store?category=تیشرت',
+        href: '/store/search-results-grid',
     },
     {
         name: 'زنانه',
         image: '/images/woman.png',
-        href: '/store?category=هودی',
+        href: '/store/search-results-grid',
     },
     {
         name: 'کفش',
         image: '/images/shoose.png',
-        href: '/store?category=کلاه',
+        href: '/store/search-results-grid',
     },
     {
         name: 'ساعت',
         image: '/images/watch.png',
-        href: '/store?category=ماگ',
+        href: '/store/search-results-grid',
     },
     {
         name: 'کیف',
         image: '/images/kif.png',
-        href: '/store?category=اکسسوری',
+        href: '/store/search-results-grid',
     },
     {
         name: 'لوازم آرایشی',
         image: '/images/rozh.png',
-        href: '/store?category=کیف',
+        href: '/store/search-results-grid',
     },
 ];
 

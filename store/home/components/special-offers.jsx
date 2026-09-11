@@ -17,7 +17,7 @@ export function SpecialOffers({
     showAddButton = true,
     showSeeAll = true,
     moreButton = 'نمایش بیشتر',
-    moreButtonHref = '/store',
+    moreButtonHref = '/store/search-results-grid',
 }) {
     const [timeLeft, setTimeLeft] = useState({
         hours: 12,
@@ -308,6 +308,7 @@ export function SpecialOffers({
                         "
                     >
                         <Card2
+    productId={103}
                             logo="/images/woman.png"
                             title="کفش ورزشی Nike Dunk Low"
                             total="1,200,000"
@@ -317,6 +318,7 @@ export function SpecialOffers({
                         />
 
                         <Card2
+    productId={103}
                             logo="/images/kif.png"
                             title="کفش ورزشی Nike Air Force 1"
                             total="1,200,000"

@@ -158,7 +158,7 @@ export function StoreClientProductDetailsSheet({
                         <div className="p-5 text-right">
 
                             {/* تصویر محصول */}
-                            <Card className="relative flex items-center justify-center bg-accent/50 mb-6.5 h-[280px]">
+                            <div className="relative flex items-center justify-center bg-accent/50 mb-6.5 h-[280px] mb-15">
                                 {product.discount > 0 && (
                                     <Badge
                                         size="sm"
@@ -177,23 +177,22 @@ export function StoreClientProductDetailsSheet({
                                     onClick={() => onOpenChange(false)}
                                 >
                                     <img
-                                        src={toAbsoluteUrl(
-                                            `/media/store/client/600x600/${product.logo}`
-                                        )}
-                                        className="size-80 cursor-pointer"
+                                        src={toAbsoluteUrl(product.logo)}
+                                        className="size-80 cursor-pointer object-contain"
                                         alt={product.title}
                                     />
                                 </Link>
 
-                                <Card className="absolute flex items-center justify-center bg-light w-[75px] h-[45px] overflow-hidden rounded-sm bottom-4 end-4">
-                                    <img
-                                        src={toAbsoluteUrl(
-                                            '/media/brand-logos/vector.svg'
-                                        )}
-                                        alt={product.brand}
-                                    />
-                                </Card>
-                            </Card>
+                                {/*<Card*/}
+                                {/*    className="absolute flex items-center justify-center bg-light w-[75px] h-[45px] overflow-hidden rounded-sm bottom-4 end-4">*/}
+                                {/*    <img*/}
+                                {/*        src={toAbsoluteUrl(*/}
+                                {/*            '/media/brand-logos/vector.svg'*/}
+                                {/*        )}*/}
+                                {/*        alt={product.brand}*/}
+                                {/*    />*/}
+                                {/*</Card>*/}
+                            </div>
 
                             {/* نام محصول */}
                             <Link
