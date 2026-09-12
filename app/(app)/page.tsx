@@ -3,16 +3,16 @@
 import Header from '@/store/components/common/header';
 import PopularCategories from '@/components/landing/popular-categories';
 import HowItWorks from '@/components/landing/how-it-works';
-import Features from '@/components/landing/features';
 import FourBanners from '@/components/landing/four-banners';
 
 import {SpecialOffers} from '@/store/home/components/special-offers';
 import {ProductSection} from '@/store/home/components/product-section';
 import {getProducts} from '@/store/product/services/product-service';
-import SmallImages from "@/components/landing/small-images";
-import TwoImages from "@/components/landing/two-images";
-import Footer from "@/components/landing/footer";
-import Contact from "@/components/landing/contact";
+// import SmallImages from "@/components/landing/small-images";
+// import TwoImages from "@/components/landing/two-images";
+// import Footer from "@/components/landing/footer";
+// import Contact from "@/components/landing/contact";
+// import HowItWorks from "@/components/how-it-works.tsx"
 
 
 export default function LandingV2Page() {
@@ -24,6 +24,7 @@ export default function LandingV2Page() {
             <Header/>
 
             <div className="space-y-10">
+
 
                 <HowItWorks/>
 
@@ -53,14 +54,14 @@ export default function LandingV2Page() {
                     items={products}
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
-                    moreButtonHref="/store"
+                    moreButtonHref="/store/search-results-grid"
                     showAddButton={true}
                 />
 
 
-                <SmallImages/>
+                {/*<SmallImages/>*/}
 
-                <TwoImages/>
+                {/*<TwoImages/>*/}
 
 
 

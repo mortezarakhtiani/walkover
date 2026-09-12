@@ -171,7 +171,10 @@ export function StoreClientCartSheet({
 
                 <SheetFooter className="flex-row border-t py-3.5 px-5 border-border gap-2">
 
-                    <Button variant="primary" className="flex-2" asChild>
+                    <Button
+    className="flex-2 bg-indigo-500 text-white hover:bg-indigo-600"
+    asChild
+>
                         <Link
                             href="/store/checkout/order-summary"
                             onClick={() => onOpenChange(false)}

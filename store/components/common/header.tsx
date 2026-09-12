@@ -280,7 +280,7 @@ const Header = () => {
                 <div className="flex items-center gap-1">
 
                     {/* Social Media */}
-                    <div className="hidden items-center gap-1 sm:flex">
+                    <div className="hidden items-center gap-1 sm:flex ">
 
                         {/* Instagram */}
                         <Button
@@ -295,7 +295,11 @@ const Header = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <InstagramIcon className="size-4"/>
+                                <img
+                                    src="/icons/instagram.svg"
+                                    alt=""
+                                    className="size-6 object-contain"
+                                />
                             </a>
                         </Button>
 
@@ -312,7 +316,11 @@ const Header = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <TelegramIcon  className="size-4"/>
+                                <img
+                                    src="/icons/telegram.svg"
+                                    alt=""
+                                    className="size-6 object-contain"
+                                />
                             </a>
                         </Button>
 
@@ -329,7 +337,11 @@ const Header = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <YoutubeIcon  className="size-4"/>
+                                <img
+                                    src="/icons/youtube.svg"
+                                    alt=""
+                                    className="size-6 object-contain"
+                                />
                             </a>
                         </Button>
 
@@ -346,7 +358,11 @@ const Header = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <XIcon  className="size-4"/>
+                                <img
+                                    src="/icons/x-formerly-twitter.svg"
+                                    alt=""
+                                    className="size-6 object-contain"
+                                />
                             </a>
                         </Button>
 

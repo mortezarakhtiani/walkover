@@ -10,6 +10,7 @@ import {
     Plus,
     ShoppingCart,
     Star,
+    Trash2,
     Truck,
 } from 'lucide-react';
 
@@ -113,9 +114,10 @@ export default function ProductPage({params}) {
     const product = getProductBySlug(slug);
 
     const [selectedImage, setSelectedImage] = React.useState(0);
-    const [quantity, setQuantity] = React.useState(1);
+    const [quantity, setQuantity] = React.useState(0);
     const [selectedColor, setSelectedColor] = React.useState(null);
     const [selectedSize, setSelectedSize] = React.useState(null);
+    const [isAddedToCart, setIsAddedToCart] = React.useState(false);
 
     if (!product) {
         return (
@@ -176,20 +178,35 @@ export default function ProductPage({params}) {
         product.originalPrice?.toLocaleString('en-US');
 
     const decreaseQuantity = () => {
-        setQuantity((current) => Math.max(1, current - 1));
-    };
+    setQuantity((current) => {
+        if (current <= 1) {
+            setIsAddedToCart(false);
+            return 0;
+        }
 
-    const increaseQuantity = () => {
-        setQuantity((current) => current + 1);
-    };
+        return current - 1;
+    });
+};
+
+const increaseQuantity = () => {
+    setQuantity((current) => current + 1);
+};
+
+const removeProductFromCart = () => {
+    setQuantity(0);
+    setIsAddedToCart(false);
+};
 
     const addProductToCart = () => {
         handleAddToCart({
             productId: product.id,
-            quantity,
+            quantity: 1,
             color: selectedColor,
             size: selectedSize,
         });
+
+        setIsAddedToCart(true);
+        setQuantity((current) => current + 1);
     };
 
     return (
@@ -347,65 +364,60 @@ export default function ProductPage({params}) {
                     <div className="border-t border-border my-6"/>
 
                     {/* Price */}
-                    <div className="flex items-end gap-3">
+                    <div className="flex flex-col items-start gap-1">
+                        {product.originalPrice && (
+                            <span className="text-sm text-secondary-foreground line-through">
+            {toPersianDigits(formattedOriginalPrice)} تومان
+        </span>
+                        )}
+
                         <div className="flex items-center gap-1">
-                            <span className="text-2xl font-semibold text-mono">
-                                {toPersianDigits(formattedPrice)}
-                            </span>
+        <span className="text-2xl font-semibold text-mono">
+            {toPersianDigits(formattedPrice)}
+        </span>
 
                             <span className="text-sm font-medium text-mono">
-                                تومان
-                            </span>
+            تومان
+        </span>
                         </div>
-
-                        {product.originalPrice && (
-                            <span className="text-sm text-secondary-foreground line-through pb-1">
-                                {toPersianDigits(
-                                    formattedOriginalPrice
-                                )}
-                            </span>
-                        )}
                     </div>
 
                     {/* Color */}
                     {colors.length > 0 && (
                         <div className="mt-7">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-sm font-medium text-mono">
-                                    رنگ
-                                </span>
+                            <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-mono">
+                رنگ:
+            </span>
 
                                 {selectedColor && (
-                                    <span className="text-xs text-secondary-foreground">
-                                        {selectedColor.name}
-                                    </span>
+                                    <span className="text-sm text-secondary-foreground">
+                    {selectedColor.name}
+                </span>
                                 )}
-                            </div>
 
-                            <div className="flex items-center gap-2">
-                                {colors.map((color) => (
-                                    <button
-                                        key={color.name}
-                                        type="button"
-                                        onClick={() =>
-                                            setSelectedColor(color)
-                                        }
-                                        title={color.name}
-                                        className={`flex size-9 items-center justify-center rounded-full border-2 transition-all ${
-                                            selectedColor?.name === color.name
-                                                ? 'border-primary'
-                                                : 'border-border'
-                                        }`}
-                                    >
-                                        <span
-                                            className="size-6 rounded-full border border-black/10"
-                                            style={{
-                                                backgroundColor:
-                                                color.value,
-                                            }}
-                                        />
-                                    </button>
-                                ))}
+                                <div className="flex items-center gap-2">
+                                    {colors.map((color) => (
+                                        <button
+                                            key={color.name}
+                                            type="button"
+                                            onClick={() => setSelectedColor(color)}
+                                            title={color.name}
+                                            className={`flex size-9 items-center justify-center rounded-full border-2 transition-all ${
+                                                selectedColor?.name === color.name
+                                                    ? 'border-indigo-500'
+                                                    : 'border-border'
+                                            }`}
+                                        >
+                        <span
+                            className="size-6 rounded-full border border-black/10"
+                            style={{
+                                backgroundColor: color.value,
+                            }}
+                        />
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     )}
@@ -436,8 +448,8 @@ export default function ProductPage({params}) {
                                         }
                                         className={`min-w-[52px] rounded-md border px-4 py-2 text-sm transition-colors ${
                                             selectedSize === size
-                                                ? 'border-primary bg-primary text-primary-foreground'
-                                                : 'border-border bg-background hover:border-primary'
+                                                ? 'border-indigo-500 bg-indigo-500 text-white'
+                                                : 'border-border bg-background hover:border-indigo-500'
                                         }`}
                                     >
                                         {toPersianDigits(size)}
@@ -448,50 +460,68 @@ export default function ProductPage({params}) {
                     )}
 
                     {/* Quantity + Cart */}
-                    <div className="flex items-center gap-3 mt-8">
-                        <div className="flex h-11 items-center rounded-md border border-border">
-                            <button
-                                type="button"
-                                onClick={decreaseQuantity}
-                                disabled={quantity <= 1}
-                                className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground disabled:opacity-40"
-                            >
-                                <Minus className="size-4"/>
-                            </button>
+                    {/* Quantity + Cart */}
+<div className="flex items-center gap-3 mt-8">
 
-                            <span className="w-8 text-center text-sm font-medium text-mono">
-                                {toPersianDigits(quantity)}
-                            </span>
+    {/* Quantity */}
+    <div
+        className={`flex h-11 items-center rounded-md border border-border ${
+            !isAddedToCart ? 'opacity-50' : ''
+        }`}
+    >
+        <button
+            type="button"
+            onClick={
+                quantity === 1
+                    ? removeProductFromCart
+                    : decreaseQuantity
+            }
+            disabled={!isAddedToCart}
+            className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+        >
+            {quantity === 1 ? (
+                <Trash2 className="size-4 text-red-500" />
+            ) : (
+                <Minus className="size-4" />
+            )}
+        </button>
 
-                            <button
-                                type="button"
-                                onClick={increaseQuantity}
-                                className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground"
-                            >
-                                <Plus className="size-4"/>
-                            </button>
-                        </div>
+        <span className="w-8 text-center text-sm font-medium text-mono">
+            {toPersianDigits(quantity)}
+        </span>
 
-                        <Button
-                            onClick={addProductToCart}
-                            disabled={!product.stock}
-                            className="h-11 grow justify-center"
-                        >
-                            <ShoppingCart className="size-4"/>
+        <button
+            type="button"
+            onClick={increaseQuantity}
+            disabled={!isAddedToCart}
+            className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+        >
+            <Plus className="size-4" />
+        </button>
+    </div>
 
-                            {product.stock
-                                ? 'افزودن به سبد خرید'
-                                : 'ناموجود'}
-                        </Button>
+    {/* Add to Cart */}
+    <Button
+        onClick={addProductToCart}
+        disabled={!product.stock}
+        className="h-11 grow justify-center bg-indigo-500 text-white hover:bg-indigo-600"
+    >
+        <ShoppingCart className="size-4" />
 
-                        <Button
-                            variant="outline"
-                            mode="icon"
-                            className="size-11 shrink-0"
-                        >
-                            <Heart className="size-4"/>
-                        </Button>
-                    </div>
+        {product.stock
+            ? 'افزودن به سبد خرید'
+            : 'ناموجود'}
+    </Button>
+
+    {/* Wishlist */}
+    <Button
+        variant="outline"
+        mode="icon"
+        className="size-11 shrink-0"
+    >
+        <Heart className="size-4" />
+    </Button>
+</div>
 
                     {/* Shipping Info */}
                     <Card className="mt-6 bg-accent/30 border-border">
@@ -686,34 +716,34 @@ export default function ProductPage({params}) {
             </section>
 
             {/* FAQ */}
-{/* FAQ */}
-<section className="mt-12">
-    <div className="mb-5">
-        <h2 className="text-base font-semibold text-mono">
-            سؤالات متداول
-        </h2>
+            {/* FAQ */}
+            <section className="mt-12">
+                <div className="mb-5">
+                    <h2 className="text-base font-semibold text-mono">
+                        سؤالات متداول
+                    </h2>
 
-        <span className="text-xs text-secondary-foreground">
+                    <span className="text-xs text-secondary-foreground">
             پاسخ پرسش‌های متداول درباره این محصول
         </span>
-    </div>
+                </div>
 
-    <Card>
-        <CardContent className="p-0">
-            <FAQItem
-                defaultOpen
-                question="آیا امکان تعویض سایز وجود دارد؟"
-                answer="بله. در صورتی که محصول استفاده نشده باشد و شرایط تعویض را داشته باشد، امکان تعویض سایز وجود دارد. برای اطلاع از شرایط دقیق تعویض می‌توانید با پشتیبانی فروشگاه تماس بگیرید."
-            />
+                <Card>
+                    <CardContent className="p-0">
+                        <FAQItem
+                            defaultOpen
+                            question="آیا امکان تعویض سایز وجود دارد؟"
+                            answer="بله. در صورتی که محصول استفاده نشده باشد و شرایط تعویض را داشته باشد، امکان تعویض سایز وجود دارد. برای اطلاع از شرایط دقیق تعویض می‌توانید با پشتیبانی فروشگاه تماس بگیرید."
+                        />
 
-            <FAQItem
-                question="جنس این محصول چیست؟"
-                answer="جنس محصول بسته به نوع آن متفاوت است. مشخصات دقیق جنس، نوع پارچه و سایر ویژگی‌های محصول در بخش «مشخصات محصول» همین صفحه قرار گرفته است."
-            />
+                        <FAQItem
+                            question="جنس این محصول چیست؟"
+                            answer="جنس محصول بسته به نوع آن متفاوت است. مشخصات دقیق جنس، نوع پارچه و سایر ویژگی‌های محصول در بخش «مشخصات محصول» همین صفحه قرار گرفته است."
+                        />
 
-        </CardContent>
-    </Card>
-</section>
+                    </CardContent>
+                </Card>
+            </section>
 
             {/* Related Products */}
             <section className="mt-12 pb-8">

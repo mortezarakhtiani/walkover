@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -75,6 +74,7 @@ export function UserDropdownMenu({trigger}) {
 
                         <Switch
                             key={resolvedTheme}
+                            dir="ltr"
                             size="sm"
                             checked={resolvedTheme === 'dark'}
                             onCheckedChange={handleThemeToggle}

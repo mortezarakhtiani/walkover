@@ -64,17 +64,17 @@ export function Rating({rating, outOf = 5}) {
 }
 
 export function StoreClientProductDetailsSheet({
-    open,
-    onOpenChange,
-    productId,
-    addToCart,
-}) {
+                                                   open,
+                                                   onOpenChange,
+                                                   productId,
+                                                   addToCart,
+                                               }) {
     const product = getProductById(productId);
 
     console.log('PRODUCT DETAILS:', {
-    productId,
-    product,
-});
+        productId,
+        product,
+    });
 
     if (!product) {
         return (
@@ -124,20 +124,28 @@ export function StoreClientProductDetailsSheet({
                 </span>
             ),
         },
+
         {
             text: 'امتیاز',
             info: (
-                <div className="flex items-center justify-start gap-2">
-                    <Rating rating={Math.round(product.rating ?? 0)} />
+                <div
+                    dir="rtl"
+                    className="flex items-center justify-start gap-2"
+                >
+            <span className="text-xs font-medium text-foreground">
+                {toPersianDigits(
+                    String(product.rating ?? 0)
+                )}
+            </span>
 
-                    <span className="text-xs font-medium text-foreground">
-                        {toPersianDigits(
-                            String(product.rating ?? 0)
-                        )}
-                    </span>
+                    <Rating
+                        rating={Math.round(product.rating ?? 0)}
+                    />
                 </div>
             ),
         },
+
+
     ];
 
     return (
@@ -158,7 +166,8 @@ export function StoreClientProductDetailsSheet({
                         <div className="p-5 text-right">
 
                             {/* تصویر محصول */}
-                            <div className="relative flex items-center justify-center bg-accent/50 mb-6.5 h-[280px] mb-15">
+                            <div
+                                className="relative flex items-center justify-center bg-accent/50 mb-6.5 h-[280px] mb-15">
                                 {product.discount > 0 && (
                                     <Badge
                                         size="sm"
@@ -219,7 +228,8 @@ export function StoreClientProductDetailsSheet({
                                             {item.info}
                                         </div>
 
-                                        <span className="w-24 shrink-0 text-xs font-normal text-secondary-foreground text-right">
+                                        <span
+                                            className="w-24 shrink-0 text-xs font-normal text-secondary-foreground text-right">
                                             {item.text}
                                         </span>
                                     </div>
@@ -227,124 +237,30 @@ export function StoreClientProductDetailsSheet({
                             </div>
 
                             {/* قیمت */}
-                            <div className="flex items-center justify-start gap-3">
+                            <div className="flex flex-col items-start gap-1">
+                                {product.originalPrice && (
+                                    <span className="text-sm font-normal text-secondary-foreground line-through">
+            {toPersianDigits(
+                product.originalPrice.toLocaleString('en-US')
+            )}{' '}
+                                        تومان
+        </span>
+                                )}
+
                                 <div className="flex items-center gap-1">
-                                    <span className="text-lg font-medium text-mono">
-                                        {toPersianDigits(
-                                            product.price.toLocaleString(
-                                                'en-US'
-                                            )
-                                        )}
-                                    </span>
+        <span className="text-lg font-medium text-mono">
+            {toPersianDigits(
+                product.price.toLocaleString('en-US')
+            )}
+        </span>
 
                                     <span className="text-lg font-medium">
-                                        تومان
-                                    </span>
+            تومان
+        </span>
                                 </div>
-
-                                {product.originalPrice && (
-                                    <span className="text-lg font-normal text-secondary-foreground line-through">
-                                        {toPersianDigits(
-                                            product.originalPrice.toLocaleString(
-                                                'en-US'
-                                            )
-                                        )}
-                                    </span>
-                                )}
                             </div>
 
-                            {/* نظرات کاربران */}
-                            <section className="border-t mt-5 border-border pt-6">
-                                <div className="flex items-center justify-between mb-5">
-                                    <span className="text-base font-semibold text-mono">
-                                        نظرات کاربران
-                                    </span>
 
-                                    <span className="text-xs text-secondary-foreground">
-                                        {toPersianDigits(
-                                            String(product.reviewCount)
-                                        )}{' '}
-                                        نظر
-                                    </span>
-                                </div>
-
-                                {/* خلاصه امتیاز */}
-                                <Card className="mb-5 bg-accent/30 border-border">
-                                    <CardContent className="p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex flex-col items-start gap-2">
-                                                <span className="text-2xl font-semibold text-mono">
-                                                    {toPersianDigits(
-                                                        String(product.rating)
-                                                    )}
-                                                </span>
-
-                                                <Rating
-                                                    rating={Math.round(
-                                                        product.rating
-                                                    )}
-                                                />
-
-                                                <span className="text-xs text-secondary-foreground">
-                                                    بر اساس{' '}
-                                                    {toPersianDigits(
-                                                        String(
-                                                            product.reviewCount
-                                                        )
-                                                    )}{' '}
-                                                    نظر
-                                                </span>
-                                            </div>
-
-                                            <span className="text-sm text-secondary-foreground">
-                                                امتیاز کاربران
-                                            </span>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                                {/* لیست نظرات */}
-                                <div className="flex flex-col gap-4">
-                                    {reviews.map((review, index) => (
-                                        <Card key={index}>
-                                            <CardContent className="p-4">
-                                                <div
-                                                    dir="rtl"
-                                                    className="flex items-start justify-between gap-3"
-                                                >
-                                                    <div className="flex flex-col items-start gap-1 text-right">
-                                                        <span className="text-sm font-medium text-mono">
-                                                            {review.name}
-                                                        </span>
-
-                                                        <span className="text-xs text-secondary-foreground">
-                                                            {review.date}
-                                                        </span>
-                                                    </div>
-
-                                                    <Rating
-                                                        rating={
-                                                            review.rating
-                                                        }
-                                                    />
-                                                </div>
-
-                                                <p className="mt-3 text-sm font-normal text-foreground text-right leading-6">
-                                                    {review.text}
-                                                </p>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full mt-5 justify-center py-4"
-                                >
-                                    مشاهده همه نظرات
-                                </Button>
-                            </section>
                         </div>
                     </ScrollArea>
                 </SheetBody>
@@ -358,9 +274,9 @@ export function StoreClientProductDetailsSheet({
                             }
                         }}
                         disabled={!productId || !product.stock}
-                        className="grow justify-center"
+                        className="grow justify-center bg-indigo-500 text-white hover:bg-indigo-600"
                     >
-                        <ShoppingCart />
+                        <ShoppingCart/>
                         افزودن به سبد خرید
                     </Button>
                 </SheetFooter>
