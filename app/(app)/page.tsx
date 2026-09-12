@@ -13,6 +13,7 @@ import {getProducts} from '@/store/product/services/product-service';
 // import Footer from "@/components/landing/footer";
 // import Contact from "@/components/landing/contact";
 // import HowItWorks from "@/components/how-it-works.tsx"
+import BrandCategory from "@/components/landing/brand-promotion"
 
 
 export default function LandingV2Page() {
@@ -57,6 +58,8 @@ export default function LandingV2Page() {
                     moreButtonHref="/store/search-results-grid"
                     showAddButton={true}
                 />
+
+                {/*<BrandCategory/>*/}
 
 
                 {/*<SmallImages/>*/}
