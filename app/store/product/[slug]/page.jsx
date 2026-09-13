@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -48,7 +49,7 @@ const reviews = [
 
 function Rating({rating = 0, outOf = 5}) {
     return (
-        <div dir="ltr" className="flex items-center gap-1">
+        <div dir="ltr" className="flex items-center gap-0.5">
             {Array.from({length: outOf}, (_, index) => {
                 const filled = index + 1 <= rating;
 
@@ -58,7 +59,7 @@ function Rating({rating = 0, outOf = 5}) {
                         className={`size-4 ${
                             filled
                                 ? 'text-yellow-400'
-                                : 'text-muted-foreground/30'
+                                : 'text-muted-foreground/25'
                         }`}
                         fill={filled ? 'currentColor' : 'none'}
                         strokeWidth={1.8}
@@ -73,7 +74,7 @@ function FAQItem({question, answer, defaultOpen = false}) {
     const [open, setOpen] = React.useState(defaultOpen);
 
     return (
-        <div className="border-b border-border last:border-b-0">
+        <div className="border-b border-border/60 last:border-b-0">
             <button
                 type="button"
                 onClick={() => setOpen((current) => !current)}
@@ -92,9 +93,7 @@ function FAQItem({question, answer, defaultOpen = false}) {
 
             <div
                 className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                    open
-                        ? 'grid-rows-[1fr]'
-                        : 'grid-rows-[0fr]'
+                    open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                 }`}
             >
                 <div className="overflow-hidden">
@@ -118,16 +117,21 @@ export default function ProductPage({params}) {
     const [selectedColor, setSelectedColor] = React.useState(null);
     const [selectedSize, setSelectedSize] = React.useState(null);
     const [isAddedToCart, setIsAddedToCart] = React.useState(false);
+    const [isFavorite, setIsFavorite] = React.useState(false);
 
     if (!product) {
         return (
             <div
                 dir="rtl"
-                className="container max-w-6xl py-16"
+                className="container mx-auto max-w-6xl px-4 py-16 sm:px-6"
             >
-                <Card>
-                    <CardContent className="flex flex-col items-center justify-center gap-4 py-16">
-                        <span className="text-lg font-medium text-mono">
+                <Card className="border-border/60">
+                    <CardContent className="flex flex-col items-center justify-center gap-4 py-20">
+                        <div className="flex size-16 items-center justify-center rounded-full bg-accent">
+                            <ShoppingCart className="size-7 text-muted-foreground"/>
+                        </div>
+
+                        <span className="text-lg font-semibold text-mono">
                             محصول پیدا نشد
                         </span>
 
@@ -135,7 +139,10 @@ export default function ProductPage({params}) {
                             محصول موردنظر وجود ندارد یا حذف شده است.
                         </span>
 
-                        <Button asChild variant="outline">
+                        <Button
+                            asChild
+                            className="mt-2 bg-indigo-500 text-white hover:bg-indigo-600"
+                        >
                             <Link href="/store">
                                 بازگشت به فروشگاه
                             </Link>
@@ -146,19 +153,10 @@ export default function ProductPage({params}) {
         );
     }
 
-    /*
-     * فعلاً تصاویر را از همان logo می‌سازیم.
-     * بعداً که API آماده شد، می‌توانیم images را مستقیماً
-     * از Django دریافت کنیم.
-     */
     const images = product.images?.length
         ? product.images
         : [product.logo];
 
-    /*
-     * فعلاً برای تست UI.
-     * بعداً این موارد از API می‌آیند.
-     */
     const colors = product.colors ?? [
         {name: 'مشکی', value: '#111111'},
         {name: 'سفید', value: '#ffffff'},
@@ -178,24 +176,28 @@ export default function ProductPage({params}) {
         product.originalPrice?.toLocaleString('en-US');
 
     const decreaseQuantity = () => {
-    setQuantity((current) => {
-        if (current <= 1) {
-            setIsAddedToCart(false);
-            return 0;
+        setQuantity((current) => {
+            if (current <= 1) {
+                setIsAddedToCart(false);
+                return 0;
+            }
+
+            return current - 1;
+        });
+    };
+
+    const increaseQuantity = () => {
+        if (!isAddedToCart) {
+            return;
         }
 
-        return current - 1;
-    });
-};
+        setQuantity((current) => current + 1);
+    };
 
-const increaseQuantity = () => {
-    setQuantity((current) => current + 1);
-};
-
-const removeProductFromCart = () => {
-    setQuantity(0);
-    setIsAddedToCart(false);
-};
+    const removeProductFromCart = () => {
+        setQuantity(0);
+        setIsAddedToCart(false);
+    };
 
     const addProductToCart = () => {
         handleAddToCart({
@@ -209,215 +211,264 @@ const removeProductFromCart = () => {
         setQuantity((current) => current + 1);
     };
 
+    const goToPreviousImage = () => {
+        setSelectedImage((current) =>
+            current > 0 ? current - 1 : current
+        );
+    };
+
+    const goToNextImage = () => {
+        setSelectedImage((current) =>
+            current < images.length - 1
+                ? current + 1
+                : current
+        );
+    };
+
     return (
         <div
             dir="rtl"
-            className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8"
+            className="container mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8 lg:py-8"
         >
             {/* Breadcrumb */}
-            <div className="flex items-center gap-1 text-xs text-secondary-foreground mb-6">
+            <div className="mb-6 flex items-center gap-1.5 overflow-hidden text-xs text-secondary-foreground">
                 <Link
                     href="/store"
-                    className="hover:text-primary transition-colors"
+                    className="shrink-0 transition-colors hover:text-indigo-500"
                 >
                     فروشگاه
                 </Link>
 
-                <ChevronLeft className="size-3.5"/>
+                <ChevronLeft className="size-3.5 shrink-0"/>
 
-                <span>
+                <span className="shrink-0">
                     {product.category}
                 </span>
 
-                <ChevronLeft className="size-3.5"/>
+                <ChevronLeft className="size-3.5 shrink-0"/>
 
-                <span className="text-foreground">
+                <span className="truncate text-foreground">
                     {product.title}
                 </span>
             </div>
 
             {/* Main Product */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
 
                 {/* Gallery */}
-                <div className="flex flex-col gap-4">
+                <div className="min-w-0">
+                    <div className="flex flex-col gap-4">
 
-                    {/* Main Image */}
-                    <Card className="relative overflow-hidden bg-accent/30 border-border">
-                        {product.discount > 0 && (
-                            <Badge
-                                size="sm"
-                                variant="destructive"
-                                className="absolute top-4 start-4 z-10"
-                            >
-                                {toPersianDigits(
-                                    String(product.discount)
-                                )}
-                                ٪ تخفیف
-                            </Badge>
-                        )}
-
-                        <button
-                            type="button"
-                            onClick={() => {
-                                if (selectedImage > 0) {
-                                    setSelectedImage(selectedImage - 1);
-                                }
-                            }}
-                            disabled={selectedImage === 0}
-                            className="absolute start-4 top-1/2 -translate-y-1/2 z-10 flex size-9 items-center justify-center rounded-full bg-background/90 border border-border shadow-sm disabled:opacity-30"
-                        >
-                            <ChevronRight className="size-4"/>
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={() => {
-                                if (selectedImage < images.length - 1) {
-                                    setSelectedImage(selectedImage + 1);
-                                }
-                            }}
-                            disabled={selectedImage === images.length - 1}
-                            className="absolute end-4 top-1/2 -translate-y-1/2 z-10 flex size-9 items-center justify-center rounded-full bg-background/90 border border-border shadow-sm disabled:opacity-30"
-                        >
-                            <ChevronLeft className="size-4"/>
-                        </button>
-
-                        <div className="flex min-h-[420px] items-center justify-center p-6 sm:p-10">
-                            <img
-                                src={toAbsoluteUrl(
-                                    `/media/store/client/600x600/${images[selectedImage]}`
-                                )}
-                                alt={product.title}
-                                className="max-h-[400px] w-auto max-w-full object-contain"
-                            />
-                        </div>
-                    </Card>
-
-                    {/* Thumbnails */}
-                    {images.length > 1 && (
-                        <div className="flex items-center gap-3 overflow-x-auto pb-1">
-                            {images.map((image, index) => (
-                                <button
-                                    key={`${image}-${index}`}
-                                    type="button"
-                                    onClick={() => setSelectedImage(index)}
-                                    className={`flex size-[76px] shrink-0 items-center justify-center rounded-md border bg-accent/30 overflow-hidden transition-colors ${
-                                        selectedImage === index
-                                            ? 'border-primary'
-                                            : 'border-border hover:border-primary/50'
-                                    }`}
+                        {/* Main Image */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-accent/20">
+                            {product.discount > 0 && (
+                                <Badge
+                                    size="sm"
+                                    variant="destructive"
+                                    className="absolute start-5 top-5 z-20 rounded-full px-3"
                                 >
-                                    <img
-                                        src={toAbsoluteUrl(
-                                            `/media/store/client/600x600/${image}`
-                                        )}
-                                        alt={`${product.title} ${index + 1}`}
-                                        className="size-full object-contain"
-                                    />
-                                </button>
-                            ))}
+                                    {toPersianDigits(
+                                        String(product.discount)
+                                    )}
+                                    ٪ تخفیف
+                                </Badge>
+                            )}
+
+                            {/* Previous */}
+                            {images.length > 1 && (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={goToPreviousImage}
+                                        disabled={selectedImage === 0}
+                                        aria-label="تصویر قبلی"
+                                        className="absolute start-4 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/60 bg-background/90 text-foreground shadow-sm backdrop-blur transition-all hover:bg-background disabled:pointer-events-none disabled:opacity-20"
+                                    >
+                                        <ChevronRight className="size-4"/>
+                                    </button>
+
+                                    {/* Next */}
+                                    <button
+                                        type="button"
+                                        onClick={goToNextImage}
+                                        disabled={
+                                            selectedImage === images.length - 1
+                                        }
+                                        aria-label="تصویر بعدی"
+                                        className="absolute end-4 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/60 bg-background/90 text-foreground shadow-sm backdrop-blur transition-all hover:bg-background disabled:pointer-events-none disabled:opacity-20"
+                                    >
+                                        <ChevronLeft className="size-4"/>
+                                    </button>
+                                </>
+                            )}
+
+                            {/* Image */}
+                            <div className="flex min-h-[430px] items-center justify-center p-8 sm:min-h-[500px] sm:p-12">
+                                <img
+                                    src={toAbsoluteUrl(
+                                        `/media/store/client/600x600/${images[selectedImage]}`
+                                    )}
+                                    alt={product.title}
+                                    className="max-h-[450px] w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                                />
+                            </div>
                         </div>
-                    )}
+
+                        {/* Thumbnails */}
+                        {images.length > 1 && (
+                            <div className="flex items-center gap-3 overflow-x-auto pb-1">
+                                {images.map((image, index) => (
+                                    <button
+                                        key={`${image}-${index}`}
+                                        type="button"
+                                        onClick={() => setSelectedImage(index)}
+                                        className={`flex size-[78px] shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-accent/20 p-1 transition-all ${
+                                            selectedImage === index
+                                                ? 'border-indigo-500 ring-2 ring-indigo-500/10'
+                                                : 'border-border/60 hover:border-indigo-500/50'
+                                        }`}
+                                    >
+                                        <img
+                                            src={toAbsoluteUrl(
+                                                `/media/store/client/600x600/${image}`
+                                            )}
+                                            alt={`${product.title} ${index + 1}`}
+                                            className="size-full object-contain"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Product Info */}
-                <div className="flex flex-col">
+                <div className="flex min-w-0 flex-col">
 
                     {/* Brand */}
                     {product.brand && (
-                        <span className="text-sm text-secondary-foreground mb-2">
+                        <span className="mb-2 text-sm font-medium text-indigo-500">
                             {product.brand}
                         </span>
                     )}
 
                     {/* Title */}
-                    <h1 className="text-xl sm:text-2xl font-semibold text-mono leading-8">
+                    <h1 className="text-2xl font-bold leading-9 tracking-tight text-mono sm:text-3xl">
                         {product.title}
                     </h1>
 
                     {/* Rating */}
-                    <div className="flex items-center gap-3 mt-3">
-                        <Rating
-                            rating={Math.round(product.rating ?? 0)}
-                        />
+                    <div className="mt-4 flex items-center gap-3">
+                        <div className="flex items-center gap-2">
+                            <Rating
+                                rating={Math.round(
+                                    product.rating ?? 0
+                                )}
+                            />
 
-                        <span className="text-sm font-medium text-mono">
-                            {toPersianDigits(
-                                String(product.rating ?? 0)
-                            )}
-                        </span>
+                            <span className="text-sm font-semibold text-mono">
+                                {toPersianDigits(
+                                    String(product.rating ?? 0)
+                                )}
+                            </span>
+                        </div>
+
+                        <span className="h-4 w-px bg-border"/>
 
                         <span className="text-xs text-secondary-foreground">
-                            ({toPersianDigits(
-                            String(product.reviewCount ?? 0)
-                        )}{' '}
-                            نظر)
+                            {toPersianDigits(
+                                String(product.reviewCount ?? 0)
+                            )}{' '}
+                            نظر کاربران
                         </span>
                     </div>
 
                     {/* Short Description */}
-                    <p className="text-sm text-secondary-foreground leading-7 mt-5">
+                    <p className="mt-5 text-sm leading-7 text-secondary-foreground">
                         {product.description}
                     </p>
 
-                    <div className="border-t border-border my-6"/>
+                    {/* Price Box */}
+                    <div className="mt-6 rounded-xl bg-accent/40 p-4">
+                        <div className="flex items-end justify-between gap-4">
 
-                    {/* Price */}
-                    <div className="flex flex-col items-start gap-1">
-                        {product.originalPrice && (
-                            <span className="text-sm text-secondary-foreground line-through">
-            {toPersianDigits(formattedOriginalPrice)} تومان
-        </span>
-                        )}
+                            <div className="flex flex-col items-start gap-1">
+                                {product.originalPrice && (
+                                    <span className="text-sm text-secondary-foreground line-through">
+                                        {toPersianDigits(
+                                            formattedOriginalPrice
+                                        )}{' '}
+                                        تومان
+                                    </span>
+                                )}
 
-                        <div className="flex items-center gap-1">
-        <span className="text-2xl font-semibold text-mono">
-            {toPersianDigits(formattedPrice)}
-        </span>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-2xl font-bold text-mono sm:text-3xl">
+                                        {toPersianDigits(
+                                            formattedPrice
+                                        )}
+                                    </span>
 
-                            <span className="text-sm font-medium text-mono">
-            تومان
-        </span>
+                                    <span className="text-sm font-medium text-mono">
+                                        تومان
+                                    </span>
+                                </div>
+                            </div>
+
+                            {product.discount > 0 && (
+                                <Badge
+                                    variant="destructive"
+                                    className="rounded-full px-3 py-1"
+                                >
+                                    {toPersianDigits(
+                                        String(product.discount)
+                                    )}
+                                    ٪ تخفیف
+                                </Badge>
+                            )}
                         </div>
                     </div>
 
+                    {/* Divider */}
+                    <div className="my-7 h-px bg-border/70"/>
+
                     {/* Color */}
                     {colors.length > 0 && (
-                        <div className="mt-7">
-                            <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-mono">
-                رنگ:
-            </span>
+                        <div>
+                            <div className="mb-3 flex items-center gap-2">
+                                <span className="text-sm font-semibold text-mono">
+                                    رنگ:
+                                </span>
 
                                 {selectedColor && (
                                     <span className="text-sm text-secondary-foreground">
-                    {selectedColor.name}
-                </span>
+                                        {selectedColor.name}
+                                    </span>
                                 )}
+                            </div>
 
-                                <div className="flex items-center gap-2">
-                                    {colors.map((color) => (
-                                        <button
-                                            key={color.name}
-                                            type="button"
-                                            onClick={() => setSelectedColor(color)}
-                                            title={color.name}
-                                            className={`flex size-9 items-center justify-center rounded-full border-2 transition-all ${
-                                                selectedColor?.name === color.name
-                                                    ? 'border-indigo-500'
-                                                    : 'border-border'
-                                            }`}
-                                        >
-                        <span
-                            className="size-6 rounded-full border border-black/10"
-                            style={{
-                                backgroundColor: color.value,
-                            }}
-                        />
-                                        </button>
-                                    ))}
-                                </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                                {colors.map((color) => (
+                                    <button
+                                        key={color.name}
+                                        type="button"
+                                        onClick={() => setSelectedColor(color)}
+                                        title={color.name}
+                                        aria-label={`انتخاب رنگ ${color.name}`}
+                                        className={`flex size-10 items-center justify-center rounded-full border-2 transition-all ${
+                                            selectedColor?.name === color.name
+                                                ? 'border-indigo-500'
+                                                : 'border-border hover:border-indigo-500/50'
+                                        }`}
+                                    >
+                                        <span
+                                            className="size-7 rounded-full border border-black/10"
+                                            style={{
+                                                backgroundColor: color.value,
+                                            }}
+                                        />
+                                    </button>
+                                ))}
                             </div>
                         </div>
                     )}
@@ -425,14 +476,28 @@ const removeProductFromCart = () => {
                     {/* Size */}
                     {sizes.length > 0 && (
                         <div className="mt-7">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-sm font-medium text-mono">
-                                    سایز
-                                </span>
+                            <div className="mb-3 flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                    <img
+                                        src="/icons/ruler.png"
+                                        alt=""
+                                        className="size-6 shrink-0 object-contain"
+                                    />
+
+                                    <span className="text-sm font-semibold text-mono">
+                                        سایز
+                                    </span>
+
+                                    {selectedSize && (
+                                        <span className="text-sm text-secondary-foreground">
+                                            {toPersianDigits(selectedSize)}
+                                        </span>
+                                    )}
+                                </div>
 
                                 <button
                                     type="button"
-                                    className="text-xs text-primary hover:underline"
+                                    className="text-xs font-medium text-indigo-500 transition-colors hover:text-indigo-600 hover:underline"
                                 >
                                     راهنمای سایز
                                 </button>
@@ -443,13 +508,11 @@ const removeProductFromCart = () => {
                                     <button
                                         key={size}
                                         type="button"
-                                        onClick={() =>
-                                            setSelectedSize(size)
-                                        }
-                                        className={`min-w-[52px] rounded-md border px-4 py-2 text-sm transition-colors ${
+                                        onClick={() => setSelectedSize(size)}
+                                        className={`min-w-[52px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all ${
                                             selectedSize === size
-                                                ? 'border-indigo-500 bg-indigo-500 text-white'
-                                                : 'border-border bg-background hover:border-indigo-500'
+                                                ? 'border-indigo-500 bg-indigo-500 text-white shadow-sm shadow-indigo-500/20'
+                                                : 'border-border bg-background text-foreground hover:border-indigo-500 hover:text-indigo-500'
                                         }`}
                                     >
                                         {toPersianDigits(size)}
@@ -460,92 +523,111 @@ const removeProductFromCart = () => {
                     )}
 
                     {/* Quantity + Cart */}
-                    {/* Quantity + Cart */}
-<div className="flex items-center gap-3 mt-8">
+                    <div className="mt-8 flex items-center gap-2 sm:gap-3">
 
-    {/* Quantity */}
-    <div
-        className={`flex h-11 items-center rounded-md border border-border ${
-            !isAddedToCart ? 'opacity-50' : ''
-        }`}
-    >
-        <button
-            type="button"
-            onClick={
-                quantity === 1
-                    ? removeProductFromCart
-                    : decreaseQuantity
-            }
-            disabled={!isAddedToCart}
-            className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-        >
-            {quantity === 1 ? (
-                <Trash2 className="size-4 text-red-500" />
-            ) : (
-                <Minus className="size-4" />
-            )}
-        </button>
+                        {/* Quantity */}
+                        <div
+                            className={`flex h-12 shrink-0 items-center rounded-lg border border-border bg-background transition-opacity ${
+                                !isAddedToCart ? 'opacity-50' : ''
+                            }`}
+                        >
+                            <button
+                                type="button"
+                                onClick={
+                                    quantity === 1
+                                        ? removeProductFromCart
+                                        : decreaseQuantity
+                                }
+                                disabled={!isAddedToCart}
+                                className="flex size-11 items-center justify-center text-secondary-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                                aria-label={
+                                    quantity === 1
+                                        ? 'حذف محصول'
+                                        : 'کاهش تعداد'
+                                }
+                            >
+                                {quantity === 1 ? (
+                                    <Trash2 className="size-4 text-red-500"/>
+                                ) : (
+                                    <Minus className="size-4"/>
+                                )}
+                            </button>
 
-        <span className="w-8 text-center text-sm font-medium text-mono">
-            {toPersianDigits(quantity)}
-        </span>
+                            <span className="w-8 text-center text-sm font-semibold text-mono">
+                                {toPersianDigits(quantity)}
+                            </span>
 
-        <button
-            type="button"
-            onClick={increaseQuantity}
-            disabled={!isAddedToCart}
-            className="flex size-10 items-center justify-center text-secondary-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-        >
-            <Plus className="size-4" />
-        </button>
-    </div>
+                            <button
+                                type="button"
+                                onClick={increaseQuantity}
+                                disabled={!isAddedToCart}
+                                className="flex size-11 items-center justify-center text-secondary-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                                aria-label="افزایش تعداد"
+                            >
+                                <Plus className="size-4"/>
+                            </button>
+                        </div>
 
-    {/* Add to Cart */}
-    <Button
-        onClick={addProductToCart}
-        disabled={!product.stock}
-        className="h-11 grow justify-center bg-indigo-500 text-white hover:bg-indigo-600"
-    >
-        <ShoppingCart className="size-4" />
+                        {/* Add to Cart */}
+                        <Button
+                            onClick={addProductToCart}
+                            disabled={!product.stock}
+                            className="h-12 grow rounded-lg bg-indigo-500 font-semibold text-white shadow-sm shadow-indigo-500/20 transition-all hover:bg-indigo-600 hover:shadow-md hover:shadow-indigo-500/20"
+                        >
+                            <ShoppingCart className="size-4"/>
+                            {product.stock
+                                ? 'افزودن به سبد خرید'
+                                : 'ناموجود'}
+                        </Button>
 
-        {product.stock
-            ? 'افزودن به سبد خرید'
-            : 'ناموجود'}
-    </Button>
+                        {/* Wishlist */}
+                        <Button
+                            type="button"
+                            variant="outline"
+                            mode="icon"
+                            onClick={() =>
+                                setIsFavorite((current) => !current)
+                            }
+                            className={`size-12 shrink-0 rounded-lg transition-colors ${
+                                isFavorite
+                                    ? 'border-red-200 bg-red-50 text-red-500 hover:bg-red-100 dark:border-red-900 dark:bg-red-950/30'
+                                    : ''
+                            }`}
+                            aria-label="افزودن به علاقه‌مندی‌ها"
+                        >
+                            <Heart
+                                className="size-4"
+                                fill={isFavorite ? 'currentColor' : 'none'}
+                            />
+                        </Button>
+                    </div>
 
-    {/* Wishlist */}
-    <Button
-        variant="outline"
-        mode="icon"
-        className="size-11 shrink-0"
-    >
-        <Heart className="size-4" />
-    </Button>
-</div>
-
-                    {/* Shipping Info */}
-                    <Card className="mt-6 bg-accent/30 border-border">
-                        <CardContent className="p-4">
-                            <div className="flex items-start gap-3">
-                                <Truck className="size-5 shrink-0 text-secondary-foreground mt-0.5"/>
-
-                                <div className="flex flex-col gap-1">
-                                    <span className="text-sm font-medium text-mono">
-                                        ارسال به سراسر کشور
-                                    </span>
-
-                                    <span className="text-xs text-secondary-foreground leading-6">
-                                        سفارش شما پس از آماده‌سازی
-                                        برای ارسال تحویل پست یا
-                                        شرکت حمل‌ونقل می‌شود.
-                                    </span>
-                                </div>
+                    {/* Shipping */}
+                    <div className="mt-6 rounded-xl border border-border/60 bg-accent/20 p-4">
+                        <div className="flex items-start gap-3">
+                            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10">
+                                <img
+                                    src="/icons/delivery.png"
+                                    alt=""
+                                    className="size-7 object-contain"
+                                />
                             </div>
-                        </CardContent>
-                    </Card>
+
+                            <div className="flex min-w-0 flex-col gap-1">
+                                <span className="text-sm font-semibold text-mono">
+                                    ارسال به سراسر کشور
+                                </span>
+
+                                <span className="text-xs leading-6 text-secondary-foreground">
+                                    سفارش شما پس از آماده‌سازی برای ارسال
+                                    تحویل پست یا شرکت حمل‌ونقل می‌شود.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Product Code */}
-                    <div className="flex items-center justify-between mt-5 text-xs">
+                    <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-5 text-xs">
                         <span className="text-secondary-foreground">
                             کد محصول
                         </span>
@@ -555,89 +637,87 @@ const removeProductFromCart = () => {
                         </span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* Product Description & Specifications */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+            {/* About + Specifications */}
+            <section className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
 
                 {/* Description */}
-                <Card className="lg:col-span-2">
+                <Card className="overflow-hidden border-border/60 lg:col-span-2">
                     <CardContent className="p-5 sm:p-6">
-                        <h2 className="text-base font-semibold text-mono mb-4">
-                            درباره محصول
-                        </h2>
+                        <div className="mb-5 flex items-center gap-2">
+                            <img
+                                src="/icons/information.png"
+                                alt=""
+                                className="size-8 shrink-0 object-contain"
+                            />
 
-                        <p className="text-sm text-foreground leading-7">
+                            <h2 className="text-base font-semibold text-mono">
+                                درباره محصول
+                            </h2>
+                        </div>
+
+                        <p className="text-sm leading-8 text-foreground/90">
                             {product.description}
                         </p>
                     </CardContent>
                 </Card>
 
                 {/* Specifications */}
-                <Card>
+                <Card className="overflow-hidden border-border/60">
                     <CardContent className="p-5 sm:p-6">
-                        <h2 className="text-base font-semibold text-mono mb-4">
-                            مشخصات محصول
-                        </h2>
+                        <div className="mb-5 flex items-center gap-2">
+                            <img
+                                src="/icons/specification.png"
+                                alt=""
+                                className="size-7 shrink-0 object-contain"
+                            />
 
-                        <div className="flex flex-col gap-3">
-                            <div className="flex items-center justify-between gap-4">
-                                <span className="text-xs text-secondary-foreground">
-                                    دسته‌بندی
-                                </span>
+                            <h2 className="text-base font-semibold text-mono">
+                                مشخصات محصول
+                            </h2>
+                        </div>
 
-                                <span className="text-xs font-medium text-foreground">
-                                    {product.category}
-                                </span>
-                            </div>
+                        <div className="flex flex-col">
+                            <SpecificationRow
+                                label="دسته‌بندی"
+                                value={product.category}
+                            />
 
-                            <div className="flex items-center justify-between gap-4">
-                                <span className="text-xs text-secondary-foreground">
-                                    وضعیت
-                                </span>
-
-                                <span className="text-xs font-medium text-foreground">
-                                    {product.stock
+                            <SpecificationRow
+                                label="وضعیت"
+                                value={
+                                    product.stock
                                         ? 'موجود'
-                                        : 'ناموجود'}
-                                </span>
-                            </div>
+                                        : 'ناموجود'
+                                }
+                            />
 
-                            <div className="flex items-center justify-between gap-4">
-                                <span className="text-xs text-secondary-foreground">
-                                    برند
-                                </span>
+                            <SpecificationRow
+                                label="برند"
+                                value={product.brand}
+                            />
 
-                                <span className="text-xs font-medium text-foreground">
-                                    {product.brand}
-                                </span>
-                            </div>
-
-                            <div className="flex items-center justify-between gap-4">
-                                <span className="text-xs text-secondary-foreground">
-                                    کد محصول
-                                </span>
-
-                                <span className="text-xs font-medium text-foreground">
-                                    {product.sku}
-                                </span>
-                            </div>
+                            <SpecificationRow
+                                label="کد محصول"
+                                value={product.sku}
+                            />
                         </div>
                     </CardContent>
                 </Card>
-            </div>
+            </section>
 
             {/* Reviews */}
-            <section className="mt-12">
-                <div className="flex items-center justify-between mb-5">
+            <section className="mt-14">
+                <div className="mb-6 flex items-end justify-between gap-4">
                     <div>
-                        <h2 className="text-base font-semibold text-mono">
+                        <h2 className="text-lg font-bold text-mono">
                             نظرات کاربران
                         </h2>
 
-                        <span className="text-xs text-secondary-foreground">
+                        <p className="mt-1 text-xs text-secondary-foreground">
                             تجربه خریداران این محصول
-                        </span>
+                        </p>
                     </div>
 
                     <span className="text-xs text-secondary-foreground">
@@ -648,18 +728,18 @@ const removeProductFromCart = () => {
                     </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-[260px_1fr]">
 
                     {/* Rating Summary */}
-                    <Card>
-                        <CardContent className="flex flex-col items-center justify-center p-6 min-h-[190px]">
-                            <span className="text-3xl font-semibold text-mono">
+                    <Card className="border-border/60">
+                        <CardContent className="flex min-h-[210px] flex-col items-center justify-center p-6">
+                            <span className="text-4xl font-bold text-mono">
                                 {toPersianDigits(
                                     String(product.rating ?? 0)
                                 )}
                             </span>
 
-                            <div className="mt-2">
+                            <div className="mt-3">
                                 <Rating
                                     rating={Math.round(
                                         product.rating ?? 0
@@ -667,7 +747,7 @@ const removeProductFromCart = () => {
                                 />
                             </div>
 
-                            <span className="text-xs text-secondary-foreground mt-2">
+                            <span className="mt-3 text-xs text-secondary-foreground">
                                 بر اساس{' '}
                                 {toPersianDigits(
                                     String(product.reviewCount ?? 0)
@@ -678,19 +758,28 @@ const removeProductFromCart = () => {
                     </Card>
 
                     {/* Reviews */}
-                    <div className="lg:col-span-2 flex flex-col gap-4">
+                    <div className="flex flex-col gap-3">
                         {reviews.map((review) => (
-                            <Card key={review.id}>
-                                <CardContent className="p-4">
+                            <Card
+                                key={review.id}
+                                className="border-border/60"
+                            >
+                                <CardContent className="p-5">
                                     <div className="flex items-start justify-between gap-4">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-mono">
-                                                {review.name}
-                                            </span>
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex size-9 items-center justify-center rounded-full bg-accent text-xs font-semibold text-mono">
+                                                {review.name.charAt(0)}
+                                            </div>
 
-                                            <span className="text-xs text-secondary-foreground">
-                                                {review.date}
-                                            </span>
+                                            <div className="flex flex-col gap-0.5">
+                                                <span className="text-sm font-semibold text-mono">
+                                                    {review.name}
+                                                </span>
+
+                                                <span className="text-xs text-secondary-foreground">
+                                                    {review.date}
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <Rating
@@ -698,7 +787,7 @@ const removeProductFromCart = () => {
                                         />
                                     </div>
 
-                                    <p className="text-sm text-foreground leading-6 mt-3">
+                                    <p className="mt-4 text-sm leading-7 text-foreground/90">
                                         {review.text}
                                     </p>
                                 </CardContent>
@@ -707,7 +796,7 @@ const removeProductFromCart = () => {
 
                         <Button
                             variant="outline"
-                            className="w-full justify-center"
+                            className="mt-1 h-11 w-full justify-center"
                         >
                             مشاهده همه نظرات
                         </Button>
@@ -716,19 +805,18 @@ const removeProductFromCart = () => {
             </section>
 
             {/* FAQ */}
-            {/* FAQ */}
-            <section className="mt-12">
-                <div className="mb-5">
-                    <h2 className="text-base font-semibold text-mono">
+            <section className="mt-14">
+                <div className="mb-6">
+                    <h2 className="text-lg font-bold text-mono">
                         سؤالات متداول
                     </h2>
 
-                    <span className="text-xs text-secondary-foreground">
-            پاسخ پرسش‌های متداول درباره این محصول
-        </span>
+                    <p className="mt-1 text-xs text-secondary-foreground">
+                        پاسخ پرسش‌های متداول درباره این محصول
+                    </p>
                 </div>
 
-                <Card>
+                <Card className="overflow-hidden border-border/60">
                     <CardContent className="p-0">
                         <FAQItem
                             defaultOpen
@@ -741,32 +829,36 @@ const removeProductFromCart = () => {
                             answer="جنس محصول بسته به نوع آن متفاوت است. مشخصات دقیق جنس، نوع پارچه و سایر ویژگی‌های محصول در بخش «مشخصات محصول» همین صفحه قرار گرفته است."
                         />
 
+                        <FAQItem
+                            question="مدت زمان ارسال سفارش چقدر است؟"
+                            answer="پس از ثبت سفارش و آماده‌سازی محصول، سفارش شما برای ارسال تحویل شرکت حمل‌ونقل خواهد شد. زمان دقیق ارسال بسته به مقصد متفاوت است."
+                        />
                     </CardContent>
                 </Card>
             </section>
 
             {/* Related Products */}
-            <section className="mt-12 pb-8">
-                <div className="flex items-center justify-between mb-5">
+            <section className="mt-14 pb-10">
+                <div className="mb-6 flex items-end justify-between gap-4">
                     <div>
-                        <h2 className="text-base font-semibold text-mono">
+                        <h2 className="text-lg font-bold text-mono">
                             محصولات مشابه
                         </h2>
 
-                        <span className="text-xs text-secondary-foreground">
+                        <p className="mt-1 text-xs text-secondary-foreground">
                             شاید این محصولات هم مورد پسند شما باشند
-                        </span>
+                        </p>
                     </div>
 
                     <Link
                         href="/store"
-                        className="text-xs text-primary hover:underline"
+                        className="text-xs font-medium text-indigo-500 transition-colors hover:text-indigo-600 hover:underline"
                     >
                         مشاهده همه
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                     <RelatedProductCard
                         id={101}
                         title="هودی مشکی لوگوی کانال"
@@ -804,6 +896,20 @@ const removeProductFromCart = () => {
     );
 }
 
+function SpecificationRow({label, value}) {
+    return (
+        <div className="flex items-center justify-between gap-4 border-b border-border/50 py-3 first:pt-0 last:border-b-0 last:pb-0">
+            <span className="text-xs text-secondary-foreground">
+                {label}
+            </span>
+
+            <span className="max-w-[60%] truncate text-left text-xs font-medium text-foreground">
+                {value || '-'}
+            </span>
+        </div>
+    );
+}
+
 function RelatedProductCard({
                                 title,
                                 logo,
@@ -813,26 +919,26 @@ function RelatedProductCard({
     return (
         <Link
             href={`/store/product/${slug}`}
-            className="group"
+            className="group block"
         >
-            <Card className="overflow-hidden h-full transition-shadow hover:shadow-sm">
-                <div className="flex h-[220px] items-center justify-center bg-accent/30 p-5">
+            <Card className="h-full overflow-hidden border-border/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="flex h-[210px] items-center justify-center overflow-hidden bg-accent/20 p-5 sm:h-[230px]">
                     <img
                         src={toAbsoluteUrl(
                             `/media/store/client/600x600/${logo}`
                         )}
                         alt={title}
-                        className="h-full w-full object-contain transition-transform group-hover:scale-105"
+                        className="size-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                 </div>
 
                 <CardContent className="p-4">
-                    <h3 className="text-sm font-medium text-mono leading-6 line-clamp-2">
+                    <h3 className="line-clamp-2 text-sm font-medium leading-6 text-mono">
                         {title}
                     </h3>
 
-                    <div className="flex items-center gap-1 mt-3">
-                        <span className="text-sm font-semibold text-mono">
+                    <div className="mt-3 flex items-baseline gap-1">
+                        <span className="text-sm font-bold text-mono">
                             {toPersianDigits(
                                 price.toLocaleString('en-US')
                             )}
@@ -847,3 +953,4 @@ function RelatedProductCard({
         </Link>
     );
 }
+

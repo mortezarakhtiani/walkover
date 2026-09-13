@@ -4,7 +4,6 @@ import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {
     Clock3,
-    Tag,
     ArrowRight,
     ArrowLeft,
 } from 'lucide-react';
@@ -186,7 +185,11 @@ export function SpecialOffers({
                                 text-primary
                             "
                         >
-                            <Tag className="size-5"/>
+                            <img
+                                src="/icons/discount.png"
+                                alt=""
+                                className="size-8 object-contain"
+                            />
                         </div>
 
                         <div>
@@ -225,12 +228,11 @@ export function SpecialOffers({
                                 items-center
                                 gap-2
                                 rounded-xl
-                                bg-indigo-600/10
                                 px-3
                                 py-2
-                                text-indigo-600
-                                dark:bg-indigo-400/10
-                                dark:text-indigo-400
+                                text-primary-600
+                                dark:bg-primary-400/10
+                                dark:text-primary-400
                             "
                         >
                             <Clock3 className="size-4"/>
@@ -239,7 +241,7 @@ export function SpecialOffers({
                                 className="flex items-center gap-1"
                                 dir="ltr"
                             >
-                                <span className="min-w-[24px] text-center text-sm font-semibold">
+                                <span className="min-w-[24px] text-center text-gl font-semibold">
                                     {toPersianDigits(
                                         String(timeLeft.hours).padStart(2, '0')
                                     )}
@@ -247,7 +249,7 @@ export function SpecialOffers({
 
                                 <span>:</span>
 
-                                <span className="min-w-[24px] text-center text-sm font-semibold">
+                                <span className="min-w-[24px] text-center text-gl font-semibold">
                                     {toPersianDigits(
                                         String(timeLeft.minutes).padStart(2, '0')
                                     )}
@@ -255,7 +257,7 @@ export function SpecialOffers({
 
                                 <span>:</span>
 
-                                <span className="min-w-[24px] text-center text-sm font-semibold">
+                                <span className="min-w-[24px] text-center text-gl font-semibold">
                                     {toPersianDigits(
                                         String(timeLeft.seconds).padStart(2, '0')
                                     )}
@@ -268,7 +270,14 @@ export function SpecialOffers({
                         </div>
 
                         {showSeeAll && (
-                            <Button mode="link" asChild>
+                            <Button mode="link" asChild
+                                className="
+                                border-1
+                                items-center
+                                gap-2
+                                rounded-xl
+                                px-10
+                                py-3">
                                 <Link
                                     href={moreButtonHref}
                                     className="text-xs"
