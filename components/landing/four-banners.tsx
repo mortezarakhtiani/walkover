@@ -103,11 +103,11 @@ const FourBanners = () => {
                             <div
                                 key={index}
                                 className={cn(
-                                    `
+    `
     absolute
 
-    w-[34%]
-    max-w-[145px]
+    w-[40%]
+    max-w-[170px]
 
     aspect-[5/9]
 
@@ -129,8 +129,8 @@ const FourBanners = () => {
 
     xl:max-w-[250px]
     `,
-                                    position
-                                )}
+    position
+)}
                             >
                                 <img
                                     src={image}
