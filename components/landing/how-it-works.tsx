@@ -1,236 +1,631 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import {
-    ShoppingBag,
-    SlidersHorizontal,
-    CreditCard,
-    Truck,
-} from 'lucide-react';
-
-import { CustomBadge } from '@/components/custom/badge';
-import { CustomTitle } from '@/components/custom/title';
-import { CustomSubtitle } from '@/components/custom/subtitle';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-
-const HowItWorks = () => {
-    const [activeStep, setActiveStep] = useState(0);
-    const [progress, setProgress] = useState(0);
+import {useCallback, useEffect, useRef, useState} from 'react';
 
 const steps = [
     {
         id: 1,
-        title: 'محصولت رو انتخاب کن',
-        description:
-            'بین محصولات مختلف Merch بگرد و چیزی که بیشتر از همه دوستش داری رو پیدا کن.',
-        image: '/images/image1.jpg',
-        icon: ShoppingBag,
+        title: 'انتخاب محصول',
+        desktopImage: '/images/DesmainImage1.webp',
+        mobileImage: '/images/MobmainImage1.jpg',
     },
     {
         id: 2,
-        title: 'مدل و سایز رو انتخاب کن',
-        description:
-            'رنگ، سایز و مدل مناسب خودت رو انتخاب کن و جزئیات محصول رو بررسی کن.',
-        image: '/images/image2.webp',
-        icon: SlidersHorizontal,
+        title: 'انتخاب مدل',
+        desktopImage: '/images/DesmainImage2.jpg',
+        mobileImage: '/images/MobmainImage2.jpg',
     },
     {
         id: 3,
-        title: 'سفارشت رو ثبت کن',
-        description:
-            'محصول رو به سبد خرید اضافه کن و در چند مرحله ساده سفارشت رو نهایی کن.',
-        image: '/images/image1.jpg',
-        icon: CreditCard,
+        title: 'ثبت سفارش',
+        desktopImage: '/images/DesmainImage3.webp',
+        mobileImage: '/images/MobmainImage3.jpg',
     },
     {
         id: 4,
-        title: 'سفارشت رو تحویل بگیر',
-        description:
-            'سفارش آماده میشه و در سریع‌ترین زمان ممکن به دستت می‌رسه.',
-        image: '/images/image2.webp',
-        icon: Truck,
+        title: 'تحویل سفارش',
+        desktopImage: '/images/DesmainImage4.webp',
+        mobileImage: '/images/MobmainImage2.jpg',
     },
 ];
 
-    const stepDuration = 5000;
+// برای Loop بدون پرش
+const loopedSteps = [
+    steps[steps.length - 1],
+    ...steps,
+    steps[0],
+];
 
-    useEffect(() => {
-        setProgress(0);
+const SWIPE_THRESHOLD = 60;
+const TRANSITION_DURATION = 280;
 
-        const progressInterval = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) return 100;
+export default function HowItWorks() {
+    // موقعیت فعلی اسلاید
+    // 1 یعنی اولین تصویر واقعی
+    const currentIndexRef = useRef(1);
 
-                return prev + 100 / (stepDuration / 50);
-            });
-        }, 50);
+    // خود المنت‌های اسلایدها
+    const slidesRef = useRef<HTMLDivElement[]>([]);
 
-        const stepTimeout = setTimeout(() => {
-            setActiveStep((prev) => (prev + 1) % steps.length);
-        }, stepDuration);
+    // اطلاعات لمس
+    const touchStartX = useRef(0);
+    const touchCurrentX = useRef(0);
 
-        return () => {
-            clearInterval(progressInterval);
-            clearTimeout(stepTimeout);
-        };
-    }, [activeStep, steps.length]);
+    // وضعیت Drag و Animation
+    const isDraggingRef = useRef(false);
+    const isAnimatingRef = useRef(false);
 
-    const handleStepClick = (index: number) => {
-        setActiveStep(index);
+    // برای حرکت روان هنگام Touch Move
+    const animationFrameRef = useRef<number | null>(null);
+
+    // Auto Play
+    const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+
+    // فقط برای نمایش نقطه فعال
+    const [activeDot, setActiveDot] = useState(0);
+
+    // --------------------------------------------------
+    // حرکت دادن اسلایدها
+    // --------------------------------------------------
+
+    const updateSlides = useCallback(
+        (
+            index: number,
+            offset = 0,
+            animate = true
+        ) => {
+            slidesRef.current.forEach(
+                (slide, slideIndex) => {
+                    if (!slide) return;
+
+                    const position =
+                        slideIndex - index;
+
+                    slide.style.transition = animate
+                        ? `transform ${TRANSITION_DURATION}ms ease-out`
+                        : 'none';
+
+                    slide.style.transform =
+                        `translate3d(calc(${position * 100}% + ${offset}px), 0, 0)`;
+                }
+            );
+        },
+        []
+    );
+
+    // --------------------------------------------------
+    // نقطه فعال
+    // --------------------------------------------------
+
+    const updateActiveDot = useCallback(
+        (index: number) => {
+            const dot =
+                (index - 1 + steps.length) %
+                steps.length;
+
+            setActiveDot(dot);
+        },
+        []
+    );
+
+    // --------------------------------------------------
+    // شروع Auto Play
+    // --------------------------------------------------
+
+    const startAutoPlay = useCallback(() => {
+        if (autoPlayRef.current) {
+            clearInterval(autoPlayRef.current);
+        }
+
+        autoPlayRef.current = setInterval(() => {
+            if (
+                !isDraggingRef.current &&
+                !isAnimatingRef.current
+            ) {
+                const nextIndex =
+                    currentIndexRef.current + 1;
+
+                currentIndexRef.current =
+                    nextIndex;
+
+                updateSlides(
+                    nextIndex,
+                    0,
+                    true
+                );
+
+                updateActiveDot(nextIndex);
+
+                isAnimatingRef.current = true;
+            }
+        }, 3000);
+    }, [
+        updateSlides,
+        updateActiveDot,
+    ]);
+
+    // --------------------------------------------------
+    // توقف Auto Play
+    // --------------------------------------------------
+
+    const stopAutoPlay = useCallback(() => {
+        if (autoPlayRef.current) {
+            clearInterval(autoPlayRef.current);
+
+            autoPlayRef.current = null;
+        }
+    }, []);
+
+    // --------------------------------------------------
+    // پایان Animation
+    // --------------------------------------------------
+
+    const handleTransitionEnd = useCallback(() => {
+        let index =
+            currentIndexRef.current;
+
+        isAnimatingRef.current = false;
+
+        // Clone آخر → تصویر اول واقعی
+        if (
+            index ===
+            loopedSteps.length - 1
+        ) {
+            index = 1;
+
+            currentIndexRef.current =
+                index;
+
+            updateSlides(
+                index,
+                0,
+                false
+            );
+
+            updateActiveDot(index);
+
+            return;
+        }
+
+        // Clone اول → تصویر آخر واقعی
+        if (index === 0) {
+            index = steps.length;
+
+            currentIndexRef.current =
+                index;
+
+            updateSlides(
+                index,
+                0,
+                false
+            );
+
+            updateActiveDot(index);
+        }
+    }, [
+        updateSlides,
+        updateActiveDot,
+    ]);
+
+    // --------------------------------------------------
+    // Touch Start
+    // --------------------------------------------------
+
+    const handleTouchStart = (
+        e: React.TouchEvent<HTMLDivElement>
+    ) => {
+        if (isAnimatingRef.current) {
+            return;
+        }
+
+        const x =
+            e.touches[0].clientX;
+
+        touchStartX.current = x;
+        touchCurrentX.current = x;
+
+        isDraggingRef.current = true;
+
+        // هنگام لمس AutoPlay متوقف شود
+        stopAutoPlay();
+
+        // Transition هنگام Drag خاموش باشد
+        slidesRef.current.forEach(
+            (slide) => {
+                if (slide) {
+                    slide.style.transition =
+                        'none';
+                }
+            }
+        );
     };
 
+    // --------------------------------------------------
+    // Touch Move
+    // --------------------------------------------------
+
+    const handleTouchMove = (
+        e: React.TouchEvent<HTMLDivElement>
+    ) => {
+        if (!isDraggingRef.current) {
+            return;
+        }
+
+        const x =
+            e.touches[0].clientX;
+
+        touchCurrentX.current = x;
+
+        const diff =
+            x - touchStartX.current;
+
+        // جلوگیری از اجرای چند آپدیت همزمان
+        if (
+            animationFrameRef.current
+        ) {
+            cancelAnimationFrame(
+                animationFrameRef.current
+            );
+        }
+
+        animationFrameRef.current =
+            requestAnimationFrame(() => {
+                updateSlides(
+                    currentIndexRef.current,
+                    diff,
+                    false
+                );
+            });
+    };
+
+    // --------------------------------------------------
+    // Touch End
+    // --------------------------------------------------
+
+    const handleTouchEnd = () => {
+        if (!isDraggingRef.current) {
+            return;
+        }
+
+        isDraggingRef.current = false;
+
+        if (
+            animationFrameRef.current
+        ) {
+            cancelAnimationFrame(
+                animationFrameRef.current
+            );
+
+            animationFrameRef.current =
+                null;
+        }
+
+        const diff =
+            touchCurrentX.current -
+            touchStartX.current;
+
+        // Swipe Left
+        if (
+            diff < -SWIPE_THRESHOLD
+        ) {
+            isAnimatingRef.current =
+                true;
+
+            const nextIndex =
+                currentIndexRef.current +
+                1;
+
+            currentIndexRef.current =
+                nextIndex;
+
+            updateSlides(
+                nextIndex,
+                0,
+                true
+            );
+
+            updateActiveDot(
+                nextIndex
+            );
+        }
+
+        // Swipe Right
+        else if (
+            diff > SWIPE_THRESHOLD
+        ) {
+            isAnimatingRef.current =
+                true;
+
+            const nextIndex =
+                currentIndexRef.current -
+                1;
+
+            currentIndexRef.current =
+                nextIndex;
+
+            updateSlides(
+                nextIndex,
+                0,
+                true
+            );
+
+            updateActiveDot(
+                nextIndex
+            );
+        }
+
+        // حرکت کم بود → برگرد به جای اول
+        else {
+            updateSlides(
+                currentIndexRef.current,
+                0,
+                true
+            );
+
+            setTimeout(() => {
+                isAnimatingRef.current =
+                    false;
+            }, TRANSITION_DURATION);
+        }
+
+        startAutoPlay();
+    };
+
+    // --------------------------------------------------
+    // Touch Cancel
+    // --------------------------------------------------
+
+    const handleTouchCancel = () => {
+        if (!isDraggingRef.current) {
+            return;
+        }
+
+        isDraggingRef.current = false;
+
+        updateSlides(
+            currentIndexRef.current,
+            0,
+            true
+        );
+
+        setTimeout(() => {
+            isAnimatingRef.current =
+                false;
+        }, TRANSITION_DURATION);
+
+        startAutoPlay();
+    };
+
+    // --------------------------------------------------
+    // کلیک روی نقطه
+    // --------------------------------------------------
+
+    const goToSlide = (
+        dotIndex: number
+    ) => {
+        if (
+            isDraggingRef.current ||
+            isAnimatingRef.current
+        ) {
+            return;
+        }
+
+        stopAutoPlay();
+
+        const targetIndex =
+            dotIndex + 1;
+
+        isAnimatingRef.current =
+            true;
+
+        currentIndexRef.current =
+            targetIndex;
+
+        updateSlides(
+            targetIndex,
+            0,
+            true
+        );
+
+        updateActiveDot(
+            targetIndex
+        );
+
+        setTimeout(() => {
+            isAnimatingRef.current =
+                false;
+
+            startAutoPlay();
+        }, TRANSITION_DURATION);
+    };
+
+    // --------------------------------------------------
+    // اتصال Transition End
+    // --------------------------------------------------
+
+    useEffect(() => {
+        const slides =
+            slidesRef.current;
+
+        slides.forEach((slide) => {
+            if (!slide) return;
+
+            slide.addEventListener(
+                'transitionend',
+                handleTransitionEnd
+            );
+        });
+
+        return () => {
+            slides.forEach((slide) => {
+                if (!slide) return;
+
+                slide.removeEventListener(
+                    'transitionend',
+                    handleTransitionEnd
+                );
+            });
+        };
+    }, [
+        handleTransitionEnd,
+    ]);
+
+    // --------------------------------------------------
+    // مقداردهی اولیه
+    // --------------------------------------------------
+
+    useEffect(() => {
+        updateSlides(
+            1,
+            0,
+            false
+        );
+
+        startAutoPlay();
+
+        return () => {
+            stopAutoPlay();
+
+            if (
+                animationFrameRef.current
+            ) {
+                cancelAnimationFrame(
+                    animationFrameRef.current
+                );
+            }
+        };
+    }, [
+        updateSlides,
+        startAutoPlay,
+        stopAutoPlay,
+    ]);
+
+    // --------------------------------------------------
+    // UI
+    // --------------------------------------------------
+
     return (
-        <section
-            id="how-it-works"
-            className="border-b border-border/50 pt-15 pb-6"
-        >
-            <div className="container mx-auto px-6">
+        <section className="w-full px-4 md:px-6">
+            <div className="mx-auto w-full max-w-7xl">
 
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
-                    viewport={{ once: true }}
-                    className="mb-16 flex flex-col items-center gap-5 text-center"
+                {/* Slider */}
+                <div
+                    className="relative w-full overflow-hidden rounded-2xl"
+                    onTouchStart={
+                        handleTouchStart
+                    }
+                    onTouchMove={
+                        handleTouchMove
+                    }
+                    onTouchEnd={
+                        handleTouchEnd
+                    }
+                    onTouchCancel={
+                        handleTouchCancel
+                    }
+                    style={{
+                        touchAction:
+                            'pan-y',
+                    }}
                 >
-                </motion.div>
+                    <div className="relative aspect-[4/5] w-full md:aspect-[16/6]">
 
-                {/* Main Content */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
-                    viewport={{ once: true }}
-                    className="mx-auto flex max-w-6xl flex-col gap-12"
-                >
-
-                    {/* Steps */}
-                    {/*<div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">*/}
-                    {/*    {steps.map((step, index) => {*/}
-                    {/*        const Icon = step.icon;*/}
-                    {/*        const isActive = index === activeStep;*/}
-
-                    {/*        return (*/}
-                    {/*            <button*/}
-                    {/*                key={step.id}*/}
-                    {/*                type="button"*/}
-                    {/*                onClick={() => handleStepClick(index)}*/}
-                    {/*                className={cn(*/}
-                    {/*                    'group flex w-full cursor-pointer flex-col items-center overflow-hidden text-center md:w-auto md:flex-1'*/}
-                    {/*                )}*/}
-                    {/*            >*/}
-                    {/*                /!* Icon *!/*/}
-                    {/*                <div*/}
-                    {/*                    className={cn(*/}
-                    {/*                        'flex size-12 items-center justify-center rounded-full transition-all duration-200',*/}
-                    {/*                        isActive*/}
-                    {/*                            ? 'bg-indigo-100 text-indigo-600 shadow-sm dark:bg-indigo-950/70 dark:text-indigo-400'*/}
-                    {/*                            : 'bg-accent text-muted-foreground group-hover:bg-indigo-100/60 group-hover:text-indigo-500 dark:group-hover:bg-indigo-950/40'*/}
-                    {/*                    )}*/}
-                    {/*                >*/}
-                    {/*                    <Icon className="size-5" />*/}
-                    {/*                </div>*/}
-
-                    {/*                /!* Title *!/*/}
-                    {/*                <h3*/}
-                    {/*                    className={cn(*/}
-                    {/*                        'px-3 pb-3 pt-4 text-sm font-semibold transition-colors duration-200 sm:text-base',*/}
-                    {/*                        isActive*/}
-                    {/*                            ? 'text-foreground'*/}
-                    {/*                            : 'text-muted-foreground'*/}
-                    {/*                    )}*/}
-                    {/*                >*/}
-                    {/*                    {step.title}*/}
-                    {/*                </h3>*/}
-
-                    {/*                /!* Progress *!/*/}
-                    {/*                <div className="h-0.5 w-full overflow-hidden bg-border/60">*/}
-                    {/*                    {isActive && (*/}
-                    {/*                        <motion.div*/}
-                    {/*                            className="h-full bg-gradient-to-r from-indigo-500 to-purple-400"*/}
-                    {/*                            style={{*/}
-                    {/*                                width: `${progress}%`,*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    )}*/}
-                    {/*                </div>*/}
-                    {/*            </button>*/}
-                    {/*        );*/}
-                    {/*    })}*/}
-                    {/*</div>*/}
-
-                    {/* Image + Description */}
-                    {/* Main Image */}
-{/* Main Image */}
-                    <div className="overflow-hidden">
-                        <div className="relative aspect-[16/6] overflow-hidden rounded-xl bg-accent/30">
-                            <AnimatePresence mode="wait">
-                                <motion.img
-                                    key={activeStep}
-                                    src={steps[activeStep].image}
-                                    alt={steps[activeStep].title}
-                                    className="h-full w-full object-cover"
-                                    initial={{
-                                        opacity: 0,
-                                        scale: 1.03,
+                        {loopedSteps.map(
+                            (step, index) => (
+                                <div
+                                    key={`${step.id}-${index}`}
+                                    ref={(element) => {
+                                        if (
+                                            element
+                                        ) {
+                                            slidesRef.current[
+                                                index
+                                            ] =
+                                                element;
+                                        }
                                     }}
-                                    animate={{
-                                        opacity: 1,
-                                        scale: 1,
-                                    }}
-                                    exit={{
-                                        opacity: 0,
-                                        scale: 0.98,
-                                    }}
-                                    transition={{
-                                        duration: 0.35,
-                                        ease: 'easeOut',
-                                    }}
-                                />
-                            </AnimatePresence>
-                        </div>
+                                    className="absolute inset-0 w-full will-change-transform"
+                                >
+                                    <picture className="block h-full w-full">
 
-                        {/* Image Indicators */}
-                        <div className="mt-5 flex items-center justify-center gap-2">
-                            {steps.map((step, index) => {
-                                const isActive = index === activeStep;
-
-                                return (
-                                    <button
-                                        key={step.id}
-                                        type="button"
-                                        onClick={() => setActiveStep(index)}
-                                        aria-label={`نمایش تصویر ${index + 1}`}
-                                        className="relative flex h-3 w-3 cursor-pointer items-center justify-center text-indigo-500"
-                                    >
-                                        <motion.span
-                                            className="block rounded-full bg-current"
-                                            animate={{
-                                                width: isActive ? 10 : 6,
-                                                height: isActive ? 10 : 6,
-                                                opacity: isActive ? 1 : 0.35,
-                                            }}
-                                            transition={{
-                                                duration: 0.3,
-                                                ease: 'easeInOut',
-                                            }}
+                                        <source
+                                            media="(max-width: 767px)"
+                                            srcSet={
+                                                step.mobileImage
+                                            }
                                         />
-                                    </button>
-                                );
-                            })}
+
+                                        <img
+                                            src={
+                                                step.desktopImage
+                                            }
+                                            alt={
+                                                step.title
+                                            }
+                                            draggable={
+                                                false
+                                            }
+                                            className="h-full w-full select-none object-cover"
+                                        />
+
+                                    </picture>
+                                </div>
+                            )
+                        )}
+
+                        {/* Mobile Dots */}
+                        <div className="absolute bottom-4 left-0 right-0 z-20 flex flex-row-reverse items-center justify-center gap-2 md:hidden">
+                            {steps.map(
+                                (_, index) => (
+                                    <button
+                                        key={
+                                            index
+                                        }
+                                        type="button"
+                                        onClick={() =>
+                                            goToSlide(
+                                                index
+                                            )
+                                        }
+                                        aria-label={`رفتن به تصویر ${index + 1}`}
+                                        className={`h-2.5 w-2.5 rounded-full border border-black ${
+                                            index ===
+                                            activeDot
+                                                ? 'bg-indigo-500'
+                                                : 'bg-indigo-500/35'
+                                        }`}
+                                    />
+                                )
+                            )}
                         </div>
                     </div>
+                </div>
 
-
-                </motion.div>
+                {/* Desktop Dots */}
+                <div className="mt-5 hidden flex-row-reverse items-center justify-center gap-2 md:flex">
+                    {steps.map(
+                        (_, index) => (
+                            <button
+                                key={index}
+                                type="button"
+                                onClick={() =>
+                                    goToSlide(
+                                        index
+                                    )
+                                }
+                                aria-label={`رفتن به تصویر ${index + 1}`}
+                                className={`h-2.5 w-2.5 rounded-full border border-black ${
+                                    index ===
+                                    activeDot
+                                        ? 'bg-indigo-500'
+                                        : 'bg-indigo-500/35'
+                                }`}
+                            />
+                        )
+                    )}
+                </div>
 
             </div>
         </section>
     );
-};
-
-export default HowItWorks;
+}

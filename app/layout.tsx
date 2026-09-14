@@ -3,8 +3,10 @@ import {Metadata} from 'next';
 import {ThemeProvider} from '@/providers/theme-provider';
 import {TooltipProvider} from '@radix-ui/react-tooltip';
 import {SettingsProvider} from '@/providers/settings-provider';
-import {StoreHeader} from '@/store/components/common/store-header';
-import { GlobalHeader } from '@/components/common/global-header';
+
+import {StoreClientProvider} from '@/store/components/context';
+import {StoreClientWrapper} from '@/store/components/wrapper';
+
 import {Toaster} from '@/components/ui/sonner';
 
 import '@/styles/globals.css';
@@ -22,18 +24,29 @@ export default async function RootLayout({
     children: ReactNode;
 }) {
     return (
-        <html lang="fa" dir="rtl" className="h-full" suppressHydrationWarning>
+        <html
+            lang="fa"
+            dir="rtl"
+            className="h-full"
+            suppressHydrationWarning
+        >
         <body className="antialiased text-base text-foreground bg-background">
 
         <SettingsProvider>
             <ThemeProvider>
                 <TooltipProvider>
 
-                    {/*<GlobalHeader />*/}
+                    <StoreClientProvider>
+                        <StoreClientWrapper>
 
-                    <Toaster />
+                            {/*<GlobalHeader />*/}
 
-                    {children}
+                            <Toaster />
+
+                            {children}
+
+                        </StoreClientWrapper>
+                    </StoreClientProvider>
 
                 </TooltipProvider>
             </ThemeProvider>

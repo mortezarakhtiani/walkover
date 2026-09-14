@@ -24,7 +24,7 @@ export default function LandingV2Page() {
 
             <Header/>
 
-            <div className="space-y-10">
+            <div className="pt-[80px] md:pt-[120px] space-y-10">
 
 
                 <HowItWorks/>
@@ -40,7 +40,7 @@ export default function LandingV2Page() {
 
                 <ProductSection
                     title="پرفروش‌ترین‌ها"
-                    items={products}
+                    items={products.slice(0, 4)}
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
                     moreButtonHref="/store/search-results-grid"
@@ -51,12 +51,13 @@ export default function LandingV2Page() {
 
 
                 <ProductSection
-                    title="محبوب‌ترین محصولات"
-                    items={products}
+                    title="هودی های خفن!"
+                    items={products.slice(0, 4)}
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
                     moreButtonHref="/store/search-results-grid"
                     showAddButton={true}
+                    showHeader={false}
                 />
 
                 {/*<BrandCategory/>*/}
@@ -65,7 +66,6 @@ export default function LandingV2Page() {
                 {/*<SmallImages/>*/}
 
                 {/*<TwoImages/>*/}
-
 
 
                 {/*<Contact/>*/}

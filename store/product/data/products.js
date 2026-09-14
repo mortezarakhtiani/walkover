@@ -4,7 +4,7 @@ export const products = [
         slug: 'black-merch-tshirt',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/show3.webp',
+        logo: '/images/blackhoodi.webp',
         images: [
             '4.png',
             '7.png',
@@ -94,7 +94,7 @@ export const products = [
         slug: 'black-merch-hoodie',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/show1.webp',
+        logo: '/images/hat5.webp',
         images: [
             '4.png',
             '7.png',
@@ -188,7 +188,7 @@ export const products = [
         slug: 'creator-merch-cap',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/woman.png',
+        logo: '/images/hoodiwomanback.webp',
 
         images: [
             '/images/woman.png',
@@ -247,6 +247,384 @@ export const products = [
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
         logo: '/images/man.png',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 105,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/woman.png',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 106,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/show2.webp',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 107,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/show3.webp',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 108,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/hoodimanfront.webp',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 109,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/mainblackhoodi.webp',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 110,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/blackhoodi2.webp',
+        images: [
+            '4.png',
+            '7.png',
+        ],
+
+        sku: 'MG-WHT-001',
+
+        price: 490000,
+        originalPrice: 550000,
+        discount: 11,
+
+        stock: true,
+
+        category: 'ماگ',
+
+        description:
+            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+
+        rating: 4.7,
+        reviewCount: 21,
+
+        colors: [
+            {
+                name: 'سفید',
+                value: '#ffffff',
+            },
+        ],
+
+        sizes: [],
+
+        specifications: [
+            {
+                name: 'جنس',
+                value: 'سرامیک',
+            },
+            {
+                name: 'ظرفیت',
+                value: '۳۵۰ میلی‌لیتر',
+            },
+            {
+                name: 'مناسب برای',
+                value: 'نوشیدنی گرم و سرد',
+            },
+        ],
+
+        sizeGuide: [],
+    },
+
+    {
+        id: 111,
+        slug: 'creator-merch-mug',
+        brand: 'Creator Merch',
+        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/hat4.jpg',
         images: [
             '4.png',
             '7.png',

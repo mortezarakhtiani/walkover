@@ -6,18 +6,21 @@ import {
     Clock3,
     ArrowRight,
     ArrowLeft,
+    ChevronRight,
+
 } from 'lucide-react';
 
 import {Button} from '@/store/components/ui/button';
 import {Card1} from '@/store/home/special-offers/card1';
 import {Card2} from '@/store/home/special-offers/card2';
+import {products} from '@/store/product/data/products';
 
 export function SpecialOffers({
-    showAddButton = true,
-    showSeeAll = true,
-    moreButton = 'نمایش بیشتر',
-    moreButtonHref = '/store/search-results-grid',
-}) {
+                                  showAddButton = true,
+                                  showSeeAll = true,
+                                  moreButton = 'نمایش بیشتر',
+                                  moreButtonHref = '/store/search-results-grid',
+                              }) {
     const [timeLeft, setTimeLeft] = useState({
         hours: 12,
         minutes: 45,
@@ -61,13 +64,17 @@ export function SpecialOffers({
             (digit) => '۰۱۲۳۴۵۶۷۸۹'[digit]
         );
 
+    const product103 = products.find((product) => product.id === 103);
+    const product104 = products.find((product) => product.id === 104);
+
     return (
         <div
             className="
+            mt-16
                 relative
                 overflow-hidden
                 rounded-2xl
-                p-5
+                px-5
                 shadow-sm
             "
         >
@@ -75,24 +82,25 @@ export function SpecialOffers({
             <button
                 type="button"
                 className="
-                    absolute
-                    left-3
-                    top-1/2
-                    z-20
-                    flex
-                    size-9
-                    -translate-y-1/2
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-background/80
-                    text-primary
-                    shadow-sm
-                    backdrop-blur-sm
-                    transition-all
-                    hover:bg-primary
-                    hover:text-primary-foreground
-                "
+    absolute
+    left-3
+    top-1/2
+    z-20
+    hidden
+    size-9
+    -translate-y-1/2
+    items-center
+    justify-center
+    rounded-full
+    bg-background/80
+    text-primary
+    shadow-sm
+    backdrop-blur-sm
+    transition-all
+    hover:bg-primary
+    hover:text-primary-foreground
+    md:flex
+"
                 aria-label="قبلی"
             >
                 <ArrowLeft className="size-4"/>
@@ -102,24 +110,25 @@ export function SpecialOffers({
             <button
                 type="button"
                 className="
-                    absolute
-                    right-3
-                    top-1/2
-                    z-20
-                    flex
-                    size-9
-                    -translate-y-1/2
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-background/80
-                    text-primary
-                    shadow-sm
-                    backdrop-blur-sm
-                    transition-all
-                    hover:bg-primary
-                    hover:text-primary-foreground
-                "
+    absolute
+    right-3
+    top-1/2
+    z-20
+    hidden
+    size-9
+    -translate-y-1/2
+    items-center
+    justify-center
+    rounded-full
+    bg-background/80
+    text-primary
+    shadow-sm
+    backdrop-blur-sm
+    transition-all
+    hover:bg-primary
+    hover:text-primary-foreground
+    md:flex
+"
                 aria-label="بعدی"
             >
                 <ArrowRight className="size-4"/>
@@ -155,134 +164,229 @@ export function SpecialOffers({
             {/* Header */}
             <div
                 className="
-                    relative
-                    mb-5
-                    rounded-xl
-                    p-5
-                    dark:bg-indigo-600/20
-                "
+        relative
+        mb-3
+        rounded-xl
+        bg-white/8
+        p-3
+        md:p-5
+    "
             >
                 <div
                     className="
-                        flex
-                        flex-col
-                        gap-4
-                        sm:flex-row
-                        sm:items-center
-                        sm:justify-between
-                    "
+            flex
+            items-center
+            justify-between
+            gap-2
+        "
                 >
                     {/* Title */}
-                    <div className="flex items-center gap-3">
+                    <Link
+                        href={moreButtonHref}
+                        className="
+                flex
+                min-w-0
+                items-center
+                gap-1.5
+                md:pointer-events-none
+                md:cursor-default
+                md:gap-3
+            "
+                    >
+                        {/* Icon */}
                         <div
                             className="
-                                flex
-                                size-11
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-xl
-                                text-primary
-                            "
+                    flex
+                    size-8
+                    shrink-0
+                    items-center
+                    justify-center
+                    md:size-11
+                "
                         >
                             <img
                                 src="/icons/discount.png"
                                 alt=""
-                                className="size-8 object-contain"
+                                className="
+                        size-6
+                        object-contain
+                        md:size-8
+                    "
                             />
                         </div>
 
-                        <div>
-                            <div className="flex items-center gap-2">
-                                <h2 className="text-lg font-semibold text-mono">
+                        {/* Title */}
+                        <div className="min-w-0">
+                            <div className="flex items-center">
+                                <h2
+                                    className="
+                            truncate
+                            text-sm
+                            font-semibold
+                            text-mono
+                            md:text-lg
+                        "
+                                >
                                     خوش قیمت‌های امروز
                                 </h2>
 
+                                {/* فقط دسکتاپ */}
                                 <span
                                     className="
-                                        rounded-full
-                                        bg-red-500/10
-                                        px-2
-                                        py-0.5
-                                        text-[10px]
-                                        font-medium
-                                        text-red-600
-                                        dark:text-red-400
-                                    "
+                            mr-2
+                            hidden
+                            rounded-full
+                            bg-red-500/10
+                            px-2
+                            py-0.5
+                            text-[10px]
+                            font-medium
+                            text-red-600
+                            md:inline-block
+                            dark:text-red-400
+                        "
                                 >
-                                    تخفیف ویژه
-                                </span>
+                        تخفیف ویژه
+                    </span>
                             </div>
 
-                            <p className="mt-1 text-xs text-muted-foreground">
+                            <p
+                                className="
+                        mt-0.5
+                        text-[9px]
+                        text-muted-foreground
+                        md:mt-1
+                        md:text-xs
+                    "
+                            >
                                 فرصت محدود برای خرید با قیمت ویژه
                             </p>
                         </div>
-                    </div>
+                    </Link>
 
                     {/* Timer + See All */}
-                    <div className="flex items-center gap-3">
+                    <div
+                        className="
+                flex
+                shrink-0
+                items-center
+                gap-2
+                md:gap-3
+            "
+                    >
+
+                        {/* Timer */}
                         <div
+                            dir="ltr"
                             className="
-                                flex
-                                items-center
-                                gap-2
-                                rounded-xl
-                                px-3
-                                py-2
-                                text-primary-600
-                                dark:bg-primary-400/10
-                                dark:text-primary-400
-                            "
+                    flex
+                    shrink-0
+                    items-center
+                    gap-1
+                    rounded-xl
+                    px-1
+                    py-1
+                    text-primary-600
+                    dark:bg-primary-400/10
+                    dark:text-primary-400
+                    md:gap-2
+                    md:px-3
+                    md:py-2
+                "
                         >
-                            <Clock3 className="size-4"/>
+                            <Clock3 className="size-3.5 md:size-4"/>
 
                             <div
-                                className="flex items-center gap-1"
+                                className="
+                        flex
+                        items-center
+                        gap-0.5
+                    "
                                 dir="ltr"
                             >
-                                <span className="min-w-[24px] text-center text-gl font-semibold">
-                                    {toPersianDigits(
-                                        String(timeLeft.hours).padStart(2, '0')
-                                    )}
-                                </span>
+                    <span
+                        className="
+                            min-w-[18px]
+                            text-center
+                            text-[12px]
+                            font-semibold
+                            md:min-w-[24px]
+                            md:text-sm
+                        "
+                    >
+                        {toPersianDigits(
+                            String(timeLeft.hours).padStart(2, '0')
+                        )}
+                    </span>
 
-                                <span>:</span>
+                                <span className="text-[12px] md:text-sm">
+                        :
+                    </span>
 
-                                <span className="min-w-[24px] text-center text-gl font-semibold">
-                                    {toPersianDigits(
-                                        String(timeLeft.minutes).padStart(2, '0')
-                                    )}
-                                </span>
+                                <span
+                                    className="
+                            min-w-[18px]
+                            text-center
+                            text-[12px]
+                            font-semibold
+                            md:min-w-[24px]
+                            md:text-sm
+                        "
+                                >
+                        {toPersianDigits(
+                            String(timeLeft.minutes).padStart(2, '0')
+                        )}
+                    </span>
 
-                                <span>:</span>
+                                <span className="text-[12px] md:text-sm">
+                        :
+                    </span>
 
-                                <span className="min-w-[24px] text-center text-gl font-semibold">
-                                    {toPersianDigits(
-                                        String(timeLeft.seconds).padStart(2, '0')
-                                    )}
-                                </span>
+                                <span
+                                    className="
+                            min-w-[18px]
+                            text-center
+                            text-[12px]
+                            font-semibold
+                            md:min-w-[24px]
+                            md:text-sm
+                        "
+                                >
+                        {toPersianDigits(
+                            String(timeLeft.seconds).padStart(2, '0')
+                        )}
+                    </span>
                             </div>
 
-                            <span className="hidden text-[10px] font-medium sm:inline">
-                                باقی مانده
-                            </span>
+                            <span className="hidden sm:block h-5 w-px bg-gray-300"/>
+
+                            <span className="hidden text-[11px] font-medium sm:inline">
+                    زمان باقی مانده
+                </span>
                         </div>
 
+                        {/* نمایش بیشتر - دسکتاپ */}
                         {showSeeAll && (
-                            <Button mode="link" asChild
+                            <Button
+                                mode="link"
+                                asChild
                                 className="
-                                border-1
-                                items-center
-                                gap-2
-                                rounded-xl
-                                px-10
-                                py-3">
+                        hidden
+                        shrink-0
+                        rounded-xl
+                        px-4
+                        py-2
+                        text-xs
+
+                        md:flex
+                    "
+                            >
                                 <Link
                                     href={moreButtonHref}
-                                    className="text-xs"
+                                    className="flex items-center gap-1 text-xs"
                                 >
-                                    {moreButton}
+                                    <ChevronRight className="size-4"/>
+                                    <span>{moreButton}</span>
                                 </Link>
                             </Button>
                         )}
@@ -302,6 +406,7 @@ export function SpecialOffers({
                 {/* Main Product */}
                 <div>
                     <Card1
+                        id={101}
                         showAddButton={showAddButton}
                     />
                 </div>
@@ -310,29 +415,32 @@ export function SpecialOffers({
                 <div>
                     <div
                         className="
-                            grid
-                            items-stretch
-                            gap-5
-                            sm:grid-cols-2
-                        "
+            grid
+            grid-cols-2
+            items-stretch
+            gap-3
+            sm:gap-5
+        "
                     >
                         <Card2
-    productId={103}
-                            logo="/images/woman.png"
-                            title="کفش ورزشی Nike Dunk Low"
-                            total="1,200,000"
-                            originalPrice="3,200,000"
-                            discount="35"
+                            productId={product103.id}
+                            star={product103.rating}
+                            logo={product103.logo}
+                            title={product103.title}
+                            total={product103.price}
+                            originalPrice={product103.originalPrice}
+                            discount={product103.discount}
                             showAddButton={showAddButton}
                         />
 
                         <Card2
-    productId={103}
-                            logo="/images/kif.png"
-                            title="کفش ورزشی Nike Air Force 1"
-                            total="1,200,000"
-                            originalPrice="3,200,000"
-                            discount="70"
+                            productId={product104.id}
+                            star={product104.rating}
+                            logo={product104.logo}
+                            title={product104.title}
+                            total={product104.price}
+                            originalPrice={product104.originalPrice}
+                            discount={product104.discount}
                             showAddButton={showAddButton}
                         />
                     </div>

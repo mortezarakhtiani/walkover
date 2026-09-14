@@ -1,7 +1,5 @@
 'use client';
 
-import {motion, AnimatePresence} from 'framer-motion';
-import {useEffect, useState} from 'react';
 import {
     Cable,
     ChartNoAxesCombined,
@@ -10,250 +8,183 @@ import {
 import {cn} from '@/lib/utils';
 
 const FourBanners = () => {
-    const [activeStep, setActiveStep] = useState(0);
-    const [progress, setProgress] = useState(0);
-    const [activeImageSet, setActiveImageSet] = useState(0);
-
-    // مجموعه‌های تصاویر
-    const imageSets = [
-        [
-            '/images/mainblackhoodi.webp',
-            '/images/blackhoodi2.webp',
-            '/images/blackhoodi.webp',
-        ],
-        [
-            '/images/blackhoodilangar.webp',
-            '/images/blackhoodilangar2.webp',
-            '/images/mainblackhoodi.webp',
-        ],
+    const images = [
+        '/images/mainblackhoodi.webp',
+        '/images/blackhoodi2.webp',
+        '/images/blackhoodi.webp',
     ];
 
     const banners = [
         {
             alt: 'هودی مشکی',
             title: 'هودی مشکی',
-            descriptions: [
-                'ساده، شیک و همیشه جذاب.',
-                'طراحی راحت با استایل مینیمال.',
-                'انتخابی مناسب برای استایل روزمره.',
-            ],
+            description: 'ساده، شیک و همیشه جذاب.',
             icon: Cable,
         },
         {
             alt: 'هودی مشکی',
             title: 'هودی مشکی',
-            descriptions: [
-                'فرم آزاد و مناسب استفاده روزمره.',
-                'طراحی لانگ با ظاهر متفاوت.',
-                'راحت، خاص و مناسب استایل خیابانی.',
-            ],
+            description: 'طراحی راحت با استایل مینیمال.',
             icon: ChartNoAxesCombined,
         },
         {
             alt: 'هودی مشکی',
             title: 'هودی مشکی',
-            descriptions: [
-                'پارچه نرم با طراحی ساده.',
-                'گرم و راحت برای استفاده روزانه.',
-                'استایلی کلاسیک و همیشه کاربردی.',
-            ],
+            description: 'انتخابی مناسب برای استایل روزمره.',
             icon: Cog,
         },
     ];
 
-    const stepDuration = 5000;
-
-    useEffect(() => {
-        setProgress(0);
-
-        const progressInterval = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    return 100;
-                }
-
-                return prev + 100 / (stepDuration / 50);
-            });
-        }, 50);
-
-        const stepTimeout = setTimeout(() => {
-            // وقتی Progress کامل شد:
-            // کل مجموعه تصاویر عوض می‌شود
-            setActiveImageSet(
-                (prevSet) => (prevSet + 1) % imageSets.length
-            );
-
-            // از تصویر اول مجموعه جدید شروع شود
-            setActiveStep(0);
-
-            // Progress دوباره از صفر
-            setProgress(0);
-        }, stepDuration);
-
-        return () => {
-            clearInterval(progressInterval);
-            clearTimeout(stepTimeout);
-        };
-    }, [activeImageSet]);
-
-    const activeBanner = banners[activeStep];
-const activeDescription =
-    activeBanner.descriptions[activeImageSet];
-    const currentImages = imageSets[activeImageSet];
-
     return (
-        <section className="w-full">
+        <section className="w-full p-5 mt-16">
             <div
                 dir="ltr"
                 className="
-                    grid
+                    flex
                     w-full
-                    grid-cols-1
-                    gap-6
-                    lg:grid-cols-[1fr_320px]
+                    flex-col
+                    items-center
                 "
             >
-                {/* =========================
-                    تصاویر - سمت چپ
-                ========================== */}
+                {/* =================================================
+                    تصاویر کمانی
+                ================================================== */}
+
                 <div
                     className="
-                        order-1
-                        grid
-                        grid-cols-2
-                        gap-2
-                        lg:grid-cols-3
+                        relative
+                        h-[230px]
+                        w-full
+                        max-w-[430px]
+
+                        sm:h-[300px]
+                        sm:max-w-[520px]
+
+                        lg:h-[400px]
+                        lg:max-w-[900px]
                     "
                 >
-                    {currentImages.map((image, index) => (
-                        <motion.div
-                            key={`${activeImageSet}-${index}`}
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            transition={{duration: 1}}
-                            onClick={() => {
-                                setActiveStep(index);
-                                setProgress(0);
-                            }}
-                            className={cn(
+                    {images.map((image, index) => {
+                        const position =
+                            index === 0
+                                ? `
+                                    left-[6%]
+        top-[20px]
+        rotate-[-12deg]
+
+        sm:left-[3%]
+        sm:top-[20px]
+
+        lg:left-[8%]
+        lg:top-[20px]
                                 `
-                                relative
-                                aspect-[5/9]
-                                cursor-pointer
-                                overflow-hidden
-                                rounded-2xl
-                                border
-                                bg-muted
-                                transition-all
-                                duration-300
-                                `,
-                                index === activeStep
-                                    ? 'border-primary ring-2 ring-primary/20'
-                                    : 'border-border opacity-70 hover:opacity-100'
-                            )}
-                        >
-                            <img
-                                src={image}
-                                alt={banners[index].alt}
-                                className="
-                                    block
-                                    h-full
-                                    w-full
-                                    object-cover
-                                    object-top
-                                "
-                            />
-                        </motion.div>
-                    ))}
+                                : index === 1
+                                    ? `
+                                        left-1/2
+                                        top-[5px]
+                                        -translate-x-1/2
+                                        rotate-0
+
+                                        lg:top-[0px]
+                                    `
+                                    : `
+                                        right-[6%]
+    top-[20px]
+    rotate-[12deg]
+
+    sm:right-[3%]
+    sm:top-[20px]
+
+    lg:right-[8%]
+    lg:top-[20px]
+                                    `;
+
+                        return (
+                            <div
+                                key={index}
+                                className={cn(
+                                    `
+    absolute
+
+    w-[34%]
+    max-w-[145px]
+
+    aspect-[5/9]
+
+    overflow-hidden
+    rounded-2xl
+    border
+    border-border
+    bg-muted
+    shadow-md
+
+    transition-all
+    duration-300
+
+    sm:w-[30%]
+    sm:max-w-[145px]
+
+    lg:w-[30%]
+    lg:max-w-[230px]
+
+    xl:max-w-[250px]
+    `,
+                                    position
+                                )}
+                            >
+                                <img
+                                    src={image}
+                                    alt={banners[index].alt}
+                                    className="
+                                        block
+                                        h-full
+                                        w-full
+                                        object-cover
+                                        object-top
+                                    "
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
 
-                {/* =========================
-                    پنل اطلاعات - سمت راست
-                ========================== */}
+                {/* =================================================
+                    متن زیر تصاویر
+                ================================================== */}
+
                 <div
                     dir="rtl"
                     className="
-                        order-2
-                        flex
-                        min-h-[300px]
-                        flex-col
-                        justify-center
-                        bg-transparent
-                        p-6
+                        w-full
+                        px-5
+                        pt-15
+                        text-center
+                        lg:pt-20
                     "
                 >
-                    {/* متن متغیر */}
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeStep}
-                            initial={{
-                                opacity: 0,
-                                x: 20,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                x: 0,
-                            }}
-                            exit={{
-                                opacity: 0,
-                                x: -20,
-                            }}
-                            transition={{
-                                duration: 0.3,
-                            }}
-                        >
+                    <h3
+                        className="
+                            mb-3
+                            text-xl
+                            font-semibold
+                            text-foreground
 
-                            {/* عنوان */}
-                            <h3
-                                className="
-                                    mb-3
-                                    text-2xl
-                                    font-semibold
-                                    text-foreground
-                                "
-                            >
-                                {activeBanner.title}
-                            </h3>
+                            sm:text-2xl
+                        "
+                    >
+                        هودی مشکی
+                    </h3>
 
-                            {/* توضیحات */}
-                            <p
-                                className="
-                                    leading-7
-                                    text-muted-foreground
-                                "
-                            >
-                                {activeDescription}
-                            </p>
-                        </motion.div>
-                    </AnimatePresence>
-
-                    {/* =========================
-                        Progress Bar
-                    ========================== */}
-                    <div className="mt-8">
-                        <div
-                            className="
-                                h-1.5
-                                w-full
-                                overflow-hidden
-                                rounded-full
-                                bg-border
-                            "
-                        >
-                            <motion.div
-                                className="
-                                    h-full
-                                    rounded-full
-                                    bg-gradient-to-r
-                                    from-indigo-500
-                                    to-purple-400
-                                "
-                                style={{
-                                    width: `${progress}%`,
-                                }}
-                            />
-                        </div>
-                    </div>
+                    <p
+                        className="
+                            mx-auto
+                            max-w-[500px]
+                            leading-7
+                            text-muted-foreground
+                        "
+                    >
+                        ساده، شیک و همیشه جذاب.
+                    </p>
                 </div>
             </div>
         </section>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+  <defs>
+    <linearGradient id="g" x1="14" y1="12" x2="66" y2="68" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFCF33"/>
+      <stop offset=".45" stop-color="#FF8A00"/>
+      <stop offset="1" stop-color="#F04444"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="27" y1="23" x2="55" y2="57" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF5C7"/>
+      <stop offset="1" stop-color="#FFE08A"/>
+    </linearGradient>
+    <filter id="s" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#D85A00" flood-opacity=".22"/>
+    </filter>
+  </defs>
+
+  <!-- sparkle -->
+  <path d="M17 13l1.8 5.2L24 20l-5.2 1.8L17 27l-1.8-5.2L10 20l5.2-1.8L17 13Z" fill="#FFD43B"/>
+  <path d="M67 28l1.2 3.6L72 33l-3.8 1.4L67 38l-1.2-3.6L62 33l3.8-1.4L67 28Z" fill="#FF9F1A"/>
+
+  <!-- price tag -->
+  <path d="M14 30.5 30.5 14H54l13 13v23L50 67H30.5L14 50.5v-20Z" fill="url(#g)" filter="url(#s)"/>
+
+  <!-- folded corner -->
+  <path d="M54 14v12.5c0 2.5 2 4.5 4.5 4.5H67" fill="#E96721" opacity=".38"/>
+  <path d="M54 14v12.5c0 2.5 2 4.5 4.5 4.5H67" stroke="#FFF1B2" stroke-width="1.5" opacity=".65"/>
+
+  <!-- hole -->
+  <circle cx="31" cy="25" r="5.5" fill="#FFF8DD"/>
+  <circle cx="31" cy="25" r="2" fill="#F26A21"/>
+
+  <!-- percent badge -->
+  <circle cx="43" cy="43" r="15" fill="url(#g2)"/>
+  <circle cx="43" cy="43" r="15" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="2"/>
+  <circle cx="38.5" cy="38.5" r="2.7" fill="#F36B21"/>
+  <circle cx="47.5" cy="47.5" r="2.7" fill="#F36B21"/>
+  <path d="M49 36.5 37 49.5" stroke="#F36B21" stroke-width="3.2" stroke-linecap="round"/>
+
+  <!-- tiny coin accent -->
+  <circle cx="58" cy="52" r="5" fill="#FFF4B5" opacity=".95"/>
+  <path d="M56.5 52h3M58 50.5v3" stroke="#F27B19" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
 
 import {
     Heart,
@@ -18,6 +18,8 @@ import {
     CardTitle,
 } from '@/store/components/ui/card';
 
+import {useStoreClient} from '@/store/components/context';
+
 const menuItems = [
     {
         title: 'اطلاعات شخصی',
@@ -25,10 +27,10 @@ const menuItems = [
         href: '/account/home/user-profile',
     },
     {
-        title: 'لیست علاقه‌مندی‌ها',
-        icon: Heart,
-        href: '/store/wishlist',
-    },
+    title: 'لیست علاقه‌مندی‌ها',
+    icon: Heart,
+    action: 'wishlist',
+},
     {
         title: 'آدرس‌ها',
         icon: MapPin,
@@ -48,6 +50,7 @@ const menuItems = [
 
 const ProfileMenu = () => {
     const pathname = usePathname();
+    const {showWishlistSheet} = useStoreClient();
 
     return (
         <Card className="min-w-full" dir="rtl">
@@ -62,36 +65,59 @@ const ProfileMenu = () => {
 
                 <div className="flex flex-col">
 
-                    {menuItems.map((item) => {
-                        const Icon = item.icon;
+                   {menuItems.map((item) => {
+    const Icon = item.icon;
+    const isActive = pathname === item.href;
 
-                        const isActive = pathname === item.href;
+    if (item.action === 'wishlist') {
+        return (
+            <button
+                key={item.title}
+                type="button"
+                onClick={showWishlistSheet}
+                className="
+                    flex w-full items-center gap-3
+                    rounded-lg px-4 py-3 text-sm
+                    text-secondary-foreground
+                    transition-colors
+                    hover:bg-accent
+                    hover:text-foreground
+                "
+            >
+                <Icon
+                    size={19}
+                    strokeWidth={1.8}
+                />
 
-                        return (
-                            <Link
-                                key={item.title}
-                                href={item.href}
-                                className={`
-                                    flex items-center gap-3 px-4 py-3 rounded-lg text-sm
-                                    transition-colors
-                                    ${
-                                        isActive
-                                            ? 'bg-accent text-foreground'
-                                            : 'text-secondary-foreground hover:bg-accent hover:text-foreground'
-                                    }
-                                `}
-                            >
-                                <Icon
-                                    size={19}
-                                    strokeWidth={1.8}
-                                />
+                <span>{item.title}</span>
+            </button>
+        );
+    }
 
-                                <span>
-                                    {item.title}
-                                </span>
-                            </Link>
-                        );
-                    })}
+    return (
+        <Link
+            key={item.title}
+            href={item.href}
+            className={`
+                flex items-center gap-3
+                rounded-lg px-4 py-3 text-sm
+                transition-colors
+                ${
+                    isActive
+                        ? 'bg-accent text-foreground'
+                        : 'text-secondary-foreground hover:bg-accent hover:text-foreground'
+                }
+            `}
+        >
+            <Icon
+                size={19}
+                strokeWidth={1.8}
+            />
+
+            <span>{item.title}</span>
+        </Link>
+    );
+})}
 
                 </div>
 

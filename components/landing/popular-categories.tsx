@@ -42,17 +42,17 @@ const PopularCategories = () => {
             id="categories"
             className="border-b border-border/50 bg-background py-0"
         >
-            <div className="container mx-auto px-6 py-0">
+            <div className="container mx-auto px-3 md:px-6 py-0">
 
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+                <div className="grid grid-cols-3 gap-2 md:grid-cols-3 md:gap-4 lg:grid-cols-6">
                     {categories.map((category, index) => {
                         return (
                             <motion.a
                                 key={category.name}
                                 href={category.href}
                                 initial={{
-                                    opacity: 0,
-                                    y: 20,
+                                    opacity: 1,
+                                    y: 0,
                                 }}
                                 whileInView={{
                                     opacity: 1,
@@ -68,7 +68,6 @@ const PopularCategories = () => {
                                         delay: index * 0.08,
                                     },
                                 }}
-                                viewport={{once: true}}
                                 whileHover={{
                                     y: -4,
                                     transition: {
@@ -79,19 +78,19 @@ const PopularCategories = () => {
                                 whileTap={{
                                     scale: 0.98,
                                 }}
-                               className="group flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-border bg-transparent p-6 transition-colors hover:dark:border-violet-950"
+                                className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-border bg-transparent p-2 md:rounded-2xl md:p-6 transition-colors hover:dark:border-violet-950"
                             >
-                                <div className="relative mb-4 size-32 overflow-hidden rounded-xl bg-accent">
+                                <div className="relative mb-2 size-20 overflow-hidden rounded-lg bg-accent md:mb-4 md:size-32 md:rounded-xl">
                                     <Image
                                         src={category.image}
                                         alt={category.name}
                                         fill
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                        sizes="256px"
+                                        sizes="128px"
                                     />
                                 </div>
 
-                                <span className="text-sm font-medium">
+                                <span className="text-xs font-medium md:text-sm">
                                     {category.name}
                                 </span>
                             </motion.a>

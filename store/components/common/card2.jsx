@@ -1,6 +1,8 @@
+
 'use client';
 
 import {ShoppingCart, Star} from 'lucide-react';
+
 import {toAbsoluteUrl} from '@/lib/helpers';
 import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
@@ -9,91 +11,251 @@ import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from '@/lib/to-persian-digits';
 
 export function Card2({
-                          id,
-                          badge,
-                          logo,
-                          title,
-                          total,
-                          star,
-                          label,
-                          showAddButton = true,
-                      }) {
+    id,
+    badge,
+    logo,
+    title,
+    total,
+    star,
+    label,
+    showAddButton = true,
+}) {
     const {showCartSheet, showProductDetailsSheet} = useStoreClient();
 
     return (
-        <Card>
-            <CardContent className="flex flex-col justify-between p-2.5 gap-4">
+        <Card
+            className="
+                cursor-pointer
+                group
+                overflow-hidden
+                rounded-2xl
+            "
+            onClick={() => showProductDetailsSheet(id)}
+        >
+            <CardContent
+                className="
+                    flex
+                    flex-col
+                    justify-between
+                    gap-4
+                    p-0
+
+                    sm:p-2.5
+                "
+            >
+
                 <div className="mb-[10px]">
+
+                    {/* تصویر */}
                     <div
-                        className=" flex items-center justify-center relative w-full h-[180px] mb-5 mt-5 shadow-none"
+                        className="
+                            relative
+                            flex
+                            w-full
+                            aspect-square
+                            items-center
+                            justify-center
+                            overflow-hidden
+                            mb-2
+                            mt-0
+                            shadow-none
+
+                            sm:h-[180px]
+                            sm:aspect-auto
+                            sm:mb-5
+                            sm:mt-5
+                        "
                     >
                         {badge && (
                             <Badge
                                 size="sm"
                                 variant="destructive"
-                                className="absolute top-2 right-2 uppercase"
+                                className="
+                                    absolute
+                                    top-2
+                                    right-2
+                                    uppercase
+                                    text-[10px]
+
+                                    sm:text-xs
+                                "
                             >
-                                <span>{toPersianDigits('40%')} تخفیف</span>
+                                <span>
+                                    {toPersianDigits('40%')} تخفیف
+                                </span>
                             </Badge>
                         )}
 
                         <img
-                            onClick={() => showProductDetailsSheet(id)}
-                            src={logo}
-                            className="h-[180px] shrink-0 cursor-pointer rounded-2xl object-contain "
+                            src={toAbsoluteUrl(logo)}
+                            className="
+                                h-full
+                                w-full
+                                shrink-0
+                                rounded-none
+                                object-cover
+
+                                sm:h-[180px]
+                                sm:w-auto
+                                sm:rounded-2xl
+                                sm:object-contain
+                            "
                             alt={title}
                         />
                     </div>
 
-                    <div className="flex sm:justify-end mb-2 px-2.5" dir="ltr">
+                    {/* امتیاز */}
+                    <div
+                        className="
+    flex
+    justify-end
+    mb-2
+    px-2
+
+    sm:px-2.5
+"
+                        dir="ltr"
+                    >
                         <Badge
                             size="sm"
                             variant="secondary"
                             shape="circle"
-                            className="rounded-full gap-1 text-yellow-500"
+                            className="
+                                rounded-full
+                                gap-0.5
+                                text-yellow-500
+                                text-[10px]
+
+                                sm:gap-1
+                                sm:text-xs
+                            "
                         >
                             <Star
-                                className="text-yellow-500 -mt-0.5"
+                                className="
+                                    size-3
+                                    text-yellow-500
+                                    -mt-0.5
+
+                                    sm:size-4
+                                "
                                 style={{fill: 'currentColor'}}
                             />
 
-                            <span>{toPersianDigits(star)}</span>
+                            <span>
+                                {toPersianDigits(star)}
+                            </span>
                         </Badge>
                     </div>
 
+                    {/* عنوان */}
                     <div
-                        onClick={() => showProductDetailsSheet(id)}
-                        className="hover:text-primary text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer"
+                        className="
+                            hover:text-primary
+                            text-[11px]
+                            font-medium
+                            text-mono
+                            px-2
+                            leading-4
+                            text-right
+
+                            sm:text-sm
+                            sm:px-2.5
+                            sm:leading-5.5
+                        "
                     >
                         {title}
                     </div>
+
                 </div>
 
-                <div className="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
+                {/* قیمت + دکمه افزودن */}
+                <div
+                    className="
+                        flex
+                        items-center
+                        justify-between
+                        gap-2
+                        px-2
+                        pb-1
+
+                        sm:gap-4
+                        sm:px-2.5
+                    "
+                >
+
+                    {/* دکمه افزودن */}
                     {showAddButton && (
                         <Button
                             size="sm"
                             variant="outline"
-                            className="ms-1"
-                            onClick={showCartSheet}
+                            className="
+    shrink-0
+    h-8
+    px-3
+    py-1.5
+    text-[10px]
+
+    sm:h-auto
+    sm:p-2.5
+    sm:text-xs
+"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                showCartSheet();
+                            }}
                         >
-                            <ShoppingCart/>
+                            <ShoppingCart className="size-3.5 sm:size-4"/>
                             افزودن
                         </Button>
                     )}
 
-                    <div className="flex items-center flex-wrap gap-1.5">
+                    {/* قیمت */}
+                    <div
+                        className="
+                            flex
+                            flex-col
+                            items-end
+                            gap-0.5
+                        "
+                    >
+
+                        {/* قیمت خط خورده */}
                         {label && (
-                            <span className="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
-                                {toPersianDigits(label)}
+                            <span
+                                className="
+                                    text-[9px]
+                                    font-normal
+                                    leading-3
+                                    text-secondary-foreground
+                                    line-through
+
+                                    sm:text-xs
+                                    sm:leading-normal
+                                "
+                            >
+                                {toPersianDigits(label)} تومان
                             </span>
                         )}
 
-                        <span className="text-sm font-medium text-mono">
+                        {/* قیمت اصلی */}
+                        <span
+                            className="
+                                text-[11px]
+                                font-medium
+                                leading-4
+                                text-mono
+
+                                sm:text-sm
+                                sm:leading-normal
+                            "
+                        >
                             {toPersianDigits(total)} تومان
                         </span>
+
                     </div>
+
                 </div>
+
             </CardContent>
         </Card>
     );

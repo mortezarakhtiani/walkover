@@ -1,6 +1,6 @@
 'use client';
 
-import {ShoppingCart} from 'lucide-react';
+import {ShoppingCart, Star} from 'lucide-react';
 
 import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
@@ -9,16 +9,17 @@ import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits} from '@/lib/to-persian-digits';
 
 export function Card2({
-    productId,
-    bgColor,
-    borderColor,
-    title,
-    discount,
-    total,
-    logo,
-    originalPrice,
-    showAddButton = true,
-}) {
+                          productId,
+                          bgColor,
+                          borderColor,
+                          title,
+                          discount,
+                          total,
+                          logo,
+                          originalPrice,
+                          star,
+                          showAddButton = true,
+                      }) {
     const {
         showCartSheet,
         showProductDetailsSheet,
@@ -37,6 +38,7 @@ export function Card2({
         <Card
             className={`
                 h-full
+                overflow-hidden
                 rounded-2xl
                 border
                 border-border
@@ -46,11 +48,20 @@ export function Card2({
                 ${borderColor || ''}
             `}
         >
-            <CardContent className="flex flex-col items-center justify-center px-5 pb-5">
+            <CardContent
+                className="
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    p-0
 
-                {/* =========================
-                    بخش قابل کلیک محصول
-                    ========================= */}
+                    md:px-5
+                    md:pb-5
+                "
+            >
+
+                {/* بخش قابل کلیک محصول */}
                 <div
                     className="flex w-full cursor-pointer flex-col items-center"
                     onClick={handleProductClick}
@@ -68,24 +79,115 @@ export function Card2({
                     <img
                         src={logo}
                         className="
-                            mb-12
-                            mt-5
-                            h-[200px]
-                            w-[200px]
-                            rounded-xl
-                            object-contain
+                            mt-0
+                            mb-2
+                            h-auto
+                            w-full
+                            aspect-square
+                            rounded-none
+                            object-cover
+
+                            md:mt-4
+                            md:mb-3
+                            md:size-36
+                            md:h-auto
+                            md:w-auto
+                            md:aspect-auto
+                            md:rounded-xl
+                            md:object-contain
+
+                            lg:mt-5
+                            lg:mb-8
+                            lg:size-40
+
+                            xl:mb-12
+                            xl:size-[200px]
                         "
                         alt={title}
                     />
 
+                    {/* امتیاز */}
+<div
+    className="
+        mb-2
+        flex
+        w-full
+        justify-end
+        px-2
+
+        md:px-0
+    "
+    dir="ltr"
+>
+    <Badge
+        size="sm"
+        variant="secondary"
+        shape="circle"
+        className="
+            rounded-full
+            gap-0.5
+            text-yellow-500
+            text-[10px]
+
+            md:gap-1
+            md:text-xs
+        "
+    >
+        <Star
+            className="
+                size-3
+                text-yellow-500
+                -mt-0.5
+
+                md:size-4
+            "
+            style={{fill: 'currentColor'}}
+        />
+
+        <span>
+            {toPersianDigits(star)}
+        </span>
+    </Badge>
+</div>
+
                     {/* عنوان */}
-                    <span className="mb-4 text-base font-medium text-mono text-center">
+                    <span
+                        className="
+        mb-2
+        line-clamp-2
+        w-full
+        px-2
+        text-[11px]
+        font-medium
+        leading-4
+        text-mono
+        text-right
+
+        md:mb-4
+        md:w-auto
+        md:px-0
+        md:text-base
+        md:leading-normal
+    "
+                    >
                         {title}
                     </span>
 
                     {/* قیمت و تخفیف */}
                     <div
-                        className="mb-4 flex w-full items-end justify-between gap-3"
+                        className="
+                            mb-2
+                            flex
+                            w-full
+                            items-end
+                            justify-between
+                            gap-1
+                            px-2
+
+                            md:mb-4
+                            md:gap-3
+                            md:px-0
+                        "
                         dir="rtl"
                     >
 
@@ -94,7 +196,15 @@ export function Card2({
                             <Badge
                                 size="sm"
                                 variant="destructive"
-                                className="uppercase"
+                                className="
+    px-1.5
+    py-0.5
+    text-[10px]
+
+    md:px-2
+    md:py-1
+    md:text-xs
+"
                             >
                                 {toPersianDigits(String(discount))}٪
                             </Badge>
@@ -102,11 +212,30 @@ export function Card2({
 
                         {/* قیمت‌ها */}
                         <div
-                            className="flex flex-col items-end gap-1"
+                            className="
+                                flex
+                                flex-col
+                                items-end
+                                gap-0.5
+
+                                md:gap-1
+                            "
                             dir="rtl"
                         >
                             {originalPrice && (
-                                <span className="text-xs font-normal text-muted-foreground line-through decoration-[1px]">
+                                <span
+                                    className="
+    text-[9px]
+    font-normal
+    leading-3
+    text-muted-foreground
+    line-through
+    decoration-[1px]
+
+    md:text-xs
+    md:leading-normal
+"
+                                >
                                     {toPersianDigits(
                                         String(originalPrice)
                                     )}{' '}
@@ -114,7 +243,17 @@ export function Card2({
                                 </span>
                             )}
 
-                            <span className="text-sm font-semibold text-mono">
+                            <span
+                                className="
+    text-[11px]
+    font-semibold
+    leading-4
+    text-mono
+
+    md:text-sm
+    md:leading-normal
+"
+                            >
                                 {toPersianDigits(String(total))} تومان
                             </span>
                         </div>
@@ -122,20 +261,30 @@ export function Card2({
                     </div>
                 </div>
 
-                {/* =========================
-                    دکمه افزودن به سبد
-                    ========================= */}
+                {/* دکمه افزودن به سبد */}
                 {showAddButton && (
                     <Button
                         size="sm"
                         variant="outline"
-                        className="w-full p-4"
+                        className="
+        mb-2
+        h-8
+        w-[calc(100%-16px)]
+        px-2
+        text-[10px]
+
+        md:mb-0
+        md:h-auto
+        md:w-full
+        md:p-2.5
+        md:text-xs
+    "
                         onClick={(e) => {
                             e.stopPropagation();
                             showCartSheet();
                         }}
                     >
-                        <ShoppingCart className="size-4" />
+                        <ShoppingCart className="size-3.5 md:size-4"/>
                         افزودن به سبد خرید
                     </Button>
                 )}
@@ -144,3 +293,4 @@ export function Card2({
         </Card>
     );
 }
+

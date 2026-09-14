@@ -7,12 +7,8 @@ export default function AppLayout({
     children: React.ReactNode;
 }) {
     return (
-        <StoreClientProvider>
-            <StoreClientWrapper>
-                <div className="container mx-auto px-10">
-                    {children}
-                </div>
-            </StoreClientWrapper>
-        </StoreClientProvider>
+        <div className="w-full">
+            {children}
+        </div>
     );
 }
