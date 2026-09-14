@@ -462,7 +462,7 @@ export const products = [
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/hoodimanfront.webp',
+        logo: '/images/blackhoodi.webp',
         images: [
             '4.png',
             '7.png',
@@ -476,7 +476,7 @@ export const products = [
 
         stock: true,
 
-        category: 'ماگ',
+        category: 'hoodi',
 
         description:
             'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
@@ -530,7 +530,7 @@ export const products = [
 
         stock: true,
 
-        category: 'ماگ',
+        category: 'hoodi',
 
         description:
             'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
@@ -584,7 +584,7 @@ export const products = [
 
         stock: true,
 
-        category: 'ماگ',
+        category: 'hoodi',
 
         description:
             'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
@@ -624,7 +624,7 @@ export const products = [
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
         title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/hat4.jpg',
+        logo: '/images/hoodiwomanback.webp',
         images: [
             '4.png',
             '7.png',
@@ -638,7 +638,7 @@ export const products = [
 
         stock: true,
 
-        category: 'ماگ',
+        category: 'hoodi',
 
         description:
             'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',

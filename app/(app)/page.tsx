@@ -52,7 +52,9 @@ export default function LandingV2Page() {
 
                 <ProductSection
                     title="هودی های خفن!"
-                    items={products.slice(0, 4)}
+                    items={products
+                        .filter((product) => product.category === 'hoodi')
+                        .slice(0, 4)}
                     showSeeAll={true}
                     moreButton="نمایش بیشتر"
                     moreButtonHref="/store/search-results-grid"
