@@ -196,7 +196,7 @@ export const products = [
 
         sku: 'CP-BLK-001',
 
-        price: 590000,
+        price: 59000000,
         originalPrice: null,
         discount: 0,
 

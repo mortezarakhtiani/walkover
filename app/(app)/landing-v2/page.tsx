@@ -1,34 +1,74 @@
 'use client';
 
 import Header from '@/store/components/common/header';
-import Hero from '@/components/landing/hero';
 import PopularCategories from '@/components/landing/popular-categories';
 import HowItWorks from '@/components/landing/how-it-works';
-import Features from '@/components/landing/features';
-import Testimonials from '@/components/landing/testimonails';
-import FAQ from '@/components/landing/faq';
-import CallToAction from '@/components/landing/call-to-action';
-import Contact from '@/components/landing/contact';
-import Footer from '@/components/landing/footer';
+import FourBanners from '@/components/landing/four-banners';
+import {SpecialOffers} from '@/store/home/components/special-offers';
+import {ProductSection} from '@/store/home/components/product-section';
+import {getProducts} from '@/store/product/services/product-service';
+
+
 
 export default function LandingV2Page() {
+    const products = getProducts();
+
     return (
-        <div className="min-h-screen px-10">
+        <div className="min-h-screen">
+
             <Header/>
-            {/*<Hero />*/}
-            <HowItWorks/>
-            <PopularCategories/>
-            {/*<PopularCategories/>*/}
-            <StoreProducts/>
+
+            <div className="pt-[80px] md:pt-[120px] space-y-10">
 
 
-            <Features/>
-            <Testimonials/>
-            {/*<StoreProducts />*/}
-            {/*<FAQ />*/}
-            {/*<CallToAction />*/}
-            {/*<Contact />*/}
-            {/*<Footer />*/}
+                <HowItWorks/>
+
+                <PopularCategories/>
+
+                <SpecialOffers
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store/search-results-grid"
+                    showAddButton={true}
+                />
+
+                <ProductSection
+                    title="پرفروش‌ترین‌ها"
+                    items={products.slice(0, 4)}
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store/search-results-grid"
+                    showAddButton={true}
+                />
+
+                <FourBanners/>
+
+
+                <ProductSection
+                    title="هودی های خفن!"
+                    items={products
+                        .filter((product) => product.category === 'hoodi')
+                        .slice(0, 4)}
+                    showSeeAll={true}
+                    moreButton="نمایش بیشتر"
+                    moreButtonHref="/store/search-results-grid"
+                    showAddButton={true}
+                    showHeader={false}
+                />
+
+                {/*<BrandCategory/>*/}
+
+
+                {/*<SmallImages/>*/}
+
+                {/*<TwoImages/>*/}
+
+
+                {/*<Contact/>*/}
+
+            </div>
+
         </div>
     );
 }
+

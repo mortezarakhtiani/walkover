@@ -20,7 +20,7 @@ import {
     SheetTitle,
 } from '@/store/components/ui/sheet';
 
-import {toPersianDigits} from '@/lib/to-persian-digits';
+import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 import {useState} from 'react';
 
 
@@ -115,18 +115,16 @@ export function StoreClientProductDetailsSheet({
     const productItems = [
         {
             text: 'موجودی',
-            info: (
+            info: product.stock ? (
+                <span className="text-sm">
+            {toPersianDigits(product.stock)} عدد
+        </span>
+            ) : (
                 <Badge
                     size="sm"
-                    variant={
-                        product.stock
-                            ? 'success'
-                            : 'destructive'
-                    }
+                    variant="destructive"
                 >
-                    {product.stock
-                        ? 'موجود است'
-                        : 'ناموجود'}
+                    ناموجود
                 </Badge>
             ),
         },
@@ -167,22 +165,22 @@ export function StoreClientProductDetailsSheet({
     ===================================================== */
 
     const handleAddToWishlist = () => {
-    if (isFavorite) {
-        setIsFavorite(false);
+        if (isFavorite) {
+            setIsFavorite(false);
+
+            toast.success(
+                'محصول از لیست علاقه‌مندی‌ها حذف شد'
+            );
+
+            return;
+        }
+
+        setIsFavorite(true);
 
         toast.success(
-            'محصول از لیست علاقه‌مندی‌ها حذف شد'
+            'محصول به لیست علاقه‌مندی‌ها اضافه شد'
         );
-
-        return;
-    }
-
-    setIsFavorite(true);
-
-    toast.success(
-        'محصول به لیست علاقه‌مندی‌ها اضافه شد'
-    );
-};
+    };
 
 
     /* =====================================================
@@ -195,21 +193,31 @@ export function StoreClientProductDetailsSheet({
             onOpenChange={onOpenChange}
         >
             <SheetContent
+                side="left"
                 dir="rtl"
                 className="
-                    sm:w-[500px]
-                    sm:max-w-none
-                    inset-5
-                    start-auto
-                    h-auto
-                    rounded-xl
-                    p-0
-                    overflow-hidden
-                    flex
-                    flex-col
-                    [&_[data-slot=sheet-close]]:top-4
-                    [&_[data-slot=sheet-close]]:end-5
-                "
+        sm:w-[500px]
+        sm:max-w-none
+        inset-y-5
+        right-5
+        left-auto
+        h-[calc(100%-2.5rem)]
+        rounded-xl
+        p-0
+        overflow-hidden
+        flex
+        flex-col
+
+        max-sm:inset-y-0
+        max-sm:right-0
+        max-sm:left-auto
+        max-sm:h-full
+        max-sm:w-[85%]
+        max-sm:max-w-[380px]
+        max-sm:rounded-none
+
+        max-sm:[&_[data-slot=sheet-close]]:hidden
+    "
             >
 
                 {/* =================================================
@@ -218,12 +226,13 @@ export function StoreClientProductDetailsSheet({
 
                 <SheetHeader
                     className="
-                        shrink-0
-                        border-b
-                        border-border
-                        px-5
-                        py-4
-                    "
+        shrink-0
+        border-b
+        border-border
+        px-5
+        py-4
+        max-sm:hidden
+    "
                 >
                     <SheetTitle className="text-right text-base">
                         جزئیات محصول
@@ -247,7 +256,7 @@ export function StoreClientProductDetailsSheet({
                 >
 
                     <ScrollArea className="flex-1 min-h-0">
-                        <div className="px-1 py-5">
+                        <div className="px-1 py-5 max-sm:pt-2">
 
                             {/* =================================================
                                Product Image
@@ -260,8 +269,7 @@ export function StoreClientProductDetailsSheet({
                                     items-center
                                     justify-center
                                     h-[250px]
-                                    rounded-xl
-                                    bg-accent/40
+
                                     mb-5
                                 "
                             >
@@ -363,19 +371,19 @@ export function StoreClientProductDetailsSheet({
                             <div className="mb-3 text-right">
                                 <Link
                                     href={`/store/product/${product.slug}`}
-                                    onClick={() =>
-                                        onOpenChange(false)
-                                    }
+                                    onClick={() => onOpenChange(false)}
                                     className="
-                                        block
-                                        text-right
-                                        text-lg
-                                        font-semibold
-                                        leading-7
-                                        text-foreground
-                                        transition-colors
-                                        hover:text-primary
-                                    "
+        block
+        text-right
+        text-lg
+        max-sm:text-base
+        font-semibold
+        leading-7
+        max-sm:leading-6
+        text-foreground
+        transition-colors
+        hover:text-primary
+    "
                                 >
                                     {product.title}
                                 </Link>
@@ -389,12 +397,15 @@ export function StoreClientProductDetailsSheet({
                             {product.description && (
                                 <p
                                     className="
-                                        mb-5
-                                        text-right
-                                        text-sm
-                                        leading-7
-                                        text-muted-foreground
-                                    "
+            mb-5
+            max-sm:mb-4
+            text-right
+            text-sm
+            max-sm:text-xs
+            leading-7
+            max-sm:leading-6
+            text-muted-foreground
+        "
                                 >
                                     {product.description}
                                 </p>
@@ -405,42 +416,38 @@ export function StoreClientProductDetailsSheet({
                                Product Information
                             ================================================= */}
 
-                            <div className="mt-5 mb-5 flex flex-col">
+                            <div className="mt-5 mb-5 max-sm:mt-4 max-sm:mb-4 flex flex-col">
                                 {productItems.map((item, index) => (
                                     <div
                                         key={item.text}
                                         className={`
-                                            flex
-                                            items-center
-                                            justify-between
-                                            gap-4
-                                            py-3
-                                            ${
-                                            index !==
-                                            productItems.length - 1
+                flex
+                items-center
+                justify-between
+                gap-4
+                py-3
+                max-sm:py-2.5
+                ${
+                                            index !== productItems.length - 1
                                                 ? 'border-b border-border'
                                                 : ''
                                         }
-                                        `}
+            `}
                                     >
-                                        {/* Value */}
-
                                         <div className="text-right">
                                             {item.info}
                                         </div>
 
-
-                                        {/* Label */}
-
                                         <span
                                             className="
-                                                text-left
-                                                text-xs
-                                                text-muted-foreground
-                                            "
+                    text-left
+                    text-xs
+                    max-sm:text-[11px]
+                    text-muted-foreground
+                "
                                         >
-                                            {item.text}
-                                        </span>
+                {item.text}
+            </span>
                                     </div>
                                 ))}
                             </div>
@@ -472,7 +479,7 @@ export function StoreClientProductDetailsSheet({
                             variant="outline"
                             size="sm"
                             asChild
-                            className="shrink-0"
+                            className="shrink-0 p-4"
                         >
                             <Link
                                 href={`/store/product/${product.slug}`}
@@ -509,7 +516,7 @@ export function StoreClientProductDetailsSheet({
                                     </span>
 
                                     <span>
-                                        {toPersianDigits(
+                                        {toPersianSplit(
                                             product.originalPrice.toLocaleString(
                                                 'en-US'
                                             )
@@ -523,14 +530,14 @@ export function StoreClientProductDetailsSheet({
 
                             <div className="mt-0.5 flex items-center gap-1">
                                 <span className="text-xl font-bold text-foreground">
-                                    {toPersianDigits(
+                                    {toPersianSplit(
                                         product.price.toLocaleString(
                                             'en-US'
                                         )
                                     )}
                                 </span>
 
-                                <span className="text-xs font-medium text-muted-foreground">
+                                <span className="text-xl font-medium ">
                                     تومان
                                 </span>
                             </div>
@@ -548,12 +555,12 @@ export function StoreClientProductDetailsSheet({
 
                 <SheetFooter
                     className="
-                        shrink-0
-                        border-t
-                        border-border
-                        px-5
-                        py-3
-                    "
+        w-full
+        shrink-0
+        border-t
+        border-border
+        max-sm:mb-16
+    "
                 >
                     <Button
                         onClick={() => {
@@ -563,19 +570,19 @@ export function StoreClientProductDetailsSheet({
                                 });
                             }
                         }}
-                        disabled={
-                            !productId ||
-                            !product.stock
-                        }
+                        disabled={!productId || !product.stock}
                         className="
-                            w-full
-                            justify-center
-                            bg-indigo-500
-                            px-5
-                            py-5
-                            text-white
-                            hover:bg-indigo-600
-                        "
+            h-full
+            min-h-[56px]
+            w-full
+            rounded-none
+            justify-center
+            bg-indigo-500/100
+            px-5
+            py-5
+            text-white
+
+        "
                     >
                         <ShoppingCart/>
                         افزودن به سبد خرید

@@ -8,7 +8,7 @@ import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
-import {toPersianDigits} from '@/lib/to-persian-digits';
+import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 
 export function Card2({
     id,
@@ -233,7 +233,7 @@ export function Card2({
                                     sm:leading-normal
                                 "
                             >
-                                {toPersianDigits(label)} تومان
+                                {toPersianSplit(label)} تومان
                             </span>
                         )}
 
@@ -249,7 +249,7 @@ export function Card2({
                                 sm:leading-normal
                             "
                         >
-                            {toPersianDigits(total)} تومان
+                            {toPersianSplit(total)} تومان
                         </span>
 
                     </div>

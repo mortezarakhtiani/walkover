@@ -1,5 +1,5 @@
 
-import { Container } from '@/components/common/container';
+// import { Container } from '@/components/common/container';
 import { StoreClientContent } from '@/store/home/content';
 
 export default function StoreClientPage() {

@@ -6,7 +6,7 @@ import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
-import {toPersianDigits} from '@/lib/to-persian-digits';
+import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 
 export function Card1({
                           id,
@@ -94,13 +94,13 @@ export function Card1({
                     <span>تومان</span>
 
                     <span>
-                        {toPersianDigits('16,000,000')}
+                        {toPersianSplit('16,000,000')}
                     </span>
                 </span>
 
                             <div className="flex items-center gap-1">
                     <span className="text-base font-bold text-foreground md:text-xl">
-                        {toPersianDigits('14,000,000')}
+                        {toPersianSplit('14,000,000')}
                     </span>
 
                                 <span className="text-base font-bold text-foreground md:text-xl">

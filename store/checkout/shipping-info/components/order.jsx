@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/store/components/ui/card';
-import {toPersianDigits} from "../../../../lib/to-persian-digits";
+import {toPersian} from "../../../../lib/to-persian";
 
 export function Order() {
     const items = [
@@ -59,7 +59,7 @@ export function Order() {
         <span className="text-sm font-normal text-secondary-foreground">
           Total
         </span>
-                <span className="text-base font-semibold text-mono">{toPersianDigits('492,000')}<span
+                <span className="text-base font-semibold text-mono">{toPersian('492,000')}<span
                     className="ms-1">تومان</span></span>
             </CardFooter>
         </Card>

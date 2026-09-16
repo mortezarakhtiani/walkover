@@ -13,7 +13,7 @@ import {
 
 import {Input} from '@/store/components/ui/input';
 import {Button} from '@/store/components/ui/button';
-import {toPersianDigits} from '../../../../../lib/to-persian-digits';
+import {toPersianDigits} from '../../../../../lib/to-persian';
 
 
 const formatTwoDigits = (value) => {

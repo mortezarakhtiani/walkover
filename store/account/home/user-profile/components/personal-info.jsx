@@ -1,7 +1,9 @@
 'use client';
 
-import {Badge} from '@/store/components/ui/badge';
-import {Button} from '@/store/components/ui/button';
+import { useRef, useState } from 'react';
+
+import { Badge } from '@/store/components/ui/badge';
+import { Button } from '@/store/components/ui/button';
 
 import {
     Card,
@@ -10,20 +12,34 @@ import {
     CardTitle,
 } from '@/store/components/ui/card';
 
-import {toPersianDigits} from '../../../../../lib/to-persian-digits';
-import {useState} from "react";
-import {EditNameDialog} from './edit-name-dialog';
-import {EditLastnameDialog} from './edit-lastname-dialog';
-import {EditNationalIdDialog} from './edit-national-id-dialog';
-import {EditBirthdateDialog} from './edit-birthdate-dialog';
-import {EditGenderDialog} from './edit-gender-dialog';
-import {EditPasswordDialog} from './edit-password-dialog';
-import {EditPhoneDialog} from './edit-phone-dialog';
-import {EditEmailDialog} from './edit-email-dialog';
+import { toPersianDigits } from '../../../../../lib/to-persian';
 
-import {PhoneIcon} from '@/store/components/icons/phone-icon';
-import {EditIcon} from '@/store/components/icons/edit-icon';
-import {UserRound} from 'lucide-react';
+import { EditNameDialog } from './edit-name-dialog';
+import { EditLastnameDialog } from './edit-lastname-dialog';
+import { EditNationalIdDialog } from './edit-national-id-dialog';
+import { EditBirthdateDialog } from './edit-birthdate-dialog';
+import { EditGenderDialog } from './edit-gender-dialog';
+import { EditPasswordDialog } from './edit-password-dialog';
+import { EditPhoneDialog } from './edit-phone-dialog';
+import { EditEmailDialog } from './edit-email-dialog';
+
+import { PhoneIcon } from '@/store/components/icons/phone-icon';
+import { EditIcon } from '@/store/components/icons/edit-icon';
+
+import {
+    UserRound,
+    Camera,
+    Trash2,
+    ShieldCheck,
+    Mail,
+    Phone,
+    CalendarDays,
+    BadgeCheck,
+    VenusAndMars,
+    LockKeyhole,
+    CheckCircle2,
+    Upload,
+} from 'lucide-react';
 
 const persianMonths = [
     'فروردین',
@@ -66,291 +82,820 @@ const formatBirthDate = (date) => {
 };
 
 const PersonalInfo = () => {
+    const fileInputRef = useRef(null);
+
     const [name, setName] = useState('رضا');
     const [editNameOpen, setEditNameOpen] = useState(false);
+
     const [lastName, setLastName] = useState('حسن زاده');
     const [editLastNameOpen, setEditLastNameOpen] = useState(false);
+
     const [nationalId, setNationalId] = useState('0670738921');
     const [editNationalIdOpen, setEditNationalIdOpen] = useState(false);
+
     const [birthDate, setBirthDate] = useState('۲۸/۰۲/۱۳۷۵');
     const [editBirthDateOpen, setEditBirthDateOpen] = useState(false);
+
     const [gender, setGender] = useState('مرد');
     const [editGenderOpen, setEditGenderOpen] = useState(false);
+
     const [editPasswordOpen, setEditPasswordOpen] = useState(false);
     const [hasPassword, setHasPassword] = useState(false);
     const [password, setPassword] = useState('');
+
     const [phone, setPhone] = useState('09121234567');
     const [phoneVerified, setPhoneVerified] = useState(true);
     const [editPhoneOpen, setEditPhoneOpen] = useState(false);
+
     const [email, setEmail] = useState('reza@example.com');
     const [emailVerified, setEmailVerified] = useState(true);
     const [editEmailOpen, setEditEmailOpen] = useState(false);
 
+    const [avatar, setAvatar] = useState(null);
+
+    /* =====================================================
+       Avatar
+    ===================================================== */
+
+    const handleAvatarChange = (event) => {
+        const file = event.target.files?.[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+            alert('حجم تصویر نباید بیشتر از ۲ مگابایت باشد.');
+            return;
+        }
+
+        const imageUrl = URL.createObjectURL(file);
+
+        setAvatar(imageUrl);
+    };
+
+    const handleRemoveAvatar = () => {
+        setAvatar(null);
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+    /* =====================================================
+       Reusable Information Row
+    ===================================================== */
+
+    const InfoRow = ({
+        icon: Icon,
+        title,
+        value,
+        required = false,
+        verified = false,
+        onEdit,
+        last = false,
+    }) => {
+        return (
+            <div
+                className={`
+                    group
+                    flex
+                    items-center
+                    justify-between
+                    gap-4
+                    px-4
+                    py-4
+                    sm:px-5
+                    ${
+                        !last
+                            ? 'border-b border-border/60'
+                            : ''
+                    }
+                    transition-colors
+                    hover:bg-muted/[0.35]
+                `}
+            >
+                <div className="flex min-w-0 items-center gap-3">
+
+                    <div
+                        className="
+                            flex size-10 shrink-0
+                            items-center justify-center
+                            rounded-xl
+                            bg-muted/70
+                            text-muted-foreground
+                            transition-all
+                            group-hover:bg-primary/10
+                            group-hover:text-primary
+                        "
+                    >
+                        <Icon
+                            className="size-[18px]"
+                            strokeWidth={1.8}
+                        />
+                    </div>
+
+                    <div className="min-w-0">
+
+                        <div
+                            className="
+                                mb-1
+                                flex
+                                items-center
+                                gap-1
+                                text-xs
+                                text-muted-foreground
+                            "
+                        >
+                            <span>{title}</span>
+
+                            {required && (
+                                <span className="text-destructive">
+                                    *
+                                </span>
+                            )}
+                        </div>
+
+                        <div
+                            className="
+                                truncate
+                                text-sm
+                                font-semibold
+                                text-foreground
+                            "
+                        >
+                            {value}
+                        </div>
+
+                        {verified && (
+                            <div
+                                className="
+                                    mt-1
+                                    flex
+                                    items-center
+                                    gap-1
+                                    text-[11px]
+                                    font-medium
+                                    text-emerald-600
+                                    dark:text-emerald-400
+                                "
+                            >
+                                <CheckCircle2 className="size-3.5" />
+                                تأیید شده
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <Button
+                    type="button"
+                    variant="ghost"
+                    mode="icon"
+                    onClick={onEdit}
+                    className="
+                        size-8
+                        shrink-0
+                        rounded-lg
+                        text-muted-foreground
+                        opacity-50
+                        transition-all
+                        hover:bg-primary/10
+                        hover:text-primary
+                        group-hover:opacity-100
+                    "
+                    aria-label={`ویرایش ${title}`}
+                >
+                    <EditIcon className="size-4" />
+                </Button>
+            </div>
+        );
+    };
+
     return (
-        <Card className="min-w-full" dir="rtl">
+        <div
+            dir="rtl"
+            className="w-full space-y-5"
+        >
 
-            <CardContent className="space-y-0">
+            {/* =====================================================
+                PROFILE HEADER
+            ===================================================== */}
 
-                <CardHeader className="border-0">
-                    <CardTitle className="flex items-center gap-2 text-right text-lg">
-                        <UserRound size={22}/>
-                        مشخصات شخصی
-                    </CardTitle>
-                </CardHeader>
+            <Card
+                className="
+                    relative
+                    overflow-hidden
+                    border-border/70
+                    shadow-sm
+                "
+            >
+                {/* Background */}
 
-                {/* مشخصات شخصی */}
-                <div className="border rounded-lg">
+                <div
+                    className="
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        bg-gradient-to-l
+                        from-primary/[0.08]
+                        via-transparent
+                        to-transparent
+                    "
+                />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2">
+                <CardContent
+                    className="
+                        relative
+                        p-5
+                        sm:p-7
+                        md:p-8
+                    "
+                >
 
-                        {/* نام */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-e">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    نام<span className="text-red-500">*</span>
-                                </div>
+                    <div
+                        className="
+                            flex
+                            flex-col
+                            gap-6
+                            sm:flex-row
+                            sm:items-center
+                            sm:justify-between
+                        "
+                    >
 
-                                <div className="text-base text-foreground">
-                                {name}
-                                </div>
+                        {/* Avatar + User */}
+
+                        <div
+                            className="
+                                flex
+                                items-center
+                                gap-5
+                            "
+                        >
+
+                            {/* Avatar */}
+
+                            <div className="relative shrink-0">
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        fileInputRef.current?.click()
+                                    }
+                                    className="
+                                        group
+                                        relative
+                                        size-24
+                                        overflow-hidden
+                                        rounded-2xl
+                                        border-4
+                                        border-background
+                                        bg-muted
+                                        shadow-lg
+                                        ring-1
+                                        ring-border
+                                        transition-all
+                                        hover:ring-primary/40
+                                        sm:size-28
+                                        md:size-32
+                                    "
+                                    aria-label="تغییر تصویر پروفایل"
+                                >
+
+                                    {avatar ? (
+                                        <img
+                                            src={avatar}
+                                            alt="تصویر پروفایل"
+                                            className="
+                                                size-full
+                                                object-cover
+                                                transition-transform
+                                                duration-500
+                                                group-hover:scale-105
+                                            "
+                                        />
+                                    ) : (
+                                        <div
+                                            className="
+                                                flex
+                                                size-full
+                                                items-center
+                                                justify-center
+                                                bg-gradient-to-br
+                                                from-primary/20
+                                                via-primary/10
+                                                to-muted
+                                                text-primary
+                                            "
+                                        >
+                                            <UserRound
+                                                className="size-14"
+                                                strokeWidth={1.3}
+                                            />
+                                        </div>
+                                    )}
+
+                                    {/* Hover */}
+
+                                    <div
+                                        className="
+                                            absolute
+                                            inset-0
+                                            flex
+                                            items-center
+                                            justify-center
+                                            bg-black/50
+                                            opacity-0
+                                            transition-opacity
+                                            group-hover:opacity-100
+                                        "
+                                    >
+                                        <Camera
+                                            className="size-7 text-white"
+                                            strokeWidth={1.8}
+                                        />
+                                    </div>
+                                </button>
+
+                                {/* Camera */}
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        fileInputRef.current?.click()
+                                    }
+                                    className="
+                                        absolute
+                                        -bottom-1
+                                        -left-1
+                                        flex
+                                        size-9
+                                        items-center
+                                        justify-center
+                                        rounded-xl
+                                        border-2
+                                        border-background
+                                        bg-primary
+                                        text-primary-foreground
+                                        shadow-md
+                                        transition-transform
+                                        hover:scale-105
+                                    "
+                                    aria-label="آپلود تصویر"
+                                >
+                                    <Camera className="size-4" />
+                                </button>
+
                             </div>
 
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditNameOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
-                        </div>
+                            {/* User information */}
 
-                        {/* نام خانوادگی */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    نام خانوادگی<span className="text-red-500">*</span>
-                                </div>
+                            <div className="min-w-0">
 
-                                <div className="text-base text-foreground">
-                                    {lastName}
-                                </div>
-                            </div>
+                                <div
+                                    className="
+                                        flex
+                                        flex-wrap
+                                        items-center
+                                        gap-2
+                                    "
+                                >
+                                    <h1
+                                        className="
+                                            text-xl
+                                            font-bold
+                                            tracking-tight
+                                            text-foreground
+                                            sm:text-2xl
+                                        "
+                                    >
+                                        {name} {lastName}
+                                    </h1>
 
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditLastNameOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
-                        </div>
-
-                        {/* کد ملی */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-e">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    کدملی<span className="text-red-500">*</span>
-                                </div>
-
-                                <div className="text-base text-foreground">
-                                    {toPersianDigits(nationalId)}
-                                </div>
-                            </div>
-
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditNationalIdOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
-                        </div>
-
-                        {/* تاریخ تولد */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    تاریخ تولد
-                                </div>
-
-                                <div className="text-base text-foreground">
-                                    {formatBirthDate(birthDate)}
-                                </div>
-                            </div>
-
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditBirthDateOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
-                        </div>
-
-                        {/* جنسیت */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-b-0 md:border-e">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    جنسیت
-                                </div>
-
-                                <div className="text-base text-foreground">
-                                    {gender}
-                                </div>
-                            </div>
-
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditGenderOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
-                        </div>
-
-                        {/* رمز عبور */}
-                        <div className="flex items-center justify-between gap-4 p-4">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    رمز عبور
-                                </div>
-
-                                {hasPassword ? (
                                     <Badge
-                                        size="md"
+                                        size="sm"
                                         variant="success"
                                         appearance="light"
+                                        className="gap-1"
                                     >
-                                        <span
-                                            className="size-2 rounded-full bg-[var(--color-success-accent,var(--color-green-800))]"/>
-                                        <span
-                                            className="size-2 rounded-full bg-[var(--color-success-accent,var(--color-green-800))]"/>
-                                        <span
-                                            className="size-2 rounded-full bg-[var(--color-success-accent,var(--color-green-800))]"/>
-                                        <span
-                                            className="size-2 rounded-full bg-[var(--color-success-accent,var(--color-green-800))]"/>
+                                        <CheckCircle2 className="size-3" />
+                                        فعال
                                     </Badge>
-                                ) : (
-                                    <Badge
-                                        size="md"
-                                        variant="destructive"
-                                        appearance="light"
-                                    >
-                                        تعیین نشده
-                                    </Badge>
-                                )}
-                            </div>
+                                </div>
 
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditPasswordOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
+
+
+                                <div
+                                    className="
+                                        mt-3
+                                        flex
+                                        flex-wrap
+                                        items-center
+                                        gap-x-4
+                                        gap-y-2
+                                        text-xs
+                                        text-muted-foreground
+                                    "
+                                >
+                                    <span className="flex items-center gap-1.5">
+                                        <Phone className="size-3.5" />
+                                        {toPersianDigits(phone)}
+                                    </span>
+
+                                    <span className="hidden h-3 w-px bg-border sm:block" />
+
+                                    <span
+                                        className="flex items-center gap-1.5"
+                                        dir="ltr"
+                                    >
+                                        <Mail className="size-3.5" />
+                                        {email}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
 
+                        {/* Upload controls */}
+
+                        <div
+                            className="
+                                flex
+                                items-center
+                                gap-2
+                                sm:self-start
+                            "
+                        >
+
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept="image/jpeg,image/png,image/webp"
+                                className="hidden"
+                                onChange={handleAvatarChange}
+                            />
+
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() =>
+                                    fileInputRef.current?.click()
+                                }
+                                className="gap-2"
+                            >
+                                <Upload className="size-4" />
+                                تغییر تصویر
+                            </Button>
+
+                            {avatar && (
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleRemoveAvatar}
+                                    className="
+                                        gap-2
+                                        text-destructive
+                                        hover:bg-destructive/10
+                                        hover:text-destructive
+                                    "
+                                >
+                                    <Trash2 className="size-4" />
+                                    حذف
+                                </Button>
+                            )}
+
+                        </div>
 
                     </div>
 
-                </div>
+                </CardContent>
+            </Card>
 
-                {/* عنوان اطلاعات تماس */}
-                <CardHeader className="border-0 mt-10">
-                    <CardTitle className="flex items-center gap-2 text-right text-lg">
-                        <PhoneIcon className="size-6 text-foreground"/>
-                        اطلاعات تماس
-                    </CardTitle>
+            {/* =====================================================
+                PERSONAL INFORMATION
+            ===================================================== */}
+
+            <Card
+                className="
+                    overflow-hidden
+                    border-border/70
+                    shadow-sm
+                "
+            >
+
+                <CardHeader
+                    className="
+                        border-b
+                        border-border/60
+                        px-5
+                        py-5
+                        sm:px-6
+                    "
+                >
+
+                    <div className="flex items-center gap-3">
+
+                        <div
+                            className="
+                                flex size-10
+                                items-center justify-center
+                                rounded-xl
+                                bg-primary/10
+                                text-primary
+                            "
+                        >
+                            <UserRound
+                                className="size-5"
+                                strokeWidth={1.8}
+                            />
+                        </div>
+
+                        <div>
+
+                            <CardTitle className="text-base">
+                                اطلاعات شخصی
+                            </CardTitle>
+
+                            <p
+                                className="
+                                    mt-1
+                                    text-xs
+                                    text-muted-foreground
+                                "
+                            >
+                                اطلاعات هویتی حساب خود را مدیریت کنید
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </CardHeader>
 
-                {/* اطلاعات تماس */}
-                <div className="border rounded-lg">
+                <CardContent className="p-0">
 
                     <div className="grid grid-cols-1 md:grid-cols-2">
 
-                        {/* شماره موبایل */}
-                        <div className="flex items-center justify-between gap-4 p-4 border-b md:border-b-0 md:border-e">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    شماره موبایل<span className="text-red-500">*</span>
-                                </div>
+                        <div className="md:border-e">
+                            <InfoRow
+                                icon={UserRound}
+                                title="نام"
+                                value={name}
+                                required
+                                onEdit={() =>
+                                    setEditNameOpen(true)
+                                }
+                            />
 
-                                <div className="flex items-center gap-3">
-                                    <div className="text-base text-foreground">
-                                        {toPersianDigits(phone)}
-                                    </div>
+                            <InfoRow
+                                icon={BadgeCheck}
+                                title="کد ملی"
+                                value={toPersianDigits(nationalId)}
+                                required
+                                onEdit={() =>
+                                    setEditNationalIdOpen(true)
+                                }
+                            />
 
-                                    {phoneVerified && (
-                                        <Badge
-                                            size="md"
-                                            variant="success"
-                                            appearance="light"
-                                        >
-                                            تأیید شده
-                                        </Badge>
-                                    )}
-                                </div>
-                            </div>
-
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                onClick={() => setEditPhoneOpen(true)}
-                                className="hover:bg-white/10"
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
+                            <InfoRow
+                                icon={VenusAndMars}
+                                title="جنسیت"
+                                value={gender}
+                                onEdit={() =>
+                                    setEditGenderOpen(true)
+                                }
+                                last
+                            />
                         </div>
 
-                        {/* ایمیل */}
-                        <div className="flex items-center justify-between gap-4 p-4">
-                            <div>
-                                <div className="text-xs text-secondary-foreground/70 mb-1">
-                                    ایمیل
-                                </div>
+                        <div>
 
-                                <div className="flex items-center gap-3">
-                                    <div
-                                        className="text-base text-foreground"
-                                        dir="ltr"
-                                    >
-                                        {email}
-                                    </div>
+                            <InfoRow
+    icon={UserRound}
+    title="نام خانوادگی"
+    value={lastName}
+    required
+    onEdit={() => setEditLastNameOpen(true)}
+/>
 
-                                    {emailVerified && (
-                                        <Badge
-                                            size="md"
-                                            variant="success"
-                                            appearance="light"
-                                        >
-                                            تأیید شده
-                                        </Badge>
-                                    )}
-                                </div>
-                            </div>
+<InfoRow
+    icon={CalendarDays}
+    title="تاریخ تولد"
+    value={formatBirthDate(birthDate)}
+    onEdit={() => setEditBirthdateOpen(true)}
+/>
 
-                            <Button
-                                variant="ghost"
-                                mode="icon"
-                                className="hover:bg-white/10"
-                                onClick={() => setEditEmailOpen(true)}
-                            >
-                                <EditIcon className="size-4 text-foreground"/>
-                            </Button>
+                            <InfoRow
+                                icon={CalendarDays}
+                                title="تاریخ تولد"
+                                value={formatBirthDate(birthDate)}
+                                onEdit={() =>
+                                    setEditBirthDateOpen(true)
+                                }
+                            />
+
+                            <InfoRow
+                                icon={LockKeyhole}
+                                title="رمز عبور"
+                                value={
+                                    hasPassword
+                                        ? '••••••••'
+                                        : 'تعیین نشده'
+                                }
+                                onEdit={() =>
+                                    setEditPasswordOpen(true)
+                                }
+                                last
+                            />
+
                         </div>
 
                     </div>
 
-                </div>
+                </CardContent>
 
+            </Card>
 
-            </CardContent>
+            {/* =====================================================
+                CONTACT INFORMATION
+            ===================================================== */}
+
+            <Card
+                className="
+                    overflow-hidden
+                    border-border/70
+                    shadow-sm
+                "
+            >
+
+                <CardHeader
+                    className="
+                        border-b
+                        border-border/60
+                        px-5
+                        py-5
+                        sm:px-6
+                    "
+                >
+
+                    <div className="flex items-center gap-3">
+
+                        <div
+                            className="
+                                flex size-10
+                                items-center justify-center
+                                rounded-xl
+                                bg-primary/10
+                                text-primary
+                            "
+                        >
+                            <PhoneIcon className="size-5" />
+                        </div>
+
+                        <div>
+
+                            <CardTitle className="text-base">
+                                اطلاعات تماس
+                            </CardTitle>
+
+                            <p
+                                className="
+                                    mt-1
+                                    text-xs
+                                    text-muted-foreground
+                                "
+                            >
+                                شماره موبایل و ایمیل حساب
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </CardHeader>
+
+                <CardContent className="p-0">
+
+                    <div className="grid grid-cols-1 md:grid-cols-2">
+
+                        <div className="md:border-e">
+
+                            <InfoRow
+                                icon={Phone}
+                                title="شماره موبایل"
+                                value={toPersianDigits(phone)}
+                                required
+                                verified={phoneVerified}
+                                onEdit={() =>
+                                    setEditPhoneOpen(true)
+                                }
+                                last
+                            />
+
+                        </div>
+
+                        <div>
+
+                            <InfoRow
+                                icon={Mail}
+                                title="ایمیل"
+                                value={email}
+                                verified={emailVerified}
+                                onEdit={() =>
+                                    setEditEmailOpen(true)
+                                }
+                                last
+                            />
+
+                        </div>
+
+                    </div>
+
+                </CardContent>
+
+            </Card>
+
+            {/* =====================================================
+                SECURITY
+            ===================================================== */}
+
+            <Card
+                className="
+                mb-8
+                    overflow-hidden
+                    border-emerald-500/20
+                    bg-emerald-500/[0.025]
+                    shadow-sm
+                "
+            >
+
+                <CardContent className="p-5 sm:p-6">
+
+                    <div className="flex items-start gap-4">
+
+                        <div
+                            className="
+                                flex size-11 shrink-0
+                                items-center justify-center
+                                rounded-xl
+                                bg-emerald-500/10
+                                text-emerald-600
+                                dark:text-emerald-400
+                            "
+                        >
+                            <ShieldCheck className="size-5" />
+                        </div>
+
+                        <div className="min-w-0">
+
+                            <div className="flex flex-wrap items-center gap-2">
+
+                                <h3
+                                    className="
+                                        text-sm
+                                        font-semibold
+                                    "
+                                >
+                                    امنیت حساب
+                                </h3>
+
+                                <Badge
+                                    size="sm"
+                                    variant="success"
+                                    appearance="light"
+                                >
+                                    امن
+                                </Badge>
+
+                            </div>
+
+                            <p
+                                className="
+                                    mt-1
+                                    text-xs
+                                    leading-5
+                                    text-muted-foreground
+                                "
+                            >
+                                شماره موبایل و ایمیل شما برای افزایش
+                                امنیت حساب تأیید شده‌اند.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </CardContent>
+
+            </Card>
+
+            {/* =====================================================
+                DIALOGS
+            ===================================================== */}
 
             <EditNameDialog
                 open={editNameOpen}
@@ -394,6 +939,7 @@ const PersonalInfo = () => {
                 currentPasswordValue={password}
                 onSave={(data) => {
                     console.log('Password change:', data);
+
                     setPassword(data.newPassword);
                     setHasPassword(true);
                 }}
@@ -419,8 +965,9 @@ const PersonalInfo = () => {
                 }}
             />
 
-        </Card>
+        </div>
     );
 };
 
-export {PersonalInfo};
+export { PersonalInfo };
+

@@ -157,7 +157,7 @@ const FourBanners = () => {
                     className="
                         w-full
                         px-5
-                        pt-27
+                        pt-20
                         text-center
                         lg:pt-20
                     "

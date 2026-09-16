@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import {toPersianDigits} from '../../../../../lib/to-persian-digits';
+import {toPersianDigits} from '../../../../../lib/to-persian';
 import {
     Dialog,
     DialogContent,

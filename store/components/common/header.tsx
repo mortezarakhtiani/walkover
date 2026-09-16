@@ -1,3 +1,4 @@
+
 'use client';
 
 import {useEffect, useState} from 'react';
@@ -15,12 +16,15 @@ import {
 
 import {useTheme} from 'next-themes';
 
+import Link from 'next/link';
+
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 
 import Logo from '@/components/logo';
 import {cn} from '@/lib/utils';
 import {UserDropdownMenu} from '@/store/components/ui/user-dropdown-menu';
+import {StoreClientWishlistSheet} from '@/store/components/sheets/wishlist-sheet';
 
 const navItems = [
     {label: 'تیشرت', href: '#home'},
@@ -36,6 +40,7 @@ export default function Header() {
     const [mounted, setMounted] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const [wishlistOpen, setWishlistOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -89,12 +94,12 @@ export default function Header() {
                         flex w-full
                         items-start justify-between
                         gap-3
-                        px-4 pt-4 pb-3
+                        px-4 py-3
                         sm:px-6
                     "
                 >
                     {/* =========================
-                        Logo + Search + Navigation
+                        Logo + Search
                     ========================== */}
                     <div
                         className="
@@ -105,9 +110,8 @@ export default function Header() {
                         "
                     >
                         {/* Logo */}
-                        <button
-                            type="button"
-                            onClick={() => handleNavigation('#home')}
+                        <Link
+                            href="/landing-v2"
                             className="
                                 mt-1
                                 shrink-0
@@ -116,102 +120,37 @@ export default function Header() {
                             aria-label="خانه"
                         >
                             <Logo/>
-                        </button>
+                        </Link>
 
-                        {/* Search + Navigation */}
-                        <div className="min-w-0 flex-1">
-                            {/* Search */}
-                            <div className="relative w-full">
-                                <Search
-                                    className="
-                                        absolute
-                                        right-3
-                                        top-1/2
-                                        z-10
-                                        size-4
-                                        -translate-y-1/2
-                                        text-muted-foreground
-                                    "
-                                />
-
-                                <Input
-                                    id="search-input"
-                                    type="text"
-                                    className="
-                                        h-11
-                                        w-full
-                                        rounded-xl
-                                        bg-white/5
-                                        pr-9
-                                        text-right
-                                    "
-                                    placeholder="جستجو در همه محصولات"
-                                />
-                            </div>
-
-                            {/* Navigation */}
-                            <nav
+                        {/* Search */}
+                        <div className="relative w-full max-w-[min(100%,28rem)]">
+                            <Search
                                 className="
-        mt-3
-        hidden
-        w-full
-        items-center
-        gap-2
-        overflow-x-auto
-        pb-1
-        md:flex
-        md:mt-4
-        md:gap-10
-        md:overflow-visible
-        md:pb-0
-    "
-                                style={{
-                                    scrollbarWidth: 'none',
-                                }}
-                            >
-                                {navItems.map((item) => {
-                                    const sectionName =
-                                        item.href.replace('#', '');
+                                    absolute
+                                    right-3
+                                    top-1/2
+                                    z-10
+                                    size-4
+                                    -translate-y-1/2
+                                    text-muted-foreground
+                                "
+                            />
 
-                                    const isActive =
-                                        activeSection === sectionName;
-
-                                    return (
-                                        <motion.button
-                                            key={item.label}
-                                            type="button"
-                                            whileTap={{scale: 0.95}}
-                                            onClick={() =>
-                                                handleNavigation(item.href)
-                                            }
-                                            className={cn(
-                                                `
-                                                    shrink-0
-                                                    whitespace-nowrap
-                                                    text-sm
-                                                    font-medium
-                                                    transition-colors
-                                                `,
-                                                `
-                                                    rounded-lg
-                                                    px-3
-                                                    py-2
-                                                    hover:bg-muted
-                                                    md:rounded-none
-                                                    md:px-0
-                                                    md:py-1
-                                                    md:hover:bg-transparent
-                                                `,
-                                                isActive
-                                                    ? 'text-indigo-600 dark:text-indigo-400'
-                                                    : 'text-muted-foreground hover:text-foreground'
-                                            )}
-                                        >
-                                            {item.label}
-                                        </motion.button>
-                                    );
-                                })}
-                            </nav>
+                            <Input
+                                id="search-input"
+                                type="text"
+                                className="
+                                    h-9
+                                    w-full
+                                    rounded-xl
+                                    bg-white/5
+                                    pr-9
+                                    pl-4
+                                    text-right
+                                    text-sm
+                                "
+                                placeholder="جستجو در همه محصولات"
+                            />
                         </div>
                     </div>
 
@@ -228,8 +167,9 @@ export default function Header() {
                             sm:gap-2
                         "
                     >
-                        {/* Social / extra buttons */}
                         <div className="hidden items-center gap-1 sm:flex">
+
+                            {/* Search */}
                             <Button
                                 type="button"
                                 variant="ghost"
@@ -244,25 +184,46 @@ export default function Header() {
                             >
                                 <Search className="size-4"/>
                             </Button>
+
+                            {/* User */}
+                            <UserDropdownMenu
+                                trigger={
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        className="size-9 rounded-full"
+                                        aria-label="حساب کاربری"
+                                    >
+                                        <User className="size-5"/>
+                                    </Button>
+                                }
+                            />
                         </div>
 
-                        {/* User */}
-                        <div className="hidden sm:block">
-                            <UserDropdownMenu/>
-                        </div>
-
-                        {/* Cart */}
-                        <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="size-9 rounded-full"
-                            aria-label="سبد خرید"
+                        {/* =========================
+                            Cart → My Orders
+                        ========================== */}
+                        <Link
+                            href="/store/my-orders"
+                            aria-label="سفارشات من"
                         >
-                            <ShoppingBag className="size-5"/>
-                        </Button>
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon"
+                                className="size-9 rounded-full"
+                                asChild
+                            >
+                                <span>
+                                    <ShoppingBag className="size-5"/>
+                                </span>
+                            </Button>
+                        </Link>
 
-                        {/* Theme */}
+                        {/* =========================
+                            Theme
+                        ========================== */}
                         {mounted && (
                             <Button
                                 type="button"
@@ -294,6 +255,11 @@ export default function Header() {
                 </div>
             </motion.header>
 
+            <StoreClientWishlistSheet
+    open={wishlistOpen}
+    onOpenChange={setWishlistOpen}
+/>
+
             {/* =========================
                 Mobile Bottom Navigation
             ========================== */}
@@ -318,10 +284,12 @@ export default function Header() {
                     md:hidden
                 "
             >
-                {/* خانه */}
-                <button
-                    type="button"
-                    onClick={() => handleNavigation('#home')}
+
+                {/* =========================
+                    خانه → /landing-v2
+                ========================== */}
+                <Link
+                    href="/landing-v2"
                     className={cn(
                         `
                             flex
@@ -343,9 +311,11 @@ export default function Header() {
                     <span className="text-[11px] font-medium">
                         خانه
                     </span>
-                </button>
+                </Link>
 
-                {/* دسته‌بندی */}
+                {/* =========================
+                    دسته‌بندی
+                ========================== */}
                 <button
                     type="button"
                     onClick={() => handleNavigation('#products')}
@@ -372,31 +342,36 @@ export default function Header() {
                     </span>
                 </button>
 
-                {/* علاقه‌مندی */}
+                {/* =========================
+                    علاقه‌مندی → Wishlist
+                ========================== */}
                 <button
                     type="button"
+                    onClick={() => setWishlistOpen(true)}
                     className="
-                        flex
-                        flex-1
-                        flex-col
-                        items-center
-                        justify-center
-                        gap-1
-                        text-muted-foreground
-                        transition-all
-                        active:scale-95
-                    "
+        flex
+        flex-1
+        flex-col
+        items-center
+        justify-center
+        gap-1
+        text-muted-foreground
+        transition-all
+        active:scale-95
+    "
                 >
                     <Heart className="size-5"/>
 
                     <span className="text-[11px] font-medium">
-                        علاقه‌مندی
-                    </span>
+        علاقه‌مندی
+    </span>
                 </button>
 
-                {/* حساب */}
-                <button
-                    type="button"
+                {/* =========================
+                    حساب → User Profile
+                ========================== */}
+                <Link
+                    href="/account/home/user-profile"
                     className="
                         flex
                         flex-1
@@ -414,8 +389,9 @@ export default function Header() {
                     <span className="text-[11px] font-medium">
                         حساب
                     </span>
-                </button>
+                </Link>
             </nav>
         </>
     );
 }
+

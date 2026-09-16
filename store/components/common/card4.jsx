@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -54,101 +55,199 @@ export function Card4({limit}) {
         },
     ];
 
-    const renderItem = (item, index) => (
-        <Card
-            key={index}
-            className="h-[150px] min-w-0"
-        >
-            <CardContent className="h-full flex items-center gap-4 p-3">
+    const renderItem = (item, index) => {
+        const mobileTitle =
+            item.title.length > 55
+                ? `${item.title.slice(0, 55)}...`
+                : item.title;
 
-                {/* تصویر ثابت */}
-                <Card className="shrink-0 flex items-center justify-center bg-accent/50 h-[90px] w-[110px] shadow-none">
-                    <img
-                        src={toAbsoluteUrl(
-                            `/media/store/client/600x600/${item.logo}`
-                        )}
-                        className="h-full w-full object-contain"
-                        alt={item.title}
-                    />
-                </Card>
+        return (
+            <Card
+                key={index}
+                className="
+                    min-w-0
+                    overflow-hidden
+                    h-auto
+                    min-h-[145px]
+                    sm:h-[150px]
+                "
+            >
+                <CardContent
+                    className="
+                        flex
+                        min-w-0
+                        h-full
+                        items-center
+                        gap-3
+                        p-3
+                        sm:gap-4
+                    "
+                >
 
-                {/* اطلاعات محصول */}
-                <div className="min-w-0 flex-1 h-full flex flex-col justify-center">
-
-                    <Link
-                        href="#"
-                        className="block hover:text-primary text-sm font-medium text-mono leading-5.5 line-clamp-3"
+                    {/* تصویر محصول */}
+                    <Card
+                        className="
+                            flex
+                            h-[78px]
+                            w-[82px]
+                            shrink-0
+                            items-center
+                            justify-center
+                            bg-accent/50
+                            shadow-none
+                            sm:h-[90px]
+                            sm:w-[110px]
+                        "
                     >
-                        {item.title}
-                    </Link>
+                        <img
+                            src={toAbsoluteUrl(
+                                `/media/store/client/600x600/${item.logo}`
+                            )}
+                            className="h-full w-full object-contain"
+                            alt={item.title}
+                        />
+                    </Card>
 
-                    <div className="flex flex-col gap-1.5 mt-2">
+                    {/* اطلاعات محصول */}
+                    <div
+                        className="
+                            flex
+                            min-w-0
+                            flex-1
+                            flex-col
+                            justify-center
+                            overflow-hidden
+                        "
+                    >
 
-                        {/* رنگ */}
-                        <span className="flex items-center gap-1.5 text-xs text-secondary-foreground">
-    رنگ:
+                        {/* عنوان */}
+                        <Link
+                            href="#"
+                            title={item.title}
+                            className="
+                                block
+                                min-w-0
+                                text-sm
+                                font-medium
+                                leading-6
+                                text-mono
+                                hover:text-primary
+                                sm:line-clamp-3
+                                line-clamp-2
+                            "
+                        >
+                            {/* موبایل */}
+                            <span className="sm:hidden">
+                                {mobileTitle}
+                            </span>
 
-    <span className="flex items-center gap-1.5 font-medium text-foreground">
-      <span
-          className="h-3.5 w-3.5 rounded-full border border-border shadow-sm"
-          style={{backgroundColor: item.colorCode}}
-      />
+                            {/* دسکتاپ */}
+                            <span className="hidden sm:inline">
+                                {item.title}
+                            </span>
+                        </Link>
 
-        {item.color}
-    </span>
-  </span>
+                        {/* مشخصات */}
+                        <div
+                            className="
+                                mt-2
+                                flex
+                                min-w-0
+                                flex-wrap
+                                items-center
+                                gap-x-4
+                                gap-y-1.5
+                                text-xs
+                                text-secondary-foreground
+                            "
+                        >
 
-                        {/* کد کالا */}
-                        <span className="text-xs text-secondary-foreground">
-    کد کالا:
-    <span className="text-xs font-medium text-foreground ms-1">
-      {item.sku}
-    </span>
-  </span>
+                            {/* رنگ */}
+                            <span className="flex items-center gap-1.5 whitespace-nowrap">
+                                <span>رنگ:</span>
 
-                        {/* تخفیف */}
-                        {item.badge && (
-                            <div className="w-fit shrink-0">
-                                <Badge
-                                    size="sm"
-                                    variant="destructive"
-                                    className="text-[10px] w-fit"
-                                >
-                                    تخفیف
-                                </Badge>
-                            </div>
-                        )}
+                                <span className="flex items-center gap-1.5 font-medium text-foreground">
+                                    <span
+                                        className="
+                                            h-3.5
+                                            w-3.5
+                                            shrink-0
+                                            rounded-full
+                                            border
+                                            border-border
+                                            shadow-sm
+                                        "
+                                        style={{
+                                            backgroundColor: item.colorCode,
+                                        }}
+                                    />
 
+                                    {item.color}
+                                </span>
+                            </span>
+
+                            {/* کد کالا */}
+                            <span className="whitespace-nowrap">
+                                کد کالا:
+                                <span className="ms-1 font-medium text-foreground">
+                                    {item.sku}
+                                </span>
+                            </span>
+
+                            {/* تخفیف */}
+                            {item.badge && (
+                                <div className="w-fit shrink-0">
+                                    <Badge
+                                        size="sm"
+                                        variant="destructive"
+                                        className="w-fit text-[10px]"
+                                    >
+                                        تخفیف
+                                    </Badge>
+                                </div>
+                            )}
+
+                        </div>
                     </div>
 
-                </div>
+                    {/* تعداد و قیمت */}
+                    <div
+                        className="
+                            flex
+                            h-full
+                            w-[105px]
+                            shrink-0
+                            flex-col
+                            items-end
+                            justify-center
+                            gap-2
+                            sm:w-[145px]
+                        "
+                    >
 
-                {/* تعداد و قیمت */}
-                <div className="shrink-0 w-[145px] h-full flex flex-col items-end justify-center gap-2">
+                        <span className="whitespace-nowrap text-xs text-muted-foreground">
+                            تعداد: {toPersianDigits(item.quantity || 1)} عدد
+                        </span>
 
-          <span className="text-xs text-muted-foreground">
-  تعداد: {toPersianDigits(item.quantity || 1)} عدد
-</span>
+                        <div className="flex flex-col items-end gap-0.5">
 
-                    <div className="flex flex-col items-end gap-0.5">
+                            {item.total && (
+                                <span className="whitespace-nowrap text-xs text-muted-foreground line-through">
+                                    {item.total}
+                                </span>
+                            )}
 
-                        {item.total && (
-                            <span className="text-xs text-muted-foreground line-through">
-                {item.total}
-              </span>
-                        )}
+                            <span className="whitespace-nowrap text-sm font-semibold text-mono">
+                                {item.label}
+                            </span>
 
-                        <span className="text-sm font-semibold text-mono whitespace-nowrap">
-              {item.label}
-            </span>
-
+                        </div>
                     </div>
 
-                </div>
-
-            </CardContent>
-        </Card>
-    );
+                </CardContent>
+            </Card>
+        );
+    };
 
     return (
         <div className="grid grid-cols-1 gap-4">
@@ -158,3 +257,4 @@ export function Card4({limit}) {
         </div>
     );
 }
+

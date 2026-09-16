@@ -14,7 +14,7 @@ import {
 import {ToggleGroup, ToggleGroupItem} from '@/store/components/ui/toggle-group';
 import {Card2} from '@/store/components/common/card2';
 import {Card3} from '@/store/components/common/card3';
-import {toPersianDigits} from '../../../lib/to-persian-digits';
+import {toPersianDigits} from '../../../lib/to-persian';
 import {products} from '@/store/product/data/products';
 
 

@@ -1,53 +1,31 @@
 'use client';
 
 import Header from '@/store/components/common/header';
-import PopularCategories from '@/components/landing/popular-categories';
-import HowItWorks from '@/components/landing/how-it-works';
-import FourBanners from '@/components/landing/four-banners';
-
-import {SpecialOffers} from '@/store/home/components/special-offers';
-import {ProductSection} from '@/store/home/components/product-section';
+import Hero from '@/components/hero2';
+// import PopularCategories from '@/components/popular-categories';
+import HowItWorks from '@/components/how-it-works2';
+import Features from '@/components/features2';
+import Testimonials from '@/components/testimonails2';
+import FAQ from '@/components/faq';
+import CallToAction from '@/components/call-to-action';
+import Contact from '@/components/contact2';
+import Footer from '@/components/footer2';
+import {ProductSection, SpecialOffers} from "@/store/home/components";
 import {getProducts} from '@/store/product/services/product-service';
-// import SmallImages from "@/components/landing/small-images";
-// import TwoImages from "@/components/landing/two-images";
-// import Footer from "@/components/landing/footer";
-// import Contact from "@/components/landing/contact";
-// import HowItWorks from "@/components/how-it-works.tsx"
-import BrandCategory from "@/components/landing/brand-promotion"
-
+import FourBanners from "@/components/landing/four-banners";
 
 export default function LandingV2Page() {
     const products = getProducts();
-
     return (
         <div className="min-h-screen">
+            {/*<Header/>*/}
+            <Hero />
 
-            <Header/>
+            <HowItWorks/>
 
-            <div className="pt-[80px] md:pt-[120px] space-y-10">
+            <Features/>
 
-
-                <HowItWorks/>
-
-                <PopularCategories/>
-
-                <SpecialOffers
-                    showSeeAll={true}
-                    moreButton="نمایش بیشتر"
-                    moreButtonHref="/store/search-results-grid"
-                    showAddButton={true}
-                />
-
-                <ProductSection
-                    title="پرفروش‌ترین‌ها"
-                    items={products.slice(0, 4)}
-                    showSeeAll={true}
-                    moreButton="نمایش بیشتر"
-                    moreButtonHref="/store/search-results-grid"
-                    showAddButton={true}
-                />
-
-                <FourBanners/>
+            <FourBanners/>
 
 
                 <ProductSection
@@ -61,20 +39,12 @@ export default function LandingV2Page() {
                     showAddButton={true}
                     showHeader={false}
                 />
-
-                {/*<BrandCategory/>*/}
-
-
-                {/*<SmallImages/>*/}
-
-                {/*<TwoImages/>*/}
-
-
-                {/*<Contact/>*/}
-
-            </div>
-
+            <Testimonials/>
+            {/*<StoreProducts />*/}
+            {/*<FAQ />*/}
+            {/*<CallToAction />*/}
+            <Contact />
+            <Footer />
         </div>
     );
 }
-

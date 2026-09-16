@@ -12,7 +12,6 @@ import {
     ShoppingCart,
     Star,
     Trash2,
-    Truck,
 } from 'lucide-react';
 
 import {toAbsoluteUrl} from '@/lib/helpers';
@@ -21,7 +20,7 @@ import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
 import {Card, CardContent} from '@/store/components/ui/card';
 import {useStoreClient} from '@/store/components/context';
-import {toPersianDigits} from '@/lib/to-persian-digits';
+import {toPersianDigits} from '@/lib/to-persian';
 
 const reviews = [
     {
