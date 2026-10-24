@@ -1,19 +1,37 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
-    Clock3,
-    ArrowRight,
-    ArrowLeft,
     ChevronRight,
 
 } from 'lucide-react';
 
 import {Button} from '@/store/components/ui/button';
+import FlipClock  from '@/components/ui/flip-clock'
 import {Card1} from '@/store/home/special-offers/card1';
 import {Card2} from '@/store/home/special-offers/card2';
+import {ProductRevealCard} from '@/store/home/special-offers/product-card-special';
 import {products} from '@/store/product/data/products';
+
+const Digit = ({ value }) => {
+    return (
+        <div className="relative w-10 h-14 overflow-hidden rounded-md bg-zinc-900 text-white font-mono text-3xl font-bold flex items-center justify-center">
+            <AnimatePresence mode="popLayout">
+                <motion.span
+                    key={value}
+                    initial={{ y: -40, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 40, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                >
+                    {value}
+                </motion.span>
+            </AnimatePresence>
+        </div>
+    );
+};
 
 export function SpecialOffers({
                                   showAddButton = true,
@@ -78,61 +96,6 @@ export function SpecialOffers({
                 shadow-sm
             "
         >
-            {/* Left Arrow */}
-            <button
-                type="button"
-                className="
-    absolute
-    left-3
-    top-1/2
-    z-20
-    hidden
-    size-9
-    -translate-y-1/2
-    items-center
-    justify-center
-    rounded-full
-    bg-background/80
-    text-primary
-    shadow-sm
-    backdrop-blur-sm
-    transition-all
-    hover:bg-primary
-    hover:text-primary-foreground
-    md:flex
-"
-                aria-label="قبلی"
-            >
-                <ArrowLeft className="size-4"/>
-            </button>
-
-            {/* Right Arrow */}
-            <button
-                type="button"
-                className="
-    absolute
-    right-3
-    top-1/2
-    z-20
-    hidden
-    size-9
-    -translate-y-1/2
-    items-center
-    justify-center
-    rounded-full
-    bg-background/80
-    text-primary
-    shadow-sm
-    backdrop-blur-sm
-    transition-all
-    hover:bg-primary
-    hover:text-primary-foreground
-    md:flex
-"
-                aria-label="بعدی"
-            >
-                <ArrowRight className="size-4"/>
-            </button>
 
             {/* Decorative glow */}
             <div
@@ -143,7 +106,6 @@ export function SpecialOffers({
                     -top-16
                     size-40
                     rounded-full
-                    bg-primary/10
                     blur-3xl
                 "
             />
@@ -156,7 +118,6 @@ export function SpecialOffers({
                     bottom-0
                     size-32
                     rounded-full
-                    bg-primary/5
                     blur-3xl
                 "
             />
@@ -167,7 +128,6 @@ export function SpecialOffers({
         relative
         mb-3
         rounded-xl
-        bg-white/8
         p-3
         md:p-5
     "
@@ -279,90 +239,17 @@ export function SpecialOffers({
                         <div
                             dir="ltr"
                             className="
-                    flex
-                    shrink-0
-                    items-center
-                    gap-1
-                    rounded-xl
-                    px-1
-                    py-1
-                    text-primary-600
-                    dark:bg-primary-400/10
-                    dark:text-primary-400
-                    md:gap-2
-                    md:px-3
-                    md:py-2
-                "
+        flex shrink-0 items-center gap-1 rounded-xl px-1 py-1
+        text-primary-600 dark:bg-primary-400/10 dark:text-primary-400
+        md:gap-2 md:px-3 md:py-2
+    "
                         >
-                            <Clock3 className="size-3.5 md:size-4"/>
+                            <FlipClock timeLeft={timeLeft} />
 
-                            <div
-                                className="
-                        flex
-                        items-center
-                        gap-0.5
-                    "
-                                dir="ltr"
-                            >
-                    <span
-                        className="
-                            min-w-[18px]
-                            text-center
-                            text-[12px]
-                            font-semibold
-                            md:min-w-[24px]
-                            md:text-sm
-                        "
-                    >
-                        {toPersianDigits(
-                            String(timeLeft.hours).padStart(2, '0')
-                        )}
-                    </span>
 
-                                <span className="text-[12px] md:text-sm">
-                        :
-                    </span>
-
-                                <span
-                                    className="
-                            min-w-[18px]
-                            text-center
-                            text-[12px]
-                            font-semibold
-                            md:min-w-[24px]
-                            md:text-sm
-                        "
-                                >
-                        {toPersianDigits(
-                            String(timeLeft.minutes).padStart(2, '0')
-                        )}
-                    </span>
-
-                                <span className="text-[12px] md:text-sm">
-                        :
-                    </span>
-
-                                <span
-                                    className="
-                            min-w-[18px]
-                            text-center
-                            text-[12px]
-                            font-semibold
-                            md:min-w-[24px]
-                            md:text-sm
-                        "
-                                >
-                        {toPersianDigits(
-                            String(timeLeft.seconds).padStart(2, '0')
-                        )}
-                    </span>
-                            </div>
-
-                            <span className="hidden sm:block h-5 w-px bg-gray-300"/>
-
-                            <span className="hidden text-[11px] font-medium sm:inline">
-                    زمان باقی مانده
-                </span>
+                            <span className="hidden text-[15px] font-small sm:inline">
+        زمان باقی مانده
+    </span>
                         </div>
 
                         {/* نمایش بیشتر - دسکتاپ */}
@@ -377,6 +264,7 @@ export function SpecialOffers({
                         px-4
                         py-2
                         text-xs
+                        text-indigo-500
 
                         md:flex
                     "
@@ -422,18 +310,29 @@ export function SpecialOffers({
             sm:gap-5
         "
                     >
-                        <Card2
-                            productId={product103.id}
-                            star={product103.rating}
-                            logo={product103.logo}
-                            title={product103.title}
-                            total={product103.price}
-                            originalPrice={product103.originalPrice}
-                            discount={product103.discount}
-                            showAddButton={showAddButton}
-                        />
+                        {/*<Card2*/}
+                        {/*    productId={product103.id}*/}
+                        {/*    star={product103.rating}*/}
+                        {/*    logo={product103.logo}*/}
+                        {/*    title={product103.title}*/}
+                        {/*    total={product103.price}*/}
+                        {/*    originalPrice={product103.originalPrice}*/}
+                        {/*    discount={product103.discount}*/}
+                        {/*    showAddButton={showAddButton}*/}
+                        {/*/>*/}
 
-                        <Card2
+                        {/*<Card2*/}
+                        {/*    productId={product104.id}*/}
+                        {/*    star={product104.rating}*/}
+                        {/*    logo={product104.logo}*/}
+                        {/*    title={product104.title}*/}
+                        {/*    total={product104.price}*/}
+                        {/*    originalPrice={product104.originalPrice}*/}
+                        {/*    discount={product104.discount}*/}
+                        {/*    showAddButton={showAddButton}*/}
+                        {/*/>*/}
+
+                        <ProductRevealCard
                             productId={product104.id}
                             star={product104.rating}
                             logo={product104.logo}
@@ -441,6 +340,17 @@ export function SpecialOffers({
                             total={product104.price}
                             originalPrice={product104.originalPrice}
                             discount={product104.discount}
+                            showAddButton={showAddButton}
+                        />
+
+                        <ProductRevealCard
+                            productId={product103.id}
+                            star={product103.rating}
+                            logo={product103.logo}
+                            title={product103.title}
+                            total={product103.price}
+                            originalPrice={product103.originalPrice}
+                            discount={product103.discount}
                             showAddButton={showAddButton}
                         />
                     </div>

@@ -7,8 +7,10 @@ import FourBanners from '@/components/landing/four-banners';
 import {SpecialOffers} from '@/store/home/components/special-offers';
 import {ProductSection} from '@/store/home/components/product-section';
 import {getProducts} from '@/store/product/services/product-service';
-
-
+import {Card3} from '@/store/components/common/card3';
+import StoreFooter from '@/components/store-footer';
+import Ecommerce32 from '@/store/components/common/product-card-ecommerce';
+import AuthButton from "@/store/components/ui/auth-button";
 
 export default function LandingV2Page() {
     const products = getProducts();
@@ -18,7 +20,7 @@ export default function LandingV2Page() {
 
             <Header/>
 
-            <div className="pt-[80px] md:pt-[120px] space-y-10">
+            <div className="pt-[80px]  space-y-10">
 
 
                 <HowItWorks/>
@@ -56,6 +58,12 @@ export default function LandingV2Page() {
                     showHeader={false}
                 />
 
+{/*                <Ecommerce32*/}
+{/*  badge={{ label: "کالکشن برندها", variant: "secondary" }}*/}
+{/*  heading="برندهای محبوب"*/}
+{/*  description="از میان برندهای مورد علاقه‌ات انتخاب کن."*/}
+{/*/>*/}
+
                 {/*<BrandCategory/>*/}
 
 
@@ -65,6 +73,7 @@ export default function LandingV2Page() {
 
 
                 {/*<Contact/>*/}
+                <StoreFooter/>
 
             </div>
 

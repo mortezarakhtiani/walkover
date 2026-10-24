@@ -5,33 +5,33 @@ import Image from 'next/image';
 
 const categories = [
     {
-        name: 'تیشرت',
-        image: '/images/man.png',
+        name: 'لباس',
+        image: '/images/clothe.png',
         href: '/store/search-results-grid',
     },
     {
-        name: 'زنانه',
-        image: '/images/woman.png',
+        name: 'کلاه',
+        image: '/images/hat (1).png',
         href: '/store/search-results-grid',
     },
     {
-        name: 'کفش',
-        image: '/images/shoose.png',
+        name: 'ماگ',
+        image: '/images/mug (8).png',
         href: '/store/search-results-grid',
     },
     {
         name: 'ساعت',
-        image: '/images/watch.png',
+        image: '/images/watch (1).png',
         href: '/store/search-results-grid',
     },
     {
         name: 'کیف',
-        image: '/images/kif.png',
+        image: '/images/bag (3).png',
         href: '/store/search-results-grid',
     },
     {
-        name: 'لوازم آرایشی',
-        image: '/images/rozh.png',
+        name: 'شلوار',
+        image: '/images/pans (1).png',
         href: '/store/search-results-grid',
     },
 ];
@@ -40,7 +40,6 @@ const PopularCategories = () => {
     return (
         <section
             id="categories"
-            className="border-b border-border/50 bg-background py-0"
         >
             <div className="container mx-auto px-3 md:px-6 py-0">
 
@@ -78,9 +77,25 @@ const PopularCategories = () => {
                                 whileTap={{
                                     scale: 0.98,
                                 }}
-                                className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-border bg-transparent p-2 md:rounded-2xl md:p-6 transition-colors hover:dark:border-violet-950"
-                            >
-                                <div className="relative mb-2 size-20 overflow-hidden rounded-lg bg-accent md:mb-4 md:size-32 md:rounded-xl">
+                                className="
+                                border
+                                border-border
+    group
+    flex
+    cursor-pointer
+    flex-col
+    items-center
+    justify-center
+    rounded-md
+    bg-transparent
+    p-2
+    transition-colors
+    duration-200
+    md:rounded-md
+
+">
+                                <div
+                                    className="relative mb-2 size-20 overflow-hidden rounded-lg md:mb-4 md:size-32 md:rounded-xl">
                                     <Image
                                         src={category.image}
                                         alt={category.name}

@@ -118,7 +118,7 @@ export function Card1({
                                     event.stopPropagation();
                                     showCartSheet();
                                 }}
-                                className="shrink-0 p-3 md:p-4"
+                                className="shrink-0 p-3 md:p-6 text-base !bg-foreground"
                             >
                                 <ShoppingCart/>
                                 افزودن به سبد خرید

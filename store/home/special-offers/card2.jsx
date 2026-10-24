@@ -37,6 +37,7 @@ export function Card2({
     return (
         <Card
             className={`
+                relative
                 h-full
                 overflow-hidden
                 rounded-2xl
@@ -48,18 +49,46 @@ export function Card2({
                 ${borderColor || ''}
             `}
         >
+            {/* نشان تخفیف در بالای سمت راست کارت */}
+            {discount != null && Number(discount) > 0 && (
+                <Badge
+                    size="sm"
+                    variant="destructive"
+                    className="
+            absolute
+            right-2
+            top-2
+            z-10
+            border-0
+            bg-red-600
+            px-1.5
+            py-0.5
+            text-white
+            !text-[13px]
+            md:px-2
+            md:py-1
+            md:text-xs
+        "
+                >
+                    %{toPersianDigits(String(discount))}
+                    <span className="!text-[10px]">تخفیف</span>
+                </Badge>
+            )}
+
             <CardContent
                 className="
                     flex
+                    h-full
                     flex-col
                     items-center
-                    justify-center
+                    justify-start
                     p-0
+                    pb-2
 
-                    md:px-5
                     md:pb-5
                 "
             >
+
 
                 {/* بخش قابل کلیک محصول */}
                 <div
@@ -74,223 +103,147 @@ export function Card2({
                         }
                     }}
                 >
-
                     {/* تصویر */}
-                    <img
-                        src={logo}
+                    <div
                         className="
-                            mt-0
-                            mb-2
-                            h-auto
-                            w-full
-                            aspect-square
-                            rounded-none
-                            object-cover
+    relative
+    flex
+    w-full
+    aspect-square
+    items-center
+    justify-center
+    overflow-hidden
+    mb-2
+    mt-0
+    shadow-none
+    sm:h-[180px]
+    sm:aspect-auto
+    sm:mb-5
+    sm:mt-5
 
-                            md:mt-4
-                            md:mb-3
-                            md:size-36
-                            md:h-auto
-                            md:w-auto
-                            md:aspect-auto
-                            md:rounded-xl
-                            md:object-contain
-
-                            lg:mt-5
-                            lg:mb-8
-                            lg:size-40
-
-                            xl:mb-12
-                            xl:size-[200px]
-                        "
-                        alt={title}
-                    />
-
-                    {/* امتیاز */}
-<div
-    className="
-        mb-2
-        flex
-        w-full
-        justify-end
-        px-2
-
-        md:px-0
-    "
-    dir="ltr"
->
-    <Badge
-        size="sm"
-        variant="secondary"
-        shape="circle"
-        className="
-            rounded-full
-            gap-0.5
-            text-yellow-500
-            text-[10px]
-
-            md:gap-1
-            md:text-xs
-        "
-    >
-        <Star
-            className="
-                size-3
-                text-yellow-500
-                -mt-0.5
-
-                md:size-4
-            "
-            style={{fill: 'currentColor'}}
-        />
-
-        <span>
-            {toPersianDigits(star)}
-        </span>
-    </Badge>
-</div>
-
-                    {/* عنوان */}
-                    <span
-                        className="
-        mb-2
-        line-clamp-2
-        w-full
-        px-2
-        text-[11px]
-        font-medium
-        leading-4
-        text-mono
-        text-right
-
-        md:mb-4
-        md:w-auto
-        md:px-0
-        md:text-base
-        md:leading-normal
-    "
+  "
                     >
+                        <img
+                            src={logo}
+                            className="
+                            m-50
+      h-[300px]
+w-[300px]
+      shrink-0
+      rounded-none
+      object-contain
+      sm:h-full
+      sm:w-auto
+      sm:max-w-full
+      sm:rounded-2xl
+    "
+                            alt={title}
+                        />
+                    </div>
+
+                    <div className="md:px-5">
+
+                        {/* عنوان */}
+                        <span
+                            className="
+                            mb-2
+                            line-clamp-2
+                            w-full
+                            px-2
+                            text-[11px]
+                            font-medium
+                            leading-4
+                            text-mono
+                            text-right
+                            md:mb-4
+                            md:w-auto
+                            md:px-0
+                            md:text-base
+                            md:leading-normal
+                        "
+                        >
                         {title}
                     </span>
 
-                    {/* قیمت و تخفیف */}
-                    <div
-                        className="
-                            mb-2
-                            flex
-                            w-full
-                            items-end
-                            justify-between
-                            gap-1
-                            px-2
-
-                            md:mb-4
-                            md:gap-3
-                            md:px-0
-                        "
-                        dir="rtl"
-                    >
-
-                        {/* تخفیف */}
-                        {discount !== undefined && discount !== null && (
-                            <Badge
-                                size="sm"
-                                variant="destructive"
-                                className="
-    px-1.5
-    py-0.5
-    text-[10px]
-
-    md:px-2
-    md:py-1
-    md:text-xs
-"
-                            >
-                                {toPersianDigits(String(discount))}٪
-                            </Badge>
-                        )}
-
-                        {/* قیمت‌ها */}
+                        {/* قیمت‌ها و امتیاز */}
                         <div
-                            className="
-                                flex
-                                flex-col
-                                items-end
-                                gap-0.5
-
-                                md:gap-1
-                            "
+                            className="mb-2 flex w-full items-end justify-between gap-1 px-2 md:mb-4 md:gap-3 md:px-0"
                             dir="rtl"
                         >
-                            {originalPrice && (
-                                <span
-                                    className="
-    text-[9px]
-    font-normal
-    leading-3
-    text-muted-foreground
-    line-through
-    decoration-[1px]
 
-    md:text-xs
-    md:leading-normal
-"
-                                >
-                                    {toPersianSplit(
-                                        String(originalPrice)
-                                    )}{' '}
-                                    تومان
-                                </span>
-                            )}
 
-                            <span
-                                className="
-    text-[11px]
-    font-semibold
-    leading-4
-    text-mono
-
-    md:text-sm
-    md:leading-normal
-"
+                            {/* امتیاز روبه‌روی قیمت نهایی */}
+                            <Badge
+                                size="sm"
+                                variant="secondary"
+                                shape="circle"
+                                className="rounded-full gap-0.5 text-yellow-500 text-[10px] md:gap-1 md:text-xs"
                             >
-                                {toPersianSplit(String(total))} تومان
-                            </span>
+                                <Star
+                                    className="size-3 text-yellow-500 -mt-0.5 md:size-4"
+                                    style={{fill: 'currentColor'}}
+                                />
+                                <span>{toPersianDigits(star)}</span>
+                            </Badge>
+
+                            {/* قیمت‌ها */}
+                            <div className="flex flex-col items-end gap-0.5 md:gap-1">
+                                {/* فضای ثابت برای قیمت قبلی */}
+                                <span
+                                    className="h-3 text-[9px] font-normal leading-3 text-muted-foreground md:h-4 md:text-xs md:leading-normal">
+        {originalPrice
+            ? toPersianSplit(String(originalPrice))
+            : '\u00A0'}
+    </span>
+
+                                {/* قیمت نهایی و تومان در یک ردیف */}
+                                <div className="flex flex-row items-center gap-1 whitespace-nowrap">
+        <span className="text-[11px] font-semibold leading-4 text-mono md:text-sm md:leading-normal">
+            {toPersianSplit(String(total))}
+        </span>
+
+                                    <span className="text-[9px] sm:text-[11px]">
+            تومان
+        </span>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
+
+                    {/* دکمه افزودن به سبد */}
+                    {showAddButton && (
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            className="
+                            mt-auto
+                            mb-2
+                            h-8
+                            w-[calc(100%-16px)]
+                            px-2
+
+                            text-[10px]
+                            border-0
+                            bg-foreground/3
+                            transition-colors
+                            duration-200
+                            md:mb-0
+                            md:h-auto
+                            md:p-2.5
+                            md:text-xs
+                        "
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                showCartSheet();
+                            }}
+                        >
+                            <ShoppingCart className="size-3.5 md:size-4"/>
+                            افزودن به سبد خرید
+                        </Button>
+                    )}
+
                 </div>
-
-                {/* دکمه افزودن به سبد */}
-                {showAddButton && (
-                    <Button
-                        size="sm"
-                        variant="outline"
-                        className="
-        mb-2
-        h-8
-        w-[calc(100%-16px)]
-        px-2
-        text-[10px]
-
-        md:mb-0
-        md:h-auto
-        md:w-full
-        md:p-2.5
-        md:text-xs
-    "
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            showCartSheet();
-                        }}
-                    >
-                        <ShoppingCart className="size-3.5 md:size-4"/>
-                        افزودن به سبد خرید
-                    </Button>
-                )}
-
             </CardContent>
         </Card>
     );
 }
-

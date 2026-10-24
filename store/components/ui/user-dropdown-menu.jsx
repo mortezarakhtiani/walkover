@@ -3,18 +3,41 @@
 
 import Link from 'next/link';
 import {
-    ChevronLeft,
+    LogOut,
     ShoppingBag,
-    UserRound,
+    User,
 } from 'lucide-react';
 
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/store/components/ui/dropdown-menu';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuSeparator,
+} from '@/store/components/ui/dropdown-menu';
 
-export function UserDropdownMenu({trigger}) {
+export function UserDropdownMenu({
+    trigger,
+    onLogout,
+    name = 'رضا حسن‌زاده',
+    image,
+}) {
+    const itemClass = `
+        cursor-pointer rounded-md p-0
+        focus:bg-indigo-50 hover:bg-indigo-50
+        dark:focus:bg-accent/40 dark:hover:bg-accent/40
+    `;
+
+    const linkClass = `
+        flex w-full items-center gap-2.5
+        rounded-md px-2.5 py-2
+        transition-colors duration-150
+    `;
+
+    const iconClass = 'size-[18px] text-foreground';
 
     return (
         <DropdownMenu>
-
             <DropdownMenuTrigger asChild>
                 {trigger}
             </DropdownMenuTrigger>
@@ -23,222 +46,97 @@ export function UserDropdownMenu({trigger}) {
                 side="bottom"
                 align="end"
                 dir="rtl"
-                sideOffset={8}
+                sideOffset={5}
                 className="
-                    w-[270px]
-                    overflow-hidden
-                    rounded-2xl
-                    border-border/60
-                    bg-background
-                    p-2
-                    shadow-xl
+                    w-[240px] overflow-hidden
+                    rounded-md border-border/60
+                    bg-background p-1 shadow-lg
                 "
             >
+                {/* تصویر و نام شخص */}
+                <div className="flex items-center gap-3 px-3 py-3">
+                    {image ? (
+                        <img
+                            src={image}
+                            alt={name}
+                            className="size-11 shrink-0 rounded-full object-cover"
+                        />
+                    ) : (
+                        <div className="
+                            flex size-11 shrink-0 items-center
+                            justify-center rounded-full
+                            bg-indigo-50 text-indigo-600
+                            dark:bg-indigo-950/50 dark:text-indigo-300
+                        ">
+                            <User className="size-5" strokeWidth={1.8} />
+                        </div>
+                    )}
 
-                {/* =========================
-                    Header
-                ========================== */}
+                    <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-semibold text-foreground">
+                            {name}
+                        </p>
 
-                <div className="px-3 pb-2 pt-2">
-
-                    <div className="text-sm font-bold text-foreground">
-                        حساب کاربری
                     </div>
-
-                    <div className="mt-1 text-xs text-muted-foreground">
-                        مدیریت حساب و سفارش‌های شما
-                    </div>
-
                 </div>
 
+                <DropdownMenuSeparator className="my-1 bg-border/60" />
 
-                {/* =========================
-                    Menu
-                ========================== */}
-
-                <div className="space-y-1">
-
-                    {/* Profile */}
-
-                    <DropdownMenuItem
-                        asChild
-                        className="
-                            cursor-pointer
-                            rounded-xl
-                            p-0
-                            focus:bg-transparent
-                        "
-                    >
-
+                <div className="space-y-0.5">
+                    {/* پروفایل */}
+                    <DropdownMenuItem asChild className={itemClass}>
                         <Link
                             href="/account/home/user-profile"
-                            className="
-                                group
-                                flex
-                                w-full
-                                items-center
-                                gap-3
-                                rounded-xl
-                                px-3
-                                py-3
-                                transition-colors
-                                duration-150
-                                hover:bg-muted/70
-                            "
+                            className={linkClass}
                         >
-
-                            <span
-                                className="
-                                    flex
-                                    size-9
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-muted/60
-                                    text-muted-foreground
-                                    transition-colors
-                                    group-hover:bg-indigo-50
-                                    group-hover:text-indigo-600
-                                    dark:group-hover:bg-indigo-950/40
-                                    dark:group-hover:text-indigo-400
-                                "
-                            >
-                                <UserRound
-                                    className="size-[18px]"
-                                    strokeWidth={1.8}
-                                />
+                            <span className="flex size-8 shrink-0 items-center justify-center">
+                                <User className={iconClass} strokeWidth={1.8} />
                             </span>
-
-
-                            <span className="flex-1">
-
-                                <span className="block text-sm font-medium text-foreground">
-                                    پروفایل من
-                                </span>
-
-                                <span className="mt-0.5 block text-[11px] text-muted-foreground">
-                                    اطلاعات حساب کاربری
-                                </span>
-
+                            <span className="text-[13px] font-medium text-foreground">
+                                پروفایل من
                             </span>
-
-
-                            <ChevronLeft
-                                className="
-                                    size-4
-                                    text-muted-foreground/40
-                                    transition-all
-                                    group-hover:-translate-x-0.5
-                                    group-hover:text-muted-foreground
-                                "
-                                strokeWidth={1.8}
-                            />
-
                         </Link>
-
                     </DropdownMenuItem>
 
-
-                    {/* Orders */}
-
-                    <DropdownMenuItem
-                        asChild
-                        className="
-                            cursor-pointer
-                            rounded-xl
-                            p-0
-                            focus:bg-transparent
-                        "
-                    >
-
-                        <Link
-                            href="/store/my-orders"
-                            className="
-                                group
-                                flex
-                                w-full
-                                items-center
-                                gap-3
-                                rounded-xl
-                                px-3
-                                py-3
-                                transition-colors
-                                duration-150
-                                hover:bg-muted/70
-                            "
-                        >
-
-                            <span
-                                className="
-                                    flex
-                                    size-9
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-muted/60
-                                    text-muted-foreground
-                                    transition-colors
-                                    group-hover:bg-indigo-50
-                                    group-hover:text-indigo-600
-                                    dark:group-hover:bg-indigo-950/40
-                                    dark:group-hover:text-indigo-400
-                                "
-                            >
-                                <ShoppingBag
-                                    className="size-[18px]"
-                                    strokeWidth={1.8}
-                                />
+                    {/* سفارشات */}
+                    <DropdownMenuItem asChild className={itemClass}>
+                        <Link href="/store/my-orders" className={linkClass}>
+                            <span className="flex size-8 shrink-0 items-center justify-center">
+                                <ShoppingBag className={iconClass} strokeWidth={1.8} />
                             </span>
-
-
-                            <span className="flex-1">
-
-                                <span className="block text-sm font-medium text-foreground">
-                                    سفارشات من
-                                </span>
-
-                                <span className="mt-0.5 block text-[11px] text-muted-foreground">
-                                    مشاهده سفارش‌های ثبت‌شده
-                                </span>
-
+                            <span className="text-[13px] font-medium text-foreground">
+                                سفارشات من
                             </span>
-
-
-                            <ChevronLeft
-                                className="
-                                    size-4
-                                    text-muted-foreground/40
-                                    transition-all
-                                    group-hover:-translate-x-0.5
-                                    group-hover:text-muted-foreground
-                                "
-                                strokeWidth={1.8}
-                            />
-
                         </Link>
-
                     </DropdownMenuItem>
-
                 </div>
 
+                <DropdownMenuSeparator className="my-1 bg-border/60" />
 
-                {/* =========================
-                    Footer
-                ========================== */}
-
-                <div className="mt-2 border-t border-border/50 px-3 py-2">
-
-                    <span className="text-[10px] text-muted-foreground">
-                        مدیریت حساب کاربری
+                {/* خروج از حساب */}
+                <DropdownMenuItem
+                    onSelect={(event) => {
+                        if (onLogout) {
+                            event.preventDefault();
+                            onLogout();
+                        }
+                    }}
+                    className="
+                        cursor-pointer rounded-md px-2.5 py-2
+                        text-red-600 focus:bg-red-50 focus:text-red-600
+                        hover:bg-red-50
+                        dark:text-red-400 dark:focus:bg-red-950/30
+                        dark:focus:text-red-400 dark:hover:bg-red-950/30
+                    "
+                >
+                    <span className="flex size-8 shrink-0 items-center justify-center">
+                        <LogOut className="size-[18px]" strokeWidth={1.8} />
                     </span>
-
-                </div>
-
+                    <span className="text-[13px] font-medium">
+                        خروج از حساب کاربری
+                    </span>
+                </DropdownMenuItem>
             </DropdownMenuContent>
-
         </DropdownMenu>
     );
 }
-

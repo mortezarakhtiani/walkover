@@ -27,4 +27,34 @@ export const cartItems = [
         originalPrice: null,
         badge: false,
     },
+
+    {
+        id: 3,
+        product: {
+            id: 103,
+            slug: 'apple-macbook-air-m3',
+            title: 'لپ‌تاپ اپل MacBook Air M3',
+            sku: 'MBA-M3-256',
+            logo: '12.png',
+        },
+        quantity: 3,
+        price: 58500000,
+        originalPrice: null,
+        badge: false,
+    },
+
+    {
+        id: 4,
+        product: {
+            id: 104,
+            slug: 'apple-macbook-air-m3',
+            title: 'لپ‌تاپ اپل MacBook Air M3',
+            sku: 'MBA-M3-256',
+            logo: '12.png',
+        },
+        quantity: 3,
+        price: 58500000,
+        originalPrice: null,
+        badge: false,
+    },
 ];

@@ -505,12 +505,12 @@ export default function HowItWorks() {
     // --------------------------------------------------
 
     return (
-        <section className="w-full px-4 md:px-6">
-            <div className="mx-auto w-full max-w-7xl">
+        <section className="w-full p-0">
+            <div className="w-full max-w-none">
 
                 {/* Slider */}
                 <div
-                    className="relative w-full overflow-hidden rounded-2xl"
+                    className="relative w-full overflow-hidden"
                     onTouchStart={
                         handleTouchStart
                     }
@@ -540,7 +540,7 @@ export default function HowItWorks() {
                                         ) {
                                             slidesRef.current[
                                                 index
-                                            ] =
+                                                ] =
                                                 element;
                                         }
                                     }}
@@ -574,7 +574,8 @@ export default function HowItWorks() {
                         )}
 
                         {/* Mobile Dots */}
-                        <div className="absolute bottom-4 left-0 right-0 z-20 flex flex-row-reverse items-center justify-center gap-2 md:hidden">
+                        <div
+                            className="absolute bottom-4 left-0 right-0 z-20 flex flex-row-reverse items-center justify-center gap-2 md:hidden">
                             {steps.map(
                                 (_, index) => (
                                     <button

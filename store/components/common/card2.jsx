@@ -1,4 +1,3 @@
-
 'use client';
 
 import {ShoppingCart, Star} from 'lucide-react';
@@ -11,27 +10,55 @@ import {useStoreClient} from '@/store/components/context';
 import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 
 export function Card2({
-    id,
-    badge,
-    logo,
-    title,
-    total,
-    star,
-    label,
-    showAddButton = true,
-}) {
+                          id,
+                          badge,
+                          logo,
+                          title,
+                          discount,
+                          total,
+                          star,
+                          label,
+                          showAddButton = true,
+                      }) {
     const {showCartSheet, showProductDetailsSheet} = useStoreClient();
 
     return (
         <Card
             className="
+            relative
                 cursor-pointer
                 group
                 overflow-hidden
                 rounded-2xl
+
             "
             onClick={() => showProductDetailsSheet(id)}
         >
+
+            {badge && (
+                <Badge
+                    size="sm"
+                    variant="destructive"
+                    className="
+    absolute
+    right-2
+    top-2
+    z-20
+    border-0
+    bg-red-600
+    px-1.5
+    py-0.5
+    text-white
+    !text-[13px]
+    md:px-2
+    md:py-1
+    md:text-xs
+"
+                >
+                    %{toPersianDigits(String(discount))}
+                    <span className="!text-[10px]">تخفیف</span>
+                </Badge>
+            )}
             <CardContent
                 className="
                     flex
@@ -66,25 +93,7 @@ export function Card2({
                             sm:mt-5
                         "
                     >
-                        {badge && (
-                            <Badge
-                                size="sm"
-                                variant="destructive"
-                                className="
-                                    absolute
-                                    top-2
-                                    right-2
-                                    uppercase
-                                    text-[10px]
 
-                                    sm:text-xs
-                                "
-                            >
-                                <span>
-                                    {toPersianDigits('40%')} تخفیف
-                                </span>
-                            </Badge>
-                        )}
 
                         <img
                             src={toAbsoluteUrl(logo)}
@@ -189,12 +198,13 @@ export function Card2({
                             size="sm"
                             variant="outline"
                             className="
+                            border-0
+    bg-foreground/3
     shrink-0
     h-8
     px-3
     py-1.5
     text-[10px]
-
     sm:h-auto
     sm:p-2.5
     sm:text-xs
@@ -210,48 +220,23 @@ export function Card2({
                     )}
 
                     {/* قیمت */}
-                    <div
-                        className="
-                            flex
-                            flex-col
-                            items-end
-                            gap-0.5
-                        "
-                    >
+                    <div className="flex flex-col items-end gap-0.5">
+                        {/* قیمت قبلی؛ فقط در صورت وجود نمایش داده می‌شود */}
+                        <span className="h-3 text-[9px] leading-3 md:h-4 md:text-xs md:leading-normal">
+        {label ? (
+            <span className="font-normal text-muted-foreground line-through decoration-[1px]">
+                {toPersianSplit(label)}
+            </span>
+        ) : null}
+    </span>
 
-                        {/* قیمت خط خورده */}
-                        {label && (
-                            <span
-                                className="
-                                    text-[9px]
-                                    font-normal
-                                    leading-3
-                                    text-secondary-foreground
-                                    line-through
-
-                                    sm:text-xs
-                                    sm:leading-normal
-                                "
-                            >
-                                {toPersianSplit(label)} تومان
-                            </span>
-                        )}
-
-                        {/* قیمت اصلی */}
-                        <span
-                            className="
-                                text-[11px]
-                                font-medium
-                                leading-4
-                                text-mono
-
-                                sm:text-sm
-                                sm:leading-normal
-                            "
-                        >
-                            {toPersianSplit(total)} تومان
-                        </span>
-
+                        {/* قیمت نهایی و تومان */}
+                        <div className="flex flex-row items-center gap-1 whitespace-nowrap">
+        <span className="text-[11px] font-medium leading-4 text-mono sm:text-sm sm:leading-normal">
+            {toPersianSplit(total)}
+        </span>
+                            <span className="text-[9px] sm:text-[11px]">تومان</span>
+                        </div>
                     </div>
 
                 </div>

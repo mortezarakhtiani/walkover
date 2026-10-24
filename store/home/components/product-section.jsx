@@ -5,6 +5,8 @@ import {ChevronRight, Flame} from 'lucide-react';
 
 import {Button} from '@/store/components/ui/button';
 import {Card2} from '@/store/components/common/card2';
+import {ProductRevealCard} from '@/store/components/common/product-card-common';
+
 
 export function ProductSection({
                                    title = 'پرفروش‌ترین‌ها',
@@ -36,7 +38,6 @@ export function ProductSection({
                     relative
                     mb-3
                     rounded-xl
-                    bg-white/8
                     p-3
                     md:p-5
                     max-md:rounded-l-none
@@ -116,7 +117,11 @@ export function ProductSection({
 
                         {/* See All */}
                         {showSeeAll && (
-                            <Button mode="link" asChild>
+                            <Button
+                                mode="link"
+                                asChild
+                                className="h-auto px-3 py-1.5 text-indigo-500"
+                            >
                                 <Link
                                     href={moreButtonHref}
                                     className="flex items-center gap-1 text-xs"
@@ -170,14 +175,31 @@ export function ProductSection({
                                 sm:shrink
                             "
                         >
-                            <Card2
+
+                            {/*<Card2*/}
+                            {/*    id={item.id}*/}
+                            {/*    logo={item.logo}*/}
+                            {/*    star={item.rating}*/}
+                            {/*    title={item.title}*/}
+                            {/*    total={item.price}*/}
+                            {/*    label={item.originalPrice}*/}
+                            {/*    discount={item.discount}*/}
+                            {/*    badge={item.originalPrice != null && item.originalPrice > item.price}*/}
+                            {/*    showAddButton={showAddButton}*/}
+                            {/*/>*/}
+                            <ProductRevealCard
                                 id={item.id}
                                 logo={item.logo}
+                                hoverImage={item.hoverImage}
                                 star={item.rating}
                                 title={item.title}
                                 total={item.price}
+                                label={item.originalPrice}
+                                discount={item.discount}
+                                badge={item.originalPrice != null && item.originalPrice > item.price}
                                 showAddButton={showAddButton}
                             />
+
                         </div>
                     ))}
                 </div>

@@ -16,7 +16,7 @@ export function Card4({limit}) {
             title:
                 'لپ‌تاپ مایکروسافت مدل Surface Laptop 7 Copilot Plus PC با پردازنده Snapdragon X Plus، رم LPDDR5x 16GB، حافظه SSD با ظرفیت 256GB، نمایشگر لمسی 13.8 اینچ',
             label: '۶۵٬۰۰۰٬۰۰۰ تومان',
-            sku: 'MS-SL7-256',
+            sku: 'MS-SL7-256    ',
             color: 'نقره‌ای',
             colorCode: '#C0C0C0',
             quantity: 1,

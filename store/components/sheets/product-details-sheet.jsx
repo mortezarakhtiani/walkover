@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import {Heart, ShoppingCart, Star} from 'lucide-react';
 import {toast} from 'sonner';
+import {useState} from 'react';
 
 import {toAbsoluteUrl} from '@/lib/helpers';
 import {getProductById} from '@/store/product/services/product-service';
+import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 
 import {Badge} from '@/store/components/ui/badge';
 import {Button} from '@/store/components/ui/button';
-import {ScrollArea} from '@/store/components/ui/scroll-area';
-
+import {DiscountBadge} from '@/store/components/ui/discount-badge'
 import {
     Sheet,
     SheetBody,
@@ -20,20 +21,9 @@ import {
     SheetTitle,
 } from '@/store/components/ui/sheet';
 
-import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
-import {useState} from 'react';
-
-
-/* =========================================================
-   Rating
-========================================================= */
-
 export function Rating({rating, outOf = 5}) {
     return (
-        <div
-            dir="ltr"
-            className="flex items-center gap-0.5"
-        >
+        <div dir="ltr" className="flex items-center gap-0.5">
             {Array.from({length: outOf}, (_, index) => {
                 const filled = index + 1 <= rating;
 
@@ -41,9 +31,7 @@ export function Rating({rating, outOf = 5}) {
                     <Star
                         key={index}
                         className={`size-3.5 ${
-                            filled
-                                ? 'text-yellow-400'
-                                : 'text-muted-foreground/30'
+                            filled ? 'text-yellow-400' : 'text-muted-foreground/30'
                         }`}
                         fill={filled ? 'currentColor' : 'none'}
                         strokeWidth={1.8}
@@ -54,11 +42,6 @@ export function Rating({rating, outOf = 5}) {
     );
 }
 
-
-/* =========================================================
-   Product Details Sheet
-========================================================= */
-
 export function StoreClientProductDetailsSheet({
                                                    open,
                                                    onOpenChange,
@@ -68,62 +51,59 @@ export function StoreClientProductDetailsSheet({
     const product = getProductById(productId);
     const [isFavorite, setIsFavorite] = useState(false);
 
+    const handleAddToWishlist = () => {
+        const nextValue = !isFavorite;
+        setIsFavorite(nextValue);
 
-    /* =====================================================
-       Product Not Found
-    ===================================================== */
+        toast.success(
+            nextValue
+                ? 'محصول به لیست علاقه‌مندی‌ها اضافه شد'
+                : 'محصول از لیست علاقه‌مندی‌ها حذف شد',
+        );
+    };
 
     if (!product) {
         return (
-            <Sheet
-                open={open}
-                onOpenChange={onOpenChange}
-            >
+            <Sheet open={open} onOpenChange={onOpenChange}>
                 <SheetContent
+                    side="right"
                     dir="rtl"
                     className="
-                        sm:w-[500px]
-                        sm:max-w-none
-                        inset-5
-                        start-auto
-                        h-auto
-                        rounded-xl
-                        p-0
-                    "
+            inset-y-5 right-5 left-auto
+            flex h-[calc(100%-2.5rem)] flex-col
+            overflow-hidden rounded-xl p-0
+            sm:w-[500px] sm:max-w-none
+            max-sm:inset-y-0 max-sm:right-0
+            max-sm:h-full max-sm:w-[85%]
+            max-sm:max-w-[380px] max-sm:rounded-none
+            max-sm:[&_[data-slot=sheet-close]]:hidden
+          "
                 >
-                    <SheetHeader className="border-b border-border px-5 py-4">
-                        <SheetTitle className="text-right">
+                    <SheetHeader className="shrink-0 px-5 py-4 max-sm:hidden">
+                        <SheetTitle className="text-right text-base font-semibold">
                             جزئیات محصول
                         </SheetTitle>
                     </SheetHeader>
 
-                    <SheetBody className="flex items-center justify-center">
-                        <span className="text-sm text-muted-foreground">
-                            محصول پیدا نشد.
-                        </span>
+                    <SheetBody className="flex flex-1 items-center justify-center">
+            <span className="text-sm text-muted-foreground">
+              محصول پیدا نشد.
+            </span>
                     </SheetBody>
                 </SheetContent>
             </Sheet>
         );
     }
 
-
-    /* =====================================================
-       Product Information
-    ===================================================== */
-
     const productItems = [
         {
             text: 'موجودی',
             info: product.stock ? (
                 <span className="text-sm">
-            {toPersianDigits(product.stock)} عدد
+          {toPersianDigits(product.stock)} عدد
         </span>
             ) : (
-                <Badge
-                    size="sm"
-                    variant="destructive"
-                >
+                <Badge size="sm" variant="destructive" className="rounded-md">
                     ناموجود
                 </Badge>
             ),
@@ -132,465 +112,228 @@ export function StoreClientProductDetailsSheet({
             text: 'کد محصول',
             info: (
                 <span className="text-sm font-medium text-foreground">
-                    {product.sku}
-                </span>
+          {product.sku}
+        </span>
             ),
         },
         {
             text: 'امتیاز',
             info: (
-                <div
-                    dir="rtl"
-                    className="flex items-center gap-2"
-                >
-                    <span className="text-sm font-medium text-foreground">
-                        {toPersianDigits(
-                            String(product.rating ?? 0)
-                        )}
-                    </span>
-
-                    <Rating
-                        rating={Math.round(
-                            product.rating ?? 0
-                        )}
-                    />
+                <div dir="rtl" className="flex items-center gap-2">
+          <span className="text-sm font-medium text-foreground">
+            {toPersianDigits(String(product.rating ?? 0))}
+          </span>
+                    <Rating rating={Math.round(product.rating ?? 0)}/>
                 </div>
             ),
         },
     ];
 
-
-    /* =====================================================
-       Wishlist
-    ===================================================== */
-
-    const handleAddToWishlist = () => {
-        if (isFavorite) {
-            setIsFavorite(false);
-
-            toast.success(
-                'محصول از لیست علاقه‌مندی‌ها حذف شد'
-            );
-
-            return;
-        }
-
-        setIsFavorite(true);
-
-        toast.success(
-            'محصول به لیست علاقه‌مندی‌ها اضافه شد'
-        );
-    };
-
-
-    /* =====================================================
-       Render
-    ===================================================== */
-
     return (
-        <Sheet
-            open={open}
-            onOpenChange={onOpenChange}
-        >
+        <Sheet open={open} onOpenChange={onOpenChange}>
             <SheetContent
-                side="left"
+                side="right"
                 dir="rtl"
                 className="
-        sm:w-[500px]
-        sm:max-w-none
-        inset-y-5
-        right-5
-        left-auto
-        h-[calc(100%-2.5rem)]
-        rounded-xl
-        p-0
-        overflow-hidden
-        flex
-        flex-col
-
-        max-sm:inset-y-0
-        max-sm:right-0
-        max-sm:left-auto
-        max-sm:h-full
-        max-sm:w-[85%]
-        max-sm:max-w-[380px]
-        max-sm:rounded-none
-
-        max-sm:[&_[data-slot=sheet-close]]:hidden
-    "
+          inset-y-5 right-5 left-auto
+          flex h-[calc(100%-2.5rem)] flex-col
+          overflow-hidden rounded-xl p-0
+          sm:w-[560px] sm:max-w-none
+          max-sm:inset-y-0 max-sm:right-0
+          max-sm:h-full max-sm:w-[85%]
+          max-sm:max-w-[380px] max-sm:rounded-none
+          max-sm:[&_[data-slot=sheet-close]]:hidden
+        "
             >
-
-                {/* =================================================
-                   Header
-                ================================================= */}
-
-                <SheetHeader
-                    className="
-        shrink-0
-        border-b
-        border-border
-        px-5
-        py-4
-        max-sm:hidden
-    "
-                >
-                    <SheetTitle className="text-right text-base">
+                {/* Header */}
+                <SheetHeader className="shrink-0 px-5 py-4 max-sm:hidden">
+                    <SheetTitle className="text-right text-base font-semibold">
                         جزئیات محصول
                     </SheetTitle>
                 </SheetHeader>
 
-
-                {/* =================================================
-                   Body
-                ================================================= */}
-
+                {/* Body */}
                 <SheetBody
                     className="
-                        min-h-0
-                        flex-1
-                        px-5
-                        py-0
-                        flex
-                        flex-col
-                    "
+            flex min-h-0 flex-1 flex-col
+            overflow-hidden px-4 py-0
+            sm:px-5
+          "
                 >
-
-                    <ScrollArea className="flex-1 min-h-0">
-                        <div className="px-1 py-5 max-sm:pt-2">
-
-                            {/* =================================================
-                               Product Image
-                            ================================================= */}
-
-                            <div
+                    <div className="min-h-0 flex-1 overflow-y-auto px-1">
+                        {/* Product Image */}
+                        <div
+                            className="
+                relative flex h-[180px] shrink-0
+                items-center justify-center overflow-hidden
+                rounded-md border border-border/70
+                bg-muted/40 sm:h-[240px]
+              "
+                        >
+                            {/* Wishlist */}
+                            <button
+                                type="button"
+                                onClick={handleAddToWishlist}
+                                aria-label={
+                                    isFavorite
+                                        ? 'حذف از لیست علاقه‌مندی‌ها'
+                                        : 'افزودن به لیست علاقه‌مندی‌ها'
+                                }
                                 className="
-                                    relative
-                                    flex
-                                    items-center
-                                    justify-center
-                                    h-[250px]
-
-                                    mb-5
-                                "
+                  absolute start-3 top-3 z-10
+                  flex size-10 items-center justify-center
+                  rounded-md border border-border/60
+                  bg-background transition-colors
+                  hover:bg-accent
+                "
                             >
+                                <Heart
+                                    className={`size-5 ${
+                                        isFavorite ? 'text-red-500' : 'text-muted-foreground'
+                                    }`}
+                                    strokeWidth={1.8}
+                                    fill={isFavorite ? 'currentColor' : 'none'}
+                                />
+                            </button>
 
-                                {/* Wishlist Button */}
+                            {/* Discount */}
+                            <DiscountBadge discount={product.discount}/>
 
-                                <button
-                                    type="button"
-                                    onClick={handleAddToWishlist}
-                                    aria-label={
-                                        isFavorite
-                                            ? 'حذف از لیست علاقه‌مندی‌ها'
-                                            : 'افزودن به لیست علاقه‌مندی‌ها'
-                                    }
-                                    className="
-        absolute
-        top-3
-        end-3
-        z-10
-        flex
-        size-10
-        items-center
-        justify-center
-        rounded-full
-        bg-background
-        shadow-sm
-        ring-1
-        ring-border
-        transition-colors
-        hover:bg-accent
-    "
-                                >
-                                    <Heart
-                                        className={`
-            size-5
-            transition-colors
-            ${
-                                            isFavorite
-                                                ? 'text-red-500'
-                                                : 'text-muted-foreground'
-                                        }
-        `}
-                                        strokeWidth={1.8}
-                                        fill={isFavorite ? 'currentColor' : 'none'}
-                                    />
-                                </button>
+                            <Link
+                                href={`/store/product/${product.slug}`}
+                                onClick={() => onOpenChange(false)}
+                                className="flex size-full items-center justify-center p-4"
+                            >
+                                <img
+                                    src={toAbsoluteUrl(product.logo)}
+                                    alt={product.title}
+                                    className="size-28 object-contain sm:size-70"
+                                />
+                            </Link>
+                        </div>
 
-
-                                {/* Discount Badge */}
-
-                                {product.discount > 0 && (
-                                    <Badge
-                                        size="sm"
-                                        variant="destructive"
-                                        className="
-                                            absolute
-                                            top-3
-                                            start-3
-                                            z-10
-                                        "
-                                    >
-                                        {toPersianDigits(
-                                            String(product.discount)
-                                        )}
-                                        ٪ تخفیف
-                                    </Badge>
-                                )}
-
-
-                                {/* Product Image */}
-
-                                <Link
-                                    href={`/store/product/${product.slug}`}
-                                    onClick={() =>
-                                        onOpenChange(false)
-                                    }
-                                >
-                                    <img
-                                        src={toAbsoluteUrl(product.logo)}
-                                        alt={product.title}
-                                        className="
-                                            size-60
-                                            object-contain
-                                            cursor-pointer
-                                            transition-transform
-                                            duration-200
-                                            hover:scale-[1.02]
-                                        "
-                                    />
-                                </Link>
-
-                            </div>
-
-
-                            {/* =================================================
-                               Product Title
-                            ================================================= */}
-
-                            <div className="mb-3 text-right">
-                                <Link
-                                    href={`/store/product/${product.slug}`}
-                                    onClick={() => onOpenChange(false)}
-                                    className="
-        block
-        text-right
-        text-lg
-        max-sm:text-base
-        font-semibold
-        leading-7
-        max-sm:leading-6
-        text-foreground
-        transition-colors
-        hover:text-primary
-    "
-                                >
-                                    {product.title}
-                                </Link>
-                            </div>
-
-
-                            {/* =================================================
-                               Description
-                            ================================================= */}
+                        {/* Product Information */}
+                        <div className="mt-5">
+                            <Link
+                                href={`/store/product/${product.slug}`}
+                                onClick={() => onOpenChange(false)}
+                                className="
+                  block text-right text-base font-semibold
+                  leading-6 text-foreground transition-colors
+                  hover:text-indigo-600
+                "
+                            >
+                                {product.title}
+                            </Link>
 
                             {product.description && (
                                 <p
                                     className="
-            mb-5
-            max-sm:mb-4
-            text-right
-            text-sm
-            max-sm:text-xs
-            leading-7
-            max-sm:leading-6
-            text-muted-foreground
-        "
+                    mt-3 text-right text-sm leading-7
+                    text-muted-foreground
+                    max-sm:text-xs max-sm:leading-6
+                  "
                                 >
                                     {product.description}
                                 </p>
                             )}
 
-
-                            {/* =================================================
-                               Product Information
-                            ================================================= */}
-
-                            <div className="mt-5 mb-5 max-sm:mt-4 max-sm:mb-4 flex flex-col">
-                                {productItems.map((item, index) => (
+                            {/* Specifications */}
+                            <div className="my-5 flex flex-col gap-3">
+                                {productItems.map((item) => (
                                     <div
                                         key={item.text}
-                                        className={`
-                flex
-                items-center
-                justify-between
-                gap-4
-                py-3
-                max-sm:py-2.5
-                ${
-                                            index !== productItems.length - 1
-                                                ? 'border-b border-border'
-                                                : ''
-                                        }
-            `}
+                                        className="
+                      flex w-full items-center
+                      justify-between gap-3 text-right
+                    "
                                     >
-                                        <div className="text-right">
+                    <span className="text-sm text-muted-foreground">
+                      {item.text}
+                    </span>
+
+                                        <div className="text-sm font-medium text-foreground">
                                             {item.info}
                                         </div>
-
-                                        <span
-                                            className="
-                    text-left
-                    text-xs
-                    max-sm:text-[11px]
-                    text-muted-foreground
-                "
-                                        >
-                {item.text}
-            </span>
                                     </div>
                                 ))}
                             </div>
-
                         </div>
-                    </ScrollArea>
-
-
-                    {/* =================================================
-                       Price + Details
-                    ================================================= */}
-
-                    <div
-                        className="
-                            shrink-0
-                            flex
-                            items-end
-                            justify-between
-                            gap-4
-                            px-1
-                            pt-3
-                            pb-3
-                        "
-                    >
-
-                        {/* Product Details */}
-
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="shrink-0 p-4"
-                        >
-                            <Link
-                                href={`/store/product/${product.slug}`}
-                                onClick={() =>
-                                    onOpenChange(false)
-                                }
-                            >
-                                مشاهده جزئیات
-                            </Link>
-                        </Button>
-
-
-                        {/* Price */}
-
-                        <div className="flex flex-col items-end">
-
-                            {/* Original Price */}
-
-                            {product.originalPrice && (
-                                <span
-                                    dir="rtl"
-                                    className="
-                                        flex
-                                        flex-row-reverse
-                                        items-center
-                                        gap-1
-                                        text-xs
-                                        text-muted-foreground
-                                        line-through
-                                    "
-                                >
-                                    <span>
-                                        تومان
-                                    </span>
-
-                                    <span>
-                                        {toPersianSplit(
-                                            product.originalPrice.toLocaleString(
-                                                'en-US'
-                                            )
-                                        )}
-                                    </span>
-                                </span>
-                            )}
-
-
-                            {/* Current Price */}
-
-                            <div className="mt-0.5 flex items-center gap-1">
-                                <span className="text-xl font-bold text-foreground">
-                                    {toPersianSplit(
-                                        product.price.toLocaleString(
-                                            'en-US'
-                                        )
-                                    )}
-                                </span>
-
-                                <span className="text-xl font-medium ">
-                                    تومان
-                                </span>
-                            </div>
-
-                        </div>
-
                     </div>
 
+                    {/* Price */}
+                    <div
+                        className="
+            pt-3
+              flex shrink-0 items-center justify-end
+
+              gap-3 border-t border-border
+
+            "
+                    >
+
+                        <div className="flex flex-col items-end gap-1">
+                            {product.originalPrice != null && (
+                                <span
+                                    className="
+                    text-sm text-muted-foreground
+                    line-through
+                  "
+                                >
+                  {toPersianSplit(
+                      product.originalPrice.toLocaleString('en-US'),
+                  )}{' '}
+                                    تومان
+                </span>
+                            )}
+
+                            <div className="flex items-center gap-1">
+                <span className="text-lg font-bold text-foreground">
+                  {toPersianSplit(
+                      product.price.toLocaleString('en-US'),
+                  )}
+                </span>
+                                <span className="text-sm font-medium text-foreground">
+                  تومان
+                </span>
+                            </div>
+                        </div>
+                    </div>
                 </SheetBody>
 
-
-                {/* =================================================
-                   Footer
-                ================================================= */}
-
+                {/* Footer */}
                 <SheetFooter
                     className="
-        w-full
-        shrink-0
-        border-t
-        border-border
-        max-sm:mb-16
-    "
+            w-full shrink-0 border-0
+            p-4
+            bg-transparent
+            max-sm:mb-16 max-sm:px-3
+          "
                 >
                     <Button
+                        type="button"
                         onClick={() => {
-                            if (productId) {
-                                addToCart({
-                                    productId,
-                                });
+                            if (productId && product.stock) {
+                                addToCart({productId});
                             }
                         }}
                         disabled={!productId || !product.stock}
                         className="
-            h-full
-            min-h-[56px]
-            w-full
-            rounded-none
-            justify-center
-            bg-indigo-500/100
-            px-5
-            py-5
-            text-white
-
-        "
+              h-14 min-h-14 w-full gap-2
+              rounded-md border border-indigo-500/20
+              bg-indigo-600 px-5 text-base font-semibold
+              text-white hover:bg-indigo-700
+              focus-visible:bg-indigo-600
+              disabled:cursor-not-allowed disabled:opacity-50
+            "
                     >
-                        <ShoppingCart/>
-                        افزودن به سبد خرید
+                        <ShoppingCart className="size-5"/>
+                        <span>
+              {product.stock ? 'افزودن به سبد خرید' : 'ناموجود'}
+            </span>
                     </Button>
                 </SheetFooter>
-
             </SheetContent>
         </Sheet>
     );
 }
-

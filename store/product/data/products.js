@@ -3,8 +3,9 @@ export const products = [
         id: 101,
         slug: 'black-merch-tshirt',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/blackhoodi.webp',
+        title: 'کلاه مشک بسیار جذاب از یک برند خیلی خوب',
+        logo: '/images/cloth (4).png',
+        hoverImage: '/images/cloth (5).png',
         images: [
             '4.png',
             '7.png',
@@ -93,8 +94,9 @@ export const products = [
         id: 102,
         slug: 'black-merch-hoodie',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/hat5.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/hat (1).png',
+        hoverImage: '/images/hat (1).png',
         images: [
             '4.png',
             '7.png',
@@ -187,8 +189,9 @@ export const products = [
         id: 103,
         slug: 'creator-merch-cap',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/hoodiwomanback.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/cloth (2).png',
+        hoverImage: '/images/cloth (3).png',
 
         images: [
             '/images/woman.png',
@@ -245,8 +248,9 @@ export const products = [
         id: 104,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/man.png',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/cloth (1).png',
+        hoverImage: '/images/cloth (1).png',
         images: [
             '4.png',
             '7.png',
@@ -263,7 +267,7 @@ export const products = [
         category: 'ماگ',
 
         description:
-            'ماگ سرامیکی با طراحی اختصاصی کانال، مناسب استفاده روزمره در خانه یا محل کار.',
+        'بطری این ادوپرفیوم از شیشه شفاف با مایع صورتی/هلویی روشن ساخته شده است که امکان مشاهده میزان عطر را فراهم می‌کند. پمپ از فلز و درپوش شفاف و مربعی شکل از پلاستیک مرغوب تولید شده‌اند. جعبه بسته‌بندی از مقوا/کاغذ با بافتی صاف و الگوی هندسی ظریف، حاشیه طلایی.',
 
         rating: 4.7,
         reviewCount: 21,
@@ -299,8 +303,8 @@ export const products = [
         id: 105,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/woman.png',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/media/store/client/600x600/1.png',
         images: [
             '4.png',
             '7.png',
@@ -353,7 +357,7 @@ export const products = [
         id: 106,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/show2.webp',
         images: [
             '4.png',
@@ -407,7 +411,7 @@ export const products = [
         id: 107,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
+        title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/show3.webp',
         images: [
             '4.png',
@@ -461,8 +465,9 @@ export const products = [
         id: 108,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/blackhoodi.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/mug (1).png',
+        hoverImage: '/images/mug (1).png',
         images: [
             '4.png',
             '7.png',
@@ -515,8 +520,9 @@ export const products = [
         id: 109,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/mainblackhoodi.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/mug (2).png',
+        hoverImage: '/images/mug (2).png',
         images: [
             '4.png',
             '7.png',
@@ -569,8 +575,9 @@ export const products = [
         id: 110,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/blackhoodi2.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/mug (4).png',
+        hoverImage: '/images/mug (4).png',
         images: [
             '4.png',
             '7.png',
@@ -623,8 +630,9 @@ export const products = [
         id: 111,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کلاه مشکی Merch بسیار جذاب از یک برند خیلی خوب',
-        logo: '/images/hoodiwomanback.webp',
+        title: 'کاپشن بهاره زنانه کالین',
+        logo: '/images/mug (6).png',
+        hoverImage: '/images/mug (6).png',
         images: [
             '4.png',
             '7.png',

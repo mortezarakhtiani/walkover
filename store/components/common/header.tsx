@@ -1,10 +1,9 @@
-
 'use client';
 
 import {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
 import {
-    ShoppingBag,
+    ShoppingCart,
     Search,
     User,
     Sun,
@@ -25,13 +24,13 @@ import Logo from '@/components/logo';
 import {cn} from '@/lib/utils';
 import {UserDropdownMenu} from '@/store/components/ui/user-dropdown-menu';
 import {StoreClientWishlistSheet} from '@/store/components/sheets/wishlist-sheet';
+import { AuthButton } from '@/store/components/ui/auth-button';
 
 const navItems = [
     {label: 'تیشرت', href: '#home'},
     {label: 'هودی', href: '#products'},
     {label: 'ماگ', href: '#latest'},
     {label: 'ورزش و سلامت', href: '#latest'},
-    {label: 'سؤالات متداول', href: '#faq'},
 ];
 
 export default function Header() {
@@ -90,158 +89,122 @@ export default function Header() {
             >
                 <div
                     className="
-                        container mx-auto
-                        flex w-full
-                        items-start justify-between
-                        gap-3
-                        px-4 py-3
-                        sm:px-6
-                    "
+    relative mx-auto
+    flex w-full items-center
+    gap-3 px-4 py-5 sm:px-6
+  "
                 >
-                    {/* =========================
-                        Logo + Search
-                    ========================== */}
-                    <div
-                        className="
-                            flex min-w-0 flex-1
-                            items-start
-                            gap-3
-                            md:gap-10
-                        "
-                    >
+                    {/* Logo + Navigation + Search */}
+                    <div className="flex w-full min-w-0 items-center gap-4 pl-36 sm:pl-40 md:gap-6">
+
                         {/* Logo */}
                         <Link
                             href="/landing-v2"
-                            className="
-                                mt-1
-                                shrink-0
-                                cursor-pointer
-                            "
+                            className="shrink-0"
                             aria-label="خانه"
                         >
                             <Logo/>
                         </Link>
 
+                        {/* Desktop Navigation */}
+                        <nav className="hidden md:flex shrink-0 items-center gap-5 md:gap-8 lg:gap-10">
+                            {navItems.map((item, index) => (
+                                <motion.button
+                                    key={item.label}
+                                    type="button"
+                                    onClick={() => handleNavigation(item.href)}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    transition={{
+                                        delay: (index + 1) * 0.08,
+                                        duration: 0.3,
+                                    }}
+                                    className={cn(
+                                        "group relative whitespace-nowrap py-2 text-base font-medium transition-colors",
+                                        activeSection === item.href.replace("#", "")
+                                            ? "text-indigo-600 dark:text-indigo-400"
+                                            : "text-foreground hover:text-indigo-600 dark:hover:text-indigo-400"
+                                    )}
+                                >
+                                    {item.label}
+
+                                    <span
+                                        className={cn(
+                                            "absolute bottom-0 right-0 h-0.5 bg-indigo-600 transition-all duration-300 dark:bg-indigo-400",
+                                            activeSection === item.href.replace("#", "")
+                                                ? "w-full"
+                                                : "w-0 group-hover:w-full"
+                                        )}
+                                    />
+                                </motion.button>
+                            ))}
+                        </nav>
+
                         {/* Search */}
-                        <div className="relative w-full max-w-[min(100%,28rem)]">
+                        <div className="relative mr-auto min-w-0 w-full max-w-[480px] flex-1">
                             <Search
-                                className="
-                                    absolute
-                                    right-3
-                                    top-1/2
-                                    z-10
-                                    size-4
-                                    -translate-y-1/2
-                                    text-muted-foreground
-                                "
-                            />
+                                className="absolute right-3 top-1/2 z-10 size-4 -translate-y-1/2 text-muted-foreground"/>
 
                             <Input
                                 id="search-input"
                                 type="text"
-                                className="
-                                    h-9
-                                    w-full
-                                    rounded-xl
-                                    bg-white/5
-                                    pr-9
-                                    pl-4
-                                    text-right
-                                    text-sm
-                                "
-                                placeholder="جستجو در همه محصولات"
+                                className="h-12 w-full rounded-md border-0 !bg-white/5 px-3 pr-9 text-right text-sm"
+                                placeholder="جستجو"
                             />
                         </div>
+
+                        <div className="md:ml-20">
+                            <AuthButton/>
+                        </div>
+
+
                     </div>
 
-                    {/* =========================
-                        Desktop Actions
-                    ========================== */}
+                    {/* Desktop Actions — چسبیده به لبه چپ صفحه */}
                     <div
                         className="
-                            flex
-                            shrink-0
-                            items-center
-                            gap-1
-                            pt-1
-                            sm:gap-2
-                        "
+    absolute left-0 md:left-10 top-1/2 z-20
+    flex -translate-y-1/2
+    items-center gap-1
+    sm:gap-2
+  "
                     >
-                        <div className="hidden items-center gap-1 sm:flex">
 
-                            {/* Search */}
+
+                        {/* My Orders */}
+                        <Link href="/store/my-orders" aria-label="سفارشات من">
                             <Button
                                 type="button"
                                 variant="ghost"
                                 size="icon"
-                                className="size-9 rounded-full"
-                                aria-label="جستجو"
-                                onClick={() => {
-                                    document
-                                        .getElementById('search-input')
-                                        ?.focus();
-                                }}
+                                className="
+    size-9 rounded-full
+    text-white
+    transition-all duration-200
+    hover:bg-indigo-50 hover:text-indigo-700
+    dark:hover:bg-indigo-950/50 dark:hover:text-indigo-300
+"
                             >
-                                <Search className="size-4"/>
-                            </Button>
-
-                            {/* User */}
-                            <UserDropdownMenu
-                                trigger={
-                                    <Button
-                                        type="button"
-                                        variant="ghost"
-                                        size="icon"
-                                        className="size-9 rounded-full"
-                                        aria-label="حساب کاربری"
-                                    >
-                                        <User className="size-5"/>
-                                    </Button>
-                                }
-                            />
-                        </div>
-
-                        {/* =========================
-                            Cart → My Orders
-                        ========================== */}
-                        <Link
-                            href="/store/my-orders"
-                            aria-label="سفارشات من"
-                        >
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="icon"
-                                className="size-9 rounded-full"
-                                asChild
-                            >
-                                <span>
-                                    <ShoppingBag className="size-5"/>
-                                </span>
+                                <ShoppingCart className="size-5"/>
                             </Button>
                         </Link>
 
-                        {/* =========================
-                            Theme
-                        ========================== */}
+                        {/* Theme */}
                         {mounted && (
                             <Button
                                 type="button"
                                 variant="ghost"
                                 size="icon"
                                 className="
-                                    hidden
-                                    size-9
-                                    rounded-full
-                                    sm:inline-flex
-                                "
+    size-9 rounded-full
+    text-white
+    transition-all duration-200
+    hover:bg-indigo-50 hover:text-indigo-700
+    dark:hover:bg-indigo-950/50 dark:hover:text-indigo-300
+"
                                 aria-label="تغییر تم"
                                 onClick={() =>
-                                    setTheme(
-                                        theme === 'dark'
-                                            ? 'light'
-                                            : 'dark'
-                                    )
+                                    setTheme(theme === 'dark' ? 'light' : 'dark')
                                 }
                             >
                                 {theme === 'dark' ? (
@@ -251,14 +214,41 @@ export default function Header() {
                                 )}
                             </Button>
                         )}
+
+                        {/* User */}
+<div className="hidden sm:flex items-center">
+    <UserDropdownMenu
+        trigger={
+            <Button
+                type="button"
+                variant="ghost"
+                className="
+                    flex size-9 items-center justify-center
+                    rounded-full p-0
+                    text-foreground
+                    transition-colors duration-200
+                    hover:bg-indigo-50
+                    hover:text-indigo-700
+                    dark:hover:bg-indigo-950/50
+                    dark:hover:text-indigo-300
+                "
+                aria-label="حساب کاربری"
+            >
+                <User className="size-5 shrink-0" />
+            </Button>
+        }
+    />
+</div>
                     </div>
                 </div>
+
+
             </motion.header>
 
             <StoreClientWishlistSheet
-    open={wishlistOpen}
-    onOpenChange={setWishlistOpen}
-/>
+                open={wishlistOpen}
+                onOpenChange={setWishlistOpen}
+            />
 
             {/* =========================
                 Mobile Bottom Navigation
