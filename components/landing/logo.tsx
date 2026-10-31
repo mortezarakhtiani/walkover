@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 
 const TAILWIND_FUCHSIA_CLASSES = [
-  'fill-indigo-300 dark:fill-indigo-600',
-  'fill-indigo-400 dark:fill-indigo-500',
-  'fill-indigo-500 dark:fill-indigo-400',
-  'fill-indigo-600 dark:fill-indigo-300',
-  'fill-indigo-700 dark:fill-indigo-200',
+  'fill-red-300 dark:fill-red-600',
+  'fill-red-400 dark:fill-red-500',
+  'fill-red-500 dark:fill-red-400',
+  'fill-red-600 dark:fill-red-300',
+  'fill-red-700 dark:fill-red-200',
 ];
 
 const Logo = () => {
@@ -58,7 +58,7 @@ const Logo = () => {
         </g>
       </svg>
 
-      <span className="text-2xl font-bold bg-gradient-to-r from-indigo-700 dark:from-indigo-400 to-indigo-400 dark:to-indigo-300 bg-clip-text text-transparent">
+      <span className="text-2xl font-bold bg-gradient-to-r from-red-700 dark:from-red-400 to-red-400 dark:to-red-300 bg-clip-text text-transparent">
         SaaS
       </span>
     </motion.div>

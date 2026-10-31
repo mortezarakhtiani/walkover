@@ -91,7 +91,7 @@ function DataGridContainer({ children, className, border = true }) {
       data-slot="data-grid"
       className={cn(
         'grid w-full',
-        border && 'border border-border rounded-lg',
+        border && 'border border-border rounded-md',
         className,
       )}
     >

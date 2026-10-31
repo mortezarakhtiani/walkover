@@ -35,9 +35,9 @@ const Features = () => {
       colors: {
         bg: 'bg-red-100/40 dark:bg-red-950/40',
         icon: 'text-red-600',
-        hover: 'hover:border-red-500',
+        hover: 'hover:border-red-600',
         shadow: 'group-hover:shadow-red-500/30',
-        gradient: 'from-red-500 via-red-600 to-red-700',
+        gradient: 'from-red-600 via-red-600 to-red-700',
         text: 'group-hover:text-red-700'
       }
     },

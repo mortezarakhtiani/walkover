@@ -112,7 +112,7 @@ const FourBanners = () => {
     aspect-[5/9]
 
     overflow-hidden
-    rounded-2xl
+    rounded-md
     border
     border-border
     bg-muted

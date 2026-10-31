@@ -95,7 +95,7 @@ const PopularCategories = () => {
 
 ">
                                 <div
-                                    className="relative mb-2 size-20 overflow-hidden rounded-lg md:mb-4 md:size-32 md:rounded-xl">
+                                    className="relative mb-2 size-20 overflow-hidden rounded-md md:mb-4 md:size-32 md:rounded-md">
                                     <Image
                                         src={category.image}
                                         alt={category.name}

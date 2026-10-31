@@ -1,223 +1,244 @@
 
 'use client';
 
-import {motion, useMotionValue, useSpring, useTransform} from 'framer-motion';
-import {Button} from '@/components/ui/button';
+import {
+    motion,
+    useMotionValue,
+    useSpring,
+    useTransform,
+    useReducedMotion,
+} from 'framer-motion';
+
+import { Button } from '@/components/ui/button';
 import {
     BookOpen,
     ShoppingBag,
     User,
+    Sparkles,
+    ChevronDown,
 } from 'lucide-react';
-import {WordRotate} from '@/components/magicui/word-rotate';
+
+import { WordRotate } from '@/components/magicui/word-rotate';
 import Link from 'next/link';
-import {UserDropdownMenu} from '@/store/components/ui/user-dropdown-menu';
+import { UserDropdownMenu } from '@/store/components/ui/user-dropdown-menu';
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const Hero = () => {
+    const reduceMotion = useReducedMotion();
+
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
     const smoothX = useSpring(mouseX, {
-        stiffness: 80,
-        damping: 20,
-        mass: 0.5,
+        stiffness: 55,
+        damping: 22,
+        mass: 0.7,
     });
 
     const smoothY = useSpring(mouseY, {
-        stiffness: 80,
-        damping: 20,
-        mass: 0.5,
+        stiffness: 55,
+        damping: 22,
+        mass: 0.7,
     });
 
-    const imageX = useTransform(smoothX, [-1, 1], [-8, 8]);
+    const imageX = useTransform(smoothX, [-1, 1], [-12, 12]);
     const imageY = useTransform(smoothY, [-1, 1], [-8, 8]);
 
-    const rotatingWords = [
+    const words = [
         'داستان‌های واقعی',
         'پرونده‌های مرموز',
         'اتفاقات ترسناک',
         'پرونده‌های جنایی مرموز',
     ];
 
-    const handleMouseMove = (
-        e: React.MouseEvent<HTMLElement>
-    ) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        if (reduceMotion) return;
+
         const rect = e.currentTarget.getBoundingClientRect();
 
-        const x =
+        mouseX.set(
             (e.clientX - rect.left - rect.width / 2) /
-            (rect.width / 2);
+                (rect.width / 2)
+        );
 
-        const y =
+        mouseY.set(
             (e.clientY - rect.top - rect.height / 2) /
-            (rect.height / 2);
-
-        mouseX.set(x);
-        mouseY.set(y);
+                (rect.height / 2)
+        );
     };
 
-    const handleMouseLeave = () => {
+    const resetMouse = () => {
         mouseX.set(0);
         mouseY.set(0);
     };
 
+    const navClass = `
+        h-9 cursor-pointer gap-2 rounded-full
+        border border-red-300/20
+        bg-black/35 px-3
+        text-xs font-medium text-white
+        shadow-[0_0_20px_rgba(79,70,229,0.06)]
+        backdrop-blur-xl
+        transition-all duration-300
+        hover:border-red-300/50
+        hover:bg-red-700/15
+        hover:shadow-[0_0_24px_rgba(99,102,241,0.15)]
+        sm:h-10 sm:px-4 sm:text-sm
+    `;
+
+    const accountTrigger = (
+        <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label="حساب کاربری"
+            className="
+                size-10 rounded-full
+                border border-red-300/25
+                bg-black/40 text-white
+                backdrop-blur-xl
+                transition-all duration-300
+                hover:border-red-300/60
+                hover:bg-red-700/15
+                hover:text-white
+            "
+        >
+            <User className="size-[18px]" />
+        </Button>
+    );
+
     return (
         <section
-            className="
-                relative
-                w-full
-                overflow-hidden
-                bg-black
-            "
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={resetMouse}
+            className="relative isolate w-full overflow-hidden bg-black text-white"
         >
-            {/* =====================================================
-                HERO
-            ====================================================== */}
+            <div className="relative min-h-[680px] h-[100svh] w-full overflow-hidden">
 
-            <div
-                className="
-                    relative
-                    h-[100svh]
-                    min-h-[620px]
-                    w-full
-                    overflow-hidden
-                "
-            >
-
-                {/* =================================================
-                    BACKGROUND IMAGE
-                ================================================== */}
-
-                <div className="absolute inset-0 overflow-hidden">
-
+                {/* Background image */}
+                <motion.div
+                    initial={reduceMotion ? false : { opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 2, ease }}
+                    className="absolute inset-0"
+                >
                     <motion.img
-                        src="/images/scaryImage.jpg"
+                        src="/images/walkover-hero.png"
                         alt="Walkover"
                         draggable={false}
                         style={{
                             x: imageX,
                             y: imageY,
-                        }}
-                        initial={{
-                            scale: 1.06,
-                            opacity: 0,
-                        }}
-                        animate={{
-                            scale: 1.03,
-                            opacity: 1,
-                        }}
-                        transition={{
-                            opacity: {
-                                duration: 1.2,
-                                ease: 'easeOut',
-                            },
-                            scale: {
-                                duration: 1.8,
-                                ease: 'easeOut',
-                            },
+                            scale: 1.045,
                         }}
                         className="
-                            absolute
-                            inset-[-12px]
-                            h-[calc(100%+24px)]
-                            w-[calc(100%+24px)]
-                            object-cover
-                            object-center
+                        absolute inset-0 bg-black
+                            absolute -inset-[2%]
+                            h-[104%] w-[104%]
+                            object-cover object-center
+                            will-change-transform
                         "
                     />
+                </motion.div>
 
-                    {/* Main dark overlay */}
-                    <div
-                        className="
-                            absolute
-                            inset-0
-                            bg-black/45
-                        "
-                    />
+                {/* Overall dark cinematic layer */}
+                <div className="pointer-events-none absolute inset-0 bg-black/20" />
 
-                    {/* Top cinematic gradient */}
-                    <div
-                        className="
-                            absolute
-                            inset-x-0
-                            top-0
-                            h-56
-                            bg-gradient-to-b
-                            from-black/80
-                            via-black/35
-                            to-transparent
-                        "
-                    />
+                {/* Top fade */}
+                <div className="
+                    pointer-events-none absolute inset-x-0 top-0 h-[25%]
+                    bg-gradient-to-b from-black/65 via-black/20 to-transparent
+                " />
 
-                    {/* Bottom cinematic gradient */}
-                    <div
-                        className="
-                            absolute
-                            inset-x-0
-                            bottom-0
-                            h-[55%]
-                            bg-gradient-to-t
-                            from-black
-                            via-black/65
-                            to-transparent
-                        "
-                    />
+                {/* Side vignette */}
+                <div className="
+                    pointer-events-none absolute inset-0
+                    bg-[radial-gradient(ellipse_at_center,transparent_15%,rgba(0,0,0,0.65)_100%)]
+                " />
 
-                    {/* Subtle side vignette */}
-                    <div
-                        className="
-                            absolute
-                            inset-0
-                            bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.35)_100%)]
-                        "
-                    />
-
-                    {/* Very subtle indigo atmosphere */}
-                    <div
-                        className="
-                            pointer-events-none
-                            absolute
-                            inset-0
-                            bg-[radial-gradient(circle_at_50%_55%,rgba(79,70,229,0.08),transparent_42%)]
-                        "
-                    />
-                </div>
-
-                {/* =================================================
-                    TOP NAVIGATION
-                ================================================== */}
-
+                {/* Red atmospheric light */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: -18,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0,
-                    }}
+                    aria-hidden="true"
+                    animate={
+                        reduceMotion
+                            ? { opacity: 0.14 }
+                            : {
+                                  opacity: [0.08, 0.2, 0.08],
+                                  x: ['-5%', '8%', '-5%'],
+                              }
+                    }
                     transition={{
-                        duration: 0.7,
-                        delay: 0.25,
-                        ease: 'easeOut',
+                        duration: 12,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
                     }}
                     className="
-                        absolute
-                        right-4
-                        top-4
-                        z-30
-                        flex
-                        items-center
-                        gap-1.5
-                        sm:right-6
-                        sm:top-6
-                        sm:gap-2
+                        pointer-events-none absolute
+                        -left-[20%] top-[10%]
+                        h-[65%] w-[65%] rounded-full
+                        bg-red-950/50 blur-[120px]
+                    "
+                />
+
+                {/* red atmospheric light */}
+                <motion.div
+                    aria-hidden="true"
+                    animate={
+                        reduceMotion
+                            ? { opacity: 0.12 }
+                            : {
+                                  opacity: [0.08, 0.22, 0.08],
+                                  scale: [1, 1.16, 1],
+                              }
+                    }
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                    }}
+                    className="
+                        pointer-events-none absolute
+                        -right-[15%] top-[15%]
+                        h-[60%] w-[60%] rounded-full
+                        bg-red-800/35 blur-[120px]
+                    "
+                />
+
+               {/* Bottom cinematic gradient */}
+<div
+    className="
+        absolute
+        inset-x-0
+        bottom-0
+        h-[55%]
+        bg-gradient-to-t
+        from-black
+        to-transparent
+    "
+/>
+
+                {/* Extra smooth black fade, removes the visible image boundary */}
+                <div className="
+                    pointer-events-none absolute inset-x-0 bottom-0
+                    h-[48%]
+                    bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.18)_20%,rgba(0,0,0,0.62)_52%,#000_88%)]
+                " />
+
+                {/* Subtle bottom darkening */}
+
+
+                {/* Navigation */}
+                <motion.div
+                    initial={reduceMotion ? false : { opacity: 0, y: -16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3, ease }}
+                    className="
+                        absolute right-4 top-4 z-30
+                        flex items-center gap-1.5
+                        sm:right-6 sm:top-6 sm:gap-2
                     "
                 >
-
-                    {/* YouTube */}
-
                     <a
                         href="https://www.youtube.com/channel/UCsdr6i_XXypnD_9FiL0dylg"
                         target="_blank"
@@ -227,520 +248,321 @@ const Hero = () => {
                             type="button"
                             size="sm"
                             variant="outline"
-                            className="
-                                h-9
-                                cursor-pointer
-                                gap-2
-                                rounded-full
-                                border-white/15
-                                bg-black/35
-                                px-3
-                                text-xs
-                                font-medium
-                                text-white
-                                shadow-xl
-                                backdrop-blur-xl
-                                transition-all
-                                duration-300
-                                hover:border-white/30
-                                hover:bg-white/10
-                                hover:text-white
-                                sm:h-10
-                                sm:px-4
-                                sm:text-sm
-                            "
+                            className={navClass}
                         >
                             <img
                                 src="/icons/youtube.svg"
                                 alt=""
                                 className="size-4 sm:size-[18px]"
                             />
-
                             <span className="hidden xs:inline">
                                 ویدیوهای جدید
                             </span>
                         </Button>
                     </a>
 
-                    {/* Store */}
-
                     <Link href="/landing-v2">
                         <Button
                             type="button"
                             size="sm"
                             variant="outline"
-                            className="
-                                h-9
-                                cursor-pointer
-                                gap-2
-                                rounded-full
-                                border-white/15
-                                bg-black/35
-                                px-3
-                                text-xs
-                                font-medium
-                                text-white
-                                shadow-xl
-                                backdrop-blur-xl
-                                transition-all
-                                duration-300
-                                hover:border-white/30
-                                hover:bg-white/10
-                                hover:text-white
-                                sm:h-10
-                                sm:px-4
-                                sm:text-sm
-                            "
+                            className={navClass}
                         >
-                            <ShoppingBag className="size-4"/>
-
-                            <span>
-                                فروشگاه
-                            </span>
+                            <ShoppingBag className="size-4" />
+                            <span>فروشگاه</span>
                         </Button>
                     </Link>
-
-                    {/* Stories */}
 
                     <Link href="#">
                         <Button
                             type="button"
                             size="sm"
                             variant="outline"
-                            className="
-                                h-9
-                                cursor-pointer
-                                gap-2
-                                rounded-full
-                                border-white/15
-                                bg-black/35
-                                px-3
-                                text-xs
-                                font-medium
-                                text-white
-                                shadow-xl
-                                backdrop-blur-xl
-                                transition-all
-                                duration-300
-                                hover:border-white/30
-                                hover:bg-white/10
-                                hover:text-white
-                                sm:h-10
-                                sm:px-4
-                                sm:text-sm
-                            "
+                            className={navClass}
                         >
-                            <BookOpen className="size-4"/>
-
-                            <span>
-                                داستان‌ها
-                            </span>
+                            <BookOpen className="size-4" />
+                            <span>داستان‌ها</span>
                         </Button>
                     </Link>
                 </motion.div>
 
-                {/* =================================================
-                    DESKTOP ACCOUNT
-                ================================================== */}
-
+                {/* Desktop account */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        scale: 1,
-                    }}
-                    transition={{
-                        duration: 0.5,
-                        delay: 0.45,
-                    }}
-                    className="
-                        absolute
-                        left-4
-                        top-4
-                        z-30
-                        hidden
-                        sm:block
-                        sm:left-6
-                        sm:top-6
-                    "
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.65, delay: 0.4, ease }}
+                    className="absolute left-4 top-4 z-30 hidden sm:left-6 sm:top-6 sm:block"
                 >
-                    <UserDropdownMenu
-                        trigger={
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="icon"
-                                className="
-                                    size-10
-                                    rounded-full
-                                    border
-                                    border-white/15
-                                    bg-black/35
-                                    text-white
-                                    shadow-xl
-                                    backdrop-blur-xl
-                                    transition-all
-                                    duration-300
-                                    hover:border-white/30
-                                    hover:bg-white/10
-                                    hover:text-white
-                                "
-                                aria-label="حساب کاربری"
-                            >
-                                <User className="size-[18px]"/>
-                            </Button>
-                        }
-                    />
+                    <UserDropdownMenu trigger={accountTrigger} />
                 </motion.div>
 
-                {/* =================================================
-                    MOBILE ACCOUNT
-                ================================================== */}
-
+                {/* Mobile account */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        scale: 1,
-                    }}
-                    transition={{
-                        duration: 0.5,
-                        delay: 0.55,
-                    }}
-                    className="
-                        absolute
-                        right-4
-                        top-[68px]
-                        z-30
-                        sm:hidden
-                    "
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.65, delay: 0.5, ease }}
+                    className="absolute right-4 top-[68px] z-30 sm:hidden"
                 >
-                    <UserDropdownMenu
-                        trigger={
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="icon"
-                                className="
-                                    size-10
-                                    rounded-full
-                                    border
-                                    border-white/15
-                                    bg-black/35
-                                    text-white
-                                    shadow-xl
-                                    backdrop-blur-xl
-                                    transition-all
-                                    duration-300
-                                    hover:border-white/30
-                                    hover:bg-white/10
-                                    hover:text-white
-                                "
-                                aria-label="حساب کاربری"
-                            >
-                                <User className="size-[18px]"/>
-                            </Button>
-                        }
-                    />
+                    <UserDropdownMenu trigger={accountTrigger} />
                 </motion.div>
 
-                {/* =================================================
-                    HERO CONTENT
-                ================================================== */}
+                {/* Main content */}
+                <div className="
+                    relative z-10 flex h-full w-full
+                    items-center justify-center
+                    px-5 pb-14 pt-16 sm:px-6
+                ">
+                    <div className="mx-auto w-full max-w-5xl text-center">
 
-                <div
-                    className="
-                        relative
-                        z-10
-                        flex
-                        h-full
-                        w-full
-                        items-center
-                        justify-center
-                        px-5
-                        pt-12
-                        sm:px-6
-                    "
-                >
-                    <div
-                        className="
-                            mx-auto
-                            w-full
-                            max-w-5xl
-                            text-center
-                            text-white
-                        "
-                    >
+                        {/* Eyebrow with continuous flicker */}
+                        <motion.div
+                            initial={reduceMotion ? false : { opacity: 0, y: 12, filter: 'blur(8px)' }}
+                            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                            transition={{ duration: 0.9, delay: 0.5, ease }}
+                            className="mb-6 flex items-center justify-center gap-3 sm:mb-8"
+                        >
+                            <span className="
+                                h-px w-8 bg-gradient-to-l
+                                from-red-300/90 to-transparent sm:w-14
+                            " />
 
-{/* Small eyebrow */}
+                            <motion.span
+                                animate={
+                                    reduceMotion
+                                        ? {}
+                                        : {
+                                              opacity: [
+                                                  1, 0.65, 0.9, 0.28,
+                                                  1, 0.78, 0.48, 1,
+                                              ],
+                                              filter: [
+                                                  'brightness(1.2)',
+                                                  'brightness(0.75)',
+                                                  'brightness(1.4)',
+                                                  'brightness(0.5)',
+                                                  'brightness(1.3)',
+                                                  'brightness(0.85)',
+                                                  'brightness(0.6)',
+                                                  'brightness(1.2)',
+                                              ],
+                                              textShadow: [
+                                                  '0 0 8px rgba(129,140,248,0.2)',
+                                                  '0 0 2px rgba(129,140,248,0.05)',
+                                                  '0 0 16px rgba(99,102,241,0.8)',
+                                                  '0 0 0px rgba(255,255,255,0)',
+                                                  '0 0 12px rgba(129,140,248,0.35)',
+                                                  '0 0 4px rgba(99,102,241,0.2)',
+                                                  '0 0 1px rgba(255,255,255,0.05)',
+                                                  '0 0 8px rgba(129,140,248,0.2)',
+                                              ],
+                                          }
+                                }
+                                transition={{
+                                    duration: 2.8,
+                                    repeat: Infinity,
+                                    ease: 'easeInOut',
+                                    times: [0, 0.15, 0.28, 0.34, 0.48, 0.65, 0.76, 1],
+                                }}
+                                className="
+                                    flex items-center gap-2
+                                    text-xs font-semibold
+                                    tracking-[0.12em] text-red-100/90
+                                    sm:text-sm
+                                    [font-family:var(--font-peyda),sans-serif]
+                                "
+                            >
+                                چراغ‌ها رو خاموش کن
+                            </motion.span>
 
-<div
-    className="
-        mb-5
-        flex
-        items-center
-        justify-center
-        gap-3
-        sm:mb-6
-    "
->
-    {/* خط سمت راست */}
-    <span className="h-px w-8 shrink-0 bg-white/20 sm:w-12" />
-
-    {/* متن */}
-    <motion.span
-        initial={{
-            opacity: 0,
-            y: 8,
-            filter: 'blur(6px)',
-        }}
-        animate={{
-            opacity: [0, 1, 0.75, 1, 0.9, 1],
-            y: [8, 0, 0, 0, 0, 0],
-            filter: [
-                'blur(6px)',
-                'blur(0px)',
-                'blur(1px)',
-                'blur(0px)',
-                'blur(1px)',
-                'blur(0px)',
-            ],
-        }}
-        transition={{
-            duration: 1.8,
-            delay: 0.8,
-            ease: 'easeOut',
-        }}
-        className="
-            text-xs
-            font-medium
-            leading-none
-            tracking-[0.15em]
-            text-white/70
-            sm:text-sm
-        "
-    >
-        چراغ‌ها رو خاموش کن
-    </motion.span>
-
-    {/* خط سمت چپ */}
-    <span className="h-px w-8 shrink-0 bg-white/20 sm:w-12" />
-</div>
-
+                            <span className="
+                                h-px w-8 bg-gradient-to-r
+                                from-red-300/90 to-transparent sm:w-14
+                            " />
+                        </motion.div>
 
                         {/* Main title */}
-
                         <motion.h1
-                            initial={{
-                                opacity: 0,
-                                y: 28,
-                                filter: 'blur(8px)',
-                            }}
+                            initial={
+                                reduceMotion
+                                    ? false
+                                    : {
+                                          opacity: 0,
+                                          y: 30,
+                                          filter: 'blur(12px)',
+                                      }
+                            }
                             animate={{
                                 opacity: 1,
                                 y: 0,
                                 filter: 'blur(0px)',
                             }}
                             transition={{
-                                duration: 0.9,
-                                delay: 0.55,
-                                ease: 'easeOut',
+                                duration: 1.1,
+                                delay: 0.65,
+                                ease,
                             }}
                             className="
-                                text-4xl
-                                font-black
-                                leading-[1.15]
-                                tracking-tight
-                                text-white
-                                drop-shadow-[0_8px_30px_rgba(0,0,0,0.65)]
-                                sm:text-5xl
-                                md:text-7xl
-                                lg:text-[5.5rem]
+                                text-4xl font-black leading-[1.3]
+                                tracking-tight text-white
+                                drop-shadow-[0_8px_35px_rgba(0,0,0,0.9)]
+                                sm:text-5xl md:text-7xl lg:text-[5.5rem]
+                                [font-family:var(--font-peyda),sans-serif]
                             "
                         >
                             وارد دنیای
-                            <span className="text-white">
-                                {' '}
+
+                            <br className="sm:hidden" />
+
+                            {' '}
+                            <span className="
+                                bg-gradient-to-b
+                                from-red-200 via-red-400 to-red-600
+                                bg-clip-text text-transparent
+                                drop-shadow-[0_0_28px_rgba(99,102,241,0.3)]
+                            ">
                                 Walkover
                             </span>
                             {' '}
                             شو
                         </motion.h1>
 
-                        {/* Rotating words */}
-
+                        {/* Rotating keywords */}
                         <motion.div
-                            initial={{
-                                opacity: 0,
-                                y: 22,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0,
-                            }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 0.8,
-                            }}
+                            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.95, ease }}
                             className="
-                                mt-5
-                                flex
-                                min-h-9
-                                items-center
-                                justify-center
-                                sm:mt-6
-                                md:min-h-11
+                                mx-auto mt-6 flex min-h-10
+                                items-center justify-center sm:mt-7 md:min-h-12
                             "
                         >
                             <WordRotate
-                                words={rotatingWords}
+                                words={words}
                                 className="
-                                    text-xl
-                                    font-bold
-                                    tracking-tight
-                                    text-white
-                                    drop-shadow-[0_4px_20px_rgba(0,0,0,0.75)]
-                                    sm:text-2xl
-                                    md:text-3xl
-                                    lg:text-4xl
+                                    text-xl font-extrabold tracking-tight
+                                    text-red-300
+                                    drop-shadow-[0_0_22px_rgba(99,102,241,0.45)]
+                                    sm:text-2xl md:text-3xl lg:text-4xl
+                                    [font-family:var(--font-peyda),sans-serif]
                                 "
                             />
                         </motion.div>
 
                         {/* Description */}
-
                         <motion.p
-                            initial={{
-                                opacity: 0,
-                                y: 20,
-                            }}
+                            initial={
+                                reduceMotion
+                                    ? false
+                                    : {
+                                          opacity: 0,
+                                          y: 18,
+                                          filter: 'blur(6px)',
+                                      }
+                            }
                             animate={{
                                 opacity: 1,
                                 y: 0,
+                                filter: 'blur(0px)',
                             }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 1,
-                            }}
+                            transition={{ duration: 0.9, delay: 1.15, ease }}
                             className="
-                                mx-auto
-                                mt-6
-                                max-w-2xl
-                                text-sm
-                                leading-8
-                                text-white/70
-                                drop-shadow-[0_3px_15px_rgba(0,0,0,0.8)]
-                                sm:mt-7
-                                sm:text-base
-                                md:text-lg
-                                md:leading-9
+                                mx-auto mt-6 max-w-2xl
+                                text-sm leading-8 text-white/80
+                                drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]
+                                sm:mt-7 sm:text-base md:text-lg md:leading-9
+                                [font-family:var(--font-vazirmatn),sans-serif]
                             "
                         >
                             آماده‌ای وارد دنیایی بشی که هر داستانش می‌تونه
                             تا مدت‌ها توی ذهنت بمونه؟
-                            <br className="hidden sm:block"/>
-                            همراه Walkover باش و داستان‌هایی رو بشنوی که شاید
-                            هیچ‌وقت فراموششون نکنی.
+                            <br className="hidden sm:block" />
+                            همراه{' '}
+                            <span className="font-semibold text-red-300">
+                                Walkover
+                            </span>{' '}
+                            باش و داستان‌هایی رو بشنوی که شاید هیچ‌وقت فراموششون نکنی.
                         </motion.p>
 
+                        {/* Glowing divider */}
+                        <motion.div
+                            initial={reduceMotion ? false : { opacity: 0, scaleX: 0 }}
+                            animate={{ opacity: 1, scaleX: 1 }}
+                            transition={{ duration: 1, delay: 1.4, ease }}
+                            className="
+                                mx-auto mt-8 h-px w-32 origin-center
+                                bg-gradient-to-r from-transparent
+                                via-red-400 to-transparent
+                                shadow-[0_0_18px_rgba(99,102,241,0.85)]
+                            "
+                        />
                     </div>
                 </div>
 
-                {/* =================================================
-                    SCROLL INDICATOR
-                ================================================== */}
-
+                {/* Scroll indicator */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                    }}
-                    transition={{
-                        delay: 1.7,
-                        duration: 0.8,
-                    }}
+                    initial={reduceMotion ? false : { opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.6, duration: 0.8 }}
                     className="
-                        absolute
-                        bottom-5
-                        left-1/2
-                        z-20
-                        -translate-x-1/2
-                        sm:bottom-7
+                        absolute bottom-5 left-1/2 z-20
+                        -translate-x-1/2 sm:bottom-7
                     "
                 >
                     <motion.div
-                        animate={{
-                            y: [0, 7, 0],
-                        }}
+                        animate={reduceMotion ? {} : { y: [0, 6, 0] }}
                         transition={{
-                            duration: 1.8,
+                            duration: 2,
                             repeat: Infinity,
                             ease: 'easeInOut',
                         }}
-                        className="
-                            flex
-                            flex-col
-                            items-center
-                            gap-2
-                            text-white/45
-                        "
+                        className="flex flex-col items-center gap-2 text-red-200/70"
                     >
-                        <span
-                            className="
-                                text-[10px]
-                                font-medium
-                                tracking-wide
-                                sm:text-xs
-                            "
-                        >
+                        <span className="text-[10px] font-medium sm:text-xs">
                             بیا پایین
                         </span>
 
-                        <div
-                            className="
-                                flex
-                                h-8
-                                w-[19px]
-                                items-start
-                                justify-center
-                                rounded-full
-                                border
-                                border-white/25
-                                p-1
-                            "
-                        >
+                        <div className="
+                            flex h-8 w-[19px] items-start justify-center
+                            rounded-full border border-red-300/40
+                            bg-black/30 p-1 backdrop-blur-sm
+                            shadow-[0_0_16px_rgba(99,102,241,0.12)]
+                        ">
                             <motion.div
-                                animate={{
-                                    y: [0, 10, 0],
-                                    opacity: [1, 0.4, 1],
-                                }}
+                                animate={
+                                    reduceMotion
+                                        ? {}
+                                        : {
+                                              y: [0, 10, 0],
+                                              opacity: [1, 0.35, 1],
+                                          }
+                                }
                                 transition={{
                                     duration: 1.5,
                                     repeat: Infinity,
                                     ease: 'easeInOut',
                                 }}
                                 className="
-                                    size-1.5
-                                    rounded-full
-                                    bg-white/70
+                                    size-1.5 rounded-full bg-red-300
+                                    shadow-[0_0_8px_rgba(129,140,248,0.9)]
                                 "
                             />
                         </div>
+
+                        <motion.div
+                            animate={reduceMotion ? {} : { y: [0, 4, 0], opacity: [0.4, 1, 0.4] }}
+                            transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: 'easeInOut',
+                            }}
+                        >
+                            <ChevronDown className="size-4" />
+                        </motion.div>
                     </motion.div>
                 </motion.div>
-
             </div>
         </section>
     );
 };
 
 export default Hero;
-

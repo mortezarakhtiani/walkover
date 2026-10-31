@@ -221,7 +221,7 @@ export function ProductRevealCard({
                     className={cn(
                         "absolute top-4 right-4 z-20 p-2 rounded-full backdrop-blur-sm",
                         isFavorite
-                            ? "bg-red-500 text-white"
+                            ? "bg-red-600 text-white"
                             : "bg-white/20 text-white hover:bg-white/30"
                     )}
                 >
@@ -328,7 +328,7 @@ export function ProductRevealCard({
                                           title="مشکی"/>
                                     <span className="w-5 h-5 rounded-full bg-white border border-gray-300"
                                           title="سفید"/>
-                                    <span className="w-5 h-5 rounded-full bg-red-500" title="قرمز"/>
+                                    <span className="w-5 h-5 rounded-full bg-red-600" title="قرمز"/>
                                     <span className="w-5 h-5 rounded-full bg-blue-500" title="آبی"/>
                                 </div>
                             </div>
@@ -362,8 +362,8 @@ export function ProductRevealCard({
                                 className={cn(
                                     buttonVariants({variant: "default"}),
                                     "w-full h-12 font-medium",
-                                    "bg-indigo-600 text-white",
-                                    "hover:bg-indigo-700 hover:text-white",
+                                    "bg-red-600 text-white",
+                                    "hover:bg-red-700 hover:text-white",
                                 )}
                             >
                                 <ShoppingCart className="w-4 h-4 mr-2 text-foreground"/>

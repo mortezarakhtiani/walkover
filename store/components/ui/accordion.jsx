@@ -24,8 +24,8 @@ const accordionItemVariants = cva('', {
   variants: {
     variant: {
       default: 'border-b border-border',
-      outline: 'border border-border rounded-lg px-4',
-      solid: 'rounded-lg bg-accent/70 px-4',
+      outline: 'border border-border rounded-md px-4',
+      solid: 'rounded-md bg-accent/70 px-4',
     },
   },
   defaultVariants: {

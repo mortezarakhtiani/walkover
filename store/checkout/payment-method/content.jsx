@@ -16,14 +16,14 @@ export function PaymentMethodContent() {
                 <div className="flex justify-end items-center flex-wrap gap-3">
 
 
-                    <Button asChild>
+                    <Button asChild className="px-4 bg-red-600 hover:bg-red-700 text-primary-foreground">
                         <Link href="/store/checkout/order-placed">
                             ثبت نهایی سفارش
                             <SquareMousePointer className="text-base"/>
                         </Link>
                     </Button>
 
-                    <Button asChild variant="outline">
+                    <Button asChild variant="outline" className="p-5">
                         <Link href="/store/checkout/shipping-info">
                         <MoveLeft className="text-base"/>
                             اطلاعات ارسال

@@ -176,7 +176,7 @@ function DataGridTableBody({ children }) {
       className={cn(
         '[&_tr:last-child]:border-0',
         props.tableLayout?.rowRounded &&
-          '[&_td:first-child]:rounded-s-lg [&_td:last-child]:rounded-e-lg',
+          '[&_td:first-child]:rounded-s-md [&_td:last-child]:rounded-e-md',
         props.tableClassNames?.body,
       )}
     >

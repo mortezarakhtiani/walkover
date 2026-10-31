@@ -44,11 +44,11 @@ export default function Item10() {
           </span>
         </div>
 
-        <Card className="shadow-none p-2.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none p-2.5 rounded-md bg-muted/70">
           <div className="flex items-center justify-between flex-wrap gap-2.5">
             <div className="flex items-center gap-2.5">
-              <div className="border border-warning-transparent rounded-lg">
-                <div className="flex items-center justify-center border-b border-b-warning-transparent bg-yellow-400/10 rounded-t-lg">
+              <div className="border border-warning-transparent rounded-md">
+                <div className="flex items-center justify-center border-b border-b-warning-transparent bg-yellow-400/10 rounded-t-md">
                   <span className="text-xs text-yellow-400 fw-medium p-1.5">
                     Apr
                   </span>

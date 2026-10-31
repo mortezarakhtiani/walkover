@@ -39,7 +39,7 @@ const SmallImages = () => {
                             relative
                             aspect-square
                             overflow-hidden
-                            rounded-xl
+                            rounded-md
                             border
                             border-border
                             bg-muted

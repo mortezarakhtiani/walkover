@@ -1,13 +1,19 @@
-import Link from 'next/link';
-import {ShoppingCart, TrashIcon} from 'lucide-react';
-import {toAbsoluteUrl} from '@/lib/helpers';
-import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
+'use client';
 
-import {Button} from '@/store/components/ui/button';
-import {Card, CardContent} from '@/store/components/ui/card';
-import {ScrollArea} from '@/store/components/ui/scroll-area';
-import {DiscountBadge} from '@/store/components/ui/discount-badge'
-import {motion} from 'framer-motion';
+import { useState } from 'react';
+import Link from 'next/link';
+import { ShoppingCart, TrashIcon } from 'lucide-react';
+
+import { toAbsoluteUrl } from '@/lib/helpers';
+import { toPersianDigits, toPersianSplit } from '@/lib/to-persian';
+
+import { useStoreClient } from '@/store/components/context';
+
+import { Button } from '@/store/components/ui/button';
+import { Card, CardContent } from '@/store/components/ui/card';
+import { ScrollArea } from '@/store/components/ui/scroll-area';
+import { DiscountBadge } from '@/store/components/ui/discount-badge';
+
 import {
     Select,
     SelectContent,
@@ -15,6 +21,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/store/components/ui/select';
+
 import {
     Sheet,
     SheetBody,
@@ -24,265 +31,392 @@ import {
     SheetTitle,
 } from '@/store/components/ui/sheet';
 
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '@/store/components/ui/alert-dialog';
+
 export function StoreClientCartSheet({
-                                         open,
-                                         onOpenChange,
-                                         items = [],
-                                         onRemoveItem,
-                                     }) {
+    open,
+    onOpenChange,
+    items = [],
+    onRemoveItem,
+}) {
+    const {
+        showProductDetailsSheet,
+        setCartSheetOpen,
+    } = useStoreClient();
+
+    const [itemToRemove, setItemToRemove] = useState(null);
+
+    const handleSheetChange = (isOpen) => {
+        onOpenChange(isOpen);
+        setCartSheetOpen?.(isOpen);
+    };
+
+    const handleProductClick = (productId) => {
+        if (productId == null) return;
+
+        showProductDetailsSheet(productId);
+    };
+
+    const handleRemoveClick = (item) => {
+        setItemToRemove(item);
+    };
+
+    const handleConfirmRemove = () => {
+        if (itemToRemove == null) return;
+
+        onRemoveItem?.(itemToRemove.id);
+        setItemToRemove(null);
+    };
+
     return (
-        <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent
-                side="right"
-                dir="rtl"
-                className="
-          inset-y-5 right-5 left-auto
-          flex h-[calc(100%-2.5rem)] flex-col
-          overflow-hidden rounded-xl p-0
-          sm:w-[560px] sm:max-w-none
-          max-sm:inset-y-0 max-sm:right-0
-          max-sm:h-full max-sm:w-[85%]
-          max-sm:max-w-[380px] max-sm:rounded-none
-          max-sm:[&_[data-slot=sheet-close]]:hidden
-        "
+        <>
+            <Sheet
+                open={open}
+                onOpenChange={handleSheetChange}
             >
-                {/* Header */}
-                <SheetHeader className="shrink-0 px-5 py-4 max-sm:hidden">
-                    <SheetTitle className="text-right text-base font-semibold">
-                        سبد خرید
-                    </SheetTitle>
-                </SheetHeader>
-
-                {/* Body */}
-                <SheetBody
+                <SheetContent
+                    side="right"
+                    dir="rtl"
                     className="
-            flex min-h-0 flex-1 flex-col
-            overflow-hidden px-4 py-0
-            sm:px-5
-          "
+                        inset-y-5 right-5 left-auto
+                        flex h-[calc(100%-2.5rem)] flex-col
+                        overflow-hidden rounded-md p-0
+                        sm:w-[560px] sm:max-w-none
+                        max-sm:inset-y-0 max-sm:right-0
+                        max-sm:h-full max-sm:w-[85%]
+                        max-sm:max-w-[380px] max-sm:rounded-none
+                        max-sm:[&_[data-slot=sheet-close]]:hidden
+                    "
                 >
-                    <ScrollArea className="min-h-0 flex-1">
-                        <div className="px-1 py-4 max-sm:pt-2">
-                            {items.length > 0 ? (
-                                <div className="flex flex-col gap-4">
-                                    {items.map((item) => (
-                                        <Card
-                                            key={item.id}
-                                            className="
-                        rounded-md shadow-none
-                        max-sm:relative max-sm:pb-[68px]
-                      "
-                                        >
-                                            <CardContent
-                                                dir="rtl"
-                                                className="
-                          flex w-full items-center justify-between
-                          gap-3 p-3
+                    <SheetHeader className="shrink-0 px-5 py-4 max-sm:hidden">
+                        <SheetTitle className="text-right text-base font-semibold">
+                            سبد خرید
+                        </SheetTitle>
+                    </SheetHeader>
+
+                    <SheetBody
+                        className="
+                            flex min-h-0 flex-1 flex-col
+                            overflow-hidden px-4 py-0
+                            sm:px-5
                         "
-                                            >
-                                                {/* Product */}
-                                                <div className="flex min-w-0 flex-1 items-center gap-3">
-                                                    {/* Image */}
-                                                    <Card
-                                                        className="
-                              flex size-[88px] shrink-0
-                              items-center justify-center
-                              rounded-md bg-muted/40
-                              shadow-none
-                              max-sm:size-[72px]
-                            "
-                                                    >
-                                                        <img
-                                                            src={toAbsoluteUrl(
-                                                                `/media/store/client/600x600/${item.product.logo}`,
-                                                            )}
-                                                            alt={item.product.title}
-                                                            className="
-                                size-full p-1.5 object-contain
-                              "
-                                                        />
-                                                    </Card>
+                    >
+                        <ScrollArea className="min-h-0 flex-1">
+                            <div className="px-1 py-4 max-sm:pt-2">
+                                {items.length > 0 ? (
+                                    <div className="flex flex-col gap-4">
+                                        {items.map((item) => {
+                                            const product = item.product;
 
-                                                    {/* Info */}
-                                                    <div className="flex min-w-0 flex-col justify-center gap-2">
-                                                        <Link
-                                                            href={`/store/product/${item.product.slug}`}
-                                                            onClick={() => onOpenChange(false)}
-                                                            className="
-                                text-right text-base font-semibold
-                                leading-6 text-foreground
-                                transition-colors hover:text-primary
-                                max-sm:text-sm max-sm:leading-5
-                              "
-                                                        >
-                                                            {item.product.title}
-                                                        </Link>
-
-                                                        <div className="flex flex-wrap items-center gap-2">
-                              <span
-                                  className="
-                                  text-sm text-muted-foreground
-                                  max-sm:text-xs
-                                "
-                              >
-                                کد:{' '}
-                                  <span className="font-medium text-foreground">
-                                  {item.product.sku}
-                                </span>
-                              </span>
-
-                                                            <DiscountBadge discount={item.product.discount}/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Actions */}
-                                                <div
+                                            return (
+                                                <Card
+                                                    key={item.id}
                                                     className="
-                            flex shrink-0 flex-col items-end gap-3
-                            max-sm:absolute max-sm:inset-x-3
-                            max-sm:bottom-3 max-sm:flex-row
-                            max-sm:items-center max-sm:justify-between
-                          "
+                                                        py-3 shadow-none
+                                                        max-sm:relative
+                                                        max-sm:pb-[62px]
+                                                    "
                                                 >
-                                                    {/* Quantity + Delete */}
-                                                    <div className="flex items-center gap-2">
-                                                        <Select
-                                                            defaultValue={String(item.quantity)}
-                                                        >
-                                                            <SelectTrigger
-                                                                size="sm"
-                                                                className="h-9 w-[56px] rounded-md text-xs max-sm:h-8 max-sm:w-[48px]"
-                                                            >
-                                                                <SelectValue/>
-                                                            </SelectTrigger>
-
-                                                            <SelectContent>
-                                                                {[1, 2, 3, 4].map((quantity) => (
-                                                                    <SelectItem
-                                                                        key={quantity}
-                                                                        value={String(quantity)}
-                                                                    >
-                                                                        {toPersianDigits(quantity)}
-                                                                    </SelectItem>
-                                                                ))}
-                                                            </SelectContent>
-                                                        </Select>
-
-                                                        <Button
-                                                            type="button"
-                                                            size="icon"
-                                                            variant="outline"
-                                                            onClick={() => onRemoveItem(item.id)}
-                                                            aria-label="حذف محصول از سبد خرید"
-                                                            className="size-9 rounded-md max-sm:size-8"
-                                                        >
-                                                            <TrashIcon className="size-4 max-sm:size-3.5"/>
-                                                        </Button>
-                                                    </div>
-
-                                                    {/* Price */}
-                                                    <div className="flex flex-col items-end gap-0.5">
-                                                        {item.originalPrice != null && (
-                                                            <span
-                                                                className="
-                                  text-sm text-muted-foreground
-                                  line-through max-sm:text-xs
-                                "
-                                                            >
-                                {toPersianSplit(item.originalPrice)}
-                                                                {' '}تومان
-                              </span>
-                                                        )}
-
-                                                        <span
+                                                    <CardContent
+                                                        dir="rtl"
+                                                        className="
+                                                            p-2 pe-4
+                                                            flex items-center
+                                                            justify-between gap-3
+                                                            w-full
+                                                        "
+                                                    >
+                                                        <div
                                                             className="
-                                text-base font-bold text-foreground
-                                max-sm:text-sm
-                              "
+                                                                flex items-center gap-3
+                                                                min-w-0 flex-1
+                                                            "
                                                         >
-                              {toPersianSplit(item.price)} تومان
-                            </span>
-                                                    </div>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="flex h-[300px] items-center justify-center">
-                  <span className="text-sm text-muted-foreground">
-                    سبد خرید شما خالی است
-                  </span>
-                                </div>
-                            )}
-                        </div>
-                    </ScrollArea>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    handleProductClick(product.id)
+                                                                }
+                                                                aria-label={`مشاهده جزئیات ${product.title}`}
+                                                                className="
+                                                                    flex items-center justify-center
+                                                                    bg-accent/50
+                                                                    h-[70px] w-[90px]
+                                                                    rounded-md border shadow-none
+                                                                    shrink-0 overflow-hidden cursor-pointer
+                                                                    transition-colors hover:bg-muted/60
+                                                                    focus-visible:outline-none
+                                                                    focus-visible:ring-2
+                                                                    focus-visible:ring-ring
+                                                                    max-sm:h-[65px] max-sm:w-[70px]
+                                                                "
+                                                            >
+                                                                <img
+                                                                    src={toAbsoluteUrl(
+                                                                        `/media/store/client/600x600/${product.logo}`
+                                                                    )}
+                                                                    className="
+                                                                        h-[65px] w-full object-contain
+                                                                        max-sm:h-[55px]
+                                                                    "
+                                                                    alt={product.title}
+                                                                />
+                                                            </button>
 
-                    {/* Total */}
-                    <div
-                        className="
-              mt-2 flex shrink-0 items-center justify-between
-              gap-4 rounded-md
-              bg-muted/40 px-4 py-3
-            "
-                    >
-            <span className="text-sm font-medium text-muted-foreground">
-              جمع کل
-            </span>
+                                                            <div
+                                                                className="
+                                                                    flex flex-col justify-center gap-2
+                                                                    min-w-0
+                                                                "
+                                                            >
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() =>
+                                                                        handleProductClick(product.id)
+                                                                    }
+                                                                    className="
+                                                                        text-right text-sm font-medium
+                                                                        text-mono leading-5.5
+                                                                        hover:text-primary cursor-pointer
+                                                                        focus-visible:outline-none
+                                                                        focus-visible:underline
+                                                                        max-sm:text-xs max-sm:leading-5
+                                                                    "
+                                                                >
+                                                                    {product.title}
+                                                                </button>
 
-                        <span
+                                                                <div className="flex items-center gap-2 flex-wrap">
+                                                                    <span
+                                                                        className="
+                                                                            text-xs text-secondary-foreground
+                                                                            max-sm:text-[10px]
+                                                                        "
+                                                                    >
+                                                                        کد:{' '}
+                                                                        <span className="font-medium text-foreground">
+                                                                            {product.sku}
+                                                                        </span>
+                                                                    </span>
+
+                                                                    {product.discount > 0 && (
+                                                                        <DiscountBadge
+                                                                            discount={product.discount}
+                                                                        />
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div
+                                                            className="
+                                                                flex flex-col items-end gap-2 shrink-0
+                                                                max-sm:absolute max-sm:start-4
+                                                                max-sm:end-4 max-sm:bottom-3
+                                                                max-sm:flex-row max-sm:items-center
+                                                                max-sm:justify-between
+                                                            "
+                                                        >
+                                                            <div className="flex items-center gap-2">
+                                                                <Select
+                                                                    defaultValue={String(item.quantity)}
+                                                                >
+                                                                    <SelectTrigger
+                                                                        size="sm"
+                                                                        className="px-3 rounded-md text-xs"
+                                                                    >
+                                                                        <SelectValue />
+                                                                    </SelectTrigger>
+
+                                                                    <SelectContent>
+                                                                        {[1, 2, 3, 4].map((quantity) => (
+                                                                            <SelectItem
+                                                                                key={quantity}
+                                                                                value={String(quantity)}
+                                                                            >
+                                                                                {toPersianDigits(quantity)}
+                                                                            </SelectItem>
+                                                                        ))}
+                                                                    </SelectContent>
+                                                                </Select>
+
+                                                                <Button
+                                                                    type="button"
+                                                                    size="sm"
+                                                                    variant="outline"
+                                                                    onClick={() =>
+                                                                        handleRemoveClick(item)
+                                                                    }
+                                                                    aria-label="حذف محصول از سبد خرید"
+                                                                    className="
+                                                                        rounded-md max-sm:size-9
+                                                                    "
+                                                                >
+                                                                    <TrashIcon className="size-4" />
+                                                                </Button>
+                                                            </div>
+
+                                                            <div className="flex flex-col items-end gap-0.5">
+                                                                {item.originalPrice != null &&
+                                                                    item.originalPrice > item.price && (
+                                                                        <span
+                                                                            className="
+                                                                                text-xs text-secondary-foreground
+                                                                                line-through max-sm:text-[10px]
+                                                                            "
+                                                                        >
+                                                                            {toPersianSplit(item.originalPrice)} تومان
+                                                                        </span>
+                                                                    )}
+
+                                                                <span
+                                                                    className="
+                                                                        text-sm font-semibold text-mono
+                                                                        max-sm:text-sm
+                                                                    "
+                                                                >
+                                                                    {toPersianSplit(item.price)} تومان
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </CardContent>
+                                                </Card>
+                                            );
+                                        })}
+                                    </div>
+                                ) : (
+                                    <div className="flex h-[300px] items-center justify-center">
+                                        <span className="text-sm text-muted-foreground">
+                                            سبد خرید شما خالی است
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                        </ScrollArea>
+
+                        <div
                             className="
-                text-lg font-bold text-foreground
-                max-sm:text-base
-              "
+                                mt-2 flex shrink-0 items-center
+                                justify-between gap-4 rounded-md
+                                bg-muted/40 px-4 py-3
+                            "
                         >
-              {toPersianSplit('492,000')} تومان
-            </span>
-                    </div>
-                </SheetBody>
+                            <span className="text-sm font-medium text-muted-foreground">
+                                جمع کل
+                            </span>
 
-                {/* Footer */}
-                <SheetFooter
-                    className="
-            flex w-full shrink-0 flex-row gap-2
-            border-0 bg-transparent p-4
-            max-sm:mb-16 max-sm:px-3
-          "
+                            <span
+                                className="
+                                    text-lg font-bold text-foreground
+                                    max-sm:text-base
+                                "
+                            >
+                                {toPersianSplit(
+                                    items.reduce(
+                                        (total, item) =>
+                                            total +
+                                            Number(item.price || 0) *
+                                                Number(item.quantity || 1),
+                                        0
+                                    )
+                                )}{' '}
+                                تومان
+                            </span>
+                        </div>
+                    </SheetBody>
+
+                    <SheetFooter
+                        className="
+                            flex w-full shrink-0 flex-row gap-2
+                            border-0 bg-transparent p-4
+                            max-sm:mb-16 max-sm:px-3
+                        "
+                    >
+                        <Button
+                            asChild
+                            className="
+                                h-14 min-h-14 flex-1 gap-2
+                                rounded-md border border-red-600/20
+                                bg-red-600 px-4
+                                text-base font-semibold text-white
+                                hover:bg-red-700
+                                focus-visible:bg-red-600
+                            "
+                        >
+                            <Link
+                                href="/store/checkout/order-summary"
+                                onClick={() => handleSheetChange(false)}
+                            >
+                                <ShoppingCart className="size-5" />
+                                ادامه و پرداخت
+                            </Link>
+                        </Button>
+
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => handleSheetChange(false)}
+                            className="
+                                h-14 min-h-14 shrink-0 rounded-md
+                                border-border px-4 text-sm font-medium
+                            "
+                        >
+                            ادامه خرید
+                        </Button>
+                    </SheetFooter>
+                </SheetContent>
+            </Sheet>
+
+            <AlertDialog
+                open={itemToRemove !== null}
+                onOpenChange={(isOpen) => {
+                    if (!isOpen) setItemToRemove(null);
+                }}
+            >
+                <AlertDialogContent
+                    dir="rtl"
+                    className="sm:max-w-[420px]"
                 >
-                    <Button
-                        asChild
-                        className="
-              h-14 min-h-14 flex-1 gap-2
-              rounded-md border border-indigo-500/20
-              bg-indigo-600 px-4 text-base font-semibold
-              text-white hover:bg-indigo-700
-              focus-visible:bg-indigo-600
-            "
-                    >
-                        <Link
-                            href="/store/checkout/order-summary"
-                            onClick={() => onOpenChange(false)}
-                        >
-                            <ShoppingCart className="size-5"/>
-                            ادامه و پرداخت
-                        </Link>
-                    </Button>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle className="text-right">
+                            حذف محصول از سبد خرید؟
+                        </AlertDialogTitle>
 
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => onOpenChange(false)}
-                        className="
-              h-14 min-h-14 shrink-0
-              rounded-md border-border
-              px-4 text-sm font-medium
-            "
-                    >
-                        ادامه خرید
-                    </Button>
-                </SheetFooter>
-            </SheetContent>
-        </Sheet>
+                        <AlertDialogDescription className="text-right leading-7">
+                            آیا مطمئنی که می‌خوای{' '}
+                            <span className="font-medium text-foreground">
+                                {itemToRemove?.product?.title}
+                            </span>{' '}
+                            رو از سبد خرید حذف کنی؟
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter className="flex-row-reverse gap-2 sm:justify-start">
+                        <AlertDialogCancel>
+                            انصراف
+                        </AlertDialogCancel>
+
+                        <AlertDialogAction
+                            onClick={handleConfirmRemove}
+                            className="
+                                bg-destructive text-destructive-foreground
+                                hover:bg-destructive/90
+                            "
+                        >
+                            بله، حذف کن
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </>
     );
 }

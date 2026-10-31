@@ -106,7 +106,7 @@ export function ChatSheet({ trigger }: { trigger: ReactNode }) {
   return (
     <Sheet>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
-      <SheetContent className="p-0 gap-0 sm:w-[450px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 sm:max-w-none [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
+      <SheetContent className="p-0 gap-0 sm:w-[450px] sm:max-w-none inset-5 start-auto h-auto rounded-md p-0 sm:max-w-none [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
         <SheetHeader>
           <div className="flex items-center justify-between p-3 border-b border-border">
             <SheetTitle>Chat</SheetTitle>
@@ -208,7 +208,7 @@ export function ChatSheet({ trigger }: { trigger: ReactNode }) {
               >
                 <div className="flex flex-col gap-1">
                   <div
-                    className="bg-primary text-primary-foreground text-sm font-medium p-3 rounded-lg shadow-xs"
+                    className="bg-primary text-primary-foreground text-sm font-medium p-3 rounded-md shadow-xs"
                     dangerouslySetInnerHTML={{ __html: message.text }}
                   />
                   <div className="flex items-center justify-end gap-1">
@@ -246,7 +246,7 @@ export function ChatSheet({ trigger }: { trigger: ReactNode }) {
                 </Avatar>
                 <div className="flex flex-col gap-1">
                   <div
-                    className="bg-accent/50 text-secondary-foreground text-sm font-medium p-3 rounded-lg shadow-xs"
+                    className="bg-accent/50 text-secondary-foreground text-sm font-medium p-3 rounded-md shadow-xs"
                     dangerouslySetInnerHTML={{ __html: message.text }}
                   />
                   <span className="text-xs text-muted-foreground">

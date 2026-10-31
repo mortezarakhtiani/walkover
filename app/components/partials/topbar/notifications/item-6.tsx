@@ -43,8 +43,8 @@ export default function Item6() {
           </span>
         </div>
 
-        <Card className="shadow-none flex items-center flex-row gap-1.5 p-2.5 rounded-lg bg-muted/70">
-          <div className="flex items-center justify-center w-[26px] h-[30px] shrink-0 bg-background rounded-sm border border-border">
+        <Card className="shadow-none flex items-center flex-row gap-1.5 p-2.5 rounded-md bg-muted/70">
+          <div className="flex items-center justify-center w-[26px] h-[30px] shrink-0 bg-background rounded-md border border-border">
             <img
               src={toAbsoluteUrl('/media/file-types/figma.svg')}
               className="h-5"

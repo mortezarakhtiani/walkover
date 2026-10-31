@@ -44,7 +44,7 @@ export default function Item4() {
           </span>
         </div>
 
-        <Card className="shadow-none flex items-center flex-row gap-1.5 p-2.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none flex items-center flex-row gap-1.5 p-2.5 rounded-md bg-muted/70">
           <img
             src={toAbsoluteUrl('/media/file-types/pdf.svg')}
             className="h-5"

@@ -15,14 +15,14 @@ export function OrderSummaryContent() {
                 </div>
                 <div className="flex justify-end items-center flex-wrap gap-3">
 
-                    <Button asChild>
+                    <Button asChild className="px-4 bg-red-600 hover:bg-red-700 text-primary-foreground">
                         <Link href="/store/checkout/shipping-info">
                             اطلاعات ارسال
                             <MoveRight className="text-base"/>
                         </Link>
                     </Button>
 
-                    <Button variant="outline">منصرف شدم</Button>
+                    <Button variant="outline" className="p-5">منصرف شدم</Button>
                 </div>
             </div>
 

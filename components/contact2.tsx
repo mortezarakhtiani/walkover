@@ -78,7 +78,7 @@ const Contact = () => {
     <section
       id="contact"
       dir="rtl"
-      className="border-b border-border/50 bg-zinc-50 py-24 dark:bg-zinc-950"
+      className="border-b border-border/50 bg-background/50 py-24 dark:bg-background/50"
     >
       <div className="container mx-auto px-6">
 

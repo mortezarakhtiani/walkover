@@ -71,7 +71,7 @@ const AddressesPage = () => {
         <>
             <div
                 dir="rtl"
-                className="w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-sm"
+                className="w-full overflow-hidden rounded-md border border-border/60 bg-background shadow-sm"
             >
 
                 {addresses.length === 0 ? (
@@ -81,7 +81,7 @@ const AddressesPage = () => {
                     ========================== */
                     <div className="flex min-h-[520px] flex-col items-center justify-center px-6 py-12 text-center">
 
-                        <div className="mb-5 flex size-16 items-center justify-center rounded-2xl border border-border/60 bg-muted/40">
+                        <div className="mb-5 flex size-16 items-center justify-center rounded-md border border-border/60 bg-muted/40">
                             <MapPin
                                 className="size-7 text-muted-foreground"
                                 strokeWidth={1.6}
@@ -99,7 +99,7 @@ const AddressesPage = () => {
                         <Button
                             variant="primary"
                             onClick={handleAddAddress}
-                            className="mt-6 h-10 rounded-lg bg-indigo-600 px-5 text-white shadow-sm shadow-indigo-500/20 transition-all hover:bg-indigo-700 hover:shadow-md hover:shadow-indigo-500/20 active:scale-[0.98]"
+                            className="mt-6 h-10 rounded-md bg-red-600 px-5 text-white shadow-sm shadow-red-500/20 transition-all hover:bg-red-700 hover:shadow-md hover:shadow-red-500/20 active:scale-[0.98]"
                         >
                             <MapPinPlus
                                 className="size-4"
@@ -122,7 +122,7 @@ const AddressesPage = () => {
 
                             <div className="flex items-center gap-3">
 
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted/50 text-muted-foreground">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted/50 text-muted-foreground">
                                     <MapPin
                                         className="size-5"
                                         strokeWidth={1.7}
@@ -144,7 +144,7 @@ const AddressesPage = () => {
                             <Button
                                 variant="primary"
                                 onClick={handleAddAddress}
-                                className="h-10 rounded-lg bg-indigo-600 px-4 text-white shadow-sm shadow-indigo-500/20 transition-all hover:bg-indigo-700 hover:shadow-md hover:shadow-indigo-500/20 active:scale-[0.98]"
+                                className="h-10 rounded-md bg-red-600 px-4 text-white shadow-sm shadow-red-500/20 transition-all hover:bg-red-700 hover:shadow-md hover:shadow-red-500/20 active:scale-[0.98]"
                             >
                                 <MapPinPlus
                                     className="size-4"
@@ -171,7 +171,7 @@ const AddressesPage = () => {
 
                                 <div
                                     key={index}
-                                    className="group relative flex min-h-[205px] flex-col overflow-hidden rounded-xl border border-border/60 bg-background p-5 transition-all duration-200 hover:border-border hover:shadow-sm"
+                                    className="group relative flex min-h-[205px] flex-col overflow-hidden rounded-md border border-border/60 bg-background p-5 transition-all duration-200 hover:border-border hover:shadow-sm"
                                 >
 
                                     {/* نوار ظریف بالای کارت */}
@@ -182,7 +182,7 @@ const AddressesPage = () => {
 
                                         <div className="flex min-w-0 items-start gap-3">
 
-                                            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted/50 text-muted-foreground">
+                                            <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted/50 text-muted-foreground">
                                                 <MapPin
                                                     className="size-4"
                                                     strokeWidth={1.7}
@@ -198,7 +198,7 @@ const AddressesPage = () => {
                                                     </span>
 
                                                     {item.isDefault && (
-                                                        <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-medium text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400">
+                                                        <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-medium text-red-600 dark:bg-red-950/40 dark:text-red-400">
                                                             <Star
                                                                 className="size-3 fill-current"
                                                                 strokeWidth={1.5}
@@ -222,7 +222,7 @@ const AddressesPage = () => {
                                     </div>
 
                                     {/* محتوای آدرس */}
-                                    <div className="mt-4 rounded-lg bg-muted/30 px-3.5 py-3">
+                                    <div className="mt-4 rounded-md bg-muted/30 px-3.5 py-3">
 
                                         <p className="text-sm leading-6 text-foreground/90 break-words">
 
@@ -282,7 +282,7 @@ const AddressesPage = () => {
                                             onClick={() =>
                                                 handleEditAddress(item, index)
                                             }
-                                            className="h-8 rounded-lg px-3 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            className="h-8 rounded-md px-3 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
                                         >
                                             <Pencil
                                                 className="size-3.5"
@@ -297,7 +297,7 @@ const AddressesPage = () => {
                                             onClick={() =>
                                                 handleDeleteAddress(index)
                                             }
-                                            className="h-8 rounded-lg px-3 text-xs text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30"
+                                            className="h-8 rounded-md px-3 text-xs text-muted-foreground hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30"
                                         >
                                             <Trash2
                                                 className="size-3.5"

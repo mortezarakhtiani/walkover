@@ -1,7 +1,9 @@
 
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { Check, Eye, EyeOff, X } from 'lucide-react';
+import { toast } from 'sonner';
 
 import {
     Dialog,
@@ -11,28 +13,84 @@ import {
     DialogTitle,
 } from '@/store/components/ui/dialog';
 
-import {Input} from '@/store/components/ui/input';
-import {Button} from '@/store/components/ui/button';
-import {Eye, EyeOff} from 'lucide-react';
+import { Input } from '@/store/components/ui/input';
+import { Button } from '@/store/components/ui/button';
 
-import {toast} from 'sonner';
+const PASSWORD_REQUIREMENTS = [
+    {
+        regex: /.{8,}/,
+        text: 'حداقل ۸ کاراکتر',
+    },
+    {
+        regex: /[0-9]/,
+        text: 'حداقل یک عدد',
+    },
+    {
+        regex: /[a-z]/,
+        text: 'حداقل یک حرف کوچک انگلیسی',
+    },
+    {
+        regex: /[A-Z]/,
+        text: 'حداقل یک حرف بزرگ انگلیسی',
+    },
+    {
+        regex: /[@#$!*&%^]/,
+        text: 'حداقل یک علامت خاص (@ # $ ! * & % ^)',
+    },
+];
 
-const EditPasswordDialog = ({
-                                open,
-                                onOpenChange,
-                                hasPassword,
-                                currentPasswordValue,
-                                onSave,
-                            }) => {
+const STRENGTH_LABELS = [
+    'رمز عبور را وارد کنید',
+    'بسیار ضعیف',
+    'ضعیف',
+    'متوسط',
+    'قوی',
+    'بسیار قوی',
+];
+
+const STRENGTH_COLORS = [
+    '#e5e7eb',
+    '#ef4444',
+    '#f97316',
+    '#eab308',
+    '#84cc16',
+    '#16a34a',
+];
+
+export default function EditPasswordDialog({
+    open,
+    onOpenChange,
+    onSave,
+    hasPassword = true,
+    currentPasswordValue,
+}) {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    // نمایش / مخفی کردن هر رمز به صورت جداگانه
     const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const [isSaving, setIsSaving] = useState(false);
+
+    const requirements = useMemo(
+        () =>
+            PASSWORD_REQUIREMENTS.map((requirement) => ({
+                ...requirement,
+                met: requirement.regex.test(newPassword),
+            })),
+        [newPassword],
+    );
+
+    const strength = useMemo(
+        () => requirements.filter((requirement) => requirement.met).length,
+        [requirements],
+    );
+
+    const passwordsMatch =
+        confirmPassword.length > 0 && newPassword === confirmPassword;
 
     useEffect(() => {
         if (open) {
@@ -41,36 +99,100 @@ const EditPasswordDialog = ({
             setConfirmPassword('');
             setError('');
 
-            // هر بار دیالوگ باز می‌شود، رمزها مخفی باشند
             setShowCurrentPassword(false);
             setShowNewPassword(false);
             setShowConfirmPassword(false);
         }
     }, [open]);
 
-    const handleSave = () => {
-        if (hasPassword && !currentPassword) {
-            setError('لطفاً رمز عبور فعلی را وارد کنید.');
+    const handleOpenChange = (nextOpen) => {
+        if (!isSaving) {
+            onOpenChange?.(nextOpen);
+        }
+    };
+
+    const renderPasswordField = ({
+        id,
+        label,
+        value,
+        onChange,
+        showPassword,
+        setShowPassword,
+        autoComplete,
+    }) => (
+        <div className="flex flex-col gap-2">
+            <div className="flex items-center justify-between">
+                <label
+                    htmlFor={id}
+                    className="text-sm font-medium text-foreground"
+                >
+                    {label}
+                </label>
+
+                <button
+                    type="button"
+                    onClick={() =>
+                        setShowPassword((previous) => !previous)
+                    }
+                    disabled={isSaving}
+                    aria-label={
+                        showPassword ? 'مخفی کردن رمز عبور' : 'نمایش رمز عبور'
+                    }
+                    className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
+                >
+                    {showPassword ? (
+                        <EyeOff className="size-4" />
+                    ) : (
+                        <Eye className="size-4" />
+                    )}
+                </button>
+            </div>
+
+            <Input
+                id={id}
+                type={showPassword ? 'text' : 'password'}
+                value={value}
+                onChange={(event) => {
+                    onChange(event.target.value);
+                    setError('');
+                }}
+                autoComplete={autoComplete}
+                dir="ltr"
+                className="h-11 text-left"
+                disabled={isSaving}
+            />
+        </div>
+    );
+
+    const handleSave = async (event) => {
+        event.preventDefault();
+
+        if (isSaving) return;
+
+        setError('');
+
+        if (hasPassword && !currentPassword.trim()) {
+            setError('لطفاً رمز عبور فعلی خود را وارد کنید.');
             return;
         }
 
-        if (hasPassword && currentPassword !== currentPasswordValue) {
+        if (
+            hasPassword &&
+            typeof currentPasswordValue === 'string' &&
+            currentPasswordValue.length > 0 &&
+            currentPassword !== currentPasswordValue
+        ) {
             setError('رمز عبور فعلی صحیح نیست.');
             return;
         }
 
-        const isValidPassword =
-            newPassword.length >= 8 &&
-            newPassword.length <= 32 &&
-            /[A-Z]/.test(newPassword) &&
-            /[a-z]/.test(newPassword) &&
-            /[@#$!*&%^]/.test(newPassword) &&
-            /[0-9]/.test(newPassword);
+        if (newPassword.length < 8 || newPassword.length > 32) {
+            setError('رمز عبور جدید باید بین ۸ تا ۳۲ کاراکتر باشد.');
+            return;
+        }
 
-        if (!isValidPassword) {
-            setError(
-                'رمز عبور شما باید بین ۸ تا ۳۲ حرف باشد و شامل حروف بزرگ، کوچک، عدد و علامت باشد.'
-            );
+        if (!requirements.every((requirement) => requirement.met)) {
+            setError('لطفاً تمام شرایط رمز عبور را رعایت کنید.');
             return;
         }
 
@@ -79,253 +201,214 @@ const EditPasswordDialog = ({
             return;
         }
 
-        onSave({
-            currentPassword,
-            newPassword,
-        });
+        if (hasPassword && newPassword === currentPassword) {
+            setError('رمز عبور جدید باید با رمز عبور فعلی متفاوت باشد.');
+            return;
+        }
 
-        toast.success('رمز عبور شما با موفقیت ثبت شد');
+        setIsSaving(true);
 
-        onOpenChange(false);
+        try {
+            await onSave?.({
+                currentPassword,
+                newPassword,
+            });
+
+            toast.success('رمز عبور با موفقیت تغییر کرد.');
+            onOpenChange?.(false);
+        } catch (saveError) {
+            const message =
+                saveError instanceof Error
+                    ? saveError.message
+                    : 'تغییر رمز عبور با خطا مواجه شد.';
+
+            setError(message);
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent dir="rtl">
-
-                <DialogHeader>
-                    <DialogTitle className="text-right mb-5">
-                        {hasPassword ? 'تغییر رمز عبور' : 'تعیین رمز عبور'}
+        <Dialog open={open} onOpenChange={handleOpenChange}>
+            <DialogContent
+                dir="rtl"
+                className="w-[calc(100%-24px)] max-w-md gap-0 p-6 sm:p-7"
+            >
+                <DialogHeader className="mb-6 space-y-2 text-right">
+                    <DialogTitle className="text-lg font-semibold text-foreground">
+                        تغییر رمز عبور
                     </DialogTitle>
-
-                    <div className="text-right text-[11px] space-y-1">
-
-                        {/* حداقل ۸ کاراکتر */}
-                        <div
-                            className={`flex items-center gap-2 ${
-                                newPassword.length >= 8
-                                    ? 'text-green-500'
-                                    : 'text-secondary-foreground/70'
-                            }`}
-                        >
-                            <span
-                                className={`size-2 rounded-full ${
-                                    newPassword.length >= 8
-                                        ? 'bg-green-500'
-                                        : 'bg-secondary-foreground/40'
-                                }`}
-                            />
-                            <span>حداقل ۸ کاراکتر</span>
-                        </div>
-
-                        {/* حداکثر ۳۲ کاراکتر */}
-                        <div
-                            className={`flex items-center gap-2 ${
-                                newPassword.length > 0 && newPassword.length <= 32
-                                    ? 'text-green-500'
-                                    : 'text-secondary-foreground/70'
-                            }`}
-                        >
-                            <span
-                                className={`size-2 rounded-full ${
-                                    newPassword.length > 0 && newPassword.length <= 32
-                                        ? 'bg-green-500'
-                                        : 'bg-secondary-foreground/40'
-                                }`}
-                            />
-                            <span>حداکثر ۳۲ کاراکتر</span>
-                        </div>
-
-                        {/* حروف بزرگ و کوچک */}
-                        <div
-                            className={`flex items-center gap-2 ${
-                                /[A-Z]/.test(newPassword) &&
-                                /[a-z]/.test(newPassword)
-                                    ? 'text-green-500'
-                                    : 'text-secondary-foreground/70'
-                            }`}
-                        >
-                            <span
-                                className={`size-2 rounded-full ${
-                                    /[A-Z]/.test(newPassword) &&
-                                    /[a-z]/.test(newPassword)
-                                        ? 'bg-green-500'
-                                        : 'bg-secondary-foreground/40'
-                                }`}
-                            />
-                            <span>حداقل یک حرف بزرگ و یک حرف کوچک</span>
-                        </div>
-
-                        {/* علامت خاص */}
-                        <div
-                            className={`flex items-center gap-2 ${
-                                /[@#$!*&%^]/.test(newPassword)
-                                    ? 'text-green-500'
-                                    : 'text-secondary-foreground/70'
-                            }`}
-                        >
-                            <span
-                                className={`size-2 rounded-full ${
-                                    /[@#$!*&%^]/.test(newPassword)
-                                        ? 'bg-green-500'
-                                        : 'bg-secondary-foreground/40'
-                                }`}
-                            />
-                            <span>حداقل یک علامت از @#$!*&%^</span>
-                        </div>
-
-                        {/* عدد */}
-                        <div
-                            className={`flex items-center gap-2 ${
-                                /[0-9]/.test(newPassword)
-                                    ? 'text-green-500'
-                                    : 'text-secondary-foreground/70'
-                            }`}
-                        >
-                            <span
-                                className={`size-2 rounded-full ${
-                                    /[0-9]/.test(newPassword)
-                                        ? 'bg-green-500'
-                                        : 'bg-secondary-foreground/40'
-                                }`}
-                            />
-                            <span>حداقل یک عدد</span>
-                        </div>
-
-                    </div>
                 </DialogHeader>
 
-                <div className="-mt-2 space-y-4">
+                <form onSubmit={handleSave} className="flex flex-col gap-5">
+                    {hasPassword &&
+                        renderPasswordField({
+                            id: 'current-password',
+                            label: 'رمز عبور فعلی',
+                            value: currentPassword,
+                            onChange: setCurrentPassword,
+                            showPassword: showCurrentPassword,
+                            setShowPassword: setShowCurrentPassword,
+                            autoComplete: 'current-password',
+                        })}
 
-                    {/* رمز فعلی */}
-                    <div className="relative">
-                        <Input
-                            type={showCurrentPassword ? 'text' : 'password'}
-                            value={currentPassword}
-                            onChange={(e) => {
-                                setCurrentPassword(e.target.value);
-                                setError('');
-                            }}
-                            placeholder="رمز عبور فعلی"
-                            disabled={!hasPassword}
-                            className="pe-10"
-                        />
+                    {renderPasswordField({
+                        id: 'new-password',
+                        label: 'رمز عبور جدید',
+                        value: newPassword,
+                        onChange: setNewPassword,
+                        showPassword: showNewPassword,
+                        setShowPassword: setShowNewPassword,
+                        autoComplete: 'new-password',
+                    })}
 
-                        <button
-                            type="button"
-                            disabled={!hasPassword}
-                            onClick={() =>
-                                setShowCurrentPassword(!showCurrentPassword)
-                            }
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
-                            aria-label={
-                                showCurrentPassword
-                                    ? 'مخفی کردن رمز عبور فعلی'
-                                    : 'نمایش رمز عبور فعلی'
-                            }
+                    <div className="rounded-md border border-border bg-muted/40 p-4">
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                            <span className="text-sm text-muted-foreground">
+                                قدرت رمز عبور
+                            </span>
+
+                            <span
+                                className={
+                                    newPassword
+                                        ? 'text-sm font-semibold'
+                                        : 'text-sm font-medium text-muted-foreground'
+                                }
+                                style={
+                                    newPassword
+                                        ? {
+                                              color: STRENGTH_COLORS[strength],
+                                          }
+                                        : undefined
+                                }
+                            >
+                                {STRENGTH_LABELS[
+                                    newPassword ? strength : 0
+                                ]}
+                            </span>
+                        </div>
+
+                        <div
+                            className="flex gap-1.5"
+                            role="progressbar"
+                            aria-label="قدرت رمز عبور"
+                            aria-valuemin={0}
+                            aria-valuemax={5}
+                            aria-valuenow={newPassword ? strength : 0}
                         >
-                            {showCurrentPassword ? (
-                                <EyeOff size={18}/>
-                            ) : (
-                                <Eye size={18}/>
-                            )}
-                        </button>
+                            {Array.from({ length: 5 }).map((_, index) => {
+                                const isActive =
+                                    Boolean(newPassword) && index < strength;
+
+                                return (
+                                    <div
+                                        key={index}
+                                        className="h-1.5 flex-1 rounded-full bg-border"
+                                        style={
+                                            isActive
+                                                ? {
+                                                      backgroundColor:
+                                                          STRENGTH_COLORS[
+                                                              strength
+                                                          ],
+                                                  }
+                                                : undefined
+                                        }
+                                    />
+                                );
+                            })}
+                        </div>
+
+                        <div className="mt-4 flex flex-col gap-2">
+                            {requirements.map((requirement) => (
+                                <div
+                                    key={requirement.text}
+                                    className="flex items-center gap-2 text-sm"
+                                >
+                                    {requirement.met ? (
+                                        <Check className="size-4 shrink-0 text-foreground" />
+                                    ) : (
+                                        <X className="size-4 shrink-0 text-muted-foreground" />
+                                    )}
+
+                                    <span
+                                        className={
+                                            requirement.met
+                                                ? 'text-foreground'
+                                                : 'text-muted-foreground'
+                                        }
+                                    >
+                                        {requirement.text}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* رمز جدید */}
-                    <div className="relative">
-                        <Input
-                            type={showNewPassword ? 'text' : 'password'}
-                            value={newPassword}
-                            onChange={(e) => {
-                                setNewPassword(e.target.value);
-                                setError('');
-                            }}
-                            placeholder="رمز عبور جدید"
-                            className="pe-10"
-                        />
+                    {renderPasswordField({
+                        id: 'confirm-password',
+                        label: 'تکرار رمز عبور جدید',
+                        value: confirmPassword,
+                        onChange: setConfirmPassword,
+                        showPassword: showConfirmPassword,
+                        setShowPassword: setShowConfirmPassword,
+                        autoComplete: 'new-password',
+                    })}
 
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setShowNewPassword(!showNewPassword)
-                            }
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                            aria-label={
-                                showNewPassword
-                                    ? 'مخفی کردن رمز عبور جدید'
-                                    : 'نمایش رمز عبور جدید'
-                            }
+                    {confirmPassword.length > 0 && (
+                        <div
+                            className={`flex items-center gap-2 text-sm ${
+                                passwordsMatch
+                                    ? 'text-primary'
+                                    : 'text-destructive'
+                            }`}
                         >
-                            {showNewPassword ? (
-                                <EyeOff size={18}/>
+                            {passwordsMatch ? (
+                                <Check className="size-4 shrink-0" />
                             ) : (
-                                <Eye size={18}/>
+                                <X className="size-4 shrink-0" />
                             )}
-                        </button>
-                    </div>
 
-                    {/* تکرار رمز جدید */}
-                    <div className="relative">
-                        <Input
-                            type={showConfirmPassword ? 'text' : 'password'}
-                            value={confirmPassword}
-                            onChange={(e) => {
-                                setConfirmPassword(e.target.value);
-                                setError('');
-                            }}
-                            placeholder="تکرار رمز عبور جدید"
-                            className="pe-10"
-                        />
-
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setShowConfirmPassword(!showConfirmPassword)
-                            }
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                            aria-label={
-                                showConfirmPassword
-                                    ? 'مخفی کردن تکرار رمز'
-                                    : 'نمایش تکرار رمز'
-                            }
-                        >
-                            {showConfirmPassword ? (
-                                <EyeOff size={18}/>
-                            ) : (
-                                <Eye size={18}/>
-                            )}
-                        </button>
-                    </div>
-
-                    {error && (
-                        <p className="text-sm text-destructive">
-                            {error}
-                        </p>
+                            <span>
+                                {passwordsMatch
+                                    ? 'رمزهای عبور یکسان هستند.'
+                                    : 'رمزهای عبور یکسان نیستند.'}
+                            </span>
+                        </div>
                     )}
 
-                </div>
+                    {error && (
+                        <div
+                            role="alert"
+                            className="rounded-md border border-destructive/20 bg-destructive/10 p-3 text-sm text-destructive"
+                        >
+                            {error}
+                        </div>
+                    )}
 
-                <DialogFooter>
-                    <Button
-                        variant="outline"
-                        onClick={() => onOpenChange(false)}
-                    >
-                        انصراف
-                    </Button>
+                    <DialogFooter className="mt-2 flex-row gap-3 sm:justify-start">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => handleOpenChange(false)}
+                            disabled={isSaving}
+                            className="flex-1 p-5"
+                        >
+                            انصراف
+                        </Button>
 
-                    <Button
-                        variant="primary"
-                        onClick={handleSave}
-                    >
-                        ذخیره
-                    </Button>
-                </DialogFooter>
-
+                        <Button
+                            type="submit"
+                            disabled={isSaving}
+                            className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
+                        >
+                            {isSaving
+                                ? 'در حال ذخیره...'
+                                : 'ذخیره رمز عبور'}
+                        </Button>
+                    </DialogFooter>
+                </form>
             </DialogContent>
         </Dialog>
     );
-};
-
-export {EditPasswordDialog};
-
+}

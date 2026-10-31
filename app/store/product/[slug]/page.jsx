@@ -140,7 +140,7 @@ export default function ProductPage({params}) {
 
                         <Button
                             asChild
-                            className="mt-2 bg-indigo-500 text-white hover:bg-indigo-600"
+                            className="mt-2 bg-red-600 text-white hover:bg-red-700"
                         >
                             <Link href="/store">
                                 بازگشت به فروشگاه
@@ -233,7 +233,7 @@ export default function ProductPage({params}) {
             <div className="mb-6 flex items-center gap-1.5 overflow-hidden text-xs text-secondary-foreground">
                 <Link
                     href="/store"
-                    className="shrink-0 transition-colors hover:text-indigo-500"
+                    className="shrink-0 transition-colors hover:text-red-700"
                 >
                     فروشگاه
                 </Link>
@@ -259,7 +259,7 @@ export default function ProductPage({params}) {
                     <div className="flex flex-col gap-4">
 
                         {/* Main Image */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-accent/20">
+                        <div className="group relative overflow-hidden rounded-md border border-border/60 bg-accent/20">
                             {product.discount > 0 && (
                                 <Badge
                                     size="sm"
@@ -321,10 +321,10 @@ export default function ProductPage({params}) {
                                         key={`${image}-${index}`}
                                         type="button"
                                         onClick={() => setSelectedImage(index)}
-                                        className={`flex size-[78px] shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-accent/20 p-1 transition-all ${
+                                        className={`flex size-[78px] shrink-0 items-center justify-center overflow-hidden rounded-md border bg-accent/20 p-1 transition-all ${
                                             selectedImage === index
-                                                ? 'border-indigo-500 ring-2 ring-indigo-500/10'
-                                                : 'border-border/60 hover:border-indigo-500/50'
+                                                ? 'border-red-600 ring-2 ring-red-600/10'
+                                                : 'border-border/60 hover:border-red-600/50'
                                         }`}
                                     >
                                         <img
@@ -346,7 +346,7 @@ export default function ProductPage({params}) {
 
                     {/* Brand */}
                     {product.brand && (
-                        <span className="mb-2 text-sm font-medium text-indigo-500">
+                        <span className="mb-2 text-sm font-medium text-red-700">
                             {product.brand}
                         </span>
                     )}
@@ -388,7 +388,7 @@ export default function ProductPage({params}) {
                     </p>
 
                     {/* Price Box */}
-                    <div className="mt-6 rounded-xl bg-accent/40 p-4">
+                    <div className="mt-6 rounded-md bg-accent/40 p-4">
                         <div className="flex items-end justify-between gap-4">
 
                             <div className="flex flex-col items-start gap-1">
@@ -456,8 +456,8 @@ export default function ProductPage({params}) {
                                         aria-label={`انتخاب رنگ ${color.name}`}
                                         className={`flex size-10 items-center justify-center rounded-full border-2 transition-all ${
                                             selectedColor?.name === color.name
-                                                ? 'border-indigo-500'
-                                                : 'border-border hover:border-indigo-500/50'
+                                                ? 'border-red-600'
+                                                : 'border-border hover:border-red-600/50'
                                         }`}
                                     >
                                         <span
@@ -496,7 +496,7 @@ export default function ProductPage({params}) {
 
                                 <button
                                     type="button"
-                                    className="text-xs font-medium text-indigo-500 transition-colors hover:text-indigo-600 hover:underline"
+                                    className="text-xs font-medium text-red-700 transition-colors hover:text-red-600 hover:underline"
                                 >
                                     راهنمای سایز
                                 </button>
@@ -508,10 +508,10 @@ export default function ProductPage({params}) {
                                         key={size}
                                         type="button"
                                         onClick={() => setSelectedSize(size)}
-                                        className={`min-w-[52px] rounded-lg border px-4 py-2.5 text-sm font-medium transition-all ${
+                                        className={`min-w-[52px] rounded-md border px-4 py-2.5 text-sm font-medium transition-all ${
                                             selectedSize === size
-                                                ? 'border-indigo-500 bg-indigo-500 text-white shadow-sm shadow-indigo-500/20'
-                                                : 'border-border bg-background text-foreground hover:border-indigo-500 hover:text-indigo-500'
+                                                ? 'border-red-600 bg-red-600 text-white shadow-sm shadow-red-500/20'
+                                                : 'border-border bg-background text-foreground hover:border-red-600 hover:text-red-700'
                                         }`}
                                     >
                                         {toPersianDigits(size)}
@@ -526,7 +526,7 @@ export default function ProductPage({params}) {
 
                         {/* Quantity */}
                         <div
-                            className={`flex h-12 shrink-0 items-center rounded-lg border border-border bg-background transition-opacity ${
+                            className={`flex h-12 shrink-0 items-center rounded-md border border-border bg-background transition-opacity ${
                                 !isAddedToCart ? 'opacity-50' : ''
                             }`}
                         >
@@ -546,7 +546,7 @@ export default function ProductPage({params}) {
                                 }
                             >
                                 {quantity === 1 ? (
-                                    <Trash2 className="size-4 text-red-500"/>
+                                    <Trash2 className="size-4 text-red-700"/>
                                 ) : (
                                     <Minus className="size-4"/>
                                 )}
@@ -571,7 +571,7 @@ export default function ProductPage({params}) {
                         <Button
                             onClick={addProductToCart}
                             disabled={!product.stock}
-                            className="h-12 grow rounded-lg bg-indigo-500 font-semibold text-white shadow-sm shadow-indigo-500/20 transition-all hover:bg-indigo-600 hover:shadow-md hover:shadow-indigo-500/20"
+                            className="h-12 grow rounded-md bg-red-600 font-semibold text-white shadow-sm shadow-red-500/20 transition-all hover:bg-red-700 hover:shadow-md hover:shadow-red-500/20"
                         >
                             <ShoppingCart className="size-4"/>
                             {product.stock
@@ -587,9 +587,9 @@ export default function ProductPage({params}) {
                             onClick={() =>
                                 setIsFavorite((current) => !current)
                             }
-                            className={`size-12 shrink-0 rounded-lg transition-colors ${
+                            className={`size-12 shrink-0 rounded-md transition-colors ${
                                 isFavorite
-                                    ? 'border-red-200 bg-red-50 text-red-500 hover:bg-red-100 dark:border-red-900 dark:bg-red-950/30'
+                                    ? 'border-red-200 bg-red-50 text-red-700 hover:bg-red-100 dark:border-red-900 dark:bg-red-950/30'
                                     : ''
                             }`}
                             aria-label="افزودن به علاقه‌مندی‌ها"
@@ -602,9 +602,9 @@ export default function ProductPage({params}) {
                     </div>
 
                     {/* Shipping */}
-                    <div className="mt-6 rounded-xl border border-border/60 bg-accent/20 p-4">
+                    <div className="mt-6 rounded-md border border-border/60 bg-accent/20 p-4">
                         <div className="flex items-start gap-3">
-                            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10">
+                            <div className="flex size-10 shrink-0 items-center justify-center rounded-md bg-red-600/10">
                                 <img
                                     src="/icons/delivery.png"
                                     alt=""
@@ -851,7 +851,7 @@ export default function ProductPage({params}) {
 
                     <Link
                         href="/store"
-                        className="text-xs font-medium text-indigo-500 transition-colors hover:text-indigo-600 hover:underline"
+                        className="text-xs font-medium text-red-700 transition-colors hover:text-red-600 hover:underline"
                     >
                         مشاهده همه
                     </Link>

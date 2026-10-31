@@ -7,13 +7,13 @@ import {Dialog as DialogPrimitive} from 'radix-ui';
 import {cn} from '@/lib/utils';
 
 const dialogContentVariants = cva(
-    'flex flex-col fixed outline-0 z-50 border border-border bg-background p-6 shadow-lg shadow-black/5 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg',
+    'flex flex-col fixed outline-0 z-50 w-[calc(100%-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto border border-border bg-background p-5 sm:p-6 shadow-lg shadow-black/5 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 rounded-md',
     {
         variants: {
             variant: {
                 default:
-                    'left-[50%] top-[50%] max-w-lg translate-x-[-50%] translate-y-[-50%] w-full',
-                fullscreen: 'inset-5',
+                    'left-[50%] top-[50%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-md',
+                fullscreen: 'inset-4 h-auto w-auto max-w-none max-h-none translate-x-0 translate-y-0 rounded-md',
             },
         },
         defaultVariants: {
@@ -63,21 +63,20 @@ function DialogContent({
         <DialogPortal>
             {overlay && <DialogOverlay/>}
             <DialogPrimitive.Content
+    dir="rtl"
     data-slot="dialog-content"
     className={cn(
         dialogContentVariants({variant}),
-        'overflow-y-auto [direction:ltr]',
+        'overflow-x-hidden',
         className
     )}
     {...props}
 >
-    <div dir="rtl">
-        {children}
-    </div>
+    {children}
 
     {showCloseButton && (
         <DialogClose
-            className="cursor-pointer outline-0 absolute right-5 rounded-sm opacity-60 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            className="absolute end-4 top-4 inline-flex size-9 items-center justify-center cursor-pointer rounded-md opacity-60 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
         >
             <X className="size-4"/>
             <span className="sr-only">Close</span>
@@ -94,7 +93,7 @@ const DialogHeader = ({className, ...props}) => (
     <div
         data-slot="dialog-header"
         className={cn(
-            'flex flex-col space-y-1 text-center sm:text-start mb-5',
+            'flex flex-col gap-1 text-start mb-5',
             className,
         )}
         {...props}
@@ -105,7 +104,7 @@ const DialogFooter = ({className, ...props}) => (
     <div
         data-slot="dialog-footer"
         className={cn(
-            'flex flex-col-reverse sm:flex-row sm:justify-end pt-5 sm:space-x-2.5',
+            'flex flex-col-reverse gap-2 pt-5 sm:flex-row sm:justify-end',
             className,
         )}
         {...props}
@@ -117,7 +116,7 @@ function DialogTitle({ className, ...props }) {
     <DialogPrimitive.Title
       data-slot="dialog-title"
       className={cn(
-        'text-lg font-semibold leading-none tracking-tight text-right me-10 mr-8',
+        'pe-10 text-lg font-semibold leading-6 tracking-tight text-start',
         className,
       )}
       {...props}

@@ -13,7 +13,7 @@ export function OrderPlacedContent() {
         <div className="grid grid-cols-1 gap-5 lg:gap-9">
           <div className="lg:col-span-1">
             <Card>
-              <CardHeader className="justify-start bg-muted/70 gap-9 h-auto py-5">
+              <CardHeader className="justify-start bg-muted/70 gap-9 h-auto py-5 rounded-t-md">
                 <div className="flex flex-col gap-1.5">
                   <span className="text-xs font-normal text-secondary-foreground">
                     شناسه سفارش

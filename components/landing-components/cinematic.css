@@ -1,0 +1,138 @@
+/*
+ * Cinematic homepage styles (scoped to `.cine`).
+ * Palette: warm-tinted blacks, ash/bone grays, one dried-blood red accent.
+ * Everything here is scoped so the store, checkout and account pages keep
+ * their existing look.
+ */
+
+.cine {
+    --cine-ink: oklch(0.12 0.006 35);
+    --cine-char: oklch(0.165 0.008 35);
+    --cine-smoke: oklch(0.24 0.01 40);
+    --cine-ash: oklch(0.72 0.012 60);
+    --cine-bone: oklch(0.94 0.012 80);
+    --cine-blood: oklch(0.5 0.17 27);
+    --cine-blood-deep: oklch(0.33 0.12 25);
+
+    background: var(--cine-ink);
+    color: var(--cine-bone);
+    /* `clip` (not `hidden`) prevents horizontal overflow without breaking
+       `position: sticky` in the pinned scenes. */
+    overflow-x: clip;
+}
+
+.cine ::selection {
+    background: var(--cine-blood);
+    color: var(--cine-bone);
+}
+
+/* Visible, consistent focus ring on the dark scenes. */
+.cine a:focus-visible,
+.cine button:focus-visible {
+    outline: 2px solid var(--cine-bone);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* ---------- Film grain (static SVG noise, shifted in 6 cheap steps) ---------- */
+/*.cine-grain {*/
+/*    pointer-events: none;*/
+/*    position: fixed;*/
+/*    inset: -50%;*/
+/*    z-index: 40;*/
+/*    opacity: 0.07;*/
+/*    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");*/
+/*    animation: cine-grain 0.9s steps(6) infinite;*/
+/*}*/
+
+/*@keyframes cine-grain {*/
+/*    0% { transform: translate3d(0, 0, 0); }*/
+/*    20% { transform: translate3d(-3%, 2%, 0); }*/
+/*    40% { transform: translate3d(2%, -3%, 0); }*/
+/*    60% { transform: translate3d(-2%, -1%, 0); }*/
+/*    80% { transform: translate3d(3%, 3%, 0); }*/
+/*    100% { transform: translate3d(0, 0, 0); }*/
+/*}*/
+
+/* Soft lens vignette used by several scenes. */
+.cine-vignette {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 45%, transparent 35%, oklch(0.08 0.005 35 / 0.85) 100%);
+}
+
+/* Drifting fog: large soft gradients, moved with transforms only. */
+.cine-fog {
+    pointer-events: none;
+    position: absolute;
+    inset: -20% -40%;
+    background:
+        radial-gradient(40% 30% at 30% 60%, oklch(0.85 0.01 70 / 0.10), transparent 70%),
+        radial-gradient(35% 25% at 70% 70%, oklch(0.85 0.01 70 / 0.08), transparent 70%),
+        radial-gradient(50% 30% at 50% 90%, oklch(0.85 0.01 70 / 0.12), transparent 70%);
+}
+
+/* REC dot. Slow fade, never a hard blink. */
+.cine-rec {
+    animation: cine-rec 2.4s ease-in-out infinite;
+}
+
+@keyframes cine-rec {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+/* Entrance for the hero title before any scrolling (pure CSS, works pre-hydration). */
+.cine-rise {
+    animation: cine-rise 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cine-rise {
+    from { opacity: 0; transform: translate3d(0, 24px, 0); filter: blur(10px); }
+    to { opacity: 1; transform: none; filter: none; }
+}
+
+/* Thin projector line used as a scene divider. */
+.cine-scanline {
+    background: linear-gradient(to left, transparent, oklch(0.94 0.012 80 / 0.35), transparent);
+}
+
+/* Store section: tint the existing product card CTA to the site accent without
+   touching the shared component or its behaviour. */
+.cine-store [data-slot="product-reveal-card"] .bg-red-600 {
+    background-color: var(--cine-blood);
+}
+
+.cine-store [data-slot="product-reveal-card"] .bg-red-600:hover {
+    background-color: var(--cine-blood-deep);
+}
+
+.cine-store [data-slot="product-reveal-card"] {
+    border-color: oklch(1 0 0 / 0.08);
+}
+
+/* Horizontal archive reel scrollbar (reduced-motion mode only). */
+.cine-reel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.cine-reel::-webkit-scrollbar-thumb {
+    background: oklch(1 0 0 / 0.15);
+    border-radius: 999px;
+}
+
+/* ---------- Reduced motion: keep every bit of content, drop the motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    /*.cine-grain,*/
+    .cine-rec,
+    .cine-rise {
+        animation: none;
+    }
+
+    .cine-rise {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}

@@ -56,7 +56,7 @@ export function StoreClientFiltersSheet({ trigger }) {
   return (
     <Sheet>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
-      <SheetContent className="sm:w-[320px] sm:max-w-none inset-5 start-auto h-auto rounded-lg p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
+      <SheetContent className="sm:w-[320px] sm:max-w-none inset-5 start-auto h-auto rounded-md p-0 [&_[data-slot=sheet-close]]:top-4.5 [&_[data-slot=sheet-close]]:end-5">
         <SheetHeader className="border-b py-3.5 px-5 border-border">
           <SheetTitle>Filter</SheetTitle>
         </SheetHeader>

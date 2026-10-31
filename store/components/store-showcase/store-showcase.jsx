@@ -51,7 +51,7 @@ export default function StoreShowcase() {
 
                     {/* Main Offer */}
                     <div
-                        className="rounded-xl border shadow-xs bg-violet-50 border-violet-200 dark:bg-violet-950/30 dark:border-violet-950 h-full">
+                        className="rounded-md border shadow-xs bg-violet-50 border-violet-200 dark:bg-violet-950/30 dark:border-violet-950 h-full">
                         <div
                             className="flex items-center flex-wrap sm:flex-nowrap justify-between gap-5 lg:gap-9 p-7.5 pb-0">
 
@@ -59,7 +59,7 @@ export default function StoreShowcase() {
 
                                 <div className="mb-3">
                                     <span
-                                        className="inline-flex items-center justify-center bg-destructive text-destructive-foreground rounded-sm px-[0.325rem] h-5 text-[0.6875rem] uppercase">
+                                        className="inline-flex items-center justify-center bg-destructive text-destructive-foreground rounded-md px-[0.325rem] h-5 text-[0.6875rem] uppercase">
                                         save 25%
                                     </span>
                                 </div>
@@ -138,13 +138,13 @@ export default function StoreShowcase() {
                     {newArrivals.map((item) => (
                         <div
                             key={item.logo}
-                            className="flex flex-col justify-between rounded-xl bg-card border border-border shadow-xs p-2.5 gap-4"
+                            className="flex flex-col justify-between rounded-md bg-card border border-border shadow-xs p-2.5 gap-4"
                         >
 
                             <div className="mb-2.5">
 
                                 <div
-                                    className="flex items-center justify-center relative bg-accent/50 w-full h-[180px] rounded-xl mb-4">
+                                    className="flex items-center justify-center relative bg-accent/50 w-full h-[180px] rounded-md mb-4">
                                     <img
                                         src={`/media/store/client/600x600/${item.logo}`}
                                         className="h-[180px] shrink-0 cursor-pointer"
@@ -198,13 +198,13 @@ export default function StoreShowcase() {
 
 function OfferCard({title, total, logo, bg, border}) {
     return (
-        <div className={`rounded-xl border shadow-xs h-full ${bg} ${border}`}>
+        <div className={`rounded-md border shadow-xs h-full ${bg} ${border}`}>
 
             <div className="flex flex-col items-center justify-center p-5 pb-0">
 
                 <div className="mb-3.5">
                     <span
-                        className="inline-flex items-center justify-center bg-destructive text-destructive-foreground rounded-sm px-[0.325rem] h-5 text-[0.6875rem] uppercase">
+                        className="inline-flex items-center justify-center bg-destructive text-destructive-foreground rounded-md px-[0.325rem] h-5 text-[0.6875rem] uppercase">
                         save 25%
                     </span>
                 </div>

@@ -33,7 +33,7 @@ export function Steps({ currentStep }) {
                 className={cn(
                   'text-2sm leading-none relative flex items-center gap-1.5 px-3 h-8.5 rounded-full border',
                   state === 'active'
-                    ? 'font-medium border-primary/10 bg-primary/10 text-primary [&_.kt-step-icon]:text-primary'
+                    ? 'font-medium border-primary/10 bg-green-600 text-white [&_.kt-step-icon]:text-white'
                     : 'border-border text-foreground [&_.kt-step-icon]:text-muted-foreground',
                   state === 'completed' && 'bg-muted/30',
                 )}

@@ -2,12 +2,11 @@
 'use client';
 
 import Link from 'next/link';
-import {toAbsoluteUrl} from '@/lib/helpers';
-import {Badge} from '@/store/components/ui/badge';
-import {Card, CardContent} from '@/store/components/ui/card';
-
-const toPersianDigits = (value) =>
-    String(value).replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[digit]);
+import { toAbsoluteUrl } from '@/lib/helpers';
+import { toPersianDigits } from '@/lib/to-persian';
+import { Badge } from '@/store/components/ui/badge';
+import { Card, CardContent } from '@/store/components/ui/card';
+import {DiscountBadge} from '@/store/components/ui/discount-badge'
 
 export function Card4({limit}) {
     const items = [
@@ -85,28 +84,17 @@ export function Card4({limit}) {
                 >
 
                     {/* تصویر محصول */}
-                    <Card
-                        className="
-                            flex
-                            h-[78px]
-                            w-[82px]
-                            shrink-0
-                            items-center
-                            justify-center
-                            bg-accent/50
-                            shadow-none
-                            sm:h-[90px]
-                            sm:w-[110px]
-                        "
-                    >
-                        <img
-                            src={toAbsoluteUrl(
-                                `/media/store/client/600x600/${item.logo}`
-                            )}
-                            className="h-full w-full object-contain"
-                            alt={item.title}
-                        />
-                    </Card>
+                    <Card className="relative flex h-[78px] w-[82px] shrink-0 items-center justify-center bg-accent/50 shadow-none sm:h-[90px] sm:w-[110px]">
+    <img
+        src={toAbsoluteUrl(
+            `/media/store/client/600x600/${item.logo}`
+        )}
+        className="h-full w-full object-contain"
+        alt={item.title}
+    />
+
+    <DiscountBadge discount={item.discount} />
+</Card>
 
                     {/* اطلاعات محصول */}
                     <div

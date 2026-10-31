@@ -13,6 +13,7 @@ import {
 
 import {ToggleGroup, ToggleGroupItem} from '@/store/components/ui/toggle-group';
 import {Card2} from '@/store/components/common/card2';
+import {ProductRevealCard} from '@/store/components/common/product-card-common';
 import {Card3} from '@/store/components/common/card3';
 import {toPersianDigits} from '../../../lib/to-persian';
 import {products} from '@/store/product/data/products';
@@ -37,7 +38,7 @@ export function SearchResults({mode}) {
         };
 
         return activeTab === 'card' ? (
-            <Card2 key={item.id} {...props} />
+            <ProductRevealCard key={item.id} {...props} />
         ) : (
             <Card3 key={item.id} {...props} />
         );

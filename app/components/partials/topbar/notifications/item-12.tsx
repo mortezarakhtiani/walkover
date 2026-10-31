@@ -48,7 +48,7 @@ export default function Item12() {
           </span>
         </div>
 
-        <Card className="shadow-none flex flex-col gap-2.5 p-3.5 rounded-lg">
+        <Card className="shadow-none flex flex-col gap-2.5 p-3.5 rounded-md">
           <div className="font-semibold text-mono text-sm">Dashboards</div>
           <p className="font-medium text-secondary-foreground text-sm mb-1 leading-5">
             Hello everyone, question regarding the preparation of

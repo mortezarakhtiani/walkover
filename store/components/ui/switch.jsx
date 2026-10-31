@@ -41,7 +41,7 @@ const switchVariants = cva(
             },
             permanent: {
                 true: 'bg-input',
-                false: 'data-[state=checked]:bg-blue-600',
+                false: 'data-[state=checked]:bg-primary',
             },
         },
         defaultVariants: {
@@ -72,7 +72,7 @@ const switchThumbVariants = cva(
             {
                 shape: 'square',
                 size: 'xs',
-                className: 'rounded-sm',
+                className: 'rounded-md',
             },
         ],
 

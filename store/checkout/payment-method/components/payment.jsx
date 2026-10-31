@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
@@ -34,18 +35,17 @@ import { Input } from '@/store/components/ui/input';
 import { paymentMethodSchema } from './forms';
 
 export function Payment() {
-  // Simulate state for payment items (in real app, this would be lifted up or fetched)
+  // اطلاعات نمونه روش‌های پرداخت
   const [items, setItems] = useState([
     {
       brandLogo: 'visa.svg',
-      title: 'Jeroen’s Visa',
+      title: 'ویزای جیرون',
       subTitle: 'Jeroen van Dijk',
       description: (
         <span className="text-xs font-normal text-mono">
-          Ending 3604 Expires on 12/2026
+          پایان شماره کارت ۳۶۰۴ - انقضا: 12/2026
         </span>
       ),
-
       badge: true,
       cardNumber: '4111 1111 1111 3604',
       expiry: '12/2026',
@@ -55,20 +55,19 @@ export function Payment() {
     },
     {
       brandLogo: 'ideal.svg',
-      title: 'Sophie’s iDeal',
+      title: 'آی‌دیل سوفی',
       subTitle: 'Sophie de Vries',
       description: (
         <span className="text-xs font-normal text-mono">
-          iDeal with ABN Ambro
+          پرداخت از طریق iDeal با بانک ABN AMRO
         </span>
       ),
-
       name: 'Sophie de Vries',
       billingAddress: 'Herengracht 456, Amsterdam',
     },
     {
       brandLogo: 'paypal.svg',
-      title: 'Emma’s Paypal',
+      title: 'پی‌پال اِما',
       subTitle: 'Emma van den Berg',
       description: (
         <Link
@@ -78,13 +77,12 @@ export function Payment() {
           emma@reui.io
         </Link>
       ),
-
       email: 'emma@reui.io',
       name: 'Emma van den Berg',
     },
     {
       brandLogo: 'american-express.svg',
-      title: 'Bob’s American Express',
+      title: 'آمریکن اکسپرس باب',
       subTitle: 'Bob van den Berg',
       description: (
         <Link
@@ -94,17 +92,16 @@ export function Payment() {
           bob@reui.io
         </Link>
       ),
-
       email: 'bob@reui.io',
       name: 'Bob van den Berg',
     },
   ]);
 
-  // Dialog state
-  const [editOpen, setEditOpen] = useState(null); // index of item being edited, or null
-  const [removeOpen, setRemoveOpen] = useState(null); // index of item being removed, or null
+  // وضعیت پنجره‌های ویرایش و حذف
+  const [editOpen, setEditOpen] = useState(null);
+  const [removeOpen, setRemoveOpen] = useState(null);
 
-  // react-hook-form for editing
+  // فرم ویرایش روش پرداخت
   const form = useForm({
     resolver: zodResolver(paymentMethodSchema),
     defaultValues: {
@@ -121,6 +118,7 @@ export function Payment() {
   useEffect(() => {
     if (editOpen !== null) {
       const item = items[editOpen];
+
       form.reset({
         name: item?.name || '',
         cardNumber: item?.cardNumber || '',
@@ -133,33 +131,37 @@ export function Payment() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editOpen]);
 
-  // When opening the edit dialog, just set the index
+  // باز کردن پنجره ویرایش
   const handleEditOpen = (item, idx) => {
     setEditOpen(idx);
   };
 
-  // Handle Edit submit
+  // ثبت تغییرات روش پرداخت
   const handleEditSubmit = async (data) => {
     if (editOpen === null) return;
+
     setItems((prev) =>
       prev.map((item, i) => (i === editOpen ? { ...item, ...data } : item)),
     );
+
     setEditOpen(null);
   };
 
-  // Handle Remove
+  // حذف روش پرداخت
   const handleRemove = (idx) => {
     setItems((prev) => prev.filter((_, i) => i !== idx));
     setRemoveOpen(null);
   };
 
+  // نمایش هر روش پرداخت
   const renderItem = (item, index) => (
     <Card key={index}>
       <CardHeader className="px-5">
         <CardTitle>{item.title}</CardTitle>
+
         {item.badge && (
           <Badge variant="success" appearance="light">
-            Pay with this
+            روش پرداخت پیش‌فرض
           </Badge>
         )}
       </CardHeader>
@@ -169,7 +171,7 @@ export function Payment() {
           <img
             src={toAbsoluteUrl(`/media/brand-logos/${item.brandLogo}`)}
             className="size-12"
-            alt="image"
+            alt="لوگوی روش پرداخت"
           />
 
           <div className="flex flex-col gap-0.5">
@@ -182,7 +184,7 @@ export function Payment() {
 
         <div className="flex justify-between items-center min-h-8.5">
           <div className="flex items-center gap-5">
-            {/* Edit Dialog */}
+            {/* پنجره ویرایش */}
             <Dialog
               open={editOpen === index}
               onOpenChange={(open) =>
@@ -194,13 +196,16 @@ export function Payment() {
                   ویرایش
                 </Button>
               </DialogTrigger>
+
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Edit Payment Method</DialogTitle>
+                  <DialogTitle>ویرایش روش پرداخت</DialogTitle>
                   <DialogDescription>
-                    Update your payment details below. All fields are required.
+                    اطلاعات روش پرداخت خود را در فرم زیر ویرایش کنید.
+                    تکمیل تمام فیلدها الزامی است.
                   </DialogDescription>
                 </DialogHeader>
+
                 <DialogBody>
                   <Form {...form}>
                     <form
@@ -213,7 +218,7 @@ export function Payment() {
                           name="cardNumber"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Card Number</FormLabel>
+                              <FormLabel>شماره کارت</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
@@ -228,6 +233,7 @@ export function Payment() {
                           )}
                         />
                       )}
+
                       {item.expiry !== undefined && (
                         <div className="flex gap-2">
                           <FormField
@@ -235,7 +241,7 @@ export function Payment() {
                             name="expiry"
                             render={({ field }) => (
                               <FormItem className="flex-1">
-                                <FormLabel>Expiry</FormLabel>
+                                <FormLabel>تاریخ انقضا</FormLabel>
                                 <FormControl>
                                   <Input
                                     {...field}
@@ -254,7 +260,7 @@ export function Payment() {
                             name="cvc"
                             render={({ field }) => (
                               <FormItem className="flex-1">
-                                <FormLabel>CVC</FormLabel>
+                                <FormLabel>کد امنیتی (CVC)</FormLabel>
                                 <FormControl>
                                   <Input
                                     {...field}
@@ -269,13 +275,14 @@ export function Payment() {
                           />
                         </div>
                       )}
+
                       {item.email !== undefined && (
                         <FormField
                           control={form.control}
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email</FormLabel>
+                              <FormLabel>ایمیل</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
@@ -289,12 +296,13 @@ export function Payment() {
                           )}
                         />
                       )}
+
                       <FormField
                         control={form.control}
                         name="billingAddress"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Billing Address</FormLabel>
+                            <FormLabel>نشانی صورتحساب</FormLabel>
                             <FormControl>
                               <Input {...field} id="billingAddress" required />
                             </FormControl>
@@ -305,11 +313,12 @@ export function Payment() {
 
                       <DialogFooter>
                         <Button type="submit" variant="primary">
-                          Save Changes
+                          ذخیره تغییرات
                         </Button>
+
                         <DialogClose asChild>
                           <Button type="button" variant="outline">
-                            Cancel
+                            انصراف
                           </Button>
                         </DialogClose>
                       </DialogFooter>
@@ -319,7 +328,7 @@ export function Payment() {
               </DialogContent>
             </Dialog>
 
-            {/* Remove Dialog */}
+            {/* پنجره حذف */}
             <Dialog
               open={removeOpen === index}
               onOpenChange={(open) =>
@@ -331,22 +340,26 @@ export function Payment() {
                   حذف
                 </Button>
               </DialogTrigger>
+
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>حذف این روش پرداخت</DialogTitle>
+                  <DialogTitle>حذف روش پرداخت</DialogTitle>
                 </DialogHeader>
+
                 <DialogBody className="text-sm">
-                  آیا از حذف این روش پرداخت مطمئن هستید؟
-                 </DialogBody>
+                  آیا از حذف این روش پرداخت اطمینان دارید؟
+                </DialogBody>
+
                 <DialogFooter>
                   <Button
                     variant="destructive"
                     onClick={() => handleRemove(index)}
                   >
-                    بله، پاک کن
+                    بله، حذف شود
                   </Button>
+
                   <DialogClose asChild>
-                    <Button variant="outline">خیر</Button>
+                    <Button variant="outline">انصراف</Button>
                   </DialogClose>
                 </DialogFooter>
               </DialogContent>
@@ -359,7 +372,7 @@ export function Payment() {
               variant="outline"
               onClick={() => handleSelect(index)}
             >
-              انتخاب کارت
+              انتخاب به‌عنوان پیش‌فرض
             </Button>
           )}
         </div>
@@ -367,7 +380,7 @@ export function Payment() {
     </Card>
   );
 
-  // Handle Select Card
+  // انتخاب روش پرداخت پیش‌فرض
   const handleSelect = (idx) => {
     setItems((prev) =>
       prev.map((item, i) => ({
@@ -375,16 +388,16 @@ export function Payment() {
         badge: i === idx,
       })),
     );
+
     toast.custom(
       (t) => (
         <Alert variant="mono" icon="success" onClose={() => toast.dismiss(t)}>
           <AlertIcon>
             <RiCheckboxCircleFill />
           </AlertIcon>
-          <AlertTitle>Address selected!</AlertTitle>
+          <AlertTitle>روش پرداخت پیش‌فرض با موفقیت تغییر کرد</AlertTitle>
         </Alert>
       ),
-
       {
         duration: 5000,
       },

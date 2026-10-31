@@ -50,8 +50,8 @@ const selectTriggerVariants = cva(
   {
     variants: {
       size: {
-        sm: 'h-7 px-2.5 text-xs gap-1 rounded-md',
-        md: 'h-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) gap-1 rounded-md',
+        sm: 'h-9 px-2.5 text-xs gap-1 rounded-md',
+        md: 'h-10 px-3 text-[0.8125rem] leading-(--text-sm--line-height) gap-1 rounded-md',
         lg: 'h-10 px-4 text-sm gap-1.5 rounded-md',
       },
     },
@@ -157,7 +157,7 @@ function SelectItem({ className, children, ...props }) {
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 text-sm outline-hidden text-foreground hover:bg-accent focus:bg-accent data-disabled:pointer-events-none data-disabled:opacity-50',
+        'relative flex w-full cursor-default select-none items-center rounded-md py-1.5 text-sm outline-hidden text-foreground hover:bg-accent focus:bg-accent data-disabled:pointer-events-none data-disabled:opacity-50',
         indicatorPosition === 'left' ? 'ps-8 pe-2' : 'pe-8 ps-2',
         className,
       )}

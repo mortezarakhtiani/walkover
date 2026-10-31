@@ -81,15 +81,15 @@ const Testimonials = () => {
                 flex
                 w-[320px]
                 flex-shrink-0
-                rounded-xl
+                rounded-md
                 border
                 border-border/50
                 bg-gradient-to-br
-                from-indigo-50/60
+                from-red-50/60
                 to-purple-50/60
                 p-4
                 shadow-sm
-                dark:from-indigo-950/15
+                dark:from-red-950/15
                 dark:to-purple-950/15
                 sm:w-[370px]
                 sm:p-5
@@ -127,7 +127,7 @@ const Testimonials = () => {
     const secondColumn = testimonials.slice(5, 10);
 
     return (
-        <section className="mt-16 overflow-hidden border-b border-border/50 bg-background py-12 sm:py-16">
+        <section className="mt-16 overflow-hidden border-b border-border/50 bg-background/50 py-12 sm:py-16">
 
             <div className="container mx-auto mb-10 px-6 sm:mb-12 lg:px-12">
 

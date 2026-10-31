@@ -44,7 +44,7 @@ export default function Item11() {
           </span>
         </div>
 
-        <Card className="shadow-none flex items-center justify-between flex-row gap-1.5 p-2.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none flex items-center justify-between flex-row gap-1.5 p-2.5 rounded-md bg-muted/70">
           <div className="flex items-center gap-1.5">
             <img
               src={toAbsoluteUrl('/media/file-types/word.svg')}
@@ -95,7 +95,7 @@ export default function Item11() {
           </Button>
         </Card>
 
-        <Card className="shadow-none flex items-center justify-between flex-row gap-1.5 p-2.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none flex items-center justify-between flex-row gap-1.5 p-2.5 rounded-md bg-muted/70">
           <div className="flex items-center gap-1.5">
             <img
               src={toAbsoluteUrl('/media/file-types/svg.svg')}

@@ -38,7 +38,7 @@ function SheetOverlay({ className, ...props }) {
 }
 
 const sheetVariants = cva(
-    'flex flex-col items-strech fixed z-50 gap-4 bg-background p-6 shadow-lg',
+    'fixed z-50 flex flex-col gap-4 overflow-hidden rounded-md border border-border bg-background p-5 shadow-lg sm:p-6',
     {
         variants: {
             side: {
@@ -48,10 +48,10 @@ const sheetVariants = cva(
                     'inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
 
                 left:
-                    'inset-y-0 start-0 h-full w-3/4 border-e sm:max-w-sm ltr:data-[state=closed]:slide-out-to-left ltr:data-[state=open]:slide-in-from-left rtl:data-[state=closed]:slide-out-to-right rtl:data-[state=open]:slide-in-from-right',
+                    'inset-y-0 left-0 h-full w-[min(90vw,28rem)] max-w-full border-e ltr:data-[state=closed]:slide-out-to-left ltr:data-[state=open]:slide-in-from-left rtl:data-[state=closed]:slide-out-to-right rtl:data-[state=open]:slide-in-from-right',
 
                 right:
-                    'inset-y-0 end-0 h-full w-3/4 border-s data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',
+                    'inset-y-0 right-0 h-full w-[min(90vw,28rem)] max-w-full border-s data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',
 
             },
         },
@@ -94,7 +94,7 @@ function SheetContent({
         {close && (
           <SheetPrimitive.Close
             data-slot="sheet-close"
-            className="absolute end-5 top-4 cursor-pointer rounded-sm opacity-60 transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 max-sm:hidden"
+            className="absolute end-5 top-4 cursor-pointer rounded-md opacity-60 transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 max-sm:hidden"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
@@ -122,7 +122,7 @@ function SheetBody({className, ...props}) {
     return (
         <div
             data-slot="sheet-body"
-            className={cn('py-2.5', className)}
+            className={cn('min-h-0 flex-1 overflow-y-auto py-2.5', className)}
             {...props}
         />
     );
@@ -133,7 +133,7 @@ function SheetFooter({className, ...props}) {
         <div
             data-slot="sheet-footer"
             className={cn(
-                'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+                'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end',
                 className,
             )}
             {...props}

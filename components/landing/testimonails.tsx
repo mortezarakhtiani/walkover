@@ -75,7 +75,7 @@ const Testimonials = () => {
 }: {
   testimonial: typeof testimonials[0];
 }) => (
-  <div className="flex w-[300px] shrink-0 flex-col rounded-xl border border-border/50 bg-background p-5 shadow-sm mx-1.5 transition-shadow duration-300 hover:shadow-md">
+  <div className="flex w-[300px] shrink-0 flex-col rounded-md border border-border/50 bg-background p-5 shadow-sm mx-1.5 transition-shadow duration-300 hover:shadow-md">
 
     {/* Comment */}
     <p className="mb-5 text-sm leading-7 text-muted-foreground">

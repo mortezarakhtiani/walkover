@@ -207,7 +207,7 @@ export function SheetChat({ trigger }: { trigger: ReactNode }) {
               >
                 <div className="flex flex-col gap-1">
                   <div
-                    className="bg-primary text-primary-foreground text-sm font-medium p-3 rounded-lg shadow-xs"
+                    className="bg-primary text-primary-foreground text-sm font-medium p-3 rounded-md shadow-xs"
                     dangerouslySetInnerHTML={{ __html: message.text }}
                   />
                   <div className="flex items-center justify-end gap-1">
@@ -243,7 +243,7 @@ export function SheetChat({ trigger }: { trigger: ReactNode }) {
                 </Avatar>
                 <div className="flex flex-col gap-1">
                   <div
-                    className="bg-accent/50 text-gray-700 text-sm font-medium p-3 rounded-lg shadow-xs"
+                    className="bg-accent/50 text-gray-700 text-sm font-medium p-3 rounded-md shadow-xs"
                     dangerouslySetInnerHTML={{ __html: message.text }}
                   />
                   <span className="text-xs text-gray-500">{message.time}</span>

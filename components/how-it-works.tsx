@@ -119,8 +119,8 @@ const HowItWorks = () => {
                 )}
                 onClick={() => handleStepClick(index)}
               >
-                <div className="size-12 bg-indigo-100/40 dark:bg-indigo-950/60 rounded-full flex items-center justify-center">
-                  <step.icon className="size-5 text-indigo-500" />
+                <div className="size-12 bg-red-100/40 dark:bg-red-950/60 rounded-full flex items-center justify-center">
+                  <step.icon className="size-5 text-red-700" />
                 </div>
 
                 <h3 className={cn('p-5 pb-3 text-xl font-semibold mb-0 transition-colors duration-300', index === activeStep ? 'text-foreground' : 'text-muted-foreground')}>
@@ -139,7 +139,7 @@ const HowItWorks = () => {
                       >
                         {/* Progress Bar - moved to bottom */}
                         <motion.div
-                          className="h-0.5 bg-gradient-to-r from-indigo-500 to-purple-400"
+                          className="h-0.5 bg-gradient-to-r from-red-600 to-red-400"
                           style={{ width: `${progress}%` }}
                           transition={{ duration: 0.05, ease: "linear" }}
                         />
@@ -152,7 +152,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Right Side - Fading Images */}
-          <div className="relative w-full rounded-xl overflow-hidden border border-border shadow-xs shadow-black/5 bg-background">
+          <div className="relative w-full rounded-md overflow-hidden border border-border shadow-xs shadow-black/5 bg-background">
             <div className="max-h-[50vh] overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img

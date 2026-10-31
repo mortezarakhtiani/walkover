@@ -7,6 +7,12 @@ import {
 
 } from 'lucide-react';
 
+
+import { Tag } from 'lucide-react';
+import { CircuitBoard } from "lucide-react";
+import { ProductHighlightCard } from '@/store/home/special-offers/product-highlight-card';
+
+
 import {Button} from '@/store/components/ui/button';
 import FlipClock  from '@/components/ui/flip-clock'
 import {Card1} from '@/store/home/special-offers/card1';
@@ -84,6 +90,7 @@ export function SpecialOffers({
 
     const product103 = products.find((product) => product.id === 103);
     const product104 = products.find((product) => product.id === 104);
+    const product101 = products.find((product) => product.id === 101);
 
     return (
         <div
@@ -91,7 +98,7 @@ export function SpecialOffers({
             mt-16
                 relative
                 overflow-hidden
-                rounded-2xl
+                rounded-md
                 px-5
                 shadow-sm
             "
@@ -127,7 +134,7 @@ export function SpecialOffers({
                 className="
         relative
         mb-3
-        rounded-xl
+        rounded-md
         p-3
         md:p-5
     "
@@ -180,11 +187,12 @@ export function SpecialOffers({
                             <div className="flex items-center">
                                 <h2
                                     className="
+                                    text-foreground
                             truncate
-                            text-sm
+                            text-base
                             font-semibold
                             text-mono
-                            md:text-lg
+                            md:text-[22px]
                         "
                                 >
                                     خوش قیمت‌های امروز
@@ -196,7 +204,7 @@ export function SpecialOffers({
                             mr-2
                             hidden
                             rounded-full
-                            bg-red-500/10
+                            bg-red-600/10
                             px-2
                             py-0.5
                             text-[10px]
@@ -239,7 +247,7 @@ export function SpecialOffers({
                         <div
                             dir="ltr"
                             className="
-        flex shrink-0 items-center gap-1 rounded-xl px-1 py-1
+        flex shrink-0 items-center gap-1 rounded-md px-1 py-1
         text-primary-600 dark:bg-primary-400/10 dark:text-primary-400
         md:gap-2 md:px-3 md:py-2
     "
@@ -260,11 +268,11 @@ export function SpecialOffers({
                                 className="
                         hidden
                         shrink-0
-                        rounded-xl
+                        rounded-md
                         px-4
                         py-2
                         text-xs
-                        text-indigo-500
+                        text-red-700
 
                         md:flex
                     "
@@ -353,6 +361,8 @@ export function SpecialOffers({
                             discount={product103.discount}
                             showAddButton={showAddButton}
                         />
+
+
                     </div>
                 </div>
             </div>

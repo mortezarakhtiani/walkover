@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+:root {
+  --obsidian: #070707;
+  --charcoal: #111111;
+  --elevated: #181818;
+  --blood: #dc2626;
+  --crimson: #991b1b;
+  --bone: #eae6df;
+  --fog: #bfbcb7;
+  --display: "Markazi Text", "Vazirmatn", serif;
+  --body: "IRANSansX", "Vazirmatn", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.landing-theme {
+  min-height: 100vh;
+  background: var(--obsidian);
+  color: var(--bone);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.landing-theme ::selection { background: var(--blood); color: var(--bone); }
+
+.font-display { font-family: var(--display); }
+.font-mono-l { font-family: var(--mono); letter-spacing: 0.14em; direction: ltr; unicode-bidi: isolate; }
+
+/* Focus: visible, crimson, never removed */
+.landing-theme a:focus-visible, .landing-theme button:focus-visible, .landing-theme [tabindex]:focus-visible {
+  outline: 2px solid var(--blood);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── Film grain: one fixed layer, transform-only animation ── */
+/*.grain {*/
+/*  pointer-events: none;*/
+/*  position: fixed;*/
+/*  inset: -50%;*/
+/*  z-index: 60;*/
+/*  opacity: 0.16;*/
+/*  background-image: url("/assets/noise.png");*/
+/*  mix-blend-mode: overlay;*/
+/*  animation: grain 0.9s steps(6) infinite;*/
+/*}*/
+/*@keyframes grain {*/
+/*  0% { transform: translate(0, 0); }*/
+/*  20% { transform: translate(-3%, 2%); }*/
+/*  40% { transform: translate(2%, -4%); }*/
+/*  60% { transform: translate(-4%, -1%); }*/
+/*  80% { transform: translate(3%, 3%); }*/
+/*  100% { transform: translate(0, 0); }*/
+/*}*/
+.vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* ── Hero flashlight ── */
+.flash-lit {
+  -webkit-mask-image: radial-gradient(circle var(--r, 260px) at var(--x, 50%) var(--y, 45%), #000 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.22) 60%, transparent 76%);
+          mask-image: radial-gradient(circle var(--r, 260px) at var(--x, 50%) var(--y, 45%), #000 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.22) 60%, transparent 76%);
+}
+.flash-glow {
+  background: radial-gradient(circle calc(var(--r, 260px) * 0.9) at var(--x, 50%) var(--y, 45%), rgba(234, 230, 223, 0.07), transparent 70%);
+}
+
+.fog {
+  position: absolute;
+  inset: auto -20% -10% -20%;
+  height: 55%;
+  background:
+    radial-gradient(ellipse 40% 50% at 30% 70%, rgba(146, 144, 141, 0.16), transparent 70%),
+    radial-gradient(ellipse 35% 45% at 70% 80%, rgba(146, 144, 141, 0.12), transparent 70%);
+  filter: blur(18px);
+  animation: fogdrift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.fog.b { animation-duration: 38s; animation-direction: alternate-reverse; opacity: 0.7; bottom: -20%; }
+@keyframes fogdrift {
+  from { transform: translate3d(-6%, 0, 0); }
+  to { transform: translate3d(6%, -3%, 0); }
+}
+
+.rec-dot { animation: rec 1.6s steps(2, jump-none) infinite; }
+@keyframes rec { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0.15; } }
+
+.scroll-cue { animation: cue 2.6s var(--ease-cine) infinite; }
+@keyframes cue {
+  0% { transform: translateY(-100%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(220%); opacity: 0; }
+}
+
+/* Flicker for the final frame */
+.flicker { animation: flicker 7s infinite; }
+@keyframes flicker {
+  0%, 91%, 100% { opacity: 1; }
+  92% { opacity: 0.35; }
+  93% { opacity: 0.9; }
+  95% { opacity: 0.2; }
+  96% { opacity: 1; }
+}
+
+/* Archive paper lines */
+.dossier-bg {
+  background-color: #0f0e0e;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(234, 230, 223, 0.022) 0 1px, transparent 1px 44px);
+}
+
+/* ── Cinematic scenes ──
+   A scene is a tall wrapper; its stage sticks to the viewport while the wrapper scrolls past.
+   The extra height (wrapper − 100vh) is the scene's scroll duration. Shorter on phones. */
+.scene { position: relative; }
+.scene-hero { height: 190svh; }
+.scene-screening { height: 175svh; }
+.scene-story { height: 200svh; }
+.scene-merch { height: 180svh; }
+@media (min-width: 768px) {
+  .scene-hero { height: 250vh; }
+  .scene-screening { height: 230vh; }
+  .scene-story { height: 260vh; }
+  .scene-merch { height: 230vh; }
+}
+.scene-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+/* Reduced motion: no pinned scenes. Each stage becomes one still frame in normal flow. */
+@media (prefers-reduced-motion: reduce) {
+  .scene-hero, .scene-screening, .scene-story, .scene-merch { height: auto; }
+  .scene-stage { position: relative; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+/* ── Store tokens ──
+   Same token approach as the previous storefront's store-theme.css (scoped vars under
+   .store-theme), using its dark-mode values re-tinted to the walkover palette. */
+.store-theme {
+  --store-bg: #0c0b0b;
+  --store-card: #121111;
+  --store-accent: #1b1919;
+  --store-border: rgba(234, 230, 223, 0.09);
+  --store-fg: #eae6df;
+  --store-mono: #f4f1ec;
+  --store-muted: #bfbcb7;
+  --store-primary: #dc2626;
+  --store-primary-hover: #b91c1c;
+  --store-primary-text: #f87171; /* small red text on dark: readable */
+  --store-destructive: #dc2626;
+  --store-radius: 0.5rem;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain,
+  .fog,
+  .rec-dot,
+  .scroll-cue,
+  .flicker {
+    animation: none !important;
+  }
+}
+

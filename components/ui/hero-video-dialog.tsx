@@ -83,7 +83,7 @@ export default function HeroVideoDialog({
         <img
           src={thumbnailSrc}
           alt={thumbnailAlt}
-          className="w-full rounded-2xl shadow-2xl border border-border"
+          className="w-full rounded-md shadow-2xl border border-border"
         />
         <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
           {trigger}
@@ -113,10 +113,10 @@ export default function HeroVideoDialog({
                 >
                   <X className="size-5" />
                 </motion.button>
-                <div className="size-full border-2 border-white rounded-2xl overflow-hidden isolate">
+                <div className="size-full border-2 border-white rounded-md overflow-hidden isolate">
                   <iframe
                     src={videoSrc}
-                    className="size-full rounded-2xl"
+                    className="size-full rounded-md"
                     allowFullScreen
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   ></iframe>

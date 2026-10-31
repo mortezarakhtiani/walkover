@@ -40,7 +40,7 @@ export function Card2({
                 relative
                 h-full
                 overflow-hidden
-                rounded-2xl
+                rounded-md
                 border
                 border-border
                 bg-background
@@ -135,7 +135,7 @@ w-[300px]
       sm:h-full
       sm:w-auto
       sm:max-w-full
-      sm:rounded-2xl
+      sm:rounded-md
     "
                             alt={title}
                         />

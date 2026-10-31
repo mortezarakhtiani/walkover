@@ -1,6 +1,7 @@
+
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 import {
     Dialog,
@@ -11,15 +12,14 @@ import {
     DialogTitle,
 } from '@/store/components/ui/dialog';
 
-import {Button} from '@/store/components/ui/button';
-
+import { Button } from '@/store/components/ui/button';
 
 const EditGenderDialog = ({
-                              open,
-                              onOpenChange,
-                              value,
-                              onSave,
-                          }) => {
+    open,
+    onOpenChange,
+    value,
+    onSave,
+}) => {
     const [gender, setGender] = useState(value);
 
     useEffect(() => {
@@ -29,105 +29,92 @@ const EditGenderDialog = ({
     }, [open, value]);
 
     const handleSave = () => {
-        onSave(gender);
-        onOpenChange(false);
+        onSave?.(gender);
+        onOpenChange?.(false);
     };
+
+    const genderOptions = [
+        { value: 'مرد', label: 'مرد' },
+        { value: 'زن', label: 'زن' },
+    ];
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent dir="rtl">
-
-                <DialogHeader>
-                    <DialogTitle className="text-right mb-5">
+            <DialogContent
+                dir="rtl"
+                className="w-[calc(100%-24px)] max-w-md gap-0 p-6 sm:p-7"
+            >
+                <DialogHeader className="mb-6 space-y-2 text-right">
+                    <DialogTitle className="text-lg font-semibold text-foreground">
                         ویرایش جنسیت
                     </DialogTitle>
 
-                    <DialogDescription className="text-right">
+                    <DialogDescription className="text-sm leading-6 text-muted-foreground">
                         جنسیت خود را انتخاب کنید.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="-mt-2 grid grid-cols-2 gap-3">
+                <div
+                    role="radiogroup"
+                    aria-label="انتخاب جنسیت"
+                    className="grid grid-cols-2 gap-3"
+                >
+                    {genderOptions.map((option) => {
+                        const isSelected = gender === option.value;
 
-                    {/* مرد */}
-                    <button
-                        type="button"
-                        onClick={() => setGender('مرد')}
-                        className={`w-full flex items-center justify-between rounded-lg border p-4 transition-colors ${
-                            gender === 'مرد'
-                                ? 'border-primary bg-primary/5'
-                                : 'border-border hover:bg-accent'
-                        }`}
-                    >
-                        <span className="flex items-center gap-3">
-                            <span className="text-sm text-foreground">
-                                مرد
-                            </span>
-                        </span>
+                        return (
+                            <button
+                                key={option.value}
+                                type="button"
+                                role="radio"
+                                aria-checked={isSelected}
+                                onClick={() => setGender(option.value)}
+                                className={`flex min-h-14 w-full items-center justify-between rounded-md border px-4 py-3 text-sm font-medium transition-colors ${
+                                    isSelected
+                                        ? 'border-primary bg-primary/5 text-foreground'
+                                        : 'border-border bg-background text-foreground hover:bg-muted/40'
+                                }`}
+                            >
+                                <span>{option.label}</span>
 
-                        <span
-                            className={`flex size-4 items-center justify-center rounded-full border ${
-                                gender === 'مرد'
-                                    ? 'border-primary'
-                                    : 'border-muted-foreground'
-                            }`}
-                        >
-                            {gender === 'مرد' && (
-                                <span className="size-2 rounded-full bg-primary"/>
-                            )}
-                        </span>
-                    </button>
-
-                    {/* زن */}
-                    <button
-                        type="button"
-                        onClick={() => setGender('زن')}
-                        className={`w-full flex items-center justify-between rounded-lg border p-4 transition-colors ${
-                            gender === 'زن'
-                                ? 'border-primary bg-primary/5'
-                                : 'border-border hover:bg-accent'
-                        }`}
-                    >
-                        <span className="flex items-center gap-3 text-sm text-foreground">
-                            <span className="">
-                                زن
-                            </span>
-                        </span>
-
-                        <span
-                            className={`flex size-4 items-center justify-center rounded-full border ${
-                                gender === 'زن'
-                                    ? 'border-primary'
-                                    : 'border-muted-foreground'
-                            }`}
-                        >
-                            {gender === 'زن' && (
-                                <span className="size-2 rounded-full bg-primary"/>
-                            )}
-                        </span>
-                    </button>
-
+                                <span
+                                    aria-hidden="true"
+                                    className={`flex size-4 shrink-0 items-center justify-center rounded-full border ${
+                                        isSelected
+                                            ? 'border-primary'
+                                            : 'border-muted-foreground'
+                                    }`}
+                                >
+                                    {isSelected && (
+                                        <span className="size-2 rounded-full bg-primary" />
+                                    )}
+                                </span>
+                            </button>
+                        );
+                    })}
                 </div>
 
-                <DialogFooter>
+                <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
                     <Button
+                        type="button"
                         variant="outline"
                         onClick={() => onOpenChange(false)}
+                        className="flex-1 p-5"
                     >
                         انصراف
                     </Button>
 
                     <Button
-                        variant="primary"
+                        type="button"
                         onClick={handleSave}
+                        className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                     >
                         ذخیره
                     </Button>
                 </DialogFooter>
-
             </DialogContent>
         </Dialog>
     );
 };
 
-export {EditGenderDialog};
+export { EditGenderDialog };

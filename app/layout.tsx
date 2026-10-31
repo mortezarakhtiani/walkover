@@ -9,7 +9,8 @@ import {StoreClientWrapper} from '@/store/components/wrapper';
 
 import {Toaster} from '@/components/ui/sonner';
 
-import '@/styles/globals.css';
+import '@/app/globals.css';
+import '@/app/store/store-theme.css';
 
 export const metadata: Metadata = {
     title: {

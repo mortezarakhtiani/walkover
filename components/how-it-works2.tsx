@@ -141,34 +141,6 @@ const HowItWorks = () => {
                 >
 
 
-                    {/* Title */}
-
-                    <h2
-                        className="
-                            text-3xl
-                            font-black
-                            tracking-tight
-                            text-white
-                            sm:text-4xl
-                            md:text-5xl
-                        "
-                    >
-                        هر داستان، یک{' '}
-                        <span
-                            className="
-                                bg-gradient-to-r
-                                from-white
-                                via-white
-                                to-white/50
-                                bg-clip-text
-                                text-transparent
-                            "
-                        >
-                            شروع
-                        </span>
-                    </h2>
-
-
                 </motion.div>
 
                 {/* =================================================
@@ -246,7 +218,7 @@ const HowItWorks = () => {
                             inset-y-0
                             right-0
                             rounded-full
-                            bg-indigo-500
+                            bg-red-600
                             shadow-[0_0_10px_rgba(99,102,241,0.45)]
                         "
                         style={{
@@ -418,7 +390,7 @@ const HowItWorks = () => {
                                                 absolute
                                                 inset-1
                                                 rounded-full
-                                                bg-red-500/10
+                                                bg-red-600/10
                                                 blur-xl
                                             "
                                         />

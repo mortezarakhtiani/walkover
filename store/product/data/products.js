@@ -6,9 +6,11 @@ export const products = [
         title: 'کلاه مشک بسیار جذاب از یک برند خیلی خوب',
         logo: '/images/cloth (4).png',
         hoverImage: '/images/cloth (5).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'TS-BLK-001',
@@ -46,48 +48,7 @@ export const products = [
             'XXL',
         ],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'پنبه',
-            },
-            {
-                name: 'مدل',
-                value: 'Regular Fit',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'استفاده روزمره',
-            },
-        ],
 
-        sizeGuide: [
-            {
-                size: 'S',
-                chest: 50,
-                length: 68,
-            },
-            {
-                size: 'M',
-                chest: 53,
-                length: 70,
-            },
-            {
-                size: 'L',
-                chest: 56,
-                length: 72,
-            },
-            {
-                size: 'XL',
-                chest: 59,
-                length: 74,
-            },
-            {
-                size: 'XXL',
-                chest: 62,
-                length: 76,
-            },
-        ],
     },
 
     {
@@ -97,9 +58,11 @@ export const products = [
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/hat (1).png',
         hoverImage: '/images/hat (1).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'HD-BLK-001',
@@ -137,64 +100,21 @@ export const products = [
             'XXL',
         ],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'پنبه و پلی‌استر',
-            },
-            {
-                name: 'مدل',
-                value: 'Oversize',
-            },
-            {
-                name: 'نوع چاپ',
-                value: 'چاپ باکیفیت',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'فصل سرد',
-            },
-        ],
-
-        sizeGuide: [
-            {
-                size: 'S',
-                chest: 56,
-                length: 68,
-            },
-            {
-                size: 'M',
-                chest: 59,
-                length: 70,
-            },
-            {
-                size: 'L',
-                chest: 62,
-                length: 72,
-            },
-            {
-                size: 'XL',
-                chest: 65,
-                length: 74,
-            },
-            {
-                size: 'XXL',
-                chest: 68,
-                length: 76,
-            },
-        ],
     },
 
     {
         id: 103,
         slug: 'creator-merch-cap',
         brand: 'Creator Merch',
-        title: 'کاپشن بهاره زنانه کالین',
+        title: 'لباس',
         logo: '/images/cloth (2).png',
         hoverImage: '/images/cloth (3).png',
 
         images: [
-            '/images/woman.png',
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'CP-BLK-001',
@@ -224,36 +144,31 @@ export const products = [
             },
         ],
 
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'کتان',
-            },
-            {
-                name: 'نوع',
-                value: 'قابل تنظیم',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'استفاده روزمره',
-            },
+        sizes: [
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
         ],
 
-        sizeGuide: [],
+
+
+        
     },
 
     {
         id: 104,
         slug: 'creator-merch-mug',
         brand: 'Creator Merch',
-        title: 'کاپشن بهاره زنانه کالین',
+        title: 'کاپشن بهاره ',
         logo: '/images/cloth (1).png',
         hoverImage: '/images/cloth (1).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -279,24 +194,40 @@ export const products = [
             },
         ],
 
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
+        sizes: [
+            'M',
+            'L',
+            'XL',
+            'XXL',
         ],
 
-        sizeGuide: [],
+        reviews: [
+    {
+        id: 1,
+        name: 'علی رضایی',
+        rating: 5,
+        date: '۱۴۰۵/۰۷/۲۰',
+        comment: 'کیفیت محصول خیلی خوبه و جنسش دقیقاً مطابق توضیحات بود.',
+    },
+    {
+        id: 2,
+        name: 'سارا محمدی',
+        rating: 4,
+        date: '۱۴۰۵/۰۷/۱۸',
+        comment: 'از ظاهر و کیفیت محصول راضی‌ام. بسته‌بندی هم خوب بود.',
+    },
+    {
+        id: 3,
+        name: 'محمد کریمی',
+        rating: 5,
+        date: '۱۴۰۵/۰۷/۱۵',
+        comment: 'محصول جذابیه و نسبت به قیمتش ارزش خرید داره.',
+    },
+],
+
+
+
+        
     },
 
     {
@@ -305,9 +236,11 @@ export const products = [
         brand: 'Creator Merch',
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/media/store/client/600x600/1.png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -333,24 +266,17 @@ export const products = [
             },
         ],
 
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
+        sizes: [
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
         ],
 
-        sizeGuide: [],
+
+
+        
     },
 
     {
@@ -359,9 +285,11 @@ export const products = [
         brand: 'Creator Merch',
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/show2.webp',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -387,24 +315,15 @@ export const products = [
             },
         ],
 
-        sizes: [],
-
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
+        sizes: [
+            'M',
+            'L',
+            'XL',
+            'XXL',
         ],
 
-        sizeGuide: [],
+
+
     },
 
     {
@@ -413,9 +332,11 @@ export const products = [
         brand: 'Creator Merch',
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/show3.webp',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -443,22 +364,9 @@ export const products = [
 
         sizes: [],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
 
-        sizeGuide: [],
+
+        
     },
 
     {
@@ -468,9 +376,11 @@ export const products = [
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/mug (1).png',
         hoverImage: '/images/mug (1).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -498,22 +408,9 @@ export const products = [
 
         sizes: [],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
 
-        sizeGuide: [],
+
+        
     },
 
     {
@@ -523,9 +420,11 @@ export const products = [
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/mug (2).png',
         hoverImage: '/images/mug (2).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -553,22 +452,9 @@ export const products = [
 
         sizes: [],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
 
-        sizeGuide: [],
+
+        
     },
 
     {
@@ -578,9 +464,11 @@ export const products = [
         title: 'کاپشن بهاره زنانه کالین',
         logo: '/images/mug (4).png',
         hoverImage: '/images/mug (4).png',
-        images: [
-            '4.png',
-            '7.png',
+         images: [
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -608,22 +496,9 @@ export const products = [
 
         sizes: [],
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
 
-        sizeGuide: [],
+
+        
     },
 
     {
@@ -634,8 +509,10 @@ export const products = [
         logo: '/images/mug (6).png',
         hoverImage: '/images/mug (6).png',
         images: [
-            '4.png',
-            '7.png',
+            '/images/cloth (2).png',
+            '/images/cloth (3).png',
+            '/images/cloth (4).png',
+            '/images/cloth (5).png',
         ],
 
         sku: 'MG-WHT-001',
@@ -662,23 +539,9 @@ export const products = [
         ],
 
         sizes: [],
+        
 
-        specifications: [
-            {
-                name: 'جنس',
-                value: 'سرامیک',
-            },
-            {
-                name: 'ظرفیت',
-                value: '۳۵۰ میلی‌لیتر',
-            },
-            {
-                name: 'مناسب برای',
-                value: 'نوشیدنی گرم و سرد',
-            },
-        ],
-
-        sizeGuide: [],
+        
     },
 
 ];

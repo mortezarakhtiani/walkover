@@ -1,6 +1,7 @@
+
 'use client';
 
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
     Dialog,
@@ -11,18 +12,18 @@ import {
     DialogTitle,
 } from '@/store/components/ui/dialog';
 
-import {Input} from '@/store/components/ui/input';
-import {Button} from '@/store/components/ui/button';
+import { Input } from '@/store/components/ui/input';
+import { Button } from '@/store/components/ui/button';
 
-import {toPersianDigits} from '../../../../../lib/to-persian';
+import { toPersianDigits } from '../../../../../lib/to-persian';
 
 const EditPhoneDialog = ({
-                              open,
-                              onOpenChange,
-                              value,
-                              onSave,
-                          }) => {
-    const [phone, setPhone] = useState(value);
+    open,
+    onOpenChange,
+    value,
+    onSave,
+}) => {
+    const [phone, setPhone] = useState(value ?? '');
     const [code, setCode] = useState(['', '', '', '', '', '']);
     const [codeSent, setCodeSent] = useState(false);
     const [error, setError] = useState('');
@@ -31,53 +32,47 @@ const EditPhoneDialog = ({
 
     useEffect(() => {
         if (open) {
-            setPhone(value);
+            setPhone(value ?? '');
             setCode(['', '', '', '', '', '']);
             setCodeSent(false);
             setError('');
         }
     }, [open, value]);
 
-    const normalizePhone = (value) => {
-        return value
+    const normalizePhone = (input = '') =>
+        input
             .replace(/[۰-۹]/g, (digit) =>
-                '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)
+                '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit),
             )
             .replace(/[٠-٩]/g, (digit) =>
-                '٠١٢٣٤٥٦٧٨٩'.indexOf(digit)
+                '٠١٢٣٤٥٦٧٨٩'.indexOf(digit),
             )
             .replace(/\D/g, '');
-    };
 
-    const normalizeDigit = (value) => {
-        return value
+    const normalizeDigit = (input = '') =>
+        input
             .replace(/[۰-۹]/g, (digit) =>
-                '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)
+                '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit),
             )
             .replace(/[٠-٩]/g, (digit) =>
-                '٠١٢٣٤٥٦٧٨٩'.indexOf(digit)
+                '٠١٢٣٤٥٦٧٨٩'.indexOf(digit),
             )
             .replace(/\D/g, '');
-    };
 
     const normalizedPhone = normalizePhone(phone);
-    const normalizedCurrentPhone = normalizePhone(value);
+    const normalizedCurrentPhone = normalizePhone(value ?? '');
 
-    const isSamePhone =
-        normalizedPhone === normalizedCurrentPhone;
-
-    const isValidPhone =
-        /^09\d{9}$/.test(normalizedPhone);
+    const isSamePhone = normalizedPhone === normalizedCurrentPhone;
+    const isValidPhone = /^09\d{9}$/.test(normalizedPhone);
 
     const enteredCode = code.join('');
+    const canSendCode = !isSamePhone && isValidPhone;
+    const canVerifyCode = enteredCode.length === 6;
 
-    const canSendCode =
-        !isSamePhone && isValidPhone;
+    const handleOpenChange = (nextOpen) => {
+        onOpenChange?.(nextOpen);
+    };
 
-    const canVerifyCode =
-        enteredCode.length === 6;
-
-    // ارسال کد تأیید
     const handleSendCode = () => {
         if (!isValidPhone) {
             setError('لطفاً یک شماره موبایل معتبر وارد کنید.');
@@ -93,7 +88,7 @@ const EditPhoneDialog = ({
         setCodeSent(true);
         setCode(['', '', '', '', '', '']);
 
-        // کد آزمایشی
+        // کد آزمایشی؛ در نسخه واقعی باید از سرور ارسال شود.
         console.log('Verification code: 123456');
 
         setTimeout(() => {
@@ -101,20 +96,18 @@ const EditPhoneDialog = ({
         }, 100);
     };
 
-    // تغییر هر خانه کد
-    const handleCodeChange = (index, value) => {
-        const normalized = normalizeDigit(value);
+    const handleCodeChange = (index, inputValue) => {
+        const normalized = normalizeDigit(inputValue);
+        const newCode = [...code];
 
         if (!normalized) {
-            const newCode = [...code];
             newCode[index] = '';
             setCode(newCode);
+            setError('');
             return;
         }
 
         const digits = normalized.slice(0, 6).split('');
-
-        const newCode = [...code];
 
         digits.forEach((digit, offset) => {
             if (index + offset < 6) {
@@ -125,23 +118,20 @@ const EditPhoneDialog = ({
         setCode(newCode);
         setError('');
 
-        const nextIndex = Math.min(
-            index + digits.length,
-            5
-        );
+        const nextIndex = Math.min(index + digits.length, 5);
 
         setTimeout(() => {
             codeInputRefs.current[nextIndex]?.focus();
         }, 0);
     };
 
-    // مدیریت Backspace
     const handleCodeKeyDown = (index, event) => {
         if (event.key === 'Backspace') {
             if (code[index]) {
                 const newCode = [...code];
                 newCode[index] = '';
                 setCode(newCode);
+                setError('');
                 return;
             }
 
@@ -150,6 +140,7 @@ const EditPhoneDialog = ({
                 newCode[index - 1] = '';
 
                 setCode(newCode);
+                setError('');
 
                 setTimeout(() => {
                     codeInputRefs.current[index - 1]?.focus();
@@ -166,19 +157,15 @@ const EditPhoneDialog = ({
         }
     };
 
-    // Paste کردن کل کد
     const handleCodePaste = (event) => {
         event.preventDefault();
 
         const pastedText = event.clipboardData.getData('text');
         const normalized = normalizeDigit(pastedText);
 
-        if (!normalized) {
-            return;
-        }
+        if (!normalized) return;
 
         const digits = normalized.slice(0, 6).split('');
-
         const newCode = ['', '', '', '', '', ''];
 
         digits.forEach((digit, index) => {
@@ -195,8 +182,7 @@ const EditPhoneDialog = ({
         }, 0);
     };
 
-    // تأیید کد
-    const handleVerifyCode = () => {
+    const handleVerifyCode = async () => {
         if (enteredCode !== '123456') {
             setError('کد تأیید صحیح نیست.');
             return;
@@ -204,47 +190,70 @@ const EditPhoneDialog = ({
 
         setError('');
 
-        onSave(normalizedPhone);
-        onOpenChange(false);
+        try {
+            await onSave?.(normalizedPhone);
+            onOpenChange?.(false);
+        } catch (saveError) {
+            setError(
+                saveError instanceof Error
+                    ? saveError.message
+                    : 'تغییر شماره موبایل با خطا مواجه شد.',
+            );
+        }
     };
 
     return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent dir="rtl">
-
-                <DialogHeader>
-                    <DialogTitle className="text-right mb-5">
+        <Dialog open={open} onOpenChange={handleOpenChange}>
+            <DialogContent
+                dir="rtl"
+                className="w-[calc(100%-24px)] max-w-md gap-0 p-6 sm:p-7"
+            >
+                <DialogHeader className="mb-6 space-y-2 text-right">
+                    <DialogTitle className="text-lg font-semibold text-foreground">
                         ویرایش شماره موبایل
                     </DialogTitle>
 
-                    <DialogDescription className="text-right">
+                    <DialogDescription className="text-sm leading-6 text-muted-foreground">
                         شماره موبایل جدید خود را وارد کنید.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="-mt-2 space-y-4">
+                <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="edit-phone"
+                            className="text-sm font-medium text-foreground"
+                        >
+                            شماره موبایل جدید
+                        </label>
 
-                    {/* شماره موبایل */}
-                    <Input
-                        dir="rtl"
-                        inputMode="numeric"
-                        maxLength={11}
-                        disabled={codeSent}
-                        value={toPersianDigits(phone)}
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            const normalized = normalizePhone(value);
+                        <Input
+                            id="edit-phone"
+                            dir="rtl"
+                            inputMode="numeric"
+                            autoComplete="tel"
+                            maxLength={11}
+                            disabled={codeSent}
+                            value={toPersianDigits(phone)}
+                            onChange={(event) => {
+                                const normalized = normalizePhone(
+                                    event.target.value,
+                                );
 
-                            setPhone(normalized.slice(0, 11));
-                            setError('');
-                        }}
-                        placeholder="۰۹۱۲۱۲۳۴۵۶۷"
-                        autoFocus
-                    />
+                                setPhone(normalized.slice(0, 11));
+                                setError('');
+                            }}
+                            placeholder="۰۹۱۲۱۲۳۴۵۶۷"
+                            className="h-11"
+                            autoFocus
+                        />
+                    </div>
 
-                    {/* کد تأیید */}
                     {codeSent && (
-                        <div className="space-y-2">
+                        <div className="flex flex-col gap-3">
+                            <label className="text-sm font-medium text-foreground">
+                                کد تأیید
+                            </label>
 
                             <div
                                 dir="ltr"
@@ -259,19 +268,17 @@ const EditPhoneDialog = ({
                                         }}
                                         type="text"
                                         inputMode="numeric"
-                                        maxLength={1}
+                                        autoComplete="one-time-code"
+                                        maxLength={6}
                                         value={toPersianDigits(digit)}
-                                        onChange={(e) =>
+                                        onChange={(event) =>
                                             handleCodeChange(
                                                 index,
-                                                e.target.value
+                                                event.target.value,
                                             )
                                         }
-                                        onKeyDown={(e) =>
-                                            handleCodeKeyDown(
-                                                index,
-                                                e
-                                            )
+                                        onKeyDown={(event) =>
+                                            handleCodeKeyDown(index, event)
                                         }
                                         onPaste={handleCodePaste}
                                         className="h-11 w-11 p-0 text-center text-lg"
@@ -279,29 +286,38 @@ const EditPhoneDialog = ({
                                 ))}
                             </div>
 
-                            <p className="text-xs text-muted-foreground text-center">
+                            <p className="text-center text-xs leading-5 text-muted-foreground">
                                 کد ۶ رقمی ارسال‌شده را وارد کنید.
                             </p>
-
                         </div>
                     )}
 
-                    {/* خطا */}
                     {error && (
-                        <p className="text-xs text-destructive text-right">
+                        <div
+                            role="alert"
+                            className="rounded-md border border-destructive/20 bg-destructive/10 p-3 text-sm text-destructive"
+                        >
                             {error}
-                        </p>
+                        </div>
                     )}
-
                 </div>
 
-                <DialogFooter className="mt-5">
+                <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => handleOpenChange(false)}
+                        className="flex-1 p-5"
+                    >
+                        انصراف
+                    </Button>
+
                     {!codeSent ? (
                         <Button
                             type="button"
                             onClick={handleSendCode}
                             disabled={!canSendCode}
-                            className="w-full"
+                            className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                         >
                             ارسال کد تأیید
                         </Button>
@@ -310,16 +326,15 @@ const EditPhoneDialog = ({
                             type="button"
                             onClick={handleVerifyCode}
                             disabled={!canVerifyCode}
-                            className="w-full"
+                            className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                         >
                             تأیید کد
                         </Button>
                     )}
                 </DialogFooter>
-
             </DialogContent>
         </Dialog>
     );
 };
 
-export {EditPhoneDialog};
+export { EditPhoneDialog };

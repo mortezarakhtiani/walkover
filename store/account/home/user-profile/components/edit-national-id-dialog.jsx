@@ -1,7 +1,9 @@
+
 'use client';
 
-import {useEffect, useState} from 'react';
-import {toPersianDigits} from '../../../../../lib/to-persian';
+import { useEffect, useState } from 'react';
+import { toPersianDigits } from '../../../../../lib/to-persian';
+
 import {
     Dialog,
     DialogContent,
@@ -11,12 +13,11 @@ import {
     DialogTitle,
 } from '@/store/components/ui/dialog';
 
-import {Input} from '@/store/components/ui/input';
-import {Button} from '@/store/components/ui/button';
+import { Input } from '@/store/components/ui/input';
+import { Button } from '@/store/components/ui/button';
 
-
-const toEnglishDigits = (value) => {
-    return value
+const toEnglishDigits = (value = '') => {
+    return String(value)
         .replace(/[۰-۹]/g, (digit) =>
             String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit))
         )
@@ -26,19 +27,16 @@ const toEnglishDigits = (value) => {
 };
 
 const validateNationalId = (value) => {
-    const nationalId = value.replace(/\D/g, '');
+    const nationalId = toEnglishDigits(value).replace(/\D/g, '');
 
-    // دقیقاً ۱۰ رقم
     if (nationalId.length !== 10) {
         return 'کد ملی باید ۱۰ رقم باشد.';
     }
 
-    // جلوگیری از کدهای کاملاً تکراری
     if (/^(\d)\1{9}$/.test(nationalId)) {
         return 'کد ملی وارد شده معتبر نیست.';
     }
 
-    // الگوریتم استاندارد کد ملی ایران
     const checkDigit = Number(nationalId[9]);
 
     let sum = 0;
@@ -59,28 +57,28 @@ const validateNationalId = (value) => {
     return '';
 };
 
-
 const EditNationalIdDialog = ({
-                                  open,
-                                  onOpenChange,
-                                  value,
-                                  onSave,
-                              }) => {
-    const [nationalId, setNationalId] = useState(value);
+    open,
+    onOpenChange,
+    value,
+    onSave,
+}) => {
+    const [nationalId, setNationalId] = useState(
+        toPersianDigits(value || '')
+    );
     const [error, setError] = useState('');
 
     useEffect(() => {
         if (open) {
-            setNationalId(toPersianDigits(value));
+            setNationalId(toPersianDigits(value || ''));
             setError('');
         }
     }, [open, value]);
 
-    const handleChange = (e) => {
-        const value = e.target.value;
+    const handleChange = (event) => {
+        const inputValue = event.target.value;
 
-        // تبدیل اعداد انگلیسی و عربی به فارسی
-        const persianValue = value
+        const persianValue = inputValue
             .replace(/[0-9]/g, (digit) =>
                 '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]
             )
@@ -88,23 +86,16 @@ const EditNationalIdDialog = ({
                 '۰۱۲۳۴۵۶۷۸۹'['٠١٢٣٤٥٦٧٨٩'.indexOf(digit)]
             );
 
-        // فقط عدد و حداکثر ۱۰ رقم
         const numbersOnly = persianValue
             .replace(/[^\u06F0-\u06F9]/g, '')
             .slice(0, 10);
 
         setNationalId(numbersOnly);
-
-        if (error) {
-            setError('');
-        }
+        setError('');
     };
 
     const handleSave = () => {
-        const englishNationalId = nationalId
-            .replace(/[۰-۹]/g, (digit) =>
-                String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit))
-            );
+        const englishNationalId = toEnglishDigits(nationalId);
 
         const validationError = validateNationalId(englishNationalId);
 
@@ -113,60 +104,77 @@ const EditNationalIdDialog = ({
             return;
         }
 
-        onSave(englishNationalId);
-        onOpenChange(false);
+        onSave?.(englishNationalId);
+        onOpenChange?.(false);
     };
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent dir="rtl">
-
-                <DialogHeader>
-                    <DialogTitle className="text-right mb-5">
+            <DialogContent
+                dir="rtl"
+                className="w-[calc(100%-24px)] max-w-md gap-0 p-6 sm:p-7"
+            >
+                <DialogHeader className="mb-6 space-y-2 text-right">
+                    <DialogTitle className="text-lg font-semibold text-foreground">
                         ویرایش کد ملی
                     </DialogTitle>
 
-                    <DialogDescription className="text-right">
+                    <DialogDescription className="text-sm leading-6 text-muted-foreground">
                         کد ملی خود را وارد کنید.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="-mt-2">
+                <div className="flex flex-col gap-2">
+                    <label
+                        htmlFor="edit-national-id"
+                        className="text-sm font-medium text-foreground"
+                    >
+                        کد ملی
+                    </label>
+
                     <Input
+                        id="edit-national-id"
                         value={nationalId}
                         onChange={handleChange}
                         placeholder="کد ملی"
                         inputMode="numeric"
                         maxLength={10}
                         autoFocus
+                        dir="ltr"
+                        className="h-11 text-center"
                     />
 
                     {error && (
-                        <div className="text-xs text-destructive mt-2">
+                        <div
+                            role="alert"
+                            className="mt-1 rounded-md border border-destructive/20 bg-destructive/10 p-3 text-sm text-destructive"
+                        >
                             {error}
                         </div>
                     )}
                 </div>
 
-                <DialogFooter>
+                <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
                     <Button
+                        type="button"
                         variant="outline"
                         onClick={() => onOpenChange(false)}
+                        className="flex-1 p-5"
                     >
                         انصراف
                     </Button>
 
                     <Button
-                        variant="primary"
+                        type="button"
                         onClick={handleSave}
+                        className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                     >
                         ذخیره
                     </Button>
                 </DialogFooter>
-
             </DialogContent>
         </Dialog>
     );
 };
 
-export {EditNationalIdDialog};
+export { EditNationalIdDialog };

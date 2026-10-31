@@ -10,13 +10,12 @@ import {getProducts} from '@/store/product/services/product-service';
 import {Card3} from '@/store/components/common/card3';
 import StoreFooter from '@/components/store-footer';
 import Ecommerce32 from '@/store/components/common/product-card-ecommerce';
-import AuthButton from "@/store/components/ui/auth-button";
 
 export default function LandingV2Page() {
     const products = getProducts();
 
     return (
-        <div className="min-h-screen">
+        <div className="store-theme min-h-screen">
 
             <Header/>
 
@@ -58,11 +57,11 @@ export default function LandingV2Page() {
                     showHeader={false}
                 />
 
-{/*                <Ecommerce32*/}
-{/*  badge={{ label: "کالکشن برندها", variant: "secondary" }}*/}
-{/*  heading="برندهای محبوب"*/}
-{/*  description="از میان برندهای مورد علاقه‌ات انتخاب کن."*/}
-{/*/>*/}
+                {/*                <Ecommerce32*/}
+                {/*  badge={{ label: "کالکشن برندها", variant: "secondary" }}*/}
+                {/*  heading="برندهای محبوب"*/}
+                {/*  description="از میان برندهای مورد علاقه‌ات انتخاب کن."*/}
+                {/*/>*/}
 
                 {/*<BrandCategory/>*/}
 

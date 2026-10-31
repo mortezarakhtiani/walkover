@@ -77,7 +77,7 @@ export function StoreClientWishlistSheet({
         left-auto
         h-[calc(100%-2.5rem)]
 
-        rounded-xl
+        rounded-md
         p-0
         overflow-hidden
 
@@ -95,7 +95,6 @@ export function StoreClientWishlistSheet({
         max-sm:[&_[data-slot=sheet-close]]:hidden
     "
 >
-```
 
 
                 {/* =================================================
@@ -105,8 +104,6 @@ export function StoreClientWishlistSheet({
                 <SheetHeader
                     className="
                         shrink-0
-                        border-b
-                        border-border
                         px-5
                         py-4
                         max-sm:hidden
@@ -199,6 +196,7 @@ export function StoreClientWishlistSheet({
                                                             h-[70px]
                                                             w-[90px]
 
+                                                            rounded-md
                                                             shadow-none
                                                             shrink-0
 
@@ -355,17 +353,18 @@ export function StoreClientWishlistSheet({
 
 
                                                         <Button
-                                                            size="sm"
-                                                            variant="outline"
-                                                            mode="icon"
-                                                            className="
-                                                                max-sm:size-9
-                                                            "
-                                                        >
-                                                            <TrashIcon
-                                                                className="size-4"
-                                                            />
-                                                        </Button>
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleRemoveClick(item)}
+                        aria-label="حذف محصول از سبد خرید"
+                        className="
+                            rounded-md
+                            max-sm:size-9
+                        "
+                    >
+                        <TrashIcon className="size-4" />
+                    </Button>
 
                                                     </div>
 
@@ -456,76 +455,74 @@ export function StoreClientWishlistSheet({
                    Footer
                 ================================================= */}
 
-                <SheetFooter
-                    className="
-                        w-full
-                        shrink-0
 
-                        border-t
-                        border-border
+<SheetFooter
+    className="
+        flex
+        w-full
+        shrink-0
+        flex-row
+        gap-2
 
-                        max-sm:mb-16
+        border-0
+        bg-transparent
+        p-4
 
-                        flex-row
-                        gap-0
+        max-sm:mb-16
+        max-sm:px-3
+    "
+>
 
-                        p-0
-                    "
-                >
+    <Button
+        type="button"
+        onClick={() => onOpenChange(false)}
+        className="
+            h-14
+            min-h-14
+            flex-1
+            gap-2
 
-                    <Button
-                        variant="ghost"
-                        className="
-                            h-full
-                            min-h-[56px]
+            rounded-md
+            border
+            border-red-600/20
 
-                            flex-1
+            bg-red-600
+            px-4
 
-                            rounded-none
-                            justify-center
+            text-base
+            font-semibold
+            text-white
 
-                            border-0
+            hover:bg-red-700
+            focus-visible:bg-red-600
+        "
+    >
+        <ShoppingCart className="size-5" />
+        مشاهده سبد خرید
+    </Button>
+    {/* حذف همه */}
+    <Button
+        type="button"
+        variant="outline"
+        onClick={() => {}}
+        className="
+            h-14
+            min-h-14
+            shrink-0
+            rounded-md
+            border-border
+            px-4
+            text-sm
+            font-medium
+        "
+    >
+        حذف همه
+    </Button>
 
-                            px-5
-                            py-5
+    {/* مشاهده سبد خرید */}
 
-                            shadow-none
+</SheetFooter>
 
-                            hover:bg-muted
-                        "
-                        onClick={() => {}}
-                    >
-                        حذف همه
-                    </Button>
-
-
-                    <Button
-                        className="
-                            h-full
-                            min-h-[56px]
-
-                            flex-1
-
-                            rounded-none
-                            justify-center
-
-                            bg-indigo-500
-
-                            px-5
-                            py-5
-
-                            text-white
-
-                            hover:bg-indigo-600
-                        "
-                        onClick={() => onOpenChange(false)}
-                    >
-                        <ShoppingCart className="size-4" />
-
-                        مشاهده سبد خرید
-                    </Button>
-
-                </SheetFooter>
 
             </SheetContent>
 

@@ -34,7 +34,7 @@ function DataGridColumnFilter({ column, title, options }) {
               <Separator orientation="vertical" className="mx-2 h-4" />
               <Badge
                 variant="secondary"
-                className="rounded-sm px-1 font-normal lg:hidden"
+                className="rounded-md px-1 font-normal lg:hidden"
               >
                 {selectedValues.size}
               </Badge>
@@ -42,7 +42,7 @@ function DataGridColumnFilter({ column, title, options }) {
                 {selectedValues.size > 2 ? (
                   <Badge
                     variant="secondary"
-                    className="rounded-sm px-1 font-normal"
+                    className="rounded-md px-1 font-normal"
                   >
                     {selectedValues.size} selected
                   </Badge>
@@ -53,7 +53,7 @@ function DataGridColumnFilter({ column, title, options }) {
                       <Badge
                         variant="secondary"
                         key={option.value}
-                        className="rounded-sm px-1 font-normal"
+                        className="rounded-md px-1 font-normal"
                       >
                         {option.label}
                       </Badge>
@@ -89,7 +89,7 @@ function DataGridColumnFilter({ column, title, options }) {
                   >
                     <div
                       className={cn(
-                        'me-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                        'me-2 flex h-4 w-4 items-center justify-center rounded-md border border-primary',
                         isSelected
                           ? 'bg-primary text-primary-foreground'
                           : 'opacity-50 [&_svg]:invisible',

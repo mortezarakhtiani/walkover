@@ -29,7 +29,7 @@ export function Card2({
                 cursor-pointer
                 group
                 overflow-hidden
-                rounded-2xl
+                rounded-md
 
             "
             onClick={() => showProductDetailsSheet(id)}
@@ -106,7 +106,7 @@ export function Card2({
 
                                 sm:h-[180px]
                                 sm:w-auto
-                                sm:rounded-2xl
+                                sm:rounded-md
                                 sm:object-contain
                             "
                             alt={title}

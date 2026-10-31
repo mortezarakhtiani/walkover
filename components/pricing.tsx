@@ -101,20 +101,20 @@ const Pricing = () => {
               type="single"
               value={billingPeriod}
               onValueChange={(value) => value && setBillingPeriod(value)}
-              className="bg-accent rounded-xl gap-1 p-1.5"
+              className="bg-accent rounded-md gap-1 p-1.5"
             >
               <ToggleGroupItem 
                 value="monthly" 
-                className="cursor-pointer flex items-center rounded-lg text-sm font-medium px-6 py-2 data-[state=on]:bg-background data-[state=on]:shadow-sm"
+                className="cursor-pointer flex items-center rounded-md text-sm font-medium px-6 py-2 data-[state=on]:bg-background data-[state=on]:shadow-sm"
               >
                 Monthly
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="yearly" 
-                className="cursor-pointer flex items-center rounded-lg text-sm font-medium px-6 py-2 data-[state=on]:bg-background data-[state=on]:shadow-sm flex items-center gap-2"
+                className="cursor-pointer flex items-center rounded-md text-sm font-medium px-6 py-2 data-[state=on]:bg-background data-[state=on]:shadow-sm flex items-center gap-2"
               >
                 Yearly
-                <Badge variant="outline" className="leading-0 rounded-sm px-1 py-0.5 text-[11px] bg-indigo-100 border-indigo-100 text-indigo-700 dark:text-indigo-200 dark:bg-indigo-950/50 dark:border-indigo-950/50 font-semibold">
+                <Badge variant="outline" className="leading-0 rounded-md px-1 py-0.5 text-[11px] bg-red-100 border-red-100 text-red-700 dark:text-red-200 dark:bg-red-950/50 dark:border-red-950/50 font-semibold">
                   -20%
                 </Badge>  
               </ToggleGroupItem>
@@ -133,12 +133,12 @@ const Pricing = () => {
             >
               <Card className={cn(
                 'h-full relative transition-all duration-300 group', 
-                plan.popular ? 'border-indigo-500 shadow-2xl scale-105' : 'border-border hover:border-indigo-500'
+                plan.popular ? 'border-red-600 shadow-2xl scale-105' : 'border-border hover:border-red-600'
                 )}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-2.5 py-1">
+                    <Badge className="bg-gradient-to-r from-red-600 to-red-700 text-white px-2.5 py-1">
                       <Star className="h-3 w-3 me-0.5" />
                       Most Popular
                     </Badge>
@@ -162,7 +162,7 @@ const Pricing = () => {
                             duration: 0.2,
                             ease: "easeInOut"
                           }}
-                          className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent relative"
+                          className="text-5xl font-bold bg-gradient-to-r from-red-700 to-red-600 bg-clip-text text-transparent relative"
                         >
                           {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
                         </motion.span>

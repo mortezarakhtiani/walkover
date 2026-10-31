@@ -65,7 +65,7 @@ const Footer = () => {
                     href={social.href}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
-                    className="flex size-10 items-center justify-center rounded-lg border border-border/60 bg-background transition-colors hover:border-border hover:bg-muted"
+                    className="flex size-10 items-center justify-center rounded-md border border-border/60 bg-background transition-colors hover:border-border hover:bg-muted"
                     aria-label={social.label}
                     title={social.label}
                   >

@@ -1,6 +1,7 @@
+
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 import {
     Dialog,
@@ -11,62 +12,81 @@ import {
     DialogTitle,
 } from '@/store/components/ui/dialog';
 
-import {Input} from '@/store/components/ui/input';
-import {Button} from '@/store/components/ui/button';
+import { Input } from '@/store/components/ui/input';
+import { Button } from '@/store/components/ui/button';
 
-const EditNameDialog = ({open, onOpenChange, value, onSave}) => {
-    const [name, setName] = useState(value);
+const EditNameDialog = ({
+    open,
+    onOpenChange,
+    value,
+    onSave,
+}) => {
+    const [name, setName] = useState(value || '');
 
     useEffect(() => {
         if (open) {
-            setName(value);
+            setName(value || '');
         }
     }, [open, value]);
 
+    const trimmedName = name.trim();
+
     const handleSave = () => {
-        const trimmedName = name.trim();
+        if (!trimmedName) return;
 
-        if (!trimmedName) {
-            return;
-        }
-
-        onSave(trimmedName);
-        onOpenChange(false);
+        onSave?.(trimmedName);
+        onOpenChange?.(false);
     };
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent dir="rtl">
-                <DialogHeader>
-                    <DialogTitle className="text-right mb-5">
+            <DialogContent
+                dir="rtl"
+                className="w-[calc(100%-24px)] max-w-md gap-0 p-6 sm:p-7"
+            >
+                <DialogHeader className="mb-6 space-y-2 text-right">
+                    <DialogTitle className="text-lg font-semibold text-foreground">
                         ویرایش نام
                     </DialogTitle>
 
-                    <DialogDescription className="text-right">
+                    <DialogDescription className="text-sm leading-6 text-muted-foreground">
                         نام خود را وارد کنید.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="-mt-2">
+                <div className="flex flex-col gap-2">
+                    <label
+                        htmlFor="edit-name"
+                        className="text-sm font-medium text-foreground"
+                    >
+                        نام
+                    </label>
+
                     <Input
+                        id="edit-name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(event) => setName(event.target.value)}
                         placeholder="نام"
                         autoFocus
+                        className="h-11"
                     />
                 </div>
 
-                <DialogFooter>
+                <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
                     <Button
+                        type="button"
                         variant="outline"
                         onClick={() => onOpenChange(false)}
+                        className="flex-1 p-5"
                     >
                         انصراف
                     </Button>
 
                     <Button
-                        variant="primary"
+                        type="button"
                         onClick={handleSave}
+                        disabled={!trimmedName}
+                        className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                     >
                         ذخیره
                     </Button>
@@ -76,4 +96,4 @@ const EditNameDialog = ({open, onOpenChange, value, onSave}) => {
     );
 };
 
-export {EditNameDialog};
+export { EditNameDialog };

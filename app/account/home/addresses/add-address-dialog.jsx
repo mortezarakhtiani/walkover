@@ -1,4 +1,3 @@
-
 'use client';
 
 import {useEffect, useState} from 'react';
@@ -73,11 +72,11 @@ const onlyDigits = (value, maxLength) => {
 
 
 const AddAddressDialog = ({
-    open,
-    onOpenChange,
-    onSave,
-    editingAddress,
-}) => {
+                              open,
+                              onOpenChange,
+                              onSave,
+                              editingAddress,
+                          }) => {
 
     const [title, setTitle] = useState('');
     const [province, setProvince] = useState('');
@@ -270,7 +269,7 @@ const AddAddressDialog = ({
                     max-h-[92vh]
                     overflow-hidden
                     overflow-y-auto
-                    rounded-2xl
+                    rounded-md
                     border-border/60
                     bg-background
                     p-0
@@ -278,89 +277,58 @@ const AddAddressDialog = ({
                 "
             >
 
+
                 {/* =========================
-                    Header
-                ========================= */}
+    Header
+========================= */}
 
                 <DialogHeader
                     className="
-                        relative
-                        overflow-hidden
-                        border-b
-                        border-border/60
-                        px-6
-                        py-5
-                    "
+        relative
+        border-b
+        border-border/60
+        px-6
+        py-5
+        text-right
+    "
                 >
-
-                    {/* Tiny Indigo Accent */}
-
+                    {/* red Accent */}
                     <div
                         className="
-                            absolute
-                            right-0
-                            top-0
-                            h-full
-                            w-1
-                            bg-indigo-600
-                        "
+            absolute
+            right-0
+            top-0
+            h-full
+            w-1
+            bg-red-600
+        "
                     />
 
-
-                    <div className="flex items-center gap-3">
-
-                        {/* Icon */}
-
-                        <div
+                    <div className="flex flex-col items-start gap-1.5">
+                        <DialogTitle
                             className="
-                                flex
-                                size-10
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-xl
-                                bg-muted
-                                text-indigo-600
-                                dark:text-indigo-400
-                            "
+                text-lg
+                font-bold
+                leading-7
+                tracking-tight
+                text-foreground
+            "
                         >
-                            <MapPin
-                                size={20}
-                                strokeWidth={1.8}
-                            />
-                        </div>
+                            {editingAddress
+                                ? 'ویرایش آدرس'
+                                : 'افزودن آدرس جدید'}
+                        </DialogTitle>
 
-
-                        {/* Title */}
-
-                        <div>
-
-                            <DialogTitle
-                                className="
-                                    text-lg
-                                    font-bold
-                                "
-                            >
-                                {editingAddress
-                                    ? 'ویرایش آدرس'
-                                    : 'افزودن آدرس جدید'}
-                            </DialogTitle>
-
-
-                            <p
-                                className="
-                                    mt-1
-                                    text-xs
-                                    text-muted-foreground
-                                "
-                            >
-                                اطلاعات آدرس و گیرنده را وارد کنید
-                            </p>
-
-                        </div>
-
+                        <p
+                            className="
+                text-xs
+                leading-5
+                text-muted-foreground
+            "
+                        >
+                            اطلاعات آدرس و گیرنده را وارد کنید
+                        </p>
                     </div>
-
                 </DialogHeader>
 
 
@@ -400,11 +368,11 @@ const AddAddressDialog = ({
                                 maxLength={30}
                                 className="
                                     peer
-                                    rounded-lg
+                                    rounded-md
                                     transition-colors
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
                                 "
                             />
 
@@ -422,8 +390,8 @@ const AddAddressDialog = ({
                                     font-medium
                                     text-muted-foreground
                                     transition-colors
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 عنوان آدرس
@@ -478,18 +446,18 @@ const AddAddressDialog = ({
                                                 h-11
                                                 w-full
                                                 justify-between
-                                                rounded-lg
+                                                rounded-md
                                                 border-input
                                                 bg-background
                                                 font-normal
                                                 transition-all
                                                 hover:bg-muted/40
-                                                focus-visible:border-indigo-500
+                                                focus-visible:border-red-600
                                                 focus-visible:ring-2
-                                                focus-visible:ring-indigo-500/10
-                                                data-[state=open]:border-indigo-500
+                                                focus-visible:ring-red-600/10
+                                                data-[state=open]:border-red-600
                                                 data-[state=open]:ring-2
-                                                data-[state=open]:ring-indigo-500/10
+                                                data-[state=open]:ring-red-600/10
                                             "
                                         >
 
@@ -517,7 +485,7 @@ const AddAddressDialog = ({
                                         className="
                                             w-[var(--radix-popover-trigger-width)]
                                             overflow-hidden
-                                            rounded-xl
+                                            rounded-md
                                             border-border/60
                                             p-0
                                             shadow-lg
@@ -582,14 +550,14 @@ const AddAddressDialog = ({
 
                                                                 {province ===
                                                                     item.id && (
-                                                                    <Check
-                                                                        className="
+                                                                        <Check
+                                                                            className="
                                                                             mr-auto
                                                                             size-4
-                                                                            text-indigo-600
+                                                                            text-red-600
                                                                         "
-                                                                    />
-                                                                )}
+                                                                        />
+                                                                    )}
 
                                                             </CommandItem>
                                                         )
@@ -625,7 +593,7 @@ const AddAddressDialog = ({
                                     <span
                                         className="
                                             mr-1
-                                            text-red-500
+                                            text-red-700
                                         "
                                     >
                                         *
@@ -640,7 +608,7 @@ const AddAddressDialog = ({
                                 <div
                                     className="
                                         text-[11px]
-                                        text-red-500
+                                        text-red-700
                                     "
                                 >
                                     {requiredErrors.province}
@@ -671,18 +639,18 @@ const AddAddressDialog = ({
                                                 h-11
                                                 w-full
                                                 justify-between
-                                                rounded-lg
+                                                rounded-md
                                                 border-input
                                                 bg-background
                                                 font-normal
                                                 transition-all
                                                 hover:bg-muted/40
-                                                focus-visible:border-indigo-500
+                                                focus-visible:border-red-600
                                                 focus-visible:ring-2
-                                                focus-visible:ring-indigo-500/10
-                                                data-[state=open]:border-indigo-500
+                                                focus-visible:ring-red-600/10
+                                                data-[state=open]:border-red-600
                                                 data-[state=open]:ring-2
-                                                data-[state=open]:ring-indigo-500/10
+                                                data-[state=open]:ring-red-600/10
                                                 disabled:cursor-not-allowed
                                                 disabled:opacity-50
                                             "
@@ -712,7 +680,7 @@ const AddAddressDialog = ({
                                         className="
                                             w-[var(--radix-popover-trigger-width)]
                                             overflow-hidden
-                                            rounded-xl
+                                            rounded-md
                                             border-border/60
                                             p-0
                                             shadow-lg
@@ -773,14 +741,14 @@ const AddAddressDialog = ({
 
                                                                 {city ===
                                                                     item.id && (
-                                                                    <Check
-                                                                        className="
+                                                                        <Check
+                                                                            className="
                                                                             mr-auto
                                                                             size-4
-                                                                            text-indigo-600
+                                                                            text-red-600
                                                                         "
-                                                                    />
-                                                                )}
+                                                                        />
+                                                                    )}
 
                                                             </CommandItem>
                                                         )
@@ -816,7 +784,7 @@ const AddAddressDialog = ({
                                     <span
                                         className="
                                             mr-1
-                                            text-red-500
+                                            text-red-700
                                         "
                                     >
                                         *
@@ -831,7 +799,7 @@ const AddAddressDialog = ({
                                 <div
                                     className="
                                         text-[11px]
-                                        text-red-500
+                                        text-red-700
                                     "
                                 >
                                     {requiredErrors.city}
@@ -871,7 +839,7 @@ const AddAddressDialog = ({
                                     flex
                                     w-full
                                     resize-none
-                                    rounded-lg
+                                    rounded-md
                                     border
                                     bg-background
                                     px-3
@@ -884,19 +852,19 @@ const AddAddressDialog = ({
 
                                     placeholder:text-muted-foreground
 
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
 
                                     ${
-                                        requiredErrors.address
-                                            ? `
-                                                border-red-500
-                                                focus-visible:border-red-500
-                                                focus-visible:ring-red-500/10
+                                    requiredErrors.address
+                                        ? `
+                                                border-red-600
+                                                focus-visible:border-red-600
+                                                focus-visible:ring-red-600/10
                                             `
-                                            : 'border-input'
-                                    }
+                                        : 'border-input'
+                                }
                                 `}
                             />
 
@@ -913,8 +881,8 @@ const AddAddressDialog = ({
                                     text-[11px]
                                     font-medium
                                     text-muted-foreground
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 آدرس کامل
@@ -922,7 +890,7 @@ const AddAddressDialog = ({
                                 <span
                                     className="
                                         mr-1
-                                        text-red-500
+                                        text-red-700
                                     "
                                 >
                                     *
@@ -937,7 +905,7 @@ const AddAddressDialog = ({
                             <div
                                 className="
                                     text-[11px]
-                                    text-red-500
+                                    text-red-700
                                 "
                             >
                                 {requiredErrors.address}
@@ -979,11 +947,11 @@ const AddAddressDialog = ({
                                 maxLength={4}
                                 className="
                                     peer
-                                    rounded-lg
+                                    rounded-md
                                     transition-colors
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
                                 "
                             />
 
@@ -1000,8 +968,8 @@ const AddAddressDialog = ({
                                     text-[11px]
                                     font-medium
                                     text-muted-foreground
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 پلاک
@@ -1029,11 +997,11 @@ const AddAddressDialog = ({
                                 maxLength={4}
                                 className="
                                     peer
-                                    rounded-lg
+                                    rounded-md
                                     transition-colors
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
                                 "
                             />
 
@@ -1050,8 +1018,8 @@ const AddAddressDialog = ({
                                     text-[11px]
                                     font-medium
                                     text-muted-foreground
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 واحد
@@ -1103,22 +1071,22 @@ const AddAddressDialog = ({
                                 maxLength={10}
                                 className={`
                                     peer
-                                    rounded-lg
+                                    rounded-md
                                     transition-all
 
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
 
                                     ${
-                                        postalCodeError
-                                            ? `
-                                                border-red-500
-                                                focus-visible:border-red-500
-                                                focus-visible:ring-red-500/10
+                                    postalCodeError
+                                        ? `
+                                                border-red-600
+                                                focus-visible:border-red-600
+                                                focus-visible:ring-red-600/10
                                             `
-                                            : ''
-                                    }
+                                        : ''
+                                }
                                 `}
                             />
 
@@ -1135,8 +1103,8 @@ const AddAddressDialog = ({
                                     text-[11px]
                                     font-medium
                                     text-muted-foreground
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 کد پستی
@@ -1144,7 +1112,7 @@ const AddAddressDialog = ({
                                 <span
                                     className="
                                         mr-1
-                                        text-red-500
+                                        text-red-700
                                     "
                                 >
                                     *
@@ -1160,7 +1128,7 @@ const AddAddressDialog = ({
                                 h-4
                                 text-[11px]
                                 leading-4
-                                text-red-500
+                                text-red-700
                             "
                         >
                             {postalCodeError || '\u00A0'}
@@ -1198,22 +1166,22 @@ const AddAddressDialog = ({
                                     placeholder=" "
                                     className={`
                                         peer
-                                        rounded-lg
+                                        rounded-md
                                         transition-all
 
-                                        focus-visible:border-indigo-500
+                                        focus-visible:border-red-600
                                         focus-visible:ring-2
-                                        focus-visible:ring-indigo-500/10
+                                        focus-visible:ring-red-600/10
 
                                         ${
-                                            requiredErrors.receiverName
-                                                ? `
-                                                    border-red-500
-                                                    focus-visible:border-red-500
-                                                    focus-visible:ring-red-500/10
+                                        requiredErrors.receiverName
+                                            ? `
+                                                    border-red-600
+                                                    focus-visible:border-red-600
+                                                    focus-visible:ring-red-600/10
                                                 `
-                                                : ''
-                                        }
+                                            : ''
+                                    }
                                     `}
                                 />
 
@@ -1230,8 +1198,8 @@ const AddAddressDialog = ({
                                         text-[11px]
                                         font-medium
                                         text-muted-foreground
-                                        peer-focus:text-indigo-600
-                                        dark:peer-focus:text-indigo-400
+                                        peer-focus:text-red-600
+                                        dark:peer-focus:text-red-400
                                     "
                                 >
                                     نام گیرنده
@@ -1239,7 +1207,7 @@ const AddAddressDialog = ({
                                     <span
                                         className="
                                             mr-1
-                                            text-red-500
+                                            text-red-700
                                         "
                                     >
                                         *
@@ -1254,7 +1222,7 @@ const AddAddressDialog = ({
                                 <div
                                     className="
                                         text-[11px]
-                                        text-red-500
+                                        text-red-700
                                     "
                                 >
                                     {requiredErrors.receiverName}
@@ -1304,22 +1272,22 @@ const AddAddressDialog = ({
                                     maxLength={11}
                                     className={`
                                         peer
-                                        rounded-lg
+                                        rounded-md
                                         transition-all
 
-                                        focus-visible:border-indigo-500
+                                        focus-visible:border-red-600
                                         focus-visible:ring-2
-                                        focus-visible:ring-indigo-500/10
+                                        focus-visible:ring-red-600/10
 
                                         ${
-                                            phoneError
-                                                ? `
-                                                    border-red-500
-                                                    focus-visible:border-red-500
-                                                    focus-visible:ring-red-500/10
+                                        phoneError
+                                            ? `
+                                                    border-red-600
+                                                    focus-visible:border-red-600
+                                                    focus-visible:ring-red-600/10
                                                 `
-                                                : ''
-                                        }
+                                            : ''
+                                    }
                                     `}
                                 />
 
@@ -1336,8 +1304,8 @@ const AddAddressDialog = ({
                                         text-[11px]
                                         font-medium
                                         text-muted-foreground
-                                        peer-focus:text-indigo-600
-                                        dark:peer-focus:text-indigo-400
+                                        peer-focus:text-red-600
+                                        dark:peer-focus:text-red-400
                                     "
                                 >
                                     شماره موبایل گیرنده
@@ -1345,7 +1313,7 @@ const AddAddressDialog = ({
                                     <span
                                         className="
                                             mr-1
-                                            text-red-500
+                                            text-red-700
                                         "
                                     >
                                         *
@@ -1361,7 +1329,7 @@ const AddAddressDialog = ({
                                     h-4
                                     text-[11px]
                                     leading-4
-                                    text-red-500
+                                    text-red-700
                                 "
                             >
                                 {phoneError || '\u00A0'}
@@ -1396,7 +1364,7 @@ const AddAddressDialog = ({
                                     flex
                                     w-full
                                     resize-none
-                                    rounded-lg
+                                    rounded-md
                                     border
                                     border-input
                                     bg-background
@@ -1408,9 +1376,9 @@ const AddAddressDialog = ({
                                     outline-none
                                     transition-all
 
-                                    focus-visible:border-indigo-500
+                                    focus-visible:border-red-600
                                     focus-visible:ring-2
-                                    focus-visible:ring-indigo-500/10
+                                    focus-visible:ring-red-600/10
                                 "
                             />
 
@@ -1427,8 +1395,8 @@ const AddAddressDialog = ({
                                     text-[11px]
                                     font-medium
                                     text-muted-foreground
-                                    peer-focus:text-indigo-600
-                                    dark:peer-focus:text-indigo-400
+                                    peer-focus:text-red-600
+                                    dark:peer-focus:text-red-400
                                 "
                             >
                                 توضیحات
@@ -1464,7 +1432,7 @@ const AddAddressDialog = ({
                         }
                         className="
                             h-10
-                            rounded-lg
+                            rounded-md
                             px-5
                         "
                     >
@@ -1478,16 +1446,16 @@ const AddAddressDialog = ({
                         onClick={handleSubmit}
                         className="
                             h-10
-                            rounded-lg
-                            bg-indigo-600
+                            rounded-md
+                            bg-red-600
                             px-6
                             text-white
                             shadow-sm
-                            shadow-indigo-500/20
+                            shadow-red-500/20
                             transition-all
-                            hover:bg-indigo-700
+                            hover:bg-red-700
                             hover:shadow-md
-                            hover:shadow-indigo-500/20
+                            hover:shadow-red-500/20
                             active:scale-[0.98]
                         "
                     >

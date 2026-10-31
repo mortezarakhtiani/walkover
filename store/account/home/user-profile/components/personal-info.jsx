@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import {useRef, useState} from 'react';
 
-import { Badge } from '@/store/components/ui/badge';
-import { Button } from '@/store/components/ui/button';
+import {Badge} from '@/store/components/ui/badge';
+import {Button} from '@/store/components/ui/button';
 
 import {
     Card,
@@ -12,19 +12,19 @@ import {
     CardTitle,
 } from '@/store/components/ui/card';
 
-import { toPersianDigits } from '../../../../../lib/to-persian';
+import {toPersianDigits} from '../../../../../lib/to-persian';
 
-import { EditNameDialog } from './edit-name-dialog';
-import { EditLastnameDialog } from './edit-lastname-dialog';
-import { EditNationalIdDialog } from './edit-national-id-dialog';
-import { EditBirthdateDialog } from './edit-birthdate-dialog';
-import { EditGenderDialog } from './edit-gender-dialog';
-import { EditPasswordDialog } from './edit-password-dialog';
-import { EditPhoneDialog } from './edit-phone-dialog';
-import { EditEmailDialog } from './edit-email-dialog';
+import {EditNameDialog} from './edit-name-dialog';
+import {EditLastnameDialog} from './edit-lastname-dialog';
+import {EditNationalIdDialog} from './edit-national-id-dialog';
+import {EditBirthdateDialog} from './edit-birthdate-dialog';
+import {EditGenderDialog} from './edit-gender-dialog';
+import EditPasswordDialog from './edit-password-dialog';
+import {EditPhoneDialog} from './edit-phone-dialog';
+import {EditEmailDialog} from './edit-email-dialog';
 
-import { PhoneIcon } from '@/store/components/icons/phone-icon';
-import { EditIcon } from '@/store/components/icons/edit-icon';
+import {PhoneIcon} from '@/store/components/icons/phone-icon';
+import {EditIcon} from '@/store/components/icons/edit-icon';
 
 import {
     UserRound,
@@ -149,14 +149,13 @@ const PersonalInfo = () => {
     ===================================================== */
 
     const InfoRow = ({
-        icon: Icon,
-        title,
-        value,
-        required = false,
-        verified = false,
-        onEdit,
-        last = false,
-    }) => {
+                         title,
+                         value,
+                         required = false,
+                         verified = false,
+                         onEdit,
+                         last = false,
+                     }) => {
         return (
             <div
                 className={`
@@ -169,33 +168,15 @@ const PersonalInfo = () => {
                     py-4
                     sm:px-5
                     ${
-                        !last
-                            ? 'border-b border-border/60'
-                            : ''
-                    }
+                    !last
+                        ? 'border-b border-border/60'
+                        : ''
+                }
                     transition-colors
                     hover:bg-muted/[0.35]
                 `}
             >
                 <div className="flex min-w-0 items-center gap-3">
-
-                    <div
-                        className="
-                            flex size-10 shrink-0
-                            items-center justify-center
-                            rounded-xl
-                            bg-muted/70
-                            text-muted-foreground
-                            transition-all
-                            group-hover:bg-primary/10
-                            group-hover:text-primary
-                        "
-                    >
-                        <Icon
-                            className="size-[18px]"
-                            strokeWidth={1.8}
-                        />
-                    </div>
 
                     <div className="min-w-0">
 
@@ -242,7 +223,7 @@ const PersonalInfo = () => {
                                     dark:text-emerald-400
                                 "
                             >
-                                <CheckCircle2 className="size-3.5" />
+                                <CheckCircle2 className="size-3.5"/>
                                 تأیید شده
                             </div>
                         )}
@@ -257,7 +238,7 @@ const PersonalInfo = () => {
                     className="
                         size-8
                         shrink-0
-                        rounded-lg
+                        rounded-md
                         text-muted-foreground
                         opacity-50
                         transition-all
@@ -267,7 +248,7 @@ const PersonalInfo = () => {
                     "
                     aria-label={`ویرایش ${title}`}
                 >
-                    <EditIcon className="size-4" />
+                    <EditIcon className="size-4"/>
                 </Button>
             </div>
         );
@@ -349,7 +330,7 @@ const PersonalInfo = () => {
                                         relative
                                         size-24
                                         overflow-hidden
-                                        rounded-2xl
+                                        rounded-md
                                         border-4
                                         border-background
                                         bg-muted
@@ -421,32 +402,7 @@ const PersonalInfo = () => {
 
                                 {/* Camera */}
 
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        fileInputRef.current?.click()
-                                    }
-                                    className="
-                                        absolute
-                                        -bottom-1
-                                        -left-1
-                                        flex
-                                        size-9
-                                        items-center
-                                        justify-center
-                                        rounded-xl
-                                        border-2
-                                        border-background
-                                        bg-primary
-                                        text-primary-foreground
-                                        shadow-md
-                                        transition-transform
-                                        hover:scale-105
-                                    "
-                                    aria-label="آپلود تصویر"
-                                >
-                                    <Camera className="size-4" />
-                                </button>
+
 
                             </div>
 
@@ -480,11 +436,10 @@ const PersonalInfo = () => {
                                         appearance="light"
                                         className="gap-1"
                                     >
-                                        <CheckCircle2 className="size-3" />
+                                        <CheckCircle2 className="size-3"/>
                                         فعال
                                     </Badge>
                                 </div>
-
 
 
                                 <div
@@ -500,17 +455,17 @@ const PersonalInfo = () => {
                                     "
                                 >
                                     <span className="flex items-center gap-1.5">
-                                        <Phone className="size-3.5" />
+                                        <Phone className="size-3.5"/>
                                         {toPersianDigits(phone)}
                                     </span>
 
-                                    <span className="hidden h-3 w-px bg-border sm:block" />
+                                    <span className="hidden h-3 w-px bg-border sm:block"/>
 
                                     <span
                                         className="flex items-center gap-1.5"
                                         dir="ltr"
                                     >
-                                        <Mail className="size-3.5" />
+                                        <Mail className="size-3.5"/>
                                         {email}
                                     </span>
                                 </div>
@@ -546,7 +501,7 @@ const PersonalInfo = () => {
                                 }
                                 className="gap-2"
                             >
-                                <Upload className="size-4" />
+                                <Upload className="size-4"/>
                                 تغییر تصویر
                             </Button>
 
@@ -563,7 +518,7 @@ const PersonalInfo = () => {
                                         hover:text-destructive
                                     "
                                 >
-                                    <Trash2 className="size-4" />
+                                    <Trash2 className="size-4"/>
                                     حذف
                                 </Button>
                             )}
@@ -603,8 +558,7 @@ const PersonalInfo = () => {
                             className="
                                 flex size-10
                                 items-center justify-center
-                                rounded-xl
-                                bg-primary/10
+                                rounded-md
                                 text-primary
                             "
                         >
@@ -642,7 +596,6 @@ const PersonalInfo = () => {
 
                         <div className="md:border-e">
                             <InfoRow
-                                icon={UserRound}
                                 title="نام"
                                 value={name}
                                 required
@@ -652,7 +605,6 @@ const PersonalInfo = () => {
                             />
 
                             <InfoRow
-                                icon={BadgeCheck}
                                 title="کد ملی"
                                 value={toPersianDigits(nationalId)}
                                 required
@@ -662,7 +614,6 @@ const PersonalInfo = () => {
                             />
 
                             <InfoRow
-                                icon={VenusAndMars}
                                 title="جنسیت"
                                 value={gender}
                                 onEdit={() =>
@@ -675,31 +626,19 @@ const PersonalInfo = () => {
                         <div>
 
                             <InfoRow
-    icon={UserRound}
-    title="نام خانوادگی"
-    value={lastName}
-    required
-    onEdit={() => setEditLastNameOpen(true)}
-/>
-
-<InfoRow
-    icon={CalendarDays}
-    title="تاریخ تولد"
-    value={formatBirthDate(birthDate)}
-    onEdit={() => setEditBirthdateOpen(true)}
-/>
-
-                            <InfoRow
-                                icon={CalendarDays}
-                                title="تاریخ تولد"
-                                value={formatBirthDate(birthDate)}
-                                onEdit={() =>
-                                    setEditBirthDateOpen(true)
-                                }
+                                title="نام خانوادگی"
+                                value={lastName}
+                                required
+                                onEdit={() => setEditLastNameOpen(true)}
                             />
 
                             <InfoRow
-                                icon={LockKeyhole}
+                                title="تاریخ تولد"
+                                value={formatBirthDate(birthDate)}
+                                onEdit={() => setEditBirthDateOpen(true)}/>
+
+
+                            <InfoRow
                                 title="رمز عبور"
                                 value={
                                     hasPassword
@@ -748,12 +687,11 @@ const PersonalInfo = () => {
                             className="
                                 flex size-10
                                 items-center justify-center
-                                rounded-xl
-                                bg-primary/10
+                                rounded-md
                                 text-primary
                             "
                         >
-                            <PhoneIcon className="size-5" />
+                            <PhoneIcon className="size-5"/>
                         </div>
 
                         <div>
@@ -785,7 +723,6 @@ const PersonalInfo = () => {
                         <div className="md:border-e">
 
                             <InfoRow
-                                icon={Phone}
                                 title="شماره موبایل"
                                 value={toPersianDigits(phone)}
                                 required
@@ -801,7 +738,6 @@ const PersonalInfo = () => {
                         <div>
 
                             <InfoRow
-                                icon={Mail}
                                 title="ایمیل"
                                 value={email}
                                 verified={emailVerified}
@@ -841,13 +777,13 @@ const PersonalInfo = () => {
                             className="
                                 flex size-11 shrink-0
                                 items-center justify-center
-                                rounded-xl
+                                rounded-md
                                 bg-emerald-500/10
                                 text-emerald-600
                                 dark:text-emerald-400
                             "
                         >
-                            <ShieldCheck className="size-5" />
+                            <ShieldCheck className="size-5"/>
                         </div>
 
                         <div className="min-w-0">
@@ -918,6 +854,7 @@ const PersonalInfo = () => {
                 onSave={setNationalId}
             />
 
+
             <EditBirthdateDialog
                 open={editBirthDateOpen}
                 onOpenChange={setEditBirthDateOpen}
@@ -965,9 +902,10 @@ const PersonalInfo = () => {
                 }}
             />
 
+
         </div>
     );
 };
 
-export { PersonalInfo };
+export {PersonalInfo};
 

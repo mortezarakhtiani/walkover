@@ -71,7 +71,7 @@ const Testimonials = () => {
   ];
 
   const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <div className="flex-shrink-0 w-[350px] bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/15 dark:to-indigo-900/15 rounded-xl p-6 border border-border/50 shadow-sm mx-1.5">
+    <div className="flex-shrink-0 w-[350px] bg-gradient-to-br from-blue-50 to-red-50 dark:from-blue-900/15 dark:to-red-900/15 rounded-md p-6 border border-border/50 shadow-sm mx-1.5">
       <p className="text-muted-foreground mb-4 font-medium">{testimonial.content}</p>
       <div className="flex items-center gap-3">
         <Image 

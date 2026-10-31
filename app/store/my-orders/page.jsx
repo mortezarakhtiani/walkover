@@ -21,12 +21,7 @@ export default function MyOrdersPage() {
             </p>
           </div>
 
-          <Button variant="outline" asChild>
-            <Link href="/store">
-              ادامه خرید
-              <BaggageClaim />
-            </Link>
-          </Button>
+
         </div>
       </Container>
 

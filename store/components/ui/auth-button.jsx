@@ -18,12 +18,12 @@ export function AuthButton() {
     gap-2
     rounded-md
     border
-    border-border/70
-    bg-foreground
+    border-border
     px-3
     text-sm
     font-medium
-    text-background
+    text-foreground
+    hover:bg-accent
     transition-colors
     duration-200
     sm:px-4

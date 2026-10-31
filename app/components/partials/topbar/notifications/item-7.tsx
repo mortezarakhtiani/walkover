@@ -53,7 +53,7 @@ export default function Item7() {
           </span>
         </div>
 
-        <Card className="shadow-none gap-1.5 py-2.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none gap-1.5 py-2.5 rounded-md bg-muted/70">
           <div className="flex flex-col gap-2.5 px-2.5 mb-0.5">
             <span className="font-medium text-secondary-foreground text-xs">
               Peparation for Release

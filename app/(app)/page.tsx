@@ -5,9 +5,10 @@ import Hero from '@/components/hero2';
 // import PopularCategories from '@/components/popular-categories';
 import HowItWorks from '@/components/how-it-works2';
 import Features from '@/components/features2';
-import Testimonials from '@/components/testimonails2';
+
 import FAQ from '@/components/faq';
 import CallToAction from '@/components/call-to-action';
+import Testimonials from '@/components/testimonails2';
 import Contact from '@/components/contact2';
 import Footer from '@/components/footer2';
 import {ProductSection, SpecialOffers} from "@/store/home/components";
@@ -39,10 +40,11 @@ export default function LandingV2Page() {
                     showAddButton={true}
                     showHeader={false}
                 />
-            <Testimonials/>
+
             {/*<StoreProducts />*/}
             {/*<FAQ />*/}
             {/*<CallToAction />*/}
+            <Testimonials/>
             <Contact />
             <Footer />
         </div>

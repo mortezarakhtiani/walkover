@@ -29,14 +29,14 @@ export default function OrderPlacedPage() {
                     </ToolbarHeading>
                     <ToolbarActions>
 
-                        <Button asChild>
-                            <Link href="/store">
+                        <Button asChild className="p-5 bg-red-600 hover:bg-red-700 text-primary-foreground">
+                            <Link href="/landing-v2">
                             <Captions/>
                                 ادامه خرید
                             </Link>
                         </Button>
 
-                        <Button asChild variant="outline">
+                        <Button asChild variant="outline" className="p-5">
                             <Link href="/store/my-orders">
                                 سفارشات من
                             </Link>

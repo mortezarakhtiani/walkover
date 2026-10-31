@@ -69,7 +69,7 @@ export default function BrandPromotion() {
                 {/* See All */}
                 <Link
                     href="/store/search-results-grid"
-                    className="flex h-11 items-center justify-center gap-2 rounded-md border border-indigo-500 px-3 text-sm font-semibold text-indigo-500 transition-colors hover:bg-indigo-500 hover:text-white"
+                    className="flex h-11 items-center justify-center gap-2 rounded-md border border-red-600 px-3 text-sm font-semibold text-red-700 transition-colors hover:bg-red-700 hover:text-white"
                 >
                     <span>مشاهده همه</span>
 
@@ -83,7 +83,7 @@ export default function BrandPromotion() {
                 {/* Main Brand Image */}
                 <Link
                     href="/store/search-results-grid"
-                    className="relative hidden min-h-[360px] flex-1 overflow-hidden rounded-2xl lg:block"
+                    className="relative hidden min-h-[360px] flex-1 overflow-hidden rounded-md lg:block"
                 >
                     <img
                         src="/images/hoodiwomanfront.webp"
@@ -101,7 +101,7 @@ export default function BrandPromotion() {
                             className="group flex flex-col gap-2"
                         >
                             {/* Category Image */}
-                            <div className="relative aspect-square overflow-hidden rounded-xl bg-accent">
+                            <div className="relative aspect-square overflow-hidden rounded-md bg-accent">
                                 <img
                                     src={category.image}
                                     alt={category.title}
@@ -110,7 +110,7 @@ export default function BrandPromotion() {
                             </div>
 
                             {/* Category Title */}
-                            <h3 className="text-center text-sm font-medium text-foreground transition-colors group-hover:text-indigo-500 lg:text-base">
+                            <h3 className="text-center text-sm font-medium text-foreground transition-colors group-hover:text-red-700 lg:text-base">
                                 {category.title}
                             </h3>
                         </Link>

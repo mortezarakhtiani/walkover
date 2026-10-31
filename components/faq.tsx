@@ -81,9 +81,9 @@ const FAQ = () => {
               >
                 <AccordionItem 
                   value={`item-${index}`} 
-                  className="bg-background rounded-lg border! border-border px-6 hover:shadow-md transition-shadow"
+                  className="bg-background rounded-md border! border-border px-6 hover:shadow-md transition-shadow"
                 >
-                  <AccordionTrigger className="text-start font-semibold text-foreground hover:text-indigo-600 data-[state=open]:text-indigo-600 transition-colors cursor-pointer">
+                  <AccordionTrigger className="text-start font-semibold text-foreground hover:text-red-600 data-[state=open]:text-red-600 transition-colors cursor-pointer">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-foreground leading-relaxed">
@@ -106,7 +106,7 @@ const FAQ = () => {
             Still have questions?
           </span>
 
-          <Link href="#contact" className="text-indigo-600 hover:text-indigo-700 transition-colors hover:underline">
+          <Link href="#contact" className="text-red-600 hover:text-red-700 transition-colors hover:underline">
             Contact our Support Team
           </Link>
         </motion.div>

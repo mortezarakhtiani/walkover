@@ -22,7 +22,7 @@ export function ProductSection({
             className="
                 relative
                 overflow-hidden
-                rounded-2xl
+                rounded-md
                 shadow-sm
                 max-md:rounded-l-none
                 md:pl-5
@@ -37,7 +37,7 @@ export function ProductSection({
                     mr-5
                     relative
                     mb-3
-                    rounded-xl
+                    rounded-md
                     p-3
                     md:p-5
                     max-md:rounded-l-none
@@ -92,10 +92,11 @@ export function ProductSection({
                             <div>
                                 <h2
                                     className="
-                                    text-sm
+                                    text-foreground
+                                    text-base
                                     font-semibold
                                     text-mono
-                                    md:text-lg
+                                    md:text-[22px]
                                 "
                                 >
                                     {title}
@@ -120,7 +121,7 @@ export function ProductSection({
                             <Button
                                 mode="link"
                                 asChild
-                                className="h-auto px-3 py-1.5 text-indigo-500"
+                                className="h-auto px-3 py-1.5 text-red-700"
                             >
                                 <Link
                                     href={moreButtonHref}

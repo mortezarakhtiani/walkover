@@ -68,7 +68,7 @@ export default function Item1({
           </span>
         </div>
 
-        <Card className="shadow-none flex flex-col gap-2.5 p-3.5 rounded-lg bg-muted/70">
+        <Card className="shadow-none flex flex-col gap-2.5 p-3.5 rounded-md bg-muted/70">
           <div className="text-sm font-semibold text-secondary-foreground mb-px">
             <Link
               href="#"

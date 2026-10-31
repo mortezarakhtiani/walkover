@@ -70,7 +70,7 @@ const Footer = () => {
                       <li key={index}>
                         <a
                           href="#"
-                          className="text-accent-foreground hover:text-indigo-600 transition-colors hover:underline"
+                          className="text-accent-foreground hover:text-red-600 transition-colors hover:underline"
                         >
                           {item}
                         </a>
@@ -90,7 +90,7 @@ const Footer = () => {
             © 2025 Metronic SaaS. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm mt-4 md:mt-0">
-            Product by <a href="https://keenthemes.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-indigo-600 hover:underline">KeenThemes</a>
+            Product by <a href="https://keenthemes.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-red-600 hover:underline">KeenThemes</a>
           </p>
         </div>
       </div>

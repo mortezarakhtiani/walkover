@@ -47,7 +47,7 @@ export default function Item16() {
           </span>
         </div>
 
-        <div className="kt-card shadow-none p-3.5 gap-3.5 rounded-lg bg-muted/70">
+        <div className="kt-card shadow-none p-3.5 gap-3.5 rounded-md bg-muted/70">
           <div className="flex items-center justify-between flex-wrap gap-2.5">
             <div className="flex flex-col gap-1">
               <span className="font-medium text-mono text-xs">

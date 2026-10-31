@@ -50,7 +50,7 @@ export default function Item13() {
           </span>
         </div>
 
-        <Card className="shadow-none flex items-center flex-row justify-between gap-1.5 px-2.5 py-2 rounded-lg bg-muted/70">
+        <Card className="shadow-none flex items-center flex-row justify-between gap-1.5 px-2.5 py-2 rounded-md bg-muted/70">
           <div className="flex flex-col">
             <Link
               href="#"

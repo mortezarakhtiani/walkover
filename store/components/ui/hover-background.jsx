@@ -19,7 +19,7 @@ function HoverBackground({
       'bg-fuchsia-400/20',
       'bg-violet-400/20',
       'bg-blue-400/20',
-      'bg-indigo-400/20',
+      'bg-red-400/20',
     ],
 
     glow = 'shadow-cyan-400/50',
@@ -135,7 +135,7 @@ function HoverBackground({
           className={cn(
             'absolute backdrop-blur-sm border border-white/10',
             obj.color,
-            obj.shape === 'circle' ? 'rounded-full' : 'rounded-lg rotate-45',
+            obj.shape === 'circle' ? 'rounded-full' : 'rounded-md rotate-45',
           )}
           style={{
             left: `${obj.x}%`,

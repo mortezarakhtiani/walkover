@@ -87,7 +87,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative lg:min-h-screen bg-gradient-to-br from-gray-50 dark:from-zinc-950 via-indigo-50 dark:via-black to-indigo-50 dark:to-zinc-950 pt-25 pb-20 lg:pt-40 lg:pb-20 overflow-hidden group"
+      className="relative lg:min-h-screen bg-gradient-to-br from-gray-50 dark:from-zinc-950 via-red-50 dark:via-black to-red-50 dark:to-zinc-950 pt-25 pb-20 lg:pt-40 lg:pb-20 overflow-hidden group"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -95,7 +95,7 @@ const Hero = () => {
       <div className="hidden lg:block absolute inset-0 pointer-events-none">
         {/* Light Orb 1 */}
         <motion.div
-          className="absolute left-[10%] top-[15%] w-[320px] h-[320px] dark:w-[160px] dark:h-[160px] rounded-full bg-indigo-200 dark:bg-indigo-900 opacity-90 blur-[60px]"
+          className="absolute left-[10%] top-[15%] w-[320px] h-[320px] dark:w-[160px] dark:h-[160px] rounded-full bg-red-200 dark:bg-red-900 opacity-90 blur-[60px]"
           animate={{
             scale: [1, 1.13, 1],
             opacity: [0.85, 1, 0.85],
@@ -110,7 +110,7 @@ const Hero = () => {
         />
         {/* Core hotspot for orb 1 */}
         <motion.div
-          className="absolute left-[18%] top-[23%] w-[90px] h-[90px] rounded-full bg-indigo-100 dark:bg-indigo-950 opacity-95 blur-[10px]"
+          className="absolute left-[18%] top-[23%] w-[90px] h-[90px] rounded-full bg-red-100 dark:bg-red-950 opacity-95 blur-[10px]"
           animate={{
             scale: [1, 1.08, 1],
             opacity: [0.92, 1, 0.92],
@@ -125,7 +125,7 @@ const Hero = () => {
         />
         {/* Light Orb 2 */}
         <motion.div
-          className="absolute right-[12%] top-[30%] w-[220px] h-[220px] rounded-full bg-indigo-300 dark:bg-indigo-950 opacity-80 blur-[40px]"
+          className="absolute right-[12%] top-[30%] w-[220px] h-[220px] rounded-full bg-red-300 dark:bg-red-950 opacity-80 blur-[40px]"
           animate={{
             scale: [1, 1.08, 1],
             opacity: [0.75, 0.95, 0.75],
@@ -155,7 +155,7 @@ const Hero = () => {
         />
         {/* Light Orb 4 */}
         <motion.div
-          className="absolute right-[22%] bottom-[8%] w-[150px] h-[150px] rounded-full bg-indigo-100 opacity-90 blur-[20px]"
+          className="absolute right-[22%] bottom-[8%] w-[150px] h-[150px] rounded-full bg-red-100 opacity-90 blur-[20px]"
           animate={{
             scale: [1, 1.11, 1],
             opacity: [0.8, 1, 0.8],
@@ -169,7 +169,7 @@ const Hero = () => {
           }}
         />
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-indigo-400/10 via-indigo-500/10 to-indigo-600/10"
+          className="absolute inset-0 bg-gradient-to-br from-red-400/10 via-red-600/10 to-red-600/10"
           animate={{
             opacity: [0.3, 0.6, 0.3],
             scale: [1, 1.05, 1],
@@ -181,7 +181,7 @@ const Hero = () => {
           }}
         />  
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-tl from-indigo-400/10 via-indigo-500/10 to-indigo-600/10"
+          className="absolute inset-0 bg-gradient-to-tl from-red-400/10 via-red-600/10 to-red-600/10"
           animate={{
             opacity: [0.2, 0.5, 0.2],
             x: [0, 20, 0],
@@ -197,17 +197,17 @@ const Hero = () => {
 
       {/* Parallax moving elements on hover */}
       <motion.div 
-        className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-indigo-400/20 to-indigo-600/20 dark:bg-gradient-to-br dark:from-indigo-600/20 dark:to-indigo-400/20 rounded-full blur-xl"
+        className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-red-400/20 to-red-600/20 dark:bg-gradient-to-br dark:from-red-600/20 dark:to-red-400/20 rounded-full blur-xl"
         whileHover={{ x: 30, y: -20, scale: 1.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       />
       <motion.div 
-        className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-indigo-600/20 dark:bg-gradient-to-br dark:from-indigo-600/20 dark:to-indigo-400/20 rounded-full blur-xl"
+        className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-red-400/20 to-red-600/20 dark:bg-gradient-to-br dark:from-red-600/20 dark:to-red-400/20 rounded-full blur-xl"
         whileHover={{ x: -25, y: 15, scale: 1.1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       />
       <motion.div 
-        className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-br from-indigo-400/20 to-indigo-600/20 dark:bg-gradient-to-br dark:from-indigo-600/20 dark:to-indigo-400/20 rounded-full blur-xl"
+        className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-br from-red-400/20 to-red-600/20 dark:bg-gradient-to-br dark:from-red-600/20 dark:to-red-400/20 rounded-full blur-xl"
         whileHover={{ x: 20, y: -30, scale: 1.3 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       />
@@ -225,12 +225,12 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-black flex flex-col md:flex-row items-center gap-0.5 md:gap-1.25 justify-center text-3xl lg:text-7xl font-bold mb-4 lg:mb-8 leading-[1.2]"
           >
-            <span className="bg-gradient-to-r from-indigo-900 via-blue-900 to-indigo-900 dark:from-gray-50 dark:via-blue-300 dark:to-indigo-900 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-800 via-red-600 to-red-800 dark:from-gray-50 dark:via-red-300 dark:to-red-900 bg-clip-text text-transparent">
               Ship Amazing
             </span>
             <WordRotate
               words={rotatingWords}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent w-[365px]"
+              className="w-full max-w-[365px] bg-gradient-to-r from-red-700 to-red-600 bg-clip-text text-transparent"
             />
           </motion.h1>
 
@@ -294,9 +294,9 @@ const Hero = () => {
             {mounted && (
               <HeroVideoDialog
                 trigger={
-                  <div className="bg-indigo-600/10 dark:bg-indigo-300/10 backdrop-blur-md rounded-full p-4 shadow-lg">
+                  <div className="bg-red-600/10 dark:bg-red-300/10 backdrop-blur-md rounded-full p-4 shadow-lg">
                     <div className="bg-background rounded-full p-3 shadow-lg">
-                      <Play className="size-6 text-indigo-600 dark:text-indigo-400 fill-indigo-600 dark:fill-indigo-400 ml-0.5" />
+                      <Play className="size-6 text-red-600 dark:text-red-400 fill-red-600 dark:fill-red-400 ml-0.5" />
                     </div>
                   </div>
                 }
