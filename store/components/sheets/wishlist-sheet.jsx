@@ -191,7 +191,7 @@ export function StoreClientWishlistSheet({
                                                             items-center
                                                             justify-center
 
-                                                            bg-accent/50
+                                                            bg-muted-foreground/10
 
                                                             h-[70px]
                                                             w-[90px]

@@ -26,7 +26,7 @@ export function Card3({
     <Card>
       <CardContent className="flex items-center flex-wrap justify-between p-2 pe-5 gap-4.5">
         <div className="flex items-center gap-3.5">
-          <Card className="flex items-center justify-center bg-accent/50 h-[70px] w-[90px] shadow-none">
+          <Card className="flex items-center justify-center  h-[70px] w-[90px] shadow-none">
             <img
               src={toAbsoluteUrl(`/media/store/client/600x600/${logo}`)}
               className="h-[70px] cursor-pointer"

@@ -12,7 +12,7 @@ import {
 import { BaggageClaim } from 'lucide-react';
 import { Button } from '@/store/components/ui/button';
 import { Container } from '@/store/components/common/container';
-import { MyOrdersContent } from '@/store/my-orders/content';
+import { MyOrdersContent } from '@/app/store/my-orders/content';
 
 export default function MyOrdersPage() {
   return (

@@ -7,7 +7,7 @@ import { RiCheckboxCircleFill } from '@remixicon/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { Alert, AlertIcon, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertIcon, AlertTitle } from '@/store/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,7 +21,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@/store/components/ui/dialog';
 
 import { AddressDialog } from './address-dialog';
 import { addressSchema } from './forms';

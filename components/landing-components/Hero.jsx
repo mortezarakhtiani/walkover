@@ -232,9 +232,7 @@ export default function Hero() {
                 <svg width="12" height="14" viewBox="0 0 12 14" aria-hidden className="fill-current"><path d="M0 0l12 7-12 7z" /></svg>
                 تماشای آخرین داستان
               </a>
-              <a href="#archive" className="group inline-flex items-center gap-3 py-3 text-[16px] text-[#EAE6DF] transition-colors">
-                ورود به آرشیو داستان‌ها
-              </a>
+
             </motion.div>
           </motion.div>
         </div>

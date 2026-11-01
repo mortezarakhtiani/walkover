@@ -84,7 +84,7 @@ export function Card4({limit}) {
                 >
 
                     {/* تصویر محصول */}
-                    <Card className="relative flex h-[78px] w-[82px] shrink-0 items-center justify-center bg-accent/50 shadow-none sm:h-[90px] sm:w-[110px]">
+                    <Card className="relative flex h-[78px] w-[82px] shrink-0 items-center justify-center bg-muted-foreground/10 shadow-none sm:h-[90px] sm:w-[110px]">
     <img
         src={toAbsoluteUrl(
             `/media/store/client/600x600/${item.logo}`

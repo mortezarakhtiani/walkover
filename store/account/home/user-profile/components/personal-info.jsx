@@ -268,8 +268,8 @@ const PersonalInfo = () => {
                 className="
                     relative
                     overflow-hidden
-                    border-border/70
                     shadow-sm
+                    border-0
                 "
             >
                 {/* Background */}
@@ -279,10 +279,7 @@ const PersonalInfo = () => {
                         pointer-events-none
                         absolute
                         inset-0
-                        bg-gradient-to-l
-                        from-primary/[0.08]
-                        via-transparent
-                        to-transparent
+
                     "
                 />
 
@@ -365,10 +362,8 @@ const PersonalInfo = () => {
                                                 items-center
                                                 justify-center
                                                 bg-gradient-to-br
-                                                from-primary/20
-                                                via-primary/10
+
                                                 to-muted
-                                                text-primary
                                             "
                                         >
                                             <UserRound
@@ -559,7 +554,7 @@ const PersonalInfo = () => {
                                 flex size-10
                                 items-center justify-center
                                 rounded-md
-                                text-primary
+
                             "
                         >
                             <UserRound
@@ -688,7 +683,6 @@ const PersonalInfo = () => {
                                 flex size-10
                                 items-center justify-center
                                 rounded-md
-                                text-primary
                             "
                         >
                             <PhoneIcon className="size-5"/>

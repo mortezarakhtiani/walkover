@@ -1,52 +1,21 @@
-'use client';
+import type { Metadata, Viewport } from "next";
+import SiteLandingPage from "@/features/site-landing/SiteLandingPage";
+import "./site-landing/globals-landing.css";
 
-import Header from '@/store/components/common/header';
-import Hero from '@/components/hero2';
-// import PopularCategories from '@/components/popular-categories';
-import HowItWorks from '@/components/how-it-works2';
-import Features from '@/components/features2';
+export const metadata: Metadata = {
+  title: "walkover · به قسمت تاریک یوتیوب خوش آمدید",
+  description:
+    "روایت‌های ترسناک، پرونده‌های جنایی و تجربه‌های ماورایی؛ وب‌سایت کانال یوتیوب walkover (@swalkover).",
+};
 
-import FAQ from '@/components/faq';
-import CallToAction from '@/components/call-to-action';
-import Testimonials from '@/components/testimonails2';
-import Contact from '@/components/contact2';
-import Footer from '@/components/footer2';
-import {ProductSection, SpecialOffers} from "@/store/home/components";
-import {getProducts} from '@/store/product/services/product-service';
-import FourBanners from "@/components/landing/four-banners";
+export const viewport: Viewport = {
+  themeColor: "#070707",
+};
 
-export default function LandingV2Page() {
-    const products = getProducts();
-    return (
-        <div className="min-h-screen">
-            {/*<Header/>*/}
-            <Hero />
-
-            <HowItWorks/>
-
-            <Features/>
-
-            <FourBanners/>
-
-
-                <ProductSection
-                    title="هودی های خفن!"
-                    items={products
-                        .filter((product) => product.category === 'hoodi')
-                        .slice(0, 4)}
-                    showSeeAll={true}
-                    moreButton="نمایش بیشتر"
-                    moreButtonHref="/store/search-results-grid"
-                    showAddButton={true}
-                    showHeader={false}
-                />
-
-            {/*<StoreProducts />*/}
-            {/*<FAQ />*/}
-            {/*<CallToAction />*/}
-            <Testimonials/>
-            <Contact />
-            <Footer />
-        </div>
-    );
+export default function HomePage() {
+  return (
+    <div className="landing-theme w-full">
+      <SiteLandingPage />
+    </div>
+  );
 }

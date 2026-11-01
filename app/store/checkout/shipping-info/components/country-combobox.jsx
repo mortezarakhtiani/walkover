@@ -10,13 +10,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
+} from '@/store/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { ScrollArea } from '@/components/ui/scroll-area';
+} from '@/store/components/ui/popover';
+import { ScrollArea } from '@/store/components/ui/scroll-area';
 
 const countryFlags = [
   { code: 'AF', name: 'Afghanistan', flag: '/media/flags/afghanistan.svg' },

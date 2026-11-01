@@ -153,7 +153,7 @@ export function MyOrders() {
         rounded-full px-1.5 py-0.5 text-[10px]
         ${
                                         isActive
-                                            ? 'bg-red-600/10 text-red-600 dark:text-red-400'
+                                            ? 'bg-muted text-muted-foreground text-white'
                                             : 'bg-muted text-muted-foreground'
                                     }
     `}

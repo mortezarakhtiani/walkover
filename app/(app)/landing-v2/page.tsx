@@ -1,9 +1,9 @@
 'use client';
 
 import Header from '@/store/components/common/header';
-import PopularCategories from '@/components/landing/popular-categories';
-import HowItWorks from '@/components/landing/how-it-works';
-import FourBanners from '@/components/landing/four-banners';
+import PopularCategories from '@/store/landing/components/popular-categories';
+import HowItWorks from '@/store/landing/components/how-it-works';
+import FourBanners from '@/store/landing/components/four-banners';
 import {SpecialOffers} from '@/store/home/components/special-offers';
 import {ProductSection} from '@/store/home/components/product-section';
 import {getProducts} from '@/store/product/services/product-service';

@@ -149,7 +149,7 @@ export function StoreClientCartSheet({
                                                                 aria-label={`مشاهده جزئیات ${product.title}`}
                                                                 className="
                                                                     flex items-center justify-center
-                                                                    bg-accent/50
+                                                                    bg-muted-foreground/10
                                                                     h-[70px] w-[90px]
                                                                     rounded-md border shadow-none
                                                                     shrink-0 overflow-hidden cursor-pointer
