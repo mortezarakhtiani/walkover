@@ -1,0 +1,511 @@
+ 
+========== app ========== 
+Folder PATH listing
+Volume serial number is 00000048 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\APP
+|   layout.tsx
+|   
++---(app)
+|   |   layout.tsx
+|   |   page.tsx
+|   |   
+|   +---landing-v2
+|   |       page.tsx
+|   |       
+|   \---site-landing
+|           globals-landing.css
+|           layout.jsx
+|           page.jsx
+|           
++---account
+|   \---home
+|       |   layout.jsx
+|       |   
+|       +---addresses
+|       |       add-address-dialog.jsx
+|       |       iran-locations.js
+|       |       page.jsx
+|       |       
+|       +---orders
+|       |       page.jsx
+|       |       
+|       \---user-profile
+|               page.jsx
+|               
++---components
+|   \---partials
+|       \---topbar
+|           |   apps-dropdown-menu.tsx
+|           |   chat-sheet.tsx
+|           |   dropdown-menu-apps.tsx
+|           |   dropdown-menu-notifications.tsx
+|           |   dropdown-menu-user.tsx
+|           |   notifications-sheet.tsx
+|           |   sheet-chat.tsx
+|           |   user-dropdown-menu.tsx
+|           |   
+|           \---notifications
+|                   item-1.tsx
+|                   item-10.tsx
+|                   item-11.tsx
+|                   item-12.tsx
+|                   item-13.tsx
+|                   item-14.tsx
+|                   item-15.tsx
+|                   item-16.tsx
+|                   item-17.tsx
+|                   item-18.tsx
+|                   item-19.tsx
+|                   item-2.tsx
+|                   item-20.tsx
+|                   item-3.tsx
+|                   item-4.tsx
+|                   item-5.tsx
+|                   item-6.tsx
+|                   item-7.tsx
+|                   item-8.tsx
+|                   item-9.tsx
+|                   
+\---store
+    |   layout.jsx
+    |   page.jsx
+    |   store-theme.css
+    |   
+    +---checkout
+    |   +---my-orders
+    |   |       page.jsx
+    |   |       
+    |   +---order-placed
+    |   |       page.jsx
+    |   |       
+    |   +---order-summary
+    |   |       page.jsx
+    |   |       
+    |   +---payment-method
+    |   |       page.jsx
+    |   |       
+    |   \---shipping-info
+    |       |   content.jsx
+    |       |   page.jsx
+    |       |   
+    |       \---components
+    |               address-dialog.jsx
+    |               country-combobox.jsx
+    |               forms.js
+    |               info.jsx
+    |               order.jsx
+    |               
+    +---my-orders
+    |       content.jsx
+    |       page.jsx
+    |       
+    +---product
+    |   \---[slug]
+    |           page.jsx
+    |           
+    \---search-results-grid
+            page.jsx
+            
+ 
+========== components ========== 
+Folder PATH listing
+Volume serial number is 000000F6 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\COMPONENTS
+|   call-to-action.tsx
+|   contact.tsx
+|   contact2.tsx
+|   faq.tsx
+|   features.tsx
+|   features2.tsx
+|   footer.tsx
+|   footer2.tsx
+|   header.tsx
+|   hero.tsx
+|   hero2.tsx
+|   how-it-works.tsx
+|   how-it-works2.tsx
+|   logo.tsx
+|   pricing.tsx
+|   store-footer.tsx
+|   testimonails.tsx
+|   testimonails2.tsx
+|   trusted-brands.tsx
+|   
++---common
+|       container.jsx
+|       global-header.jsx
+|       
++---custom
+|       badge.tsx
+|       star.tsx
+|       subtitle.tsx
+|       title.tsx
+|       
++---landing
+|       brand-promotion.tsx
+|       call-to-action.tsx
+|       connected-carousel.tsx
+|       faq.tsx
+|       features.tsx
+|       footer.tsx
+|       four-banners.tsx
+|       hero.tsx
+|       how-it-works.tsx
+|       logo.tsx
+|       popular-categories.tsx
+|       pricing.tsx
+|       small-images.tsx
+|       testimonails.tsx
+|       two-images.jsx
+|       
++---landing-components
+|   |   Archive.jsx
+|   |   cinematic.css
+|   |   Community.jsx
+|   |   FeaturedStory.jsx
+|   |   Hero.jsx
+|   |   Merch.jsx
+|   |   motion.jsx
+|   |   Overlay.jsx
+|   |   ProductArt.jsx
+|   |   Screening.jsx
+|   |   SiteFooter.jsx
+|   |   SiteNavigation.jsx
+|   |   Voice.jsx
+|   |   
+|   +---cinema
+|   |       FilmTimeline.jsx
+|   |       scene.js
+|   |       ScreeningSlate.jsx
+|   |       
+|   \---store
+|           PriceTag.jsx
+|           product-service.js
+|           ProductCard.jsx
+|           ProductDetail.jsx
+|           StoreContext.jsx
+|           
++---magicui
+|       rainbow-button.tsx
+|       word-rotate.tsx
+|       
+\---ui
+        accordion.tsx
+        animated-tooltip.tsx
+        aspect-ratio.tsx
+        avatar.tsx
+        background-boxes.tsx
+        badge.tsx
+        button.tsx
+        card.tsx
+        collapsible.tsx
+        colourful-text.tsx
+        drawer.tsx
+        flip-clock.tsx
+        form.tsx
+        hero-video-dialog.tsx
+        info-card.tsx
+        input.jsx
+        input.tsx
+        label.tsx
+        marquee.tsx
+        navigation-menu.tsx
+        separator.tsx
+        sonner.tsx
+        textarea.tsx
+        toggle-group.tsx
+        toggle.tsx
+        tooltip.tsx
+        
+ 
+========== data ========== 
+Folder PATH listing
+Volume serial number is 000000C1 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\DATA
+    site.js
+    
+No subfolders exist 
+
+ 
+========== config ========== 
+Folder PATH listing
+Volume serial number is 0000008E 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\CONFIG
+    settings.config.js
+    site.ts
+    
+No subfolders exist 
+
+ 
+========== lib ========== 
+Folder PATH listing
+Volume serial number is 0000006D 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\LIB
+    helpers.js
+    to-persian.js
+    utils.js
+    
+No subfolders exist 
+
+ 
+========== partials ========== 
+Folder PATH listing
+Volume serial number is 000000A6 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\PARTIALS
+\---common
+        hexagon-badge.jsx
+        toolbar.jsx
+        
+ 
+========== providers ========== 
+Folder PATH listing
+Volume serial number is 00000097 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\PROVIDERS
+    session-provider.tsx
+    settings-provider.jsx
+    theme-provider.jsx
+    
+No subfolders exist 
+
+ 
+========== store ========== 
+Folder PATH listing
+Volume serial number is 000000C7 9AE4:999C
+C:\USERS\REZA\PYCHARMPROJECTS\WALKOVER\STORE
++---account
+|   \---home
+|       +---orders
+|       |   |   content.jsx
+|       |   |   
+|       |   \---components
+|       |           my-orders.jsx
+|       |           
+|       \---user-profile
+|           \---components
+|                   edit-birthdate-dialog.jsx
+|                   edit-email-dialog.jsx
+|                   edit-gender-dialog.jsx
+|                   edit-lastname-dialog.jsx
+|                   edit-name-dialog.jsx
+|                   edit-national-id-dialog.jsx
+|                   edit-password-dialog.jsx
+|                   edit-phone-dialog.jsx
+|                   personal-info.jsx
+|                   profile-menu.jsx
+|                   
++---cart
+|   |   content.jsx
+|   |   page.jsx
+|   |   
+|   +---components
+|   |       store-client-cart-sheet.jsx
+|   |       
+|   +---data
+|   |       cart-items.js
+|   |       
+|   \---services
+|           cart-service.js
+|           
++---checkout
+|   |   steps.jsx
+|   |   
+|   +---order-placed
+|   |   |   content.jsx
+|   |   |   
+|   |   \---components
+|   |           info.jsx
+|   |           payment.jsx
+|   |           
+|   +---order-summary
+|   |   |   content.jsx
+|   |   |   
+|   |   \---components
+|   |           order.jsx
+|   |           
+|   +---payment-method
+|   |   |   content.jsx
+|   |   |   
+|   |   \---components
+|   |           forms.js
+|   |           payment.jsx
+|   |           
+|   \---shipping-info
+|       |   content.jsx
+|       |   
+|       \---components
+|               address-dialog.jsx
+|               country-combobox.jsx
+|               forms.js
+|               info.jsx
+|               order.jsx
+|               
++---components
+|   |   context.jsx
+|   |   wrapper.jsx
+|   |   
+|   +---common
+|   |       card1.jsx
+|   |       card2.jsx
+|   |       card3.jsx
+|   |       card4.jsx
+|   |       container.jsx
+|   |       header.tsx
+|   |       product-card-common.tsx
+|   |       product-card-ecommerce.tsx
+|   |       topbar.tsx
+|   |       
+|   +---icons
+|   |       edit-icon.jsx
+|   |       phone-icon.jsx
+|   |       
+|   +---sheets
+|   |       cart-sheet.jsx
+|   |       filters-sheet.jsx
+|   |       product-details-sheet.jsx
+|   |       wishlist-sheet.jsx
+|   |       
+|   +---store-showcase
+|   |       store-showcase.jsx
+|   |       
+|   \---ui
+|           accordion-menu.jsx
+|           accordion.jsx
+|           alert-dialog.jsx
+|           alert.jsx
+|           aspect-ratio.jsx
+|           auth-button.jsx
+|           avatar-group.jsx
+|           avatar.jsx
+|           badge.jsx
+|           breadcrumb.jsx
+|           button.jsx
+|           calendar.jsx
+|           card.jsx
+|           carousel.jsx
+|           chart.jsx
+|           checkbox.jsx
+|           code.jsx
+|           collapsible.jsx
+|           command.jsx
+|           context-menu.jsx
+|           counting-number.jsx
+|           data-grid-column-filter.jsx
+|           data-grid-column-header.jsx
+|           data-grid-column-visibility.jsx
+|           data-grid-pagination.jsx
+|           data-grid-table-dnd-rows.jsx
+|           data-grid-table-dnd.jsx
+|           data-grid-table.jsx
+|           data-grid.jsx
+|           datefield.jsx
+|           dialog.jsx
+|           discount-badge.tsx
+|           drawer.jsx
+|           dropdown-menu.jsx
+|           file-upload.jsx
+|           form.jsx
+|           github-button.jsx
+|           gradient-background.jsx
+|           grid-background.jsx
+|           header-desktop-actions.tsx
+|           header-navigation.jsx
+|           header-search.jsx
+|           hover-background.jsx
+|           hover-card.jsx
+|           input-otp.jsx
+|           input.jsx
+|           kanban.jsx
+|           kbd.jsx
+|           label.jsx
+|           marquee.jsx
+|           menubar.jsx
+|           navigation-menu.jsx
+|           pagination.jsx
+|           popover.jsx
+|           progress.jsx
+|           radio-group.jsx
+|           resizable.jsx
+|           scroll-area.jsx
+|           scrollspy.jsx
+|           select.jsx
+|           separator.jsx
+|           sheet.jsx
+|           shimmering-text.jsx
+|           skeleton-with-pattern.jsx
+|           skeleton.jsx
+|           slider.jsx
+|           sliding-number.jsx
+|           sonner.jsx
+|           sortable.jsx
+|           stepper.jsx
+|           svg-text.jsx
+|           switch.jsx
+|           table.jsx
+|           tabs.jsx
+|           text-reveal.jsx
+|           textarea.jsx
+|           toggle-group.jsx
+|           toggle.jsx
+|           tooltip.jsx
+|           tree.jsx
+|           typing-text.jsx
+|           user-dropdown-menu.jsx
+|           video-text.jsx
+|           word-rotate.jsx
+|           
++---home
+|   |   content.jsx
+|   |   page.jsx
+|   |   
+|   +---components
+|   |       deals.jsx
+|   |       featured-products.jsx
+|   |       index.js
+|   |       info.jsx
+|   |       popular-sneakers.jsx
+|   |       product-section.jsx
+|   |       search.jsx
+|   |       special-offers.jsx
+|   |       
+|   \---special-offers
+|           card1.jsx
+|           card2.jsx
+|           index.js
+|           product-card-special.tsx
+|           product-highlight-card.tsx
+|           
++---my-orders
++---order-receipt
+|   |   content.jsx
+|   |   page.jsx
+|   |   
+|   \---components
+|           order-receipt.jsx
+|           
++---product
+|   +---data
+|   |       products.js
+|   |       
+|   \---services
+|           product-service.js
+|           
++---product-details
+|       content.jsx
+|       page.jsx
+|       
++---search-results-grid
+|   |   content.jsx
+|   |   page.jsx
+|   |   
+|   \---components
+|           index.js
+|           search-results.jsx
+|           
++---search-results-list
+|       content.jsx
+|       page.jsx
+|       
+\---wishlist
+        content.jsx
+        page.jsx
+        
