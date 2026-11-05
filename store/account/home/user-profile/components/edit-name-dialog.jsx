@@ -73,14 +73,7 @@ const EditNameDialog = ({
                 </div>
 
                 <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => onOpenChange(false)}
-                        className="flex-1 p-5"
-                    >
-                        انصراف
-                    </Button>
+
 
                     <Button
                         type="button"
@@ -89,6 +82,15 @@ const EditNameDialog = ({
                         className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
                     >
                         ذخیره
+                    </Button>
+
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => onOpenChange(false)}
+                        className="flex-1 p-5"
+                    >
+                        انصراف
                     </Button>
                 </DialogFooter>
             </DialogContent>

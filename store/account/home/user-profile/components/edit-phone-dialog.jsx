@@ -303,14 +303,7 @@ const EditPhoneDialog = ({
                 </div>
 
                 <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => handleOpenChange(false)}
-                        className="flex-1 p-5"
-                    >
-                        انصراف
-                    </Button>
+
 
                     {!codeSent ? (
                         <Button
@@ -331,6 +324,15 @@ const EditPhoneDialog = ({
                             تأیید کد
                         </Button>
                     )}
+
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => handleOpenChange(false)}
+                        className="flex-1 p-5"
+                    >
+                        انصراف
+                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

@@ -265,6 +265,15 @@ const EditBirthdateDialog = ({
                 </div>
 
                 <DialogFooter className="mt-7 flex-row gap-3 sm:justify-start">
+
+                    <Button
+                        type="button"
+                        onClick={handleSave}
+                        disabled={isSaving}
+                        className="text-primary-foreground hover:bg-red-700 bg-red-600 flex-1 p-5"
+                    >
+                        {isSaving ? 'در حال ذخیره...' : 'ذخیره'}
+                    </Button>
                     <Button
                         type="button"
                         variant="outline"
@@ -275,14 +284,7 @@ const EditBirthdateDialog = ({
                         انصراف
                     </Button>
 
-                    <Button
-                        type="button"
-                        onClick={handleSave}
-                        disabled={isSaving}
-                        className="text-primary-foreground hover:bg-red-700 bg-red-600 flex-1 p-5"
-                    >
-                        {isSaving ? 'در حال ذخیره...' : 'ذخیره'}
-                    </Button>
+
                 </DialogFooter>
             </DialogContent>
         </Dialog>

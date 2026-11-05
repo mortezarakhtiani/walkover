@@ -117,14 +117,14 @@ const ProfileMenu = () => {
                             ${
                                 isActive
                                     ? `
-                                        bg-red-50 text-red-600
-                                        dark:bg-red-950/40
-                                        dark:text-red-300
+                                        text-foreground
+                                        dark:bg-muted-foreground/10
                                     `
                                     : `
                                         text-foreground
-                                        hover:bg-background
-                                        dark:hover:bg-accent/40
+                                        hover:bg-muted-foreground/5
+                                        
+                                        
                                     `
                             }
                         `;
@@ -138,8 +138,8 @@ const ProfileMenu = () => {
                                             absolute right-0 top-1/2
                                             h-6 w-[3px]
                                             -translate-y-1/2
-                                            rounded-l-full bg-red-600
-                                            dark:bg-red-400
+                                            rounded-l-full
+
                                         "
                                     />
                                 )}
@@ -152,7 +152,7 @@ const ProfileMenu = () => {
                                         rounded-md
                                         ${
                                             isActive
-                                                ? 'text-red-600 dark:text-red-300'
+                                                ? 'text-white'
                                                 : 'text-foreground'
                                         }
                                     `}
@@ -184,7 +184,7 @@ const ProfileMenu = () => {
                                         transition-colors duration-150
                                         ${
                                             isActive
-                                                ? 'text-red-700'
+                                                ? 'text-foreground'
                                                 : 'text-muted-foreground/50'
                                         }
                                     `}

@@ -33,10 +33,6 @@ import {
     ShieldCheck,
     Mail,
     Phone,
-    CalendarDays,
-    BadgeCheck,
-    VenusAndMars,
-    LockKeyhole,
     CheckCircle2,
     Upload,
 } from 'lucide-react';
@@ -242,7 +238,7 @@ const PersonalInfo = () => {
                         text-muted-foreground
                         opacity-50
                         transition-all
-                        hover:bg-primary/10
+                        hover:bg-muted-foreground/10
                         hover:text-primary
                         group-hover:opacity-100
                     "

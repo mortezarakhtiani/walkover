@@ -22,12 +22,12 @@ import { toPersianDigits, formatToman } from '@/lib/to-persian';
 
 const STATUS_CONFIG = {
     current: {
-        label: 'جاری',
-        icon: Clock3,
-        className:
-            'bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400',
-        iconClassName: 'text-red-600 dark:text-red-400',
-    },
+    label: 'جاری',
+    icon: Clock3,
+    className:
+        'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400',
+    iconClassName: 'text-blue-600 dark:text-blue-400',
+},
     shipped: {
         label: 'ارسال شده',
         icon: CircleCheck,
@@ -163,7 +163,7 @@ export function MyOrders() {
 
                                 {isActive && (
                                     <span
-                                        className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-red-600 dark:bg-red-600"/>
+                                        className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-blue-600"/>
                                 )}
                             </button>
                         );

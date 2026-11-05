@@ -387,15 +387,7 @@ export default function EditPasswordDialog({
                     )}
 
                     <DialogFooter className="mt-2 flex-row gap-3 sm:justify-start">
-                        <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => handleOpenChange(false)}
-                            disabled={isSaving}
-                            className="flex-1 p-5"
-                        >
-                            انصراف
-                        </Button>
+
 
                         <Button
                             type="submit"
@@ -405,6 +397,16 @@ export default function EditPasswordDialog({
                             {isSaving
                                 ? 'در حال ذخیره...'
                                 : 'ذخیره رمز عبور'}
+                        </Button>
+
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => handleOpenChange(false)}
+                            disabled={isSaving}
+                            className="flex-1 p-5"
+                        >
+                            انصراف
                         </Button>
                     </DialogFooter>
                 </form>
