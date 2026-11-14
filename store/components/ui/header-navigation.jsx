@@ -41,15 +41,15 @@ export function HeaderNavigation({
                         className={cn(
                             'group relative whitespace-nowrap py-2 text-base font-medium transition-colors',
                             isActive
-                                ? 'text-red-600 dark:text-red-400'
-                                : 'text-foreground hover:text-red-600 dark:hover:text-red-400'
+                                ? 'text-blue-600 dark:text-blue-400'
+                                : 'text-foreground hover:text-blue-600 dark:hover:text-blue-400'
                         )}
                     >
                         {item.label}
 
                         <span
                             className={cn(
-                                'absolute bottom-0 right-0 h-0.5 bg-red-600 transition-all duration-800 dark:bg-red-400',
+                                'absolute bottom-0 right-0 h-0.5 bg-blue-600 transition-all duration-800 dark:bg-blue-400',
                                 isActive
                                     ? 'w-full'
                                     : 'w-0 group-hover:w-full'

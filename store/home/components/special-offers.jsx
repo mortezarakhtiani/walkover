@@ -204,14 +204,14 @@ export function SpecialOffers({
                             mr-2
                             hidden
                             rounded-full
-                            bg-red-600/10
+                            bg-blue-600/10
                             px-2
                             py-0.5
                             text-[10px]
                             font-medium
-                            text-red-600
+                            text-blue-600
                             md:inline-block
-                            dark:text-red-400
+                            dark:text-blue-400
                         "
                                 >
                         تخفیف ویژه
@@ -272,7 +272,7 @@ export function SpecialOffers({
                         px-4
                         py-2
                         text-xs
-                        text-red-700
+                        text-blue-700
 
                         md:flex
                     "

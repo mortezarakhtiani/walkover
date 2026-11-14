@@ -27,8 +27,8 @@ export function HeaderDesktopActions({
     const actionButtonClass = cn(
         'size-9 rounded-full text-white',
         'transition-all duration-200',
-        'hover:bg-red-50 hover:text-red-700',
-        'dark:hover:bg-red-950/50 dark:hover:text-red-300',
+        'hover:bg-blue-50 hover:text-blue-700',
+        'dark:hover:bg-blue-950/50 dark:hover:text-blue-300',
     );
 
     return (
@@ -82,8 +82,8 @@ export function HeaderDesktopActions({
                             className={cn(
                                 'flex size-9 items-center justify-center rounded-full p-0',
                                 'text-foreground transition-colors duration-200',
-                                'hover:bg-red-50 hover:text-red-700',
-                                'dark:hover:bg-red-950/50 dark:hover:text-red-300',
+                                'hover:bg-blue-50 hover:text-blue-700',
+                                'dark:hover:bg-blue-950/50 dark:hover:text-blue-300',
                             )}
                             aria-label="حساب کاربری"
                         >

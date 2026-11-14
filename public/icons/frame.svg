@@ -1,0 +1,16 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="square">
+    <!-- بالا چپ -->
+    <path d="M35 105 V35 H105"/>
+
+    <!-- بالا راست -->
+    <path d="M495 35 H565 V105"/>
+
+    <!-- پایین چپ -->
+    <path d="M35 495 V565 H105"/>
+
+    <!-- پایین راست -->
+    <path d="M495 565 H565 V495"/>
+  </g>
+</svg>

@@ -58,7 +58,7 @@ export default function FeaturedStory() {
         <motion.div className="relative mx-auto flex h-full max-w-[1440px] items-center justify-end px-5 sm:px-10" style={{ opacity: textOut }}>
           <div className="max-w-2xl">
             <motion.p className="flex items-center gap-3 text-[15px] text-[#BFBCB7]" style={{ opacity: kicker }}>
-              <span className="rec-dot inline-block h-2 w-2 rounded-full bg-red-600" aria-hidden />
+              <span className="rec-dot inline-block h-2 w-2 rounded-full bg-blue-600" aria-hidden />
               {/*<span className="font-mono-l text-sm">REEL 04 — FEATURE</span>*/}
               <span>· {f.label}</span>
             </motion.p>
@@ -66,7 +66,7 @@ export default function FeaturedStory() {
               id="story-title"
               progress={p}
               range={[0.12, 0.5]}
-              lines={f.lines.map((l, i) => (i === f.lines.length - 1 ? <span key={i} className="text-[#dc2626]">{l}</span> : l))}
+              lines={f.lines.map((l, i) => (i === f.lines.length - 1 ? <span key={i} className="text-[#2563eb]">{l}</span> : l))}
               className="mt-8 font-display text-[clamp(3.2rem,9vw,8.5rem)] font-bold leading-[0.98] text-[#EAE6DF]"
             />
             <motion.div style={{ opacity: tail, y: tailY, visibility: tailVis }}>

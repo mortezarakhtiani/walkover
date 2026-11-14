@@ -82,7 +82,7 @@ function Dossier({ s, index, open, onToggle }) {
         >
           <span
             aria-hidden
-            className={`absolute start-0 top-0 h-[2px] bg-[#dc2626] transition-all duration-700 ${
+            className={`absolute start-0 top-0 h-[2px] bg-[#2563eb] transition-all duration-700 ${
               open ? "w-16" : "w-0 group-hover:w-10"
             }`}
           />
@@ -116,7 +116,7 @@ function Dossier({ s, index, open, onToggle }) {
             style={{ opacity: meta }}
             className={`flex h-8 w-8 items-center justify-center border transition-[transform,border-color,color] duration-500 ${
               open
-                ? "rotate-45 border-[#dc2626] text-[#dc2626]"
+                ? "rotate-45 border-[#2563eb] text-[#2563eb]"
                 : "border-white/15 text-[#EAE6DF]"
             }`}
             aria-hidden
@@ -178,7 +178,7 @@ function Dossier({ s, index, open, onToggle }) {
                             rel="noopener noreferrer"
                             className="group flex items-center gap-4 py-3"
                           >
-                            <span className="w-7 font-mono-l text-xs text-[#dc2626]">
+                            <span className="w-7 font-mono-l text-xs text-[#2563eb]">
                               {String(i + 1).padStart(2, "0")}
                             </span>
 
@@ -196,7 +196,7 @@ function Dossier({ s, index, open, onToggle }) {
                             <ArrowUpLeft
                               size={16}
                               aria-hidden
-                              className="text-[#BFBCB7] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:text-[#dc2626]"
+                              className="text-[#BFBCB7] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:text-[#2563eb]"
                             />
                           </a>
                         </li>
@@ -207,7 +207,7 @@ function Dossier({ s, index, open, onToggle }) {
                       href={s.episodes[0].url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-5 inline-flex w-fit items-center gap-2 bg-[#EAE6DF] px-5 py-3 text-sm font-medium text-[#070707] transition-colors duration-500 hover:bg-[#dc2626] hover:text-[#EAE6DF]"
+                      className="mt-5 inline-flex w-fit items-center gap-2 bg-[#EAE6DF] px-5 py-3 text-sm font-medium text-[#070707] transition-colors duration-500 hover:bg-[#2563eb] hover:text-[#EAE6DF]"
                     >
                       تماشای اولین روایت
                       <ArrowUpLeft size={16} aria-hidden />
@@ -219,7 +219,7 @@ function Dossier({ s, index, open, onToggle }) {
                       href={s.cta.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-5 inline-flex w-fit items-center gap-2 border border-[#dc2626] px-5 py-3 text-sm transition-colors duration-500 hover:bg-[#dc2626]"
+                      className="mt-5 inline-flex w-fit items-center gap-2 border border-[#2563eb] px-5 py-3 text-sm transition-colors duration-500 hover:bg-[#2563eb]"
                     >
                       {s.cta.label}
                       <ArrowUpLeft size={16} aria-hidden />
@@ -296,7 +296,7 @@ export default function Archive() {
 
             <motion.span
               aria-hidden
-              className="pointer-events-none absolute -bottom-6 end-0 border-2 border-[#dc2626] px-2.5 py-1 font-mono-l text-xs uppercase text-[#b91c1c]"
+              className="pointer-events-none absolute -bottom-6 end-0 border-2 border-[#2563eb] px-2.5 py-1 font-mono-l text-xs uppercase text-[#1d4ed8]"
               style={{
                 opacity: stampOpacity,
                 scale: stampScale,

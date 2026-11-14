@@ -17,13 +17,12 @@ export function AuthButton() {
     justify-center
     gap-2
     rounded-md
-    border
-    border-border
     px-3
     text-sm
     font-medium
     text-foreground
-    hover:bg-accent
+    hover:bg-blue-700
+    bg-blue-600
     transition-colors
     duration-200
     sm:px-4

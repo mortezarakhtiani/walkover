@@ -123,7 +123,7 @@ export default function ProductDetail({ product, titleId = "product-title" }) {
                 aria-label={`نمای ${toPersianDigits(index + 1)}`}
                 aria-current={selectedImage === index ? "true" : undefined}
                 className={`relative flex size-[78px] shrink-0 items-center justify-center overflow-hidden rounded-md border bg-[#121111] p-1 transition-all ${
-                  selectedImage === index ? "border-[var(--store-primary)] ring-2 ring-[#dc2626]/20" : "border-[var(--store-border)] hover:border-[#dc2626]/50"
+                  selectedImage === index ? "border-[var(--store-primary)] ring-2 ring-[#2563eb]/20" : "border-[var(--store-border)] hover:border-[#2563eb]/50"
                 }`}
               >
                 {renderView(v, "size-full rounded-md", `thumb${index}-`)}
@@ -178,7 +178,7 @@ export default function ProductDetail({ product, titleId = "product-title" }) {
                   aria-label={`انتخاب رنگ ${color.name}`}
                   aria-pressed={selectedColor?.name === color.name}
                   className={`flex size-10 items-center justify-center rounded-full border-2 transition-all ${
-                    selectedColor?.name === color.name ? "border-[var(--store-primary)]" : "border-[var(--store-border)] hover:border-[#dc2626]/50"
+                    selectedColor?.name === color.name ? "border-[var(--store-primary)]" : "border-[var(--store-border)] hover:border-[#2563eb]/50"
                   }`}
                 >
                   <span className="size-7 rounded-full border border-white/15" style={{ backgroundColor: color.value }} />
@@ -255,7 +255,7 @@ export default function ProductDetail({ product, titleId = "product-title" }) {
             aria-pressed={isFavorite}
             aria-label="افزودن به علاقه‌مندی‌ها"
             className={`flex size-12 shrink-0 items-center justify-center rounded-md border transition-colors ${
-              isFavorite ? "border-red-900 bg-red-950/30 text-red-700" : "border-[var(--store-border)] text-[var(--store-fg)] hover:border-white/25"
+              isFavorite ? "border-blue-900 bg-blue-950/30 text-blue-700" : "border-[var(--store-border)] text-[var(--store-fg)] hover:border-white/25"
             }`}
           >
             <Heart className="size-4" fill={isFavorite ? "currentColor" : "none"} />

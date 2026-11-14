@@ -77,7 +77,7 @@ export default function FilmTimeline() {
         <span ref={reelEl}>REEL 01 — OPENING</span>
       </div>
       <div className="relative h-[2px] bg-white/[0.06]">
-        <motion.div className="absolute inset-0 origin-right bg-[#dc2626]" style={{ scaleX: scrollYProgress }} />
+        <motion.div className="absolute inset-0 origin-right bg-[#2563eb]" style={{ scaleX: scrollYProgress }} />
         {ticks.map((t) => (
           <span key={t.id} className="absolute bottom-0 h-[7px] w-px bg-[#EAE6DF]/35" style={{ right: `${t.at * 100}%` }} />
         ))}

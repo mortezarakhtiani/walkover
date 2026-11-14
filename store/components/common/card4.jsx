@@ -18,7 +18,7 @@ export function Card4({limit}) {
             sku: 'MS-SL7-256    ',
             color: 'نقره‌ای',
             colorCode: '#C0C0C0',
-            quantity: 1,
+            quantity: 5,
         },
         {
             logo: '12.png',
@@ -38,7 +38,7 @@ export function Card4({limit}) {
             sku: 'MS-SL7-512',
             color: 'نقره‌ای',
             colorCode: '#C0C0C0',
-            quantity: 2,
+            quantity: 15,
         },
         {
             logo: '15.png',
@@ -50,7 +50,7 @@ export function Card4({limit}) {
             sku: 'MS-SL7-256',
             color: 'نقره‌ای',
             colorCode: '#C0C0C0',
-            quantity: 1,
+            quantity: 22,
         },
     ];
 
@@ -125,12 +125,12 @@ export function Card4({limit}) {
                             "
                         >
                             {/* موبایل */}
-                            <span className="sm:hidden">
+                            <span className="sm:hidden font-iransans">
                                 {mobileTitle}
                             </span>
 
                             {/* دسکتاپ */}
-                            <span className="hidden sm:inline">
+                            <span className="hidden sm:inline font-iransans">
                                 {item.title}
                             </span>
                         </Link>
@@ -154,7 +154,7 @@ export function Card4({limit}) {
                             <span className="flex items-center gap-1.5 whitespace-nowrap">
                                 <span>رنگ:</span>
 
-                                <span className="flex items-center gap-1.5 font-medium text-foreground">
+                                <span className="flex items-center gap-1.5 font-medium text-foreground font-iransans">
                                     <span
                                         className="
                                             h-3.5
@@ -177,7 +177,7 @@ export function Card4({limit}) {
                             {/* کد کالا */}
                             <span className="whitespace-nowrap">
                                 کد کالا:
-                                <span className="ms-1 font-medium text-foreground">
+                                <span className="ms-1 font-medium text-foreground font-iransans">
                                     {item.sku}
                                 </span>
                             </span>
@@ -213,19 +213,19 @@ export function Card4({limit}) {
                         "
                     >
 
-                        <span className="whitespace-nowrap text-xs text-muted-foreground">
+                        <span className="whitespace-nowrap text-xs text-muted-foreground font-iransans">
                             تعداد: {toPersianDigits(item.quantity || 1)} عدد
                         </span>
 
                         <div className="flex flex-col items-end gap-0.5">
 
                             {item.total && (
-                                <span className="whitespace-nowrap text-xs text-muted-foreground line-through">
+                                <span className="whitespace-nowrap text-xs text-muted-foreground line-through font-iransans">
                                     {item.total}
                                 </span>
                             )}
 
-                            <span className="whitespace-nowrap text-sm font-semibold text-mono">
+                            <span className="whitespace-nowrap text-lg font-semibold text-mono font-iransans">
                                 {item.label}
                             </span>
 

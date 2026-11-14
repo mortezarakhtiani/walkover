@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
 import Link from 'next/link';
-import { ShoppingCart, TrashIcon } from 'lucide-react';
+import {ShoppingCart, TrashIcon} from 'lucide-react';
 
-import { toAbsoluteUrl } from '@/lib/helpers';
-import { toPersianDigits, toPersianSplit } from '@/lib/to-persian';
+import {toAbsoluteUrl} from '@/lib/helpers';
+import {toPersianDigits, toPersianSplit} from '@/lib/to-persian';
 
-import { useStoreClient } from '@/store/components/context';
+import {useStoreClient} from '@/store/components/context';
 
-import { Button } from '@/store/components/ui/button';
-import { Card, CardContent } from '@/store/components/ui/card';
-import { ScrollArea } from '@/store/components/ui/scroll-area';
-import { DiscountBadge } from '@/store/components/ui/discount-badge';
+import {Button} from '@/store/components/ui/button';
+import {Card, CardContent} from '@/store/components/ui/card';
+import {ScrollArea} from '@/store/components/ui/scroll-area';
+import {DiscountBadge} from '@/store/components/ui/discount-badge';
 
 import {
     Select,
@@ -43,11 +43,11 @@ import {
 } from '@/store/components/ui/alert-dialog';
 
 export function StoreClientCartSheet({
-    open,
-    onOpenChange,
-    items = [],
-    onRemoveItem,
-}) {
+                                         open,
+                                         onOpenChange,
+                                         items = [],
+                                         onRemoveItem,
+                                     }) {
     const {
         showProductDetailsSheet,
         setCartSheetOpen,
@@ -192,17 +192,21 @@ export function StoreClientCartSheet({
                                                                         max-sm:text-xs max-sm:leading-5
                                                                     "
                                                                 >
-                                                                    {product.title}
+                                                                    <p className="font-iransans">
+                                                                        {product.title}
+                                                                    </p>
+
                                                                 </button>
 
                                                                 <div className="flex items-center gap-2 flex-wrap">
                                                                     <span
                                                                         className="
+                                                                        font-iransans
                                                                             text-xs text-secondary-foreground
                                                                             max-sm:text-[10px]
                                                                         "
                                                                     >
-                                                                        کد:{' '}
+                                                                           کد:{' '}
                                                                         <span className="font-medium text-foreground">
                                                                             {product.sku}
                                                                         </span>
@@ -234,16 +238,19 @@ export function StoreClientCartSheet({
                                                                         size="sm"
                                                                         className="px-3 rounded-md text-xs"
                                                                     >
-                                                                        <SelectValue />
+                                                                        <SelectValue/>
                                                                     </SelectTrigger>
 
                                                                     <SelectContent>
                                                                         {[1, 2, 3, 4].map((quantity) => (
                                                                             <SelectItem
+
                                                                                 key={quantity}
                                                                                 value={String(quantity)}
                                                                             >
-                                                                                {toPersianDigits(quantity)}
+                                                                                <p className="font-iransans">
+                                                                                    {toPersianDigits(quantity)}
+                                                                                </p>
                                                                             </SelectItem>
                                                                         ))}
                                                                     </SelectContent>
@@ -261,7 +268,7 @@ export function StoreClientCartSheet({
                                                                         rounded-md max-sm:size-9
                                                                     "
                                                                 >
-                                                                    <TrashIcon className="size-4" />
+                                                                    <TrashIcon className="size-4"/>
                                                                 </Button>
                                                             </div>
 
@@ -274,7 +281,10 @@ export function StoreClientCartSheet({
                                                                                 line-through max-sm:text-[10px]
                                                                             "
                                                                         >
-                                                                            {toPersianSplit(item.originalPrice)} تومان
+                                                                            <p className="font-iransans">
+                                                                                {toPersianSplit(item.originalPrice)}
+                                                                            </p>
+
                                                                         </span>
                                                                     )}
 
@@ -284,7 +294,9 @@ export function StoreClientCartSheet({
                                                                         max-sm:text-sm
                                                                     "
                                                                 >
-                                                                    {toPersianSplit(item.price)} تومان
+                                                                    <p className="font-iransans">
+                                                                                {toPersianSplit(item.price)} تومان
+                                                                            </p>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -310,12 +322,13 @@ export function StoreClientCartSheet({
                                 bg-muted/40 px-4 py-3
                             "
                         >
-                            <span className="text-sm font-medium text-muted-foreground">
+                            <span className="text-sm font-medium text-muted-foreground font-iransans">
                                 جمع کل
                             </span>
 
                             <span
                                 className="
+                                font-iransans
                                     text-lg font-bold text-foreground
                                     max-sm:text-base
                                 "
@@ -325,7 +338,7 @@ export function StoreClientCartSheet({
                                         (total, item) =>
                                             total +
                                             Number(item.price || 0) *
-                                                Number(item.quantity || 1),
+                                            Number(item.quantity || 1),
                                         0
                                     )
                                 )}{' '}
@@ -345,18 +358,18 @@ export function StoreClientCartSheet({
                             asChild
                             className="
                                 h-14 min-h-14 flex-1 gap-2
-                                rounded-md border border-red-600/20
-                                bg-red-600 px-4
+                                rounded-md border border-blue-600/20
+                                bg-blue-600 px-4
                                 text-base font-semibold text-white
-                                hover:bg-red-700
-                                focus-visible:bg-red-600
+                                hover:bg-blue-700
+                                focus-visible:bg-blue-600
                             "
                         >
                             <Link
                                 href="/store/checkout/order-summary"
                                 onClick={() => handleSheetChange(false)}
                             >
-                                <ShoppingCart className="size-5" />
+                                <ShoppingCart className="size-5"/>
                                 ادامه و پرداخت
                             </Link>
                         </Button>

@@ -8,6 +8,7 @@ import {StoreClientProvider} from '@/store/components/context';
 import {StoreClientWrapper} from '@/store/components/wrapper';
 
 import {Toaster} from '@/components/ui/sonner';
+import CustomCursor from '@/components/custom-cursor';
 
 import '@/app/globals.css';
 import '@/app/store/store-theme.css';
@@ -45,6 +46,7 @@ export default async function RootLayout({
                             <Toaster />
 
                             {children}
+                            <CustomCursor />
 
                         </StoreClientWrapper>
                     </StoreClientProvider>

@@ -25,8 +25,9 @@ export function ProductSection({
                 rounded-md
                 shadow-sm
                 max-md:rounded-l-none
+                pt-4
                 md:pl-5
-                mt-16
+
             "
         >
 
@@ -121,7 +122,7 @@ export function ProductSection({
                             <Button
                                 mode="link"
                                 asChild
-                                className="h-auto px-3 py-1.5 text-red-700"
+                                className="h-auto px-3 py-1.5 text-blue-700"
                             >
                                 <Link
                                     href={moreButtonHref}
@@ -177,21 +178,9 @@ export function ProductSection({
                             "
                         >
 
-                            {/*<Card2*/}
-                            {/*    id={item.id}*/}
-                            {/*    logo={item.logo}*/}
-                            {/*    star={item.rating}*/}
-                            {/*    title={item.title}*/}
-                            {/*    total={item.price}*/}
-                            {/*    label={item.originalPrice}*/}
-                            {/*    discount={item.discount}*/}
-                            {/*    badge={item.originalPrice != null && item.originalPrice > item.price}*/}
-                            {/*    showAddButton={showAddButton}*/}
-                            {/*/>*/}
-                            <ProductRevealCard
+                            <Card2
                                 id={item.id}
                                 logo={item.logo}
-                                hoverImage={item.hoverImage}
                                 star={item.rating}
                                 title={item.title}
                                 total={item.price}
@@ -200,6 +189,18 @@ export function ProductSection({
                                 badge={item.originalPrice != null && item.originalPrice > item.price}
                                 showAddButton={showAddButton}
                             />
+                            {/*<ProductRevealCard*/}
+                            {/*    id={item.id}*/}
+                            {/*    logo={item.logo}*/}
+                            {/*    hoverImage={item.hoverImage}*/}
+                            {/*    star={item.rating}*/}
+                            {/*    title={item.title}*/}
+                            {/*    total={item.price}*/}
+                            {/*    label={item.originalPrice}*/}
+                            {/*    discount={item.discount}*/}
+                            {/*    badge={item.originalPrice != null && item.originalPrice > item.price}*/}
+                            {/*    showAddButton={showAddButton}*/}
+                            {/*/>*/}
 
                         </div>
                     ))}

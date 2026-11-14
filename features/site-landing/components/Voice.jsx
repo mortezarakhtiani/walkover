@@ -14,6 +14,7 @@ import { creator, links } from "@/features/site-landing/data/site";
 import { Reveal, ReelLabel, ScrubLines } from "./motion";
 import { useScene } from "./cinema/scene";
 
+
 export default function Voice() {
   const section = useRef(null);
   const head = useRef(null);
@@ -39,11 +40,11 @@ export default function Voice() {
               style={{ y: imgY, scale: imgScale }}
             />
           </motion.div>
-          <p className="mt-4 text-sm text-[#BFBCB7]">تصویر نمادین · جای پرتره‌ی واقعی</p>
+          <p className="mt-4 text-sm text-[#BFBCB7]">تصویر سعید</p>
         </div>
 
         <div ref={head} className="flex flex-col justify-center lg:col-span-6 lg:col-start-7">
-          <ReelLabel reel="05" label="THE VOICE" fa="صدای پشت روایت‌ها" />
+          {/*<ReelLabel reel="05" label="THE VOICE" fa="صدای پشت روایت‌ها" />*/}
           <ScrubLines
             id="voice-title"
             progress={h}
@@ -55,7 +56,7 @@ export default function Voice() {
             {/*<p className="text-[17px] text-[#BFBCB7]">*/}
             {/*  <span className="text-[#EAE6DF]">{creator.displayName}</span> · {creator.handle}*/}
             {/*</p>*/}
-            <blockquote className="mt-6 border-s-2 border-[#dc2626] ps-6">
+            <blockquote className="mt-6 border-s-2 border-[#2563eb] ps-6">
               <p className="font-display text-[clamp(1.6rem,2.6vw,2.3rem)] leading-[1.5] text-[#EAE6DF]/90">«{creator.philosophy}»</p>
               <p className="mt-4 text-[16px] text-[#BFBCB7]">{creator.philosophyCoda}</p>
               {/*<footer className="mt-4 text-sm text-[#BFBCB7]">از توضیحات کانال</footer>*/}
@@ -66,7 +67,7 @@ export default function Voice() {
           {/*    {creator.topics.map((t, i) => (*/}
           {/*      <span key={t}>*/}
           {/*        {t}*/}
-          {/*        {i < creator.topics.length - 1 && <span className="mx-2 text-[#dc2626]">/</span>}*/}
+          {/*        {i < creator.topics.length - 1 && <span className="mx-2 text-[#2563eb]">/</span>}*/}
           {/*      </span>*/}
           {/*    ))}*/}
           {/*  </p>*/}
@@ -74,7 +75,7 @@ export default function Voice() {
           {/*    href={links.channel}*/}
           {/*    target="_blank"*/}
           {/*    rel="noopener noreferrer"*/}
-          {/*    className="group mt-10 inline-flex items-center gap-3 border-b border-[#EAE6DF]/30 pb-2 text-[16px] transition-colors duration-500 hover:border-[#dc2626]"*/}
+          {/*    className="group mt-10 inline-flex items-center gap-3 border-b border-[#EAE6DF]/30 pb-2 text-[16px] transition-colors duration-500 hover:border-[#2563eb]"*/}
           {/*  >*/}
           {/*    رفتن به کانال یوتیوب*/}
           {/*    <ArrowUpLeft size={18} aria-hidden className="transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1" />*/}

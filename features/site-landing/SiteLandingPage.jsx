@@ -7,8 +7,8 @@
  *   Artifact stolen from: a camcorder tape found in a police case file. Reels = chapters,
  *   FILE/CASE codes = archive, REC + tape counter = found footage.
  *   Type: Markazi Text 700 (huge literary Naskh headlines) · Vazirmatn (reading) · IBM Plex Mono (Latin slates).
- *   Color: obsidian #070707 · charcoal #111 · elevated #181818 · red #DC2626 (accent only) ·
- *          deep red #991B1B (glows) · bone #EAE6DF (text) · fog #92908D (meta).
+ *   Color: obsidian #070707 · charcoal #111 · elevated #181818 · blue #2563EB (accent only) ·
+ *          deep blue #1E40AF (glows) · bone #EAE6DF (text) · fog #92908D (meta).
  *   Layout: film reel. 01 hero (full bleed) → 02 screening room (poster cards) → 03 dossier accordion →
  *           04 pinned trailer → 05 voice (portrait + verbatim channel quote) → 06 artifacts store →
  *           07 invitation → final frame.

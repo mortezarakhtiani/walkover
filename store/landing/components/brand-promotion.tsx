@@ -69,7 +69,7 @@ export default function BrandPromotion() {
                 {/* See All */}
                 <Link
                     href="/store/search-results-grid"
-                    className="flex h-11 items-center justify-center gap-2 rounded-md border border-red-600 px-3 text-sm font-semibold text-red-700 transition-colors hover:bg-red-700 hover:text-white"
+                    className="flex h-11 items-center justify-center gap-2 rounded-md border border-blue-600 px-3 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-700 hover:text-white"
                 >
                     <span>مشاهده همه</span>
 
@@ -110,7 +110,7 @@ export default function BrandPromotion() {
                             </div>
 
                             {/* Category Title */}
-                            <h3 className="text-center text-sm font-medium text-foreground transition-colors group-hover:text-red-700 lg:text-base">
+                            <h3 className="text-center text-sm font-medium text-foreground transition-colors group-hover:text-blue-700 lg:text-base">
                                 {category.title}
                             </h3>
                         </Link>

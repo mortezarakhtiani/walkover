@@ -27,7 +27,7 @@ import ScreeningSlate, { BRIDGE_DIM } from "./cinema/ScreeningSlate";
 export function PlayMark({ size = 64 }) {
   return (
     <span
-      className="flex items-center justify-center rounded-full border border-[#EAE6DF]/50 bg-black/30 backdrop-blur-[2px] transition-all  group-hover:border-red-600 group-hover:bg-red-700"
+      className="flex items-center justify-center rounded-full border border-[#EAE6DF]/50 bg-black/30 backdrop-blur-[2px] transition-all  group-hover:border-blue-600 group-hover:bg-blue-700"
       style={{ width: size, height: size }}
       aria-hidden
     >
@@ -50,7 +50,7 @@ export function VideoCard({ video, ratio = "aspect-[4/5]", titleClass = "text-[1
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" aria-hidden/>
         <div
-            className="absolute inset-x-0 top-0 h-[2px] origin-[100%_50%] scale-x-0 bg-red-600 transition-transform duration-700 group-hover:scale-x-100"
+            className="absolute inset-x-0 top-0 h-[2px] origin-[100%_50%] scale-x-0 bg-blue-600 transition-transform duration-700 group-hover:scale-x-100"
             aria-hidden/>
         <div
             className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100">
@@ -69,7 +69,7 @@ export function VideoCard({ video, ratio = "aspect-[4/5]", titleClass = "text-[1
         <h3 className={`font-display font-semibold leading-[1.15] text-[#EAE6DF] transition-colors duration-500 group-hover:text-white ${titleClass}`}>{video.title}</h3>
           {showTeaser && <p className="mt-3 max-w-xl text-[16px] leading-8 text-[#BFBCB7]">{video.teaser}</p>}
         </div>
-        {/*<ArrowUpLeft size={18} className="mt-2 shrink-0 text-[#BFBCB7] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:text-[#dc2626]" aria-hidden />*/}
+        {/*<ArrowUpLeft size={18} className="mt-2 shrink-0 text-[#BFBCB7] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:text-[#2563eb]" aria-hidden />*/}
       </div>
     </a>
   );
@@ -159,7 +159,7 @@ function ProjectionScene({ video }) {
           <div className="mx-auto grid h-full max-w-[1440px] content-start gap-5 px-5 pt-6 sm:px-10 md:grid-cols-12 md:gap-10 md:pt-8">
             <div className="md:col-span-7">
               <motion.p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#BFBCB7]" style={{ opacity: metaOpacity, y: metaY }}>
-                <span className="rec-dot inline-block h-2 w-2 rounded-full bg-[#dc2626]" aria-hidden />
+                <span className="rec-dot inline-block h-2 w-2 rounded-full bg-[#2563eb]" aria-hidden />
                 {/*<span className="font-mono-l text-sm">NOW SHOWING</span>*/}
                 <span> {video.tag}</span>
                 {/*<span className="font-mono-l text-sm text-[#BFBCB7]/80">ID {video.id}</span>*/}
@@ -179,7 +179,7 @@ function ProjectionScene({ video }) {
                 href={video.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md mt-5 inline-flex items-center gap-3 bg-[#EAE6DF] px-6 py-3.5 text-[16px] font-medium text-[#070707] transition-colors  hover:bg-red-700 hover:text-[#EAE6DF]"
+                className="rounded-md mt-5 inline-flex items-center gap-3 bg-[#EAE6DF] px-6 py-3.5 text-[16px] font-medium text-[#070707] transition-colors  hover:bg-blue-700 hover:text-[#EAE6DF]"
               >
                 <svg width="12" height="14" viewBox="0 0 12 14" aria-hidden className="fill-current"><path d="M0 0l12 7-12 7z" /></svg>
                 تماشا در یوتیوب
@@ -237,7 +237,7 @@ function SupportingReel({ items }) {
         {/*      href={links.videos}*/}
         {/*      target="_blank"*/}
         {/*      rel="noopener noreferrer"*/}
-        {/*      className="group inline-flex items-center gap-4 border border-white/15 px-8 py-4 text-[16px] transition-colors duration-500 hover:border-[#dc2626] hover:bg-[#dc2626]"*/}
+        {/*      className="group inline-flex items-center gap-4 border border-white/15 px-8 py-4 text-[16px] transition-colors duration-500 hover:border-[#2563eb] hover:bg-[#2563eb]"*/}
         {/*  >*/}
         {/*    همه‌ی ویدیوها در یوتیوب*/}
         {/*    <ArrowUpLeft size={18} aria-hidden/>*/}

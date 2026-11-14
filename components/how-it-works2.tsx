@@ -78,15 +78,13 @@ const HowItWorks = () => {
     return (
         <section
             className="
-                relative
-                overflow-hidden
-                border-b
-                border-white/[0.06]
-                bg-black
-                py-24
-                sm:py-28
-                lg:py-32
-            "
+        relative
+        overflow-hidden
+        bg-black
+        py-24
+        sm:py-28
+        lg:py-32
+    "
         >
             {/* =====================================================
                 BACKGROUND ATMOSPHERE
@@ -158,29 +156,30 @@ const HowItWorks = () => {
                     "
                 >
 
-{steps.map((step, index) => {
-    const isActive = index === activeStep;
+                    {steps.map((step, index) => {
+                        const isActive = index === activeStep;
 
-    return (
-        <button
-            key={step.id}
-            type="button"
-            onClick={() => {
-                setActiveStep(index);
-                setProgress(0);
-            }}
-            className="
+                        return (
+                            <button
+                                key={step.id}
+                                type="button"
+                                onClick={() => {
+                                    setActiveStep(index);
+                                    setProgress(0);
+                                }}
+                                className="
                 group
                 min-w-0
                 cursor-pointer
                 text-center
                 outline-none
             "
-        >
-            {/* Title */}
+                            >
+                                {/* Title */}
 
-            <div
-                className={`
+                                <div
+                                    className={`
+                                    font-iransans
                     mb-3
                     truncate
                     text-[10px]
@@ -190,19 +189,19 @@ const HowItWorks = () => {
                     sm:text-sm
                     md:text-base
                     ${
-                        isActive
-                            ? 'text-white'
-                            : 'text-white/35 group-hover:text-white/60'
-                    }
+                                        isActive
+                                            ? 'text-white'
+                                            : 'text-white/35 group-hover:text-white/60'
+                                    }
                 `}
-            >
-                {step.title}
-            </div>
+                                >
+                                    {step.title}
+                                </div>
 
-            {/* Progress line */}
+                                {/* Progress line */}
 
-            <div
-                className="
+                                <div
+                                    className="
                     relative
                     h-[2px]
                     w-full
@@ -210,26 +209,26 @@ const HowItWorks = () => {
                     rounded-full
                     bg-white/10
                 "
-            >
-                {isActive && (
-                    <motion.div
-                        className="
+                                >
+                                    {isActive && (
+                                        <motion.div
+                                            className="
                             absolute
                             inset-y-0
                             right-0
                             rounded-full
-                            bg-red-600
+                            bg-blue-600
                             shadow-[0_0_10px_rgba(99,102,241,0.45)]
                         "
-                        style={{
-                            width: `${progress}%`,
-                        }}
-                    />
-                )}
-            </div>
-        </button>
-    );
-})}
+                                            style={{
+                                                width: `${progress}%`,
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            </button>
+                        );
+                    })}
 
 
                 </div>
@@ -390,7 +389,7 @@ const HowItWorks = () => {
                                                 absolute
                                                 inset-1
                                                 rounded-full
-                                                bg-red-600/10
+                                                bg-blue-600/10
                                                 blur-xl
                                             "
                                         />
@@ -434,7 +433,6 @@ const HowItWorks = () => {
                                         <div className="max-w-xl">
 
 
-
                                             <h3
                                                 className="
                                                     text-xl
@@ -450,6 +448,7 @@ const HowItWorks = () => {
 
                                             <p
                                                 className="
+                                                font-iransans
                                                     mt-2
                                                     text-xs
                                                     leading-6
@@ -482,10 +481,10 @@ const HowItWorks = () => {
                                                         transition-all
                                                         duration-300
                                                         ${
-                                                            index === activeStep
-                                                                ? 'w-8 bg-white'
-                                                                : 'w-2 bg-white/25'
-                                                        }
+                                                        index === activeStep
+                                                            ? 'w-8 bg-white'
+                                                            : 'w-2 bg-white/25'
+                                                    }
                                                     `}
                                                 />
                                             ))}
@@ -495,36 +494,6 @@ const HowItWorks = () => {
                             </motion.div>
                         </AnimatePresence>
                     </div>
-                </motion.div>
-
-                {/* =================================================
-                    BOTTOM HINT
-                ================================================== */}
-
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                    }}
-                    transition={{
-                        delay: 0.5,
-                        duration: 0.6,
-                    }}
-                    viewport={{
-                        once: true,
-                    }}
-                    className="
-                        mt-6
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-                        text-white/20
-                    "
-                >
-                    <ArrowDown className="size-3" />
                 </motion.div>
 
             </div>

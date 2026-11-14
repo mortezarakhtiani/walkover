@@ -20,8 +20,8 @@ export function DiscountBadge({
       animate={{ opacity: 1, scale: 1, x: 0 }}
       transition={{ delay: 0.2 }}
       className="
-        absolute left-3 top-3 z-10
-        rounded-md bg-red-600
+        absolute left-3 top-2 z-10
+        rounded-2xl bg-red-600
         px-3 py-1 text-xs font-bold text-white
       "
     >

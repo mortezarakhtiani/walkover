@@ -78,8 +78,8 @@ const ProfileMenu = () => {
                         className="
                             flex size-11 shrink-0 items-center
                             justify-center rounded-full
-                            bg-red-50 text-red-600
-                            dark:bg-red-950/50 dark:text-red-300
+                            bg-blue-50 text-blue-600
+                            dark:bg-blue-950/50 dark:text-blue-300
                         "
                     >
                         <UserRound

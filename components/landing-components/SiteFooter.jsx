@@ -77,14 +77,14 @@ export default function SiteFooter() {
         {/*    className="group flex items-center gap-3 text-sm text-[#BFBCB7] transition-colors hover:text-[#EAE6DF]"*/}
         {/*  >*/}
         {/*    برگرد به ابتدای تاریکی*/}
-        {/*    <span className="flex h-11 w-11 items-center justify-center border border-white/15 transition-colors group-hover:border-[#dc2626]" aria-hidden>↑</span>*/}
+        {/*    <span className="flex h-11 w-11 items-center justify-center border border-white/15 transition-colors group-hover:border-[#2563eb]" aria-hidden>↑</span>*/}
         {/*  </button>*/}
         {/*</div>*/}
       </div>
 
       {/*<div aria-hidden className="pointer-events-none relative -mb-[0.22em] select-none text-center font-display text-[clamp(7rem,26vw,24rem)] font-bold leading-none text-[#EAE6DF]/[0.04]">*/}
       {/*  <motion.span className="inline-block will-change-transform" style={{ opacity: endOpacity, y: endY, scaleX: endSpacing }}>*/}
-      {/*    <span className="flicker inline-block">پایان<span className="text-[#dc2626]/40">؟</span></span>*/}
+      {/*    <span className="flicker inline-block">پایان<span className="text-[#2563eb]/40">؟</span></span>*/}
       {/*  </motion.span>*/}
       {/*</div>*/}
 

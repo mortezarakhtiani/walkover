@@ -29,7 +29,7 @@ export default function OrderPlacedPage() {
                     </ToolbarHeading>
                     <ToolbarActions>
 
-                        <Button asChild className="p-5 bg-red-600 hover:bg-red-700 text-primary-foreground">
+                        <Button asChild className="p-5 bg-blue-600 hover:bg-blue-700 text-primary-foreground">
                             <Link href="/landing-v2">
                             <Captions/>
                                 ادامه خرید

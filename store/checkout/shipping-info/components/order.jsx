@@ -23,10 +23,10 @@ export function Order() {
             className="flex items-center justify-between px-5"
         >
             <span className="text-sm font-normal text-secondary-foreground">
-                {item.label}
+
             </span>
 
-            <span className="text-sm font-medium text-mono">
+            <span className="text-sm font-medium text-mono font-iransans">
                 {formatToman(item.amount)} تومان
             </span>
         </div>
@@ -40,21 +40,21 @@ export function Order() {
 
             <CardContent className="space-y-2 px-0 py-5">
                 <div className="flex flex-col px-5">
-                    <span className="mb-1.5 text-sm font-medium text-mono">
+                    <span className="mb-1.5 text-sm font-medium text-mono font-iransans">
                         ارسال به آدرس
                     </span>
 
                     <div className="flex flex-col gap-1 text-xs font-normal text-secondary-foreground">
-                        <span>رضا</span>
-                        <span>آدرس گیرنده</span>
-                        <span>کد پستی</span>
-                        <span>ایران</span>
+                        <span className="font-iransans">رضا</span>
+                        <span className="font-iransans">آدرس گیرنده</span>
+                        <span className="font-iransans">کد پستی</span>
+                        <span className="font-iransans">ایران</span>
                     </div>
                 </div>
 
                 <div className="mb-4 mt-5 border-b border-border" />
 
-                <span className="mb-3.5 block px-5 text-sm font-medium text-mono">
+                <span className="mb-3.5 block px-5 text-sm font-medium text-mono font-iransans">
                     جزئیات پرداخت
                 </span>
 
@@ -62,13 +62,12 @@ export function Order() {
             </CardContent>
 
             <CardFooter className="flex items-center justify-between px-5">
-                <span className="text-sm font-normal text-secondary-foreground">
+                <span className="text-sm font-normal text-secondary-foreground font-iransans">
                     مبلغ قابل پرداخت
                 </span>
 
-                <span className="text-base font-semibold text-mono">
-                    {formatToman(492000)}
-                    <span className="ms-1">تومان</span>
+                <span className="text-base font-semibold text-mono font-iransans">
+                    {formatToman(492000)} تومان
                 </span>
             </CardFooter>
         </Card>

@@ -3,7 +3,7 @@ export const products = [
         id: 101,
         slug: 'black-merch-tshirt',
         brand: 'Creator Merch',
-        title: 'کلاه مشک بسیار جذاب از یک برند خیلی خوب',
+        title: 'کلاه مشکی بسیار جذاب از یک برند خیلی خوب',
         logo: '/images/cloth (4).png',
         hoverImage: '/images/cloth (5).png',
          images: [

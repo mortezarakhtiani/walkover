@@ -60,7 +60,7 @@ export function Card2({
             top-2
             z-10
             border-0
-            bg-red-600
+            bg-blue-600
             px-1.5
             py-0.5
             text-white

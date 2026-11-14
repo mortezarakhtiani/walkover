@@ -119,8 +119,8 @@ const HowItWorks = () => {
                 )}
                 onClick={() => handleStepClick(index)}
               >
-                <div className="size-12 bg-red-100/40 dark:bg-red-950/60 rounded-full flex items-center justify-center">
-                  <step.icon className="size-5 text-red-700" />
+                <div className="size-12 bg-blue-100/40 dark:bg-blue-950/60 rounded-full flex items-center justify-center">
+                  <step.icon className="size-5 text-blue-700" />
                 </div>
 
                 <h3 className={cn('p-5 pb-3 text-xl font-semibold mb-0 transition-colors duration-300', index === activeStep ? 'text-foreground' : 'text-muted-foreground')}>
@@ -139,7 +139,7 @@ const HowItWorks = () => {
                       >
                         {/* Progress Bar - moved to bottom */}
                         <motion.div
-                          className="h-0.5 bg-gradient-to-r from-red-600 to-red-400"
+                          className="h-0.5 bg-gradient-to-r from-blue-600 to-blue-400"
                           style={{ width: `${progress}%` }}
                           transition={{ duration: 0.05, ease: "linear" }}
                         />

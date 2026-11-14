@@ -24,7 +24,7 @@ export function UserDropdownMenu({
 }) {
     const itemClass = `
         cursor-pointer rounded-md p-0
-        focus:bg-red-50 hover:bg-red-50
+        focus:bg-blue-50 hover:bg-blue-50
         dark:focus:bg-accent/40 dark:hover:bg-accent/40
     `;
 
@@ -65,8 +65,8 @@ export function UserDropdownMenu({
                         <div className="
                             flex size-11 shrink-0 items-center
                             justify-center rounded-full
-                            bg-red-50 text-red-600
-                            dark:bg-red-950/50 dark:text-red-300
+                            bg-blue-50 text-blue-600
+                            dark:bg-blue-950/50 dark:text-blue-300
                         ">
                             <User className="size-5" strokeWidth={1.8} />
                         </div>

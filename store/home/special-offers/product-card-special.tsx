@@ -196,7 +196,7 @@ export function ProductRevealCard({
                 borderColor: borderColor || undefined,
             }}
             className={cn(
-                "relative rounded-md border border-border bg-black text-white overflow-hidden",
+                "relative rounded-md border border-foreground/10 bg-black text-white overflow-hidden",
                 "shadow-lg shadow-black/5 group",
                 className
             )}
@@ -245,7 +245,7 @@ export function ProductRevealCard({
                     className={cn(
                         "absolute top-4 right-4 z-20 p-2 rounded-full backdrop-blur-sm",
                         isFavorite
-                            ? "bg-red-600 text-white"
+                            ? "bg-blue-600 text-white"
                             : "bg-white/20 text-white hover:bg-white/30"
                     )}
                 >
@@ -405,8 +405,8 @@ export function ProductRevealCard({
                                 className={cn(
                                     buttonVariants({ variant: "default" }),
                                     "w-full h-12 font-medium",
-                                    "bg-red-600 text-white",
-                                    "hover:bg-red-700 hover:text-white"
+                                    "bg-blue-600 text-white",
+                                    "hover:bg-blue-700 hover:text-white"
                                 )}
                             >
                                 <ShoppingCart className="w-4 h-4 mr-2" />

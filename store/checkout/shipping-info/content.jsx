@@ -16,7 +16,7 @@ export function ShippingInfoContent() {
                 <div className="flex justify-end items-center flex-wrap gap-3">
 
 
-                    <Button asChild className="px-4 bg-red-600 hover:bg-red-700 text-primary-foreground">
+                    <Button asChild className="px-4 bg-blue-600 hover:bg-blue-700 text-primary-foreground">
                         <Link href="/store/checkout/payment-method">
                             روش پرداخت
                             <MoveRight className="text-base"/>

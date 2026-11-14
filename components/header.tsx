@@ -110,13 +110,13 @@ const Header = () => {
                 className={cn(
                   'cursor-pointer transition-colors relative group',
                   isActiveItem(item)
-                    ? 'text-red-600 dark:text-red-400'
-                    : 'text-accent-foreground hover:text-red-600 dark:hover:text-red-400'
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-accent-foreground hover:text-blue-600 dark:hover:text-blue-400'
                 )}
               >
                 {item}
                 <span 
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-red-600 dark:bg-red-400 transition-all ${
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all ${
                     isActiveItem(item) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
@@ -145,8 +145,8 @@ const Header = () => {
                       onClick={() => handleNavClick(item)}
                       variant="ghost"
                       className={cn(
-                        'w-full justify-start hover:text-red-600 dark:hover:text-red-400',
-                        isActiveItem(item) && 'text-red-600 dark:text-red-400 font-medium'
+                        'w-full justify-start hover:text-blue-600 dark:hover:text-blue-400',
+                        isActiveItem(item) && 'text-blue-600 dark:text-blue-400 font-medium'
                       )}
                     >
                       {item}

@@ -484,17 +484,17 @@ export function StoreClientWishlistSheet({
 
             rounded-md
             border
-            border-red-600/20
+            border-blue-600/20
 
-            bg-red-600
+            bg-blue-600
             px-4
 
             text-base
             font-semibold
             text-white
 
-            hover:bg-red-700
-            focus-visible:bg-red-600
+            hover:bg-blue-700
+            focus-visible:bg-blue-600
         "
     >
         <ShoppingCart className="size-5" />

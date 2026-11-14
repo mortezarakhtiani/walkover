@@ -41,7 +41,7 @@ export function Card1({ id, showAddButton = true }) {
                         هودی ورزشی مدل SKY ELITE FF
                     </h3>
 
-                    <p className="line-clamp-2 text-xs leading-6 text-white/65 sm:text-sm">
+                    <p className="line-clamp-2 text-xs leading-6 text-white/65 sm:text-sm font-iransans">
                         هودی ورزشی SKY ELITE FF با ظاهر اسپرت و رنگ‌بندی جذاب،
                         مناسب استایل‌های کژوال و ورزشی.
                     </p>
@@ -74,7 +74,7 @@ export function Card1({ id, showAddButton = true }) {
                                     event.stopPropagation();
                                     showCartSheet();
                                 }}
-                                className="h-10 shrink-0 gap-2 rounded-md border border-white/10 !bg-white px-3 text-sm text-black hover:bg-white/90"
+                                className="h-10 shrink-0 gap-2 rounded-md border border-foreground/10 !bg-white px-3 text-sm text-black hover:bg-white/90"
                             >
                                 <ShoppingCart className="size-4" />
                                 افزودن به سبد خرید

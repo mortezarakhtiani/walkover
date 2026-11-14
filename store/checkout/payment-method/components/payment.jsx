@@ -40,7 +40,7 @@ export function Payment() {
     {
       brandLogo: 'visa.svg',
       title: 'ویزای جیرون',
-      subTitle: 'Jeroen van Dijk',
+      subTitle: 'ویزای ما',
       description: (
         <span className="text-xs font-normal text-mono">
           پایان شماره کارت ۳۶۰۴ - انقضا: 12/2026
@@ -58,7 +58,7 @@ export function Payment() {
       title: 'آی‌دیل سوفی',
       subTitle: 'Sophie de Vries',
       description: (
-        <span className="text-xs font-normal text-mono">
+        <span className="text-xs font-normal text-mono font">
           پرداخت از طریق iDeal با بانک ABN AMRO
         </span>
       ),
@@ -175,10 +175,12 @@ export function Payment() {
           />
 
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs font-semibold text-mono">
+            <span className="text-xs font-semibold text-mono font-iransans">
               {item.subTitle}
             </span>
+
             {item.description}
+
           </div>
         </div>
 

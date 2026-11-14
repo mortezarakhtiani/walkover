@@ -14,7 +14,7 @@ export default function ScreeningSlate({ as: Tag = "p", id }) {
       <Tag id={id} className="mt-6 font-display text-[clamp(3rem,9vw,8.5rem)] font-bold leading-[0.95] text-[#EAE6DF]">
         <span className="block">چراغ‌ها را</span>
         <span className="block">
-          روشن <span className="text-[#dc2626]">نکن.</span>
+          روشن <span className="text-[#2563eb]">نکن.</span>
         </span>
       </Tag>
     </div>

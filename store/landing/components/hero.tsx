@@ -21,7 +21,7 @@ const Hero = () => {
         >
             {/* Background */}
             <div className="pointer-events-none absolute inset-0">
-                <div className="absolute right-[-10%] top-[5%] size-[500px] rounded-full bg-red-600/10 blur-3xl" />
+                <div className="absolute right-[-10%] top-[5%] size-[500px] rounded-full bg-blue-600/10 blur-3xl" />
                 <div className="absolute bottom-[-15%] left-[-10%] size-[500px] rounded-full bg-purple-500/10 blur-3xl" />
             </div>
 
@@ -42,7 +42,7 @@ const Hero = () => {
                         >
                             <Badge
                                 variant="outline"
-                                className="gap-2 rounded-full border-red-200 bg-red-50 px-4 py-2 text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                                className="gap-2 rounded-full border-blue-200 bg-blue-50 px-4 py-2 text-blue-700 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300"
                             >
                                 <Sparkles className="size-3.5" />
                                 کالکشن جدید منتشر شد
@@ -57,7 +57,7 @@ const Hero = () => {
                         >
                             چیزی که دوستش داری،
                             <br />
-                            <span className="bg-gradient-to-l from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-l from-blue-700 via-blue-600 to-blue-500 bg-clip-text text-transparent">
                                 بپوشش.
                             </span>
                         </motion.h1>
@@ -164,7 +164,7 @@ const Hero = () => {
         {/* Floating card */}
         <div className="absolute -bottom-5 -left-4 hidden rounded-md border border-border bg-background p-4 shadow-xl sm:block">
             <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-md bg-red-100 text-red-600 dark:bg-red-950">
+                <div className="flex size-10 items-center justify-center rounded-md bg-blue-100 text-blue-600 dark:bg-blue-950">
                     <ShoppingBag className="size-5" />
                 </div>
 
@@ -181,7 +181,7 @@ const Hero = () => {
         </div>
 
         {/* Decorative circle */}
-        <div className="absolute -right-5 -top-5 -z-10 size-24 rounded-full border border-red-600/20 bg-red-600/10 blur-sm" />
+        <div className="absolute -right-5 -top-5 -z-10 size-24 rounded-full border border-blue-600/20 bg-blue-600/10 blur-sm" />
 
     </div>
 </motion.div>

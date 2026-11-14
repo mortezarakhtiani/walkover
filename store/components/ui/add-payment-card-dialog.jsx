@@ -136,7 +136,7 @@ export function AddPaymentCardDialog({ onAdd }) {
         <div className="px-6 py-5">
           {/* پیش‌نمایش کارت */}
           <div
-            className="relative mb-6 overflow-hidden rounded-md bg-gradient-to-br from-red-700 via-red-600 to-violet-800 p-5 text-white shadow-lg"
+            className="relative mb-6 overflow-hidden rounded-md bg-gradient-to-br from-blue-700 via-blue-600 to-violet-800 p-5 text-white shadow-lg"
             dir="rtl"
           >
             <div className="flex items-center justify-between">

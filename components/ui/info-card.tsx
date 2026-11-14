@@ -43,7 +43,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
                                                       patternColor1 = 'rgba(230,230,230,0.15)',
                                                       patternColor2 = 'rgba(240,240,240,0.15)',
                                                       textColor = '#f5f5f5',
-                                                      hoverTextColor = '#242424',
+                                                      hoverTextColor = '#f5f5f5',
                                                       fontFamily = "'Roboto Mono', monospace",
                                                       rtlFontFamily = "'Montserrat', sans-serif",
                                                       effectBgColor = '#DAFF3E',
@@ -100,7 +100,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
             }}
         >
             <div
-                className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-[0.65em]"
+                className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-md"
                 style={{
                     backgroundColor: 'transparent',
                 }}

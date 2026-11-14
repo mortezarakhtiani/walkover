@@ -78,7 +78,7 @@ const Contact = () => {
     <section
       id="contact"
       dir="rtl"
-      className="border-b border-border/50 bg-background/50 py-24 dark:bg-background/50"
+      className="py-24 bg-black"
     >
       <div className="container mx-auto px-6">
 
@@ -93,11 +93,11 @@ const Contact = () => {
             className="space-y-8 text-right"
           >
             <div>
-              <h3 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              <h3 className="mb-6 text-2xl font-semibold text-foreground dark:text-foreground">
                 بیا با هم حرف بزنیم 👋
               </h3>
 
-              <p className="mb-8 leading-8 text-muted-foreground">
+              <p className="mb-8 leading-8 text-muted-foreground font-iransans">
                 اگه درباره ویدیوها، داستان‌ها، پرونده‌های مرموز،
                 فروشگاه یا هر چیز دیگه‌ای سوالی داری، راحت باش و برامون بنویس.
                 حتی اگه فقط یه پیشنهاد کوچیک داری، خوشحال می‌شیم بشنویمش.
@@ -106,10 +106,10 @@ const Contact = () => {
 
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  <motion.div
+                      key={index}
+                      initial={{opacity: 0, y: 20}}
+                      whileInView={{opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.6,
                     delay: index * 0.1,

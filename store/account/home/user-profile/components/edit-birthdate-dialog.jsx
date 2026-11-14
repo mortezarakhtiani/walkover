@@ -270,7 +270,7 @@ const EditBirthdateDialog = ({
                         type="button"
                         onClick={handleSave}
                         disabled={isSaving}
-                        className="text-primary-foreground hover:bg-red-700 bg-red-600 flex-1 p-5"
+                        className="text-primary-foreground hover:bg-blue-700 bg-blue-600 flex-1 p-5"
                     >
                         {isSaving ? 'در حال ذخیره...' : 'ذخیره'}
                     </Button>

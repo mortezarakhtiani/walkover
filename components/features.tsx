@@ -33,12 +33,12 @@ const Features = () => {
       stats: '99.9%',
       metric: 'Uptime',
       colors: {
-        bg: 'bg-red-100/40 dark:bg-red-950/40',
-        icon: 'text-red-600',
-        hover: 'hover:border-red-600',
-        shadow: 'group-hover:shadow-red-500/30',
-        gradient: 'from-red-600 via-red-600 to-red-700',
-        text: 'group-hover:text-red-700'
+        bg: 'bg-sky-100/40 dark:bg-sky-950/40',
+        icon: 'text-sky-600',
+        hover: 'hover:border-sky-600',
+        shadow: 'group-hover:shadow-sky-500/30',
+        gradient: 'from-sky-600 via-sky-600 to-sky-700',
+        text: 'group-hover:text-sky-700'
       }
     },
     {

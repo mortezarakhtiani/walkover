@@ -1,6 +1,6 @@
 /*
  * Cinematic homepage styles (scoped to `.cine`).
- * Palette: warm-tinted blacks, ash/bone grays, one dried-blood red accent.
+ * Palette: warm-tinted blacks, ash/bone grays, one cold electric-blue accent.
  * Everything here is scoped so the store, checkout and account pages keep
  * their existing look.
  */
@@ -11,8 +11,8 @@
     --cine-smoke: oklch(0.24 0.01 40);
     --cine-ash: oklch(0.72 0.012 60);
     --cine-bone: oklch(0.94 0.012 80);
-    --cine-blood: oklch(0.5 0.17 27);
-    --cine-blood-deep: oklch(0.33 0.12 25);
+    --cine-signal: oklch(0.5 0.17 262);
+    --cine-signal-deep: oklch(0.33 0.12 262);
 
     background: var(--cine-ink);
     color: var(--cine-bone);
@@ -22,7 +22,7 @@
 }
 
 .cine ::selection {
-    background: var(--cine-blood);
+    background: var(--cine-signal);
     color: var(--cine-bone);
 }
 
@@ -100,12 +100,12 @@
 
 /* Store section: tint the existing product card CTA to the site accent without
    touching the shared component or its behaviour. */
-.cine-store [data-slot="product-reveal-card"] .bg-red-600 {
-    background-color: var(--cine-blood);
+.cine-store [data-slot="product-reveal-card"] .bg-blue-600 {
+    background-color: var(--cine-signal);
 }
 
-.cine-store [data-slot="product-reveal-card"] .bg-red-600:hover {
-    background-color: var(--cine-blood-deep);
+.cine-store [data-slot="product-reveal-card"] .bg-blue-600:hover {
+    background-color: var(--cine-signal-deep);
 }
 
 .cine-store [data-slot="product-reveal-card"] {

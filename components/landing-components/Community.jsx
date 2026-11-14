@@ -35,7 +35,7 @@ export default function Community() {
         className="absolute inset-0 h-full w-full object-cover [filter:saturate(0.4)] will-change-transform"
         style={{ scale: bgScale, opacity: bgOpacity }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(92,10,18,0.35),transparent_60%)]" aria-hidden />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(12,43,103,0.35),transparent_60%)]" aria-hidden />
       <div className="absolute inset-0 bg-gradient-to-b from-[#070707] via-transparent to-[#070707]" aria-hidden />
 
       <div className="relative mx-auto flex max-w-[1100px] flex-col items-center px-5 text-center sm:px-10">
@@ -48,7 +48,7 @@ export default function Community() {
           className="mt-10 font-display text-[clamp(3.2rem,9vw,8.5rem)] font-bold leading-[0.95]"
           lineClassName="text-center"
         />
-        <motion.span aria-hidden className="mt-10 block h-px w-48 origin-center bg-[#dc2626]" style={{ scaleX: line }} />
+        <motion.span aria-hidden className="mt-10 block h-px w-48 origin-center bg-[#2563eb]" style={{ scaleX: line }} />
         <Reveal delay={0.1} className="mt-10 max-w-xl">
           <p className="text-[17px] leading-8 text-[#EAE6DF]/75">
             سابسکرایب کن تا روایت تازه که آمد، تو اولین نفر توی تاریکی باشی. خاطره‌ی ترسناکی داری؟ برای والکور بفرستش.
@@ -59,7 +59,7 @@ export default function Community() {
             href={links.subscribe}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#dc2626] px-8 py-4 text-[16px] font-medium text-[#EAE6DF] transition-colors duration-500 hover:bg-[#EAE6DF] hover:text-[#070707]"
+            className="inline-flex items-center gap-3 bg-[#2563eb] px-8 py-4 text-[16px] font-medium text-[#EAE6DF] transition-colors duration-500 hover:bg-[#EAE6DF] hover:text-[#070707]"
           >
             <span className="rec-dot inline-block h-2 w-2 rounded-full bg-current" aria-hidden />
             سابسکرایب در یوتیوب

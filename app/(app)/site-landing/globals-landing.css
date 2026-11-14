@@ -7,8 +7,8 @@
   --obsidian: #070707;
   --charcoal: #111111;
   --elevated: #181818;
-  --blood: #dc2626;
-  --crimson: #991b1b;
+  --signal: #2563eb;
+  --signal-deep: #1e40af;
   --bone: #eae6df;
   --fog: #bfbcb7;
   --display: "Markazi Text", "Vazirmatn", serif;
@@ -29,14 +29,19 @@ html { scroll-behavior: smooth; }
   text-rendering: optimizeLegibility;
 }
 
-.landing-theme ::selection { background: var(--blood); color: var(--bone); }
+.landing-theme ::selection { background: var(--signal); color: var(--bone); }
+
+/* Walkover website typeface (Noto Kufi Arabic via next/font). Opt-in: the `/` landing page and the
+   website feature pages attach `landingFont.variable` + `.landing-font`; `/site-landing` and the
+   storefront are unaffected. IRANSansX/Vazirmatn remain as fallbacks. */
+.landing-theme.landing-font { font-family: var(--font-landing), var(--body); }
 
 .font-display { font-family: var(--display); }
 .font-mono-l { font-family: var(--mono); letter-spacing: 0.14em; direction: ltr; unicode-bidi: isolate; }
 
-/* Focus: visible, crimson, never removed */
+/* Focus: visible, blue, never removed */
 .landing-theme a:focus-visible, .landing-theme button:focus-visible, .landing-theme [tabindex]:focus-visible {
-  outline: 2px solid var(--blood);
+  outline: 2px solid var(--signal);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -160,9 +165,9 @@ html { scroll-behavior: smooth; }
   --store-fg: #eae6df;
   --store-mono: #f4f1ec;
   --store-muted: #bfbcb7;
-  --store-primary: #dc2626;
-  --store-primary-hover: #b91c1c;
-  --store-primary-text: #f87171; /* small red text on dark: readable */
+  --store-primary: #2563eb;
+  --store-primary-hover: #1d4ed8;
+  --store-primary-text: #60a5fa; /* small blue text on dark: readable */
   --store-destructive: #dc2626;
   --store-radius: 0.5rem;
 }

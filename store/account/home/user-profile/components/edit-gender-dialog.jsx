@@ -100,7 +100,7 @@ const EditGenderDialog = ({
                     <Button
                         type="button"
                         onClick={handleSave}
-                        className="flex-1 bg-red-600 px-4 text-primary-foreground hover:bg-red-700"
+                        className="flex-1 bg-blue-600 px-4 text-primary-foreground hover:bg-blue-700"
                     >
                         ذخیره
                     </Button>

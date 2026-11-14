@@ -592,8 +592,8 @@ export default function HowItWorks() {
                                         className={`h-2.5 w-2.5 rounded-full border border-black ${
                                             index ===
                                             activeDot
-                                                ? 'bg-red-600'
-                                                : 'bg-red-600/35'
+                                                ? 'bg-blue-600'
+                                                : 'bg-blue-600/35'
                                         }`}
                                     />
                                 )
@@ -618,8 +618,8 @@ export default function HowItWorks() {
                                 className={`h-2.5 w-2.5 rounded-full border border-black ${
                                     index ===
                                     activeDot
-                                        ? 'bg-red-600'
-                                        : 'bg-red-600/35'
+                                        ? 'bg-blue-600'
+                                        : 'bg-blue-600/35'
                                 }`}
                             />
                         )

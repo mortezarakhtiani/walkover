@@ -193,7 +193,7 @@ export default function Hero() {
         <motion.div {...fade(1.6, 0)} className="pointer-events-none absolute end-5 top-24 z-30 flex items-center gap-3 text-sm text-[#EAE6DF]/70 sm:end-10" aria-hidden>
           <span className="font-mono-l text-sm"><TapeCounter /></span>
           <span className="flex items-center gap-2 font-mono-l text-sm">
-            REC <span className="rec-dot inline-block h-2 w-2 rounded-full bg-red-600" />
+            REC <span className="rec-dot inline-block h-2 w-2 rounded-full bg-blue-600" />
           </span>
         </motion.div>
 
@@ -201,7 +201,7 @@ export default function Hero() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-end px-5 pb-28 sm:px-10 sm:pb-24">
           <motion.div className="origin-[100%_100%] will-change-transform" style={{ y: headY, scale: headScale, opacity: headOpacity }}>
             {/*<motion.p {...fade(1.3, 8)} className="mb-6 flex items-center gap-3 text-[15px] text-[#BFBCB7]">*/}
-            {/*  <span className="h-px w-8 bg-[#dc2626]" aria-hidden />*/}
+            {/*  <span className="h-px w-8 bg-[#2563eb]" aria-hidden />*/}
             {/*  {creator.handle} · {creator.displayName}*/}
             {/*</motion.p>*/}
             <RevealText
@@ -212,7 +212,7 @@ export default function Hero() {
               lines={[
                 creator.tagline[0],
                 <>
-                  با چشمانی باز و <span className="text-[#dc2626]">خیره</span>
+                  با چشمانی باز و <span className="text-[#2563eb]">خیره</span>
                 </>,
               ]}
               className="font-display text-[clamp(2.5rem,10.5vw,10.5rem)] font-bold leading-[0.98] text-[#EAE6DF]"
@@ -227,7 +227,7 @@ export default function Hero() {
                 href={links.videos}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md group inline-flex items-center gap-3 bg-foreground px-6 py-4 text-[16px] font-medium text-background transition-colors hover:bg-red-700 hover:text-foreground"
+                className="rounded-md group inline-flex items-center gap-3 bg-foreground px-6 py-4 text-[16px] font-medium text-background transition-colors hover:bg-blue-700 hover:text-foreground"
               >
                 <svg width="12" height="14" viewBox="0 0 12 14" aria-hidden className="fill-current"><path d="M0 0l12 7-12 7z" /></svg>
                 تماشای آخرین داستان
@@ -246,9 +246,9 @@ export default function Hero() {
         >
           <p className="font-display text-[clamp(2.6rem,8.5vw,8rem)] font-bold leading-[1.05] text-[#EAE6DF]">{creator.tagline[2]}</p>
           <motion.p className="mt-6 flex items-center gap-3 text-[16px] text-[#BFBCB7]" style={{ opacity: welcomeOpacity }}>
-            <span className="h-px w-8 bg-red-600" aria-hidden />
+            <span className="h-px w-8 bg-blue-600" aria-hidden />
             {creator.welcome}
-            <span className="h-px w-8 bg-red-600" aria-hidden />
+            <span className="h-px w-8 bg-blue-600" aria-hidden />
           </motion.p>
         </motion.div>
 
@@ -275,7 +275,7 @@ export default function Hero() {
         <motion.div style={{ opacity: ctaOpacity, visibility: ctaVis }} className="absolute inset-x-0 bottom-0 z-10">
           <motion.div {...fade(3.1, 0)} className="mx-auto flex max-w-[1440px] items-end justify-between px-5 pb-8 sm:px-10 md:pb-14">
             <a href={links.subscribe} target="_blank" rel="noopener noreferrer" className="text-sm text-[#BFBCB7] transition-colors hover:text-[#EAE6DF]">
-              {/*{creator.handle} <span className="text-[#dc2626]">·</span> سابسکرایب*/}
+              {/*{creator.handle} <span className="text-[#2563eb]">·</span> سابسکرایب*/}
             </a>
             {/*<a href="#screening" className="flex flex-col items-center gap-3 text-sm text-[#BFBCB7]" aria-label="رفتن به بخش بعد">*/}
             {/*  <span className="relative block h-12 w-px overflow-hidden bg-white/10" aria-hidden>*/}

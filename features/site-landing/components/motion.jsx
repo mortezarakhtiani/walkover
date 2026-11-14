@@ -71,14 +71,14 @@ export function CinematicImage({ src, alt, className = "", imgClassName = "", fr
   );
 }
 
-/** Chapter slate: reel number + Latin label + a thin red mark that draws in. */
+/** Chapter slate: reel number + Latin label + a thin blue mark that draws in. */
 export function ReelLabel({ reel, label, fa: faLabel }) {
   const reduce = useReducedMotion();
   return (
     <div className="flex items-center gap-4 text-sm text-[#BFBCB7]">
       <motion.span
         aria-hidden
-        className="block h-px w-10 origin-[100%_50%] bg-[#dc2626]"
+        className="block h-px w-10 origin-[100%_50%] bg-[#2563eb]"
         initial={reduce ? false : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}

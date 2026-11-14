@@ -24,11 +24,11 @@ export function Order() {
             key={index}
             className="flex items-center justify-between"
         >
-            <span className="text-sm font-normal text-secondary-foreground">
+            <span className="text-sm font-normal text-secondary-foreground font-iransans">
                 {item.label}
             </span>
 
-            <span className="text-sm font-medium text-mono">
+            <span className="text-sm font-medium text-mono font-iransans">
                 {formatToman(item.amount)} تومان
             </span>
         </div>
@@ -41,7 +41,7 @@ export function Order() {
             </CardHeader>
 
             <CardContent className="space-y-2 px-5 py-4">
-                <h4 className="mb-3.5 text-sm font-medium text-mono">
+                <h4 className="mb-3.5 text-sm font-medium text-mono font-iransans">
                     جزئیات قیمت
                 </h4>
 
@@ -49,11 +49,11 @@ export function Order() {
             </CardContent>
 
             <CardFooter className="flex items-center justify-between px-5">
-                <span className="text-sm font-normal text-secondary-foreground">
+                <span className="text-sm font-normal text-secondary-foreground font-iransans">
                     جمع کل
                 </span>
 
-                <span className="text-base font-semibold text-mono">
+                <span className="text-base font-semibold text-mono font-iransans">
                     {formatToman(total)} تومان
                 </span>
             </CardFooter>

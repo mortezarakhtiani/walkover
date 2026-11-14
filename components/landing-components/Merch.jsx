@@ -56,7 +56,7 @@ function ShowcaseScene({ product, onOpen, onStore }) {
           className="pointer-events-none absolute inset-0 will-change-transform"
           style={{ opacity: spotOpacity, scale: spotScale, x: pieceX, y: pieceY }}
         >
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(234,230,223,0.13)_0%,rgba(163,13,24,0.10)_22%,transparent_46%)]" />
+           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(234,230,223,0.13)_0%,rgba(23,77,184,0.10)_22%,transparent_46%)]" />
         </motion.div>
 
         {/* the piece: silhouette first, then lit */}
@@ -112,7 +112,7 @@ function ShowcaseScene({ product, onOpen, onStore }) {
                 <button
                     type="button"
                     onClick={onOpen}
-                    className="inline-flex h-12 cursor-pointer items-center rounded-md bg-red-600 px-6 text-[15px] font-semibold text-white transition-colors hover:bg-red-700"
+                    className="inline-flex h-12 cursor-pointer items-center rounded-md bg-blue-600 px-6 text-[15px] font-semibold text-white transition-colors hover:bg-blue-700"
                 >
                   جزئیات محصول
                 </button>
@@ -183,7 +183,7 @@ const closeStore = useCallback(() => setStoreOpen(false), []);
           <button
             type="button"
             onClick={() => setStoreOpen(true)}
-            className="rounded-md bg-[#EAE6DF] px-10 py-4 text-[16px] font-medium text-[#070707] transition-colors hover:bg-red-700 hover:text-[#EAE6DF]"
+            className="rounded-md bg-[#EAE6DF] px-10 py-4 text-[16px] font-medium text-[#070707] transition-colors hover:bg-blue-700 hover:text-[#EAE6DF]"
           >
             ورود به فروشگاه مرچ
           </button>
@@ -202,7 +202,7 @@ const closeStore = useCallback(() => setStoreOpen(false), []);
       {/*      فروشگاه آنلاین هنوز راه نیفتاده و هیچ سفارشی ثبت نمی‌شود. برای خبرهای تازه، کانال تلگرام والکور را دنبال کن.*/}
       {/*    </p>*/}
       {/*    <div className="mt-8 flex flex-wrap gap-4">*/}
-      {/*      <a href={links.telegram} target="_blank" rel="noopener noreferrer" className="bg-[#dc2626] px-6 py-3.5 text-[16px]">کانال تلگرام والکور</a>*/}
+      {/*      <a href={links.telegram} target="_blank" rel="noopener noreferrer" className="bg-[#2563eb] px-6 py-3.5 text-[16px]">کانال تلگرام والکور</a>*/}
       {/*      <button type="button" onClick={closeStore} className="border border-white/15 px-6 py-3.5 text-[16px]">برگشت به صفحه</button>*/}
       {/*    </div>*/}
       {/*  </div>*/}

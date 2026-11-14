@@ -2,7 +2,7 @@
    Replace with real product photos by giving a product an `photo` field in data/site.js. */
 
 const BONE = "#EAE6DF";
-const BLOOD = "#dc2626";
+const SIGNAL = "#2563eb";
 
 function Defs({ uid }) {
   return (
@@ -53,7 +53,7 @@ export default function ProductArt({ product, className = "", idPrefix = "" }) {
           <path d="M148 344 L252 344 L268 414 L132 414 Z" {...seam} />
           <path d="M112 440 L112 424 L288 424 L288 440" {...seam} />
           <rect x="226" y="176" width="30" height="48" fill="none" stroke={BONE} strokeWidth="1.8" />
-          <line x1="251" y1="178" x2="251" y2="222" stroke={BLOOD} strokeWidth="3" />
+          <line x1="251" y1="178" x2="251" y2="222" stroke={SIGNAL} strokeWidth="3" />
         </g>
       )}
 
@@ -63,8 +63,8 @@ export default function ProductArt({ product, className = "", idPrefix = "" }) {
           <path d="M288 196 C350 196 350 318 288 318" fill="none" stroke="#242222" strokeWidth="1.2" />
           <path d="M112 160 L112 384 Q112 410 200 410 Q288 410 288 384 L288 160 Z" fill={cloth} stroke="#262424" strokeWidth="1.5" />
           <ellipse cx="200" cy="160" rx="88" ry="20" fill="#1b1a1a" />
-          <ellipse cx="200" cy="162" rx="78" ry="15" fill={BLOOD} opacity="0.85" />
-          <ellipse cx="200" cy="166" rx="70" ry="10" fill="#3a060b" />
+          <ellipse cx="200" cy="162" rx="78" ry="15" fill={SIGNAL} opacity="0.85" />
+          <ellipse cx="200" cy="166" rx="70" ry="10" fill="#061a41" />
           <path d="M158 278 Q200 244 242 278 Q200 312 158 278 Z" fill="none" stroke={BONE} strokeWidth="2" />
           <circle cx="200" cy="278" r="10" fill={BONE} />
           <circle cx="200" cy="278" r="3.5" fill="#0b0b0b" />
@@ -81,7 +81,7 @@ export default function ProductArt({ product, className = "", idPrefix = "" }) {
           <path d="M206 146 Q200 210 196 284 M206 146 Q256 200 262 284 M206 146 Q150 200 146 284" {...seam} />
           <circle cx="206" cy="148" r="6" fill="#1b1a1a" stroke="#2c2a2a" />
           <path d="M78 290 Q206 254 334 286 L350 314 Q214 290 66 322 Z" fill="#141313" stroke="#262424" strokeWidth="1.5" />
-          <g stroke={BLOOD} strokeWidth="3.2" fill="none"><circle cx="228" cy="228" r="9" /><path d="M214.95 214.95L221.52 221.52M241.05 214.95L234.48 221.52M214.95 241.05L221.52 234.48M241.05 241.05L234.48 234.48" /></g>
+          <g stroke={SIGNAL} strokeWidth="3.2" fill="none"><circle cx="228" cy="228" r="9" /><path d="M214.95 214.95L221.52 221.52M241.05 214.95L234.48 221.52M214.95 241.05L221.52 234.48M241.05 241.05L234.48 234.48" /></g>
         </g>
       )}
 
@@ -103,10 +103,10 @@ export default function ProductArt({ product, className = "", idPrefix = "" }) {
           <g transform="rotate(8 280 150)">
             <rect x="214" y="100" width="136" height="96" rx="12" fill="#0d0d0d" stroke={BONE} strokeWidth="5" />
             <text x="270" y="160" fontFamily="IBM Plex Mono, monospace" fontSize="30" fill={BONE} textAnchor="middle">REC</text>
-            <circle cx="322" cy="150" r="8" fill={BLOOD} />
+            <circle cx="322" cy="150" r="8" fill={SIGNAL} />
           </g>
           <g transform="rotate(-10 150 340)">
-            <rect x="92" y="282" width="118" height="118" rx="14" fill={BLOOD} />
+            <rect x="92" y="282" width="118" height="118" rx="14" fill={SIGNAL} />
             <g stroke={BONE} strokeWidth="5" fill="none"><circle cx="151" cy="341" r="16" /><path d="M127.8 317.8L139.48 329.48M174.2 317.8L162.52 329.48M127.8 364.2L139.48 352.52M174.2 364.2L162.52 352.52" /></g>
           </g>
           <g transform="rotate(5 290 330)">

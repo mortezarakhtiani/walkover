@@ -40,7 +40,6 @@ export function Info() {
             address: 'خیابان کیزرزگراخت، پلاک ۱۷۲',
             apartment: '',
             city: 'آمستردام',
-            country: 'هلند',
             postalCode: '1016 DW',
             badge: true,
         },
@@ -55,7 +54,6 @@ export function Info() {
             address: 'خیابان لان فان میر‌دروورت، پلاک ۸۸',
             apartment: '',
             city: 'لاهه',
-            country: 'هلند',
             postalCode: '2517 AN',
             badge: false,
         },
@@ -70,7 +68,6 @@ export function Info() {
             address: 'خیابان کیزرزگراخت، پلاک ۱۷۲',
             apartment: '',
             city: 'آمستردام',
-            country: 'هلند',
             postalCode: '1016 DW',
             badge: false,
         },
@@ -85,7 +82,6 @@ export function Info() {
             address: 'خیابان ووندل، پلاک ۴۵',
             apartment: 'آپارتمان ۲',
             city: 'آمستردام',
-            country: 'هلند',
             postalCode: '1054 GJ',
             badge: false,
         },
@@ -105,7 +101,6 @@ export function Info() {
             address: '',
             apartment: '',
             city: '',
-            country: '',
             postalCode: '',
         },
         mode: 'onChange',
@@ -124,7 +119,6 @@ export function Info() {
                 address: item?.address || '',
                 apartment: item?.apartment || '',
                 city: item?.city || '',
-                country: item?.country || '',
                 postalCode: item?.postalCode || '',
             });
         }
@@ -188,7 +182,7 @@ export function Info() {
     const renderItem = (item, index) => (
         <Card key={index}>
             <CardHeader className="px-5">
-                <CardTitle>{item.title}</CardTitle>
+                <CardTitle className="font-iransans">{item.title}</CardTitle>
 
                 {item.default && (
                     <Badge variant="success" appearance="light">
@@ -199,23 +193,22 @@ export function Info() {
 
             <CardContent className="space-y-4 px-5">
                 <div className="flex flex-col gap-1.5">
-                    <span className="mb-1.5 text-sm font-semibold text-mono">
+                    <span className="mb-1.5 text-sm font-semibold text-mono font-iransans">
                         {item.name} {item.lastName}
                     </span>
 
                     <div className="flex flex-col gap-2 text-sm font-normal text-mono">
-                        <span>
+                        <span className="font-iransans">
                             {toPersianDigits(item.postalCode)}، {item.address}
                         </span>
 
                         {item.apartment && (
-                            <span>{item.apartment}</span>
+                            <span className="font-iransans">{item.apartment}</span>
                         )}
 
-                        <span>{item.city}</span>
-                        <span>{item.country}</span>
+                        <span className="font-iransans">{item.city}</span>
 
-                        <span>
+                        <span className="font-iransans">
                             شماره تماس: {toPersianDigits(item.phone)}
                         </span>
                     </div>

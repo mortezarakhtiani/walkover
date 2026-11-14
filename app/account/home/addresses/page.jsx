@@ -99,7 +99,7 @@ const AddressesPage = () => {
                         <Button
                             variant="primary"
                             onClick={handleAddAddress}
-                            className="mt-6 h-10 rounded-md bg-red-600 px-5 text-white shadow-sm shadow-red-500/20 transition-all hover:bg-red-700 hover:shadow-md hover:shadow-red-500/20 active:scale-[0.98]"
+                            className="mt-6 h-10 rounded-md bg-blue-600 px-5 text-white shadow-sm shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-md hover:shadow-blue-500/20 active:scale-[0.98]"
                         >
                             <MapPinPlus
                                 className="size-4"
@@ -144,7 +144,7 @@ const AddressesPage = () => {
                             <Button
                                 variant="primary"
                                 onClick={handleAddAddress}
-                                className="h-10 rounded-md bg-red-600 px-4 text-white shadow-sm shadow-red-500/20 transition-all hover:bg-red-700 hover:shadow-md hover:shadow-red-500/20 active:scale-[0.98]"
+                                className="h-10 rounded-md bg-blue-600 px-4 text-white shadow-sm shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-md hover:shadow-blue-500/20 active:scale-[0.98]"
                             >
                                 <MapPinPlus
                                     className="size-4"
@@ -198,7 +198,7 @@ const AddressesPage = () => {
                                                     </span>
 
                                                     {item.isDefault && (
-                                                        <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-medium text-red-600 dark:bg-red-950/40 dark:text-red-400">
+                                                        <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
                                                             <Star
                                                                 className="size-3 fill-current"
                                                                 strokeWidth={1.5}

@@ -65,10 +65,10 @@ const Features = () => {
                 'Merch فقط یک محصول نیست؛ چیزی برای کساییه که می‌خوان علاقه‌شون رو باهاشون همراه داشته باشن.',
             label: 'برای طرفدارها',
             colors: {
-                bg: 'bg-rose-100/40 dark:bg-rose-950/40',
-                icon: 'text-rose-600',
-                hover: 'hover:border-rose-500/60',
-                gradient: 'from-rose-500 via-rose-600 to-rose-700',
+                bg: 'bg-sky-100/40 dark:bg-sky-950/40',
+                icon: 'text-sky-600',
+                hover: 'hover:border-sky-500/60',
+                gradient: 'from-sky-500 via-sky-600 to-sky-700',
             },
         },
     ];

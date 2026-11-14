@@ -124,7 +124,7 @@ export function StoreClientProductDetailsSheet({
                 {
                     text: 'کد محصول',
                     info: (
-                        <span dir="ltr" className="font-medium">
+                        <span dir="ltr" className="font-medium font-iransans">
                               {product.sku}
                           </span>
                     ),
@@ -194,22 +194,17 @@ export function StoreClientProductDetailsSheet({
                                         overflow-hidden rounded-md sm:h-64
                                     "
                                 >
-                                    <Link
-                                        href={`/store/product/${product.slug}`}
-                                        onClick={closeSheet}
-                                        aria-label={`مشاهده ${product.title}`}
-                                        className="flex size-full items-center justify-center p-5"
-                                    >
+                                    <div className="flex size-full items-center justify-center p-5">
                                         <img
                                             src={toAbsoluteUrl(product.logo)}
                                             alt={product.title}
                                             className="
-                                                size-40 object-contain
-                                                transition-transform duration-300
-                                                hover:scale-105 sm:size-80
-                                            "
+            size-40 object-contain
+            transition-transform duration-300
+            hover:scale-105 sm:size-80
+        "
                                         />
-                                    </Link>
+                                    </div>
 
                                     <button
                                         type="button"
@@ -231,7 +226,7 @@ export function StoreClientProductDetailsSheet({
                                         <Heart
                                             className={cn(
                                                 'size-[18px] transition-colors',
-                                                isFavorite && 'text-rose-500',
+                                                isFavorite && 'text-blue-500',
                                             )}
                                             fill={
                                                 isFavorite
@@ -242,7 +237,7 @@ export function StoreClientProductDetailsSheet({
                                     </button>
 
                                     {product.discount > 0 && (
-                                        <div className="absolute left-3 top-3">
+                                        <div className="left-3 top-3">
                                             <DiscountBadge
                                                 discount={product.discount}
                                             />
@@ -263,7 +258,7 @@ export function StoreClientProductDetailsSheet({
                                 </h2>
 
                                 {product.description && (
-                                    <p className="mt-2 text-right text-sm leading-7 text-muted-foreground">
+                                    <p className="mt-2 text-right text-sm leading-7 text-muted-foreground font-iransans">
                                         {product.description}
                                     </p>
                                 )}
@@ -329,7 +324,7 @@ export function StoreClientProductDetailsSheet({
                                                     className={cn(
                                                         'flex size-9 items-center justify-center rounded-full border transition-all',
                                                         isSelected
-                                                            ? ' ring-2 ring-red-600/20 ring-offset-2'
+                                                            ? ' ring-2 ring-blue-600/20 ring-offset-2'
                                                             : 'border-border/70',
                                                     )}
                                                 >
@@ -414,8 +409,8 @@ export function StoreClientProductDetailsSheet({
                                                         <div className="
                                                             flex size-9 shrink-0
                                                             items-center justify-center
-                                                            rounded-full bg-red-600/10
-                                                            text-sm font-bold text-red-600
+                                                            rounded-full bg-blue-600/10
+                                                            text-sm font-bold text-blue-600
                                                         ">
                                                             {review.name?.charAt(0) ?? 'ک'}
                                                         </div>
@@ -443,7 +438,7 @@ export function StoreClientProductDetailsSheet({
                                                     </div>
                                                 </div>
 
-                                                <p className="mt-3 text-right text-sm leading-7">
+                                                <p className="mt-3 text-right text-sm leading-7 font-iransans">
                                                     {review.comment}
                                                 </p>
                                             </article>
@@ -466,7 +461,7 @@ export function StoreClientProductDetailsSheet({
                         dir="ltr"
                         className="
                             flex shrink-0 items-center justify-start
-                            border-t border-border/60 bg-background py-4
+                            border-t border-border/60 bg-background pt-4
                         "
                     >
                         <div
@@ -515,9 +510,9 @@ export function StoreClientProductDetailsSheet({
                         disabled={!productId || !product.stock}
                         className="
                             h-12 min-h-12 w-full gap-2 rounded-md
-                            border-0 bg-red-600 text-sm font-semibold text-white
-                            shadow-sm transition-colors hover:bg-red-700
-                            focus-visible:bg-red-700
+                            border-0 bg-blue-600 text-sm font-semibold text-white
+                            shadow-sm transition-colors hover:bg-blue-700
+                            focus-visible:bg-blue-700
                             disabled:cursor-not-allowed disabled:opacity-50
                         "
                     >
