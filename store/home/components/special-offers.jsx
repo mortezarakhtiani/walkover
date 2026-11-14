@@ -318,29 +318,18 @@ export function SpecialOffers({
             sm:gap-5
         "
                     >
-                        {/*<Card2*/}
-                        {/*    productId={product103.id}*/}
-                        {/*    star={product103.rating}*/}
-                        {/*    logo={product103.logo}*/}
-                        {/*    title={product103.title}*/}
-                        {/*    total={product103.price}*/}
-                        {/*    originalPrice={product103.originalPrice}*/}
-                        {/*    discount={product103.discount}*/}
-                        {/*    showAddButton={showAddButton}*/}
-                        {/*/>*/}
+                        <Card2
+                            productId={product103.id}
+                            star={product103.rating}
+                            logo={product103.logo}
+                            title={product103.title}
+                            total={product103.price}
+                            originalPrice={product103.originalPrice}
+                            discount={product103.discount}
+                            showAddButton={showAddButton}
+                        />
 
-                        {/*<Card2*/}
-                        {/*    productId={product104.id}*/}
-                        {/*    star={product104.rating}*/}
-                        {/*    logo={product104.logo}*/}
-                        {/*    title={product104.title}*/}
-                        {/*    total={product104.price}*/}
-                        {/*    originalPrice={product104.originalPrice}*/}
-                        {/*    discount={product104.discount}*/}
-                        {/*    showAddButton={showAddButton}*/}
-                        {/*/>*/}
-
-                        <ProductRevealCard
+                        <Card2
                             productId={product104.id}
                             star={product104.rating}
                             logo={product104.logo}
@@ -351,16 +340,27 @@ export function SpecialOffers({
                             showAddButton={showAddButton}
                         />
 
-                        <ProductRevealCard
-                            productId={product103.id}
-                            star={product103.rating}
-                            logo={product103.logo}
-                            title={product103.title}
-                            total={product103.price}
-                            originalPrice={product103.originalPrice}
-                            discount={product103.discount}
-                            showAddButton={showAddButton}
-                        />
+                        {/*<ProductRevealCard*/}
+                        {/*    productId={product104.id}*/}
+                        {/*    star={product104.rating}*/}
+                        {/*    logo={product104.logo}*/}
+                        {/*    title={product104.title}*/}
+                        {/*    total={product104.price}*/}
+                        {/*    originalPrice={product104.originalPrice}*/}
+                        {/*    discount={product104.discount}*/}
+                        {/*    showAddButton={showAddButton}*/}
+                        {/*/>*/}
+
+                        {/*<ProductRevealCard*/}
+                        {/*    productId={product103.id}*/}
+                        {/*    star={product103.rating}*/}
+                        {/*    logo={product103.logo}*/}
+                        {/*    title={product103.title}*/}
+                        {/*    total={product103.price}*/}
+                        {/*    originalPrice={product103.originalPrice}*/}
+                        {/*    discount={product103.discount}*/}
+                        {/*    showAddButton={showAddButton}*/}
+                        {/*/>*/}
 
 
                     </div>

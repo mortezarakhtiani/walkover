@@ -581,7 +581,7 @@ const Hero = () => {
                             {' '}
 
                             <Image
-    src="/images/walkover-vector-blue.svg"
+    src="/images/WALKOVER_horror_transparent.webp"
     alt="WALKOVER"
     width={320}
     height={90}

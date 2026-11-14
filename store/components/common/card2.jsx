@@ -31,14 +31,31 @@ export function Card2({
                 cursor-pointer
                 group
                 overflow-hidden
-                rounded-md
-                border
+                rounded-3xl
+                border-0
                 border-blue-500/25
                 transition-all
                 duration-300
             "
             onClick={() => showProductDetailsSheet(id)}
         >
+
+            <img
+                src="/icons/frame4.jpg"
+                alt=""
+                aria-hidden="true"
+                className="
+        pointer-events-none
+        absolute
+        inset-0
+        z-0
+        h-full
+        w-full
+        rounded-md
+        object-fill
+        opacity-90
+    "
+            />
             {/* نور آبی اطراف کارت */}
             <div
                 className="
@@ -50,7 +67,7 @@ export function Card2({
                     transition-opacity
                     duration-500
                     group-hover:opacity-100
-                    bg-[radial-gradient(ellipse_at_50%_25%,rgba(20,75,170,0.20)_0%,rgba(10,40,100,0.12)_35%,rgba(5,15,35,0.04)_65%,transparent_85%)]
+                    {/*bg-[radial-gradient(ellipse_at_50%_25%,rgba(20,75,170,0.20)_0%,rgba(10,40,100,0.12)_35%,rgba(5,15,35,0.04)_65%,transparent_85%)]*/}
                 "
             />
 
@@ -66,16 +83,16 @@ export function Card2({
                     w-[85%]
                     -translate-x-1/2
                     rounded-full
-                    bg-blue-600/10
+                    {/*bg-blue-600/10*/}
                     blur-[65px]
                     transition-all
                     duration-500
-                    group-hover:bg-blue-500/20
-                    group-hover:blur-[75px]
+                    {/*group-hover:bg-blue-500/20*/}
+                    {/*group-hover:blur-[75px]*/}
                 "
             />
 
-              {badge && <DiscountBadge discount={discount}/>}
+            {badge && <DiscountBadge discount={discount}/>}
 
             <CardContent
                 className="
@@ -89,6 +106,7 @@ export function Card2({
                     sm:p-2.5
                 "
             >
+
                 <div>
                     {/* تصویر */}
                     <div
@@ -108,22 +126,7 @@ export function Card2({
                     >
 
                         {/* فریم ترسناک سفید پشت تصویر */}
-<img
-    src="/icons/frame3.jpg"
-    alt=""
-    aria-hidden="true"
-    className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-0
-        h-full
-        w-full
-        p-3
-        opacity-90
-        object-fill
-    "
-/>
+
                         <img
                             src={toAbsoluteUrl(logo)}
                             className="
@@ -174,7 +177,7 @@ export function Card2({
                                     -mt-0.5
                                     sm:size-4
                                 "
-                                style={{ fill: 'currentColor' }}
+                                style={{fill: 'currentColor'}}
                             />
 
                             <span>
@@ -184,8 +187,8 @@ export function Card2({
                     </div>
 
                     {/* عنوان */}
-<div
-    className="
+                    <div
+                        className="
         hover:text-blue-300
         text-[11px]
         font-semibold
@@ -198,9 +201,9 @@ export function Card2({
         sm:px-2.5
         sm:leading-8
     "
->
-    {title}
-</div>
+                    >
+                        {title}
+                    </div>
                 </div>
 
                 {/* قیمت + دکمه افزودن */}
@@ -269,7 +272,8 @@ export function Card2({
 
                         {/* قیمت نهایی */}
                         <div className="flex flex-row items-center gap-1 whitespace-nowrap">
-                            <span className="text-[11px] font-medium leading-4 text-mono sm:text-base sm:leading-normal">
+                            <span
+                                className="text-[11px] font-medium leading-4 text-mono sm:text-base sm:leading-normal">
                                 {toPersianSplit(total)}
                             </span>
 

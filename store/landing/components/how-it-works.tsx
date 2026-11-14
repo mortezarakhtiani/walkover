@@ -6,7 +6,7 @@ export default function HowItWorks() {
             <div className="w-full max-w-none">
                 <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[16/4]">
                     <img
-                        src="/images/store4.jpg"
+                        src="/images/store5.png"
                         alt="انتخاب محصول"
                         draggable={false}
                         className="h-full w-full select-none object-cover"
