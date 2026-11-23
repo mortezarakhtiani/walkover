@@ -3,13 +3,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import {
-    CircleUserRound,
-    Clapperboard,
-    BookOpen,
-    ShoppingBag,
-    ArrowDown,
-} from 'lucide-react';
+import { Play } from 'lucide-react';
 
 const HowItWorks = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -78,17 +72,15 @@ const HowItWorks = () => {
     return (
         <section
             className="
-        relative
-        overflow-hidden
-        bg-black
-        py-24
-        sm:py-28
-        lg:py-32
-    "
+                relative
+                overflow-hidden
+                bg-black
+                py-24
+                sm:py-28
+                lg:py-32
+            "
         >
-            {/* =====================================================
-                BACKGROUND ATMOSPHERE
-            ====================================================== */}
+            {/* Background Atmosphere */}
 
             <div
                 className="
@@ -112,11 +104,9 @@ const HowItWorks = () => {
                 "
             />
 
-            <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-                {/* =================================================
-                    SECTION HEADER
-                ================================================== */}
+                {/* Section Header */}
 
                 <motion.div
                     initial={{
@@ -135,27 +125,115 @@ const HowItWorks = () => {
                         once: true,
                         amount: 0.3,
                     }}
-                    className="mx-auto mb-12 max-w-3xl text-center sm:mb-16"
+                    className="mx-auto mb-12 max-w-3xl text-center sm:mb-8"
                 >
+                    <motion.h2
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: 'easeOut' }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="
+                            relative
+                            font-iransans
+                            text-2xl
+                            font-black
+                            text-white
+                            sm:text-3xl
+                            md:text-4xl
+                        "
+                    >
+                        <motion.span
+                            className="relative inline-block"
+                            animate={{
+                                x: [0, 0, -4, 8, -1, 0, 0],
+                                skewX: [0, 2, -7, 2, -3, 0, 0],
+                            }}
+                            transition={{
+                                duration: 0.35,
+                                repeat: Infinity,
+                                repeatDelay: 4.5,
+                                times: [0, 0.25, 0.32, 0.38, 0.44, 0.5, 1],
+                                ease: 'linear',
+                            }}
+                        >
+                            {/* Red Glitch Layer */}
 
+                            <motion.span
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0 text-red-500"
+                                animate={{
+                                    x: [0, 0, -5, 4, -2, 0, 0],
+                                    opacity: [0, 0, 0.85, 0.7, 0.4, 0, 0],
+                                    clipPath: [
+                                        'inset(0 0 100% 0)',
+                                        'inset(0 0 100% 0)',
+                                        'inset(15% 0 65% 0)',
+                                        'inset(55% 0 25% 0)',
+                                        'inset(30% 0 50% 0)',
+                                        'inset(0 0 100% 0)',
+                                        'inset(0 0 100% 0)',
+                                    ],
+                                }}
+                                transition={{
+                                    duration: 0.4,
+                                    repeat: Infinity,
+                                    repeatDelay: 4.5,
+                                    ease: 'linear',
+                                }}
+                            >
+                                جدیدترین ویدیوهای ما در یوتیوب
+                            </motion.span>
 
+                            {/* Cyan Glitch Layer */}
+
+                            <motion.span
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0 text-cyan-400"
+                                animate={{
+                                    x: [0, 0, 5, -3, 2, 0, 0],
+                                    opacity: [0, 0, 0.75, 0.5, 0.3, 0, 0],
+                                    clipPath: [
+                                        'inset(100% 0 0 0)',
+                                        'inset(100% 0 0 0)',
+                                        'inset(65% 0 15% 0)',
+                                        'inset(25% 0 55% 0)',
+                                        'inset(50% 0 30% 0)',
+                                        'inset(100% 0 0 0)',
+                                        'inset(100% 0 0 0)',
+                                    ],
+                                }}
+                                transition={{
+                                    duration: 0.4,
+                                    repeat: Infinity,
+                                    repeatDelay: 4.5,
+                                    ease: 'linear',
+                                }}
+                            >
+                                جدیدترین ویدیوهای ما در یوتیوب
+                            </motion.span>
+
+                            {/* Main Text */}
+
+                            <span className="relative z-10">
+                                جدیدترین ویدیوهای ما در یوتیوب
+                            </span>
+                        </motion.span>
+                    </motion.h2>
                 </motion.div>
 
-                {/* =================================================
-                    STEP NAVIGATION
-                ================================================== */}
+                {/* Step Navigation */}
 
                 <div
                     className="
                         mb-8
                         grid
-                        grid-cols-4
-                        gap-2
+                        grid-cols-2
+                        gap-3
                         sm:mb-10
+                        sm:grid-cols-4
                         sm:gap-4
                     "
                 >
-
                     {steps.map((step, index) => {
                         const isActive = index === activeStep;
 
@@ -167,75 +245,72 @@ const HowItWorks = () => {
                                     setActiveStep(index);
                                     setProgress(0);
                                 }}
-                                className="
-                group
-                min-w-0
-                cursor-pointer
-                text-center
-                outline-none
-            "
-                            >
-                                {/* Title */}
+                                aria-pressed={isActive}
+                                className={`
+                                    group
+                                    flex
+                                    min-h-[48px]
+                                    min-w-0
+                                    cursor-pointer
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    border
+                                    px-2
+                                    py-2
+                                    text-center
+                                    outline-none
+                                    transition-all
+                                    duration-300
+                                    sm:min-h-[52px]
+                                    sm:px-3
+                                    sm:py-2
 
-                                <div
-                                    className={`
-                                    font-iransans
-                    mb-3
-                    truncate
-                    text-[10px]
-                    font-semibold
-                    transition-colors
-                    duration-300
-                    sm:text-sm
-                    md:text-base
-                    ${
+                                    ${
                                         isActive
-                                            ? 'text-white'
-                                            : 'text-white/35 group-hover:text-white/60'
+                                            ? `
+                                                border-white/20
+                                                bg-white/10
+                                                shadow-[0_0_20px_rgba(255,255,255,0.04)]
+                                            `
+                                            : `
+                                                border-white/[0.06]
+                                                bg-white/[0.03]
+                                                hover:border-white/20
+                                                hover:bg-white/[0.07]
+                                            `
                                     }
-                `}
+                                `}
+                            >
+                                <span
+                                    className={`
+                                        block
+                                        w-full
+                                        whitespace-normal
+                                        break-words
+                                        font-iransans
+                                        text-[11px]
+                                        font-semibold
+                                        leading-5
+                                        transition-colors
+                                        duration-300
+                                        sm:text-sm
+                                        md:text-base
+                                        ${
+                                            isActive
+                                                ? 'text-white'
+                                                : 'text-gray-500 group-hover:text-white/70'
+                                        }
+                                    `}
                                 >
                                     {step.title}
-                                </div>
-
-                                {/* Progress line */}
-
-                                <div
-                                    className="
-                    relative
-                    h-[2px]
-                    w-full
-                    overflow-hidden
-                    rounded-full
-                    bg-white/10
-                "
-                                >
-                                    {isActive && (
-                                        <motion.div
-                                            className="
-                            absolute
-                            inset-y-0
-                            right-0
-                            rounded-full
-                            bg-blue-600
-                            shadow-[0_0_10px_rgba(99,102,241,0.45)]
-                        "
-                                            style={{
-                                                width: `${progress}%`,
-                                            }}
-                                        />
-                                    )}
-                                </div>
+                                </span>
                             </button>
                         );
                     })}
-
-
                 </div>
 
-                {/* =================================================
-                    MAIN VISUAL
-                ================================================== */}
+                {/* Main Visual */}
 
                 <motion.div
                     initial={{
@@ -279,30 +354,24 @@ const HowItWorks = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeStep}
-                                initial={{
-                                    opacity: 0,
-                                    scale: 1.025,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    scale: 1,
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    scale: 0.985,
-                                }}
                                 transition={{
-                                    duration: 0.55,
+                                    duration: 0.65,
                                     ease: 'easeOut',
                                 }}
                                 className="absolute inset-0"
                             >
-                                {/* Image */}
+                                {/* Main Image */}
 
-                                <img
+                                <motion.img
                                     src={activeItem.image}
                                     alt={activeItem.title}
                                     draggable={false}
+                                    initial={{ scale: 1 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{
+                                        duration: 5,
+                                        ease: 'linear',
+                                    }}
                                     className="
                                         absolute
                                         inset-0
@@ -313,64 +382,252 @@ const HowItWorks = () => {
                                     "
                                 />
 
-                                {/* Dark overlay */}
+                                {/* Dark Overlay */}
 
-                                <div
+                                <div className="absolute inset-0 bg-black/25" />
+
+                                {/* Cinematic Gradient */}
+
+                                <div className="
+                                    absolute
+                                    inset-0
+                                    bg-gradient-to-t
+                                    from-black
+                                    via-black/25
+                                    to-transparent
+                                " />
+
+                                {/* Vignette */}
+
+                                <div className="
+                                    absolute
+                                    inset-0
+                                    bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.55)_100%)]
+                                " />
+
+                                {/* Cinematic Glitch */}
+
+                                <motion.div
                                     className="
+                                        pointer-events-none
                                         absolute
                                         inset-0
-                                        bg-black/20
+                                        z-20
+                                        overflow-hidden
                                     "
+                                    animate={{
+                                        opacity: [0, 1, 0, 0, 1, 0],
+                                    }}
+                                    transition={{
+                                        duration: 0.65,
+                                        repeat: Infinity,
+                                        repeatDelay: 4,
+                                        times: [0, 0.08, 0.2, 0.65, 0.75, 1],
+                                        ease: 'linear',
+                                    }}
+                                >
+                                    {/* White Signal Distortion */}
+
+                                    <motion.div
+                                        className="absolute inset-0"
+                                        animate={{
+                                            clipPath: [
+                                                'inset(45% 100% 45% 0)',
+                                                'inset(45% 0 45% 0)',
+                                                'inset(45% 0 45% 100%)',
+                                            ],
+                                            opacity: [0, 1, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.22,
+                                            repeat: Infinity,
+                                            repeatDelay: 4.43,
+                                            ease: 'linear',
+                                        }}
+                                        style={{
+                                            background: 'rgba(255,255,255,0.8)',
+                                            mixBlendMode: 'screen',
+                                        }}
+                                    />
+
+                                    {/* Digital Interference Blocks */}
+
+                                    <motion.div
+                                        className="
+                                            absolute
+                                            left-0
+                                            top-[38%]
+                                            h-8
+                                            w-[38%]
+                                            bg-white/70
+                                        "
+                                        animate={{
+                                            x: ['-100%', '0%', '18%', '100%'],
+                                            opacity: [0, 0.8, 0.6, 0],
+                                            scaleY: [0.4, 1, 0.7, 0.2],
+                                        }}
+                                        transition={{
+                                            duration: 0.28,
+                                            repeat: Infinity,
+                                            repeatDelay: 4.37,
+                                            ease: 'linear',
+                                        }}
+                                    />
+
+                                    <motion.div
+                                        className="
+                                            absolute
+                                            right-0
+                                            top-[57%]
+                                            h-5
+                                            w-[25%]
+                                            bg-white/60
+                                        "
+                                        animate={{
+                                            x: ['100%', '0%', '-25%', '-100%'],
+                                            opacity: [0, 0.9, 0.5, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.2,
+                                            delay: 0.08,
+                                            repeat: Infinity,
+                                            repeatDelay: 4.45,
+                                            ease: 'linear',
+                                        }}
+                                    />
+
+                                    {/* Signal Flash */}
+
+                                    <motion.div
+                                        className="absolute inset-0 bg-white"
+                                        animate={{
+                                            opacity: [0, 0.13, 0, 0.08, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.2,
+                                            repeat: Infinity,
+                                            repeatDelay: 4.45,
+                                            ease: 'linear',
+                                        }}
+                                    />
+
+                                    {/* Dark Signal Interruption */}
+
+                                    <motion.div
+                                        className="absolute inset-0 bg-black"
+                                        animate={{
+                                            opacity: [0, 0, 0.7, 0, 0],
+                                        }}
+                                        transition={{
+                                            duration: 0.25,
+                                            repeat: Infinity,
+                                            repeatDelay: 4.4,
+                                            ease: 'linear',
+                                        }}
+                                        style={{
+                                            clipPath: 'inset(48% 0 40% 0)',
+                                        }}
+                                    />
+                                </motion.div>
+
+                                {/* Shadow Sweep */}
+
+                                <motion.div
+                                    className="
+                                        pointer-events-none
+                                        absolute
+                                        inset-x-0
+                                        top-0
+                                        z-30
+                                        h-24
+                                    "
+                                    animate={{
+                                        y: ['-100%', '650%'],
+                                        opacity: [0, 0.55, 0.55, 0],
+                                    }}
+                                    transition={{
+                                        duration: 5,
+                                        repeat: Infinity,
+                                        repeatDelay: 2.5,
+                                        ease: 'linear',
+                                    }}
+                                    style={{
+                                        background:
+                                            'linear-gradient(to bottom, transparent, rgba(255,255,255,0.075), transparent)',
+                                    }}
                                 />
 
-                                {/* Cinematic gradient */}
+                                {/* Scan Lines */}
 
                                 <div
                                     className="
+                                        pointer-events-none
                                         absolute
                                         inset-0
-                                        bg-gradient-to-t
-                                        from-black
-                                        via-black/20
+                                        opacity-[0.13]
+                                    "
+                                    style={{
+                                        backgroundImage:
+                                            'repeating-linear-gradient(0deg,rgba(255,255,255,0.12) 0px,transparent 1px,transparent 4px)',
+                                    }}
+                                />
+
+                                {/* Moving Light Sweep */}
+
+                                <motion.div
+                                    initial={{ y: '-120%' }}
+                                    animate={{ y: '550%' }}
+                                    transition={{
+                                        duration: 6,
+                                        repeat: Infinity,
+                                        ease: 'linear',
+                                    }}
+                                    className="
+                                        pointer-events-none
+                                        absolute
+                                        inset-x-0
+                                        top-0
+                                        h-28
+                                        bg-gradient-to-b
+                                        from-transparent
+                                        via-white/[0.07]
                                         to-transparent
                                     "
                                 />
 
-                                {/* Side vignette */}
+                                {/* Red Ambient Glow */}
 
-                                <div
-                                    className="
-                                        absolute
-                                        inset-0
-                                        bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.45)_100%)]
-                                    "
-                                />
+                                <div className="
+                                    pointer-events-none
+                                    absolute
+                                    inset-0
+                                    bg-[radial-gradient(ellipse_at_50%_85%,rgba(220,38,38,0.12),transparent_55%)]
+                                " />
 
-                                {/* =================================================
-                                    YOUTUBE BUTTON
-                                ================================================== */}
+                                {/* Simple Play Icon */}
 
-                                <div
-                                    className="
-                                        absolute
-                                        inset-0
-                                        flex
-                                        items-center
-                                        justify-center
-                                    "
-                                >
+                                <div className="
+                                    absolute
+                                    inset-0
+                                    z-10
+                                    flex
+                                    items-center
+                                    justify-center
+                                ">
                                     <motion.div
                                         initial={{
                                             opacity: 0,
-                                            scale: 0.75,
+                                            scale: 0.65,
+                                            filter: 'blur(8px)',
                                         }}
                                         animate={{
                                             opacity: 1,
                                             scale: 1,
+                                            filter: 'blur(0px)',
                                         }}
                                         transition={{
-                                            duration: 0.4,
-                                            delay: 0.15,
+                                            duration: 0.55,
+                                            delay: 0.2,
                                         }}
                                         className="
                                             relative
@@ -382,110 +639,163 @@ const HowItWorks = () => {
                                             md:size-24
                                         "
                                     >
-                                        {/* Glow */}
+                                        {/* Subtle Red Glow */}
 
-                                        <div
+                                        <motion.div
+                                            animate={{
+                                                scale: [1, 1.25, 1],
+                                                opacity: [0.2, 0.45, 0.2],
+                                            }}
+                                            transition={{
+                                                duration: 2.5,
+                                                repeat: Infinity,
+                                                ease: 'easeInOut',
+                                            }}
                                             className="
                                                 absolute
-                                                inset-1
+                                                inset-0
                                                 rounded-full
-                                                bg-blue-600/10
-                                                blur-xl
+                                                bg-red-600/30
+                                                blur-2xl
                                             "
                                         />
 
-                                        <img
-                                            src="/icons/youtube.svg"
-                                            alt="YouTube"
-                                            className="
-                                                relative
-                                                size-16
-                                                drop-shadow-[0_8px_25px_rgba(0,0,0,0.55)]
-                                                sm:size-20
-                                                md:size-24
-                                            "
-                                        />
+                                        {/* Play */}
+
+                                        {/* Simple Static Play Icon */}
+
+<div className="absolute inset-0 z-10 flex items-center justify-center">
+    <div
+        className="
+            flex
+            size-16
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/30
+            bg-black/30
+            text-white
+            shadow-[0_8px_30px_rgba(0,0,0,0.5)]
+            backdrop-blur-sm
+            sm:size-20
+            md:size-24
+        "
+    >
+        <Play
+            className="
+                ml-1
+                size-7
+                fill-white
+                stroke-white
+                sm:size-9
+                md:size-11
+            "
+        />
+    </div>
+</div>
                                     </motion.div>
                                 </div>
 
-                                {/* =================================================
-                                    BOTTOM INFO
-                                ================================================== */}
+                                {/* Bottom Text */}
 
-                                <div
-                                    className="
-                                        absolute
-                                        inset-x-0
-                                        bottom-0
-                                        p-5
-                                        sm:p-8
-                                        md:p-10
-                                    "
-                                >
-                                    <div
-                                        className="
-                                            flex
-                                            items-end
-                                            justify-between
-                                            gap-5
-                                        "
-                                    >
-                                        <div className="max-w-xl">
-
-
-                                            <h3
+                                <div className="
+                                    absolute
+                                    inset-x-0
+                                    bottom-0
+                                    p-5
+                                    sm:p-8
+                                    md:p-10
+                                ">
+                                    <div className="
+                                        flex
+                                        items-end
+                                        justify-between
+                                        gap-5
+                                    ">
+                                        <div className="max-w-xl" dir="rtl">
+                                            <motion.h3
+                                                initial={{
+                                                    opacity: 0,
+                                                    y: 25,
+                                                    filter: 'blur(8px)',
+                                                }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    y: 0,
+                                                    filter: 'blur(0px)',
+                                                }}
+                                                transition={{
+                                                    duration: 0.65,
+                                                    delay: 0.2,
+                                                    ease: 'easeOut',
+                                                }}
                                                 className="
                                                     text-xl
                                                     font-black
                                                     text-white
-                                                    drop-shadow-[0_3px_15px_rgba(0,0,0,0.7)]
+                                                    drop-shadow-[0_3px_20px_rgba(0,0,0,0.9)]
                                                     sm:text-2xl
                                                     md:text-4xl
                                                 "
                                             >
                                                 {activeItem.title}
-                                            </h3>
+                                            </motion.h3>
 
-                                            <p
+                                            <motion.p
+                                                initial={{
+                                                    opacity: 0,
+                                                    y: 18,
+                                                    filter: 'blur(6px)',
+                                                }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    y: 0,
+                                                    filter: 'blur(0px)',
+                                                }}
+                                                transition={{
+                                                    duration: 0.65,
+                                                    delay: 0.38,
+                                                    ease: 'easeOut',
+                                                }}
                                                 className="
-                                                font-iransans
                                                     mt-2
+                                                    font-iransans
                                                     text-xs
                                                     leading-6
-                                                    text-white/55
+                                                    text-white/65
                                                     sm:text-sm
                                                     md:text-base
                                                 "
                                             >
                                                 {activeItem.description}
-                                            </p>
+                                            </motion.p>
                                         </div>
 
-                                        {/* Step indicator */}
+                                        {/* Step Indicators - All White */}
 
-                                        <div
-                                            className="
-                                                hidden
-                                                shrink-0
-                                                items-center
-                                                gap-2
-                                                sm:flex
-                                            "
-                                        >
+                                        <div className="
+                                            hidden
+                                            shrink-0
+                                            items-center
+                                            gap-2
+                                            sm:flex
+                                        ">
                                             {steps.map((_, index) => (
-                                                <span
+                                                <motion.span
                                                     key={index}
-                                                    className={`
+                                                    animate={{
+                                                        width: index === activeStep ? 32 : 8,
+                                                        opacity: index === activeStep ? 1 : 0.3,
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.3,
+                                                    }}
+                                                    className="
                                                         h-1
                                                         rounded-full
-                                                        transition-all
-                                                        duration-300
-                                                        ${
-                                                        index === activeStep
-                                                            ? 'w-8 bg-white'
-                                                            : 'w-2 bg-white/25'
-                                                    }
-                                                    `}
+                                                        bg-white
+                                                    "
                                                 />
                                             ))}
                                         </div>
@@ -496,10 +806,65 @@ const HowItWorks = () => {
                     </div>
                 </motion.div>
 
+                {/* YouTube Button */}
+
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                        y: 20,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0,
+                    }}
+                    transition={{
+                        duration: 0.6,
+                        delay: 0.2,
+                    }}
+                    viewport={{
+                        once: true,
+                    }}
+                    className="mt-10 flex justify-center"
+                >
+                    <a
+                        href="https://www.youtube.com/@YOUR_CHANNEL"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                            font-iransans
+                            group
+                            inline-flex
+                            items-center
+                            gap-3
+                            rounded-xl
+                            border
+                            border-border
+                            px-7
+                            py-4
+                            text-sm
+                            font-bold
+                            text-white
+                            transition-all
+                            duration-300
+                            hover:bg-white/10
+                        "
+                    >
+                        <img
+                            src="/icons/youtube.svg"
+                            alt=""
+                            className="
+                                size-5
+                                transition-transform
+                                duration-300
+                                group-hover:scale-110
+                            "
+                        />
+                        تماشا همه ویدیوها
+                    </a>
+                </motion.div>
             </div>
         </section>
     );
 };
 
 export default HowItWorks;
-

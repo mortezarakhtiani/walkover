@@ -41,7 +41,7 @@ export function Card2({
         >
 
             <img
-                src="/icons/frame4.jpg"
+                src="/icons/frame5.jpg"
                 alt=""
                 aria-hidden="true"
                 className="

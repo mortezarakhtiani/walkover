@@ -30,6 +30,7 @@ export default async function RootLayout({
             lang="fa"
             dir="rtl"
             className="h-full"
+            data-scroll-behavior="smooth"
             suppressHydrationWarning
         >
         <body className="antialiased text-base text-foreground bg-background">

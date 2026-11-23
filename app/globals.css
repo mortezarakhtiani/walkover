@@ -1,10 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================================
+   FONTS
+   ========================================================= */
 
+/* Cinzel */
+@font-face {
+    font-family: 'Cinzel';
+    src: url('/fonts/Cinzel-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('/fonts/Cinzel-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('/fonts/Cinzel-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url('/fonts/Cinzel-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* B-Narm */
 @font-face {
     font-family: 'b-narm';
     src: url('/fonts/b-narm.ttf') format('truetype');
@@ -13,6 +51,7 @@
     font-display: swap;
 }
 
+/* Kordi */
 @font-face {
     font-family: 'Kordi';
     src: url('/fonts/kordi.ttf') format('truetype');
@@ -21,14 +60,16 @@
     font-display: swap;
 }
 
+/* Aref */
 @font-face {
-  font-family: "Aref";
-  src: url("/fonts/aref.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Aref';
+    src: url('/fonts/aref.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
+/* IRANSansX */
 @font-face {
     font-family: 'IRANSansX';
     src: url('/fonts/IRANSansX-Regular.otf') format('opentype');
@@ -36,6 +77,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'IRANSansX';
     src: url('/fonts/IRANSansX-Medium.otf') format('opentype');
@@ -43,6 +85,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'IRANSansX';
     src: url('/fonts/IRANSansX-DemiBold.otf') format('opentype');
@@ -50,6 +93,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'IRANSansX';
     src: url('/fonts/IRANSansX-Bold.otf') format('opentype');
@@ -57,6 +101,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'IRANSansX';
     src: url('/fonts/IRANSansX-ExtraBold.otf') format('opentype');
@@ -65,10 +110,32 @@
     font-display: swap;
 }
 
+/* Zangar */
+@font-face {
+    font-family: 'zangar';
+    src: url('/fonts/zangar.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================================
+   THEME
+   ========================================================= */
+
+@theme {
+    --font-cinzel: 'Cinzel', serif;
+}
+
+/* =========================================================
+   GLOBAL COLOR SYSTEM — WALKOVER
+   ========================================================= */
+
 :root {
     color-scheme: dark;
 
-    --radius: 0.375rem;
+    /* Radius */
+    --radius: 0.5rem;
 
     /* Background */
     --background: #0A0A0A;
@@ -82,15 +149,15 @@
     --popover: #141414;
     --popover-foreground: #FAFAFA;
 
-    /* Primary - Blue */
-    --primary: #2563EB;
-    --primary-hover: #1D4ED8;
-    --primary-active: #1E40AF;
+    /* Primary — Walkover Red */
+    --primary: #DC2626;
+    --primary-hover: #B91C1C;
+    --primary-active: #991B1B;
     --primary-foreground: #FFFFFF;
 
-    --color-primary-soft: #1A2843;
-    --color-primary-alpha: #1E3A8A;
-    --color-primary-accent: #BFDBFE;
+    --color-primary-soft: #2A1113;
+    --color-primary-alpha: #7F1D1D;
+    --color-primary-accent: #FCA5A5;
 
     /* Secondary */
     --secondary: #202020;
@@ -101,8 +168,8 @@
     --muted-foreground: #A1A1AA;
 
     /* Accent */
-    --accent: #1A2843;
-    --accent-foreground: #BFDBFE;
+    --accent: #2A1113;
+    --accent-foreground: #FCA5A5;
 
     /* Destructive */
     --destructive: #EF4444;
@@ -111,18 +178,19 @@
     /* Border & Input */
     --border: #303030;
     --input: #303030;
-    --ring: #60A5FA;
+    --ring: #DC2626;
 
     /* Sidebar */
     --sidebar: #111111;
     --sidebar-foreground: #FAFAFA;
-    --sidebar-primary: #2563EB;
+    --sidebar-primary: #DC2626;
     --sidebar-primary-foreground: #FFFFFF;
-    --sidebar-accent: #1A2843;
+    --sidebar-accent: #2A1113;
     --sidebar-border: #303030;
-    --sidebar-ring: #60A5FA;
+    --sidebar-ring: #DC2626;
 }
 
+/* Dark Theme */
 .dark {
     color-scheme: dark;
 
@@ -135,14 +203,14 @@
     --popover: #141414;
     --popover-foreground: #FAFAFA;
 
-    --primary: #2563EB;
-    --primary-hover: #3B82F6;
-    --primary-active: #1D4ED8;
+    --primary: #DC2626;
+    --primary-hover: #B91C1C;
+    --primary-active: #991B1B;
     --primary-foreground: #FFFFFF;
 
-    --color-primary-soft: #1A2843;
-    --color-primary-alpha: #1E3A8A;
-    --color-primary-accent: #BFDBFE;
+    --color-primary-soft: #2A1113;
+    --color-primary-alpha: #7F1D1D;
+    --color-primary-accent: #FCA5A5;
 
     --secondary: #202020;
     --secondary-foreground: #FAFAFA;
@@ -150,65 +218,61 @@
     --muted: #202020;
     --muted-foreground: #A1A1AA;
 
-    --accent: #1A2843;
-    --accent-foreground: #BFDBFE;
+    --accent: #2A1113;
+    --accent-foreground: #FCA5A5;
 
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
 
     --border: #303030;
     --input: #303030;
-    --ring: #60A5FA;
+    --ring: #DC2626;
 
     --sidebar: #111111;
     --sidebar-foreground: #FAFAFA;
-    --sidebar-primary: #2563EB;
+    --sidebar-primary: #DC2626;
     --sidebar-primary-foreground: #FFFFFF;
-    --sidebar-accent: #1A2843;
+    --sidebar-accent: #2A1113;
     --sidebar-border: #303030;
-    --sidebar-ring: #60A5FA;
+    --sidebar-ring: #DC2626;
 }
 
-html { min-height: 100%; background: var(--background); }
-body {
-    min-height: 100%;
-    background: var(--background);
-    color: var(--foreground);
-    font-family: 'IRANSansX', 'Vazirmatn', system-ui, sans-serif;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-}
-button, input, select, textarea { font: inherit; }
-.dark .text-primary,
-.dark .text-blue-600,
-.dark .text-blue-700 { color: #60a5fa; }
-/* Semantic red (errors, destructive actions) keeps its readable dark-mode tone. */
-.dark .text-red-600,
-.dark .text-red-700 { color: #f87171; }
-::selection { background: color-mix(in srgb, var(--primary) 18%, transparent); }
+/* =========================================================
+   TAILWIND THEME TOKENS
+   ========================================================= */
+
 @theme inline {
+    /* Colors */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+
     --color-card: var(--card);
     --color-card-foreground: var(--card-foreground);
+
     --color-popover: var(--popover);
     --color-popover-foreground: var(--popover-foreground);
+
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
+
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
+
     --color-primary: var(--primary);
     --color-primary-hover: var(--primary-hover);
     --color-primary-active: var(--primary-active);
     --color-primary-foreground: var(--primary-foreground);
+
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
+
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
+
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
+
     --color-sidebar: var(--sidebar);
     --color-sidebar-foreground: var(--sidebar-foreground);
     --color-sidebar-primary: var(--sidebar-primary);
@@ -216,12 +280,18 @@ button, input, select, textarea { font: inherit; }
     --color-sidebar-accent: var(--sidebar-accent);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
-    --radius-xl: var(--radius);
-    --radius-lg: var(--radius);
-    --radius-md: var(--radius);
-    --radius-sm: var(--radius);
-    --font-sans: "Aref", sans-serif;
 
+    /* Radius */
+    --radius-xl: calc(var(--radius) + 4px);
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    /* Fonts */
+    --font-sans: 'IRANSansX', 'Vazirmatn', sans-serif;
+    --font-cinzel: 'Cinzel', serif;
+
+    /* Animations */
     --animate-accordion-down: accordion-down 0.2s ease-out;
     --animate-accordion-up: accordion-up 0.2s ease-out;
     --animate-collapsible-down: collapsible-down 0.2s ease-out;
@@ -234,6 +304,7 @@ button, input, select, textarea { font: inherit; }
     --animate-rainbow: rainbow var(--duration) infinite linear;
     --animate-aurora: aurora var(--duration) infinite linear;
 
+    /* Keyframes */
     @keyframes accordion-down {
         from {
             height: 0;
@@ -336,9 +407,34 @@ button, input, select, textarea { font: inherit; }
     }
 }
 
-/** Smooth scroll **/
+/* =========================================================
+   GLOBAL BASE STYLES
+   ========================================================= */
+
 html {
+    min-height: 100%;
+    background: var(--background);
     scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%;
+    background: var(--background);
+    color: var(--foreground);
+
+    font-family: 'IRANSansX', 'Vazirmatn', sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
 
 @layer base {
@@ -351,7 +447,48 @@ html {
     }
 }
 
-/* Global scrollbar styling */
+/* =========================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================= */
+
+.font-iransans {
+    font-family: 'IRANSansX', 'Vazirmatn', sans-serif !important;
+}
+
+.font-cinzel {
+    font-family: 'Cinzel', serif;
+}
+
+.zangar-text,
+.zangar-text * {
+    font-family: 'zangar', sans-serif !important;
+}
+
+/* =========================================================
+   SEMANTIC COLORS
+   ========================================================= */
+
+/* Primary */
+.dark .text-primary {
+    color: var(--primary);
+}
+
+/* Destructive */
+.dark .text-red-600,
+.dark .text-red-700 {
+    color: #F87171;
+}
+
+/* Selection */
+::selection {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
+    color: #FFFFFF;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
 * {
     scrollbar-color: #555 transparent;
     scrollbar-width: thin;
@@ -383,182 +520,161 @@ html {
     background: transparent !important;
 }
 
-
+/* =========================================================
+   SHEET ANIMATIONS
+   ========================================================= */
 
 @keyframes sheetSlideInRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 @keyframes sheetSlideOutRight {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
 }
 
 @keyframes sheetSlideInLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 @keyframes sheetSlideOutLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 @keyframes sheetSlideInTop {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 @keyframes sheetSlideOutTop {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100%); }
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
 }
 
 @keyframes sheetSlideInBottom {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 @keyframes sheetSlideOutBottom {
-  from { transform: translateY(0); }
-  to { transform: translateY(100%); }
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
 }
 
 @keyframes sheetFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes sheetFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-
-html,
-body,
-body * {
-  font-family: "Aref", sans-serif;
-}
-
-.font-iransans {
-  font-family: "IRANSansX", sans-serif !important;
-}
-
-/* Walkover Custom Cursor */
-
-html,
-body,
-body * {
-    cursor: url("/cursors/skull/pointer.cur") 8 2, auto !important;
-}
-
-button,
-a,
-[role="button"],
-input[type="button"],
-input[type="submit"],
-select,
-label {
-    cursor: url("/cursors/skull/pointer.cur") 8 2, pointer !important;
-}
-
-/* Walkover — Cinematic Glitch Text */
-
-.glitch-text {
-    isolation: isolate;
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.35);
-}
-
-.glitch-text::before,
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    opacity: 0;
-}
-
-.glitch-text::before {
-    color: #60a5fa;
-    text-shadow: -2px 0 #2563eb;
-    animation: glitch-blue 4s infinite steps(1);
-}
-
-.glitch-text::after {
-    color: #f87171;
-    text-shadow: 2px 0 #dc2626;
-    animation: glitch-red 4s infinite steps(1);
-}
-
-@keyframes glitch-blue {
-    0%, 88%, 90%, 94%, 100% {
-        opacity: 0;
-        clip-path: inset(0 0 100% 0);
-        transform: translateX(0);
+    from {
+        opacity: 1;
     }
-
-    89% {
-        opacity: 0.9;
-        clip-path: inset(20% 0 55% 0);
-        transform: translateX(-3px);
-    }
-
-    91% {
-        opacity: 0.8;
-        clip-path: inset(65% 0 12% 0);
-        transform: translateX(3px);
-    }
-
-    92% {
+    to {
         opacity: 0;
     }
+}
 
-    93% {
-        opacity: 0.85;
-        clip-path: inset(42% 0 35% 0);
-        transform: translateX(-2px);
+/* =========================================================
+   WALKOVER CUSTOM CURSOR
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+    html,
+    body,
+    body * {
+        cursor: none !important;
+    }
+
+    .walkover-custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        z-index: 2147483647;
+        pointer-events: none;
+        opacity: 0;
+        will-change: transform;
+    }
+
+    .walkover-custom-cursor img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        user-select: none;
+        -webkit-user-drag: none;
     }
 }
 
-@keyframes glitch-red {
-    0%, 87%, 89%, 93%, 100% {
-        opacity: 0;
-        clip-path: inset(0 0 100% 0);
-        transform: translateX(0);
-    }
-
-    88% {
-        opacity: 0.8;
-        clip-path: inset(58% 0 20% 0);
-        transform: translateX(3px);
-    }
-
-    90% {
-        opacity: 0.9;
-        clip-path: inset(12% 0 70% 0);
-        transform: translateX(-3px);
-    }
-
-    91% {
-        opacity: 0;
-    }
-
-    92% {
-        opacity: 0.75;
-        clip-path: inset(35% 0 45% 0);
-        transform: translateX(2px);
+@media (hover: none), (pointer: coarse) {
+    .walkover-custom-cursor {
+        display: none !important;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .glitch-text::before,
-    .glitch-text::after {
-        animation: none;
-        display: none;
+/* =========================================================
+   MOBILE FLASHLIGHT
+   ========================================================= */
+
+@media (max-width: 639px) {
+    .flash-lit,
+    .flash-glow {
+        display: none !important;
     }
+}
+
+/* =========================================================
+   WALKOVER CINEMATIC GLITCH MASK
+   ========================================================= */
+
+.walkover-mask {
+    -webkit-mask-image: url('/icons/walkover.svg');
+    mask-image: url('/icons/walkover.svg');
+
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
 }
